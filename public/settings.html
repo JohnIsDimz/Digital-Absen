@@ -11,13 +11,13 @@
 <script id="tailwind-config">
 tailwind.config={darkMode:"class",theme:{extend:{colors:{"primary-container":"#ffe600","background":"#fcf9f8","primary":"#6a5f00","surface":"#fcf9f8","on-surface":"#1c1b1b","secondary":"#712ae2","secondary-container":"#8a4cfc","tertiary-container":"#67ffb7","error":"#ba1a1a"},borderRadius:{DEFAULT:"0.25rem",lg:"0.5rem",xl:"0.75rem",full:"9999px"},fontFamily:{"body-lg":["Plus Jakarta Sans"],"headline-xl":["Space Grotesk"]}}}}
 </script>
-<style>body{font-family:'Plus Jakarta Sans',sans-serif} h1,h2,h3{font-family:'Space Grotesk',sans-serif} .material-symbols-outlined{font-variation-settings:'FILL' 0,'wght' 600,'GRAD' 0,'opsz' 24}</style>
+<style>body{font-family:'Plus Jakarta Sans',sans-serif} h1,h2,h3{font-family:'Space Grotesk',sans-serif} .material-symbols-outlined{font-variation-settings:'FILL' 0,'wght' 600,'GRAD' 0,'opsz' 24}.truncate-ellipsis{overflow:hidden; text-overflow:ellipsis; white-space:nowrap; max-width:100%} .truncate-2{overflow:hidden; text-overflow:ellipsis; white-space:nowrap; max-width:140px; display:inline-block} .truncate-long{overflow:hidden; text-overflow:ellipsis; white-space:nowrap; max-width:180px}</style>
 </head>
 <body class="bg-[#FDF8F0] min-h-screen">
 <header class="border-b-[3px] border-black bg-white sticky top-0 z-50">
 <div class="max-w-5xl mx-auto px-5 py-3 flex justify-between items-center">
 <a href="/" class="flex items-center gap-2"><div class="w-10 h-10 bg-[#FFE600] border-[3px] border-black rounded-xl flex items-center justify-center font-bold">AS</div><span class="font-bold text-sm">AbsenSiswa </span></a>
-<div class="flex gap-2"><a href="/profil.html" class="border-[2px] border-black px-3 py-1 rounded-full text-xs font-bold bg-[#67FFB7]">Profil Real</a><a href="/" class="border-[2px] border-black px-3 py-1 rounded-full text-xs font-bold bg-white">Home</a></div>
+<div class="flex gap-2"><a href="/profil.html" class="border-[2px] border-black px-3 py-1 rounded-full text-xs font-bold bg-[#67FFB7]">Profil</a><a href="/" class="border-[2px] border-black px-3 py-1 rounded-full text-xs font-bold bg-white">Home</a></div>
 </div>
 </header>
 
@@ -71,42 +71,42 @@ tailwind.config={darkMode:"class",theme:{extend:{colors:{"primary-container":"#f
 
 <div class="mt-6 grid md:grid-cols-3 gap-3 text-[11px]">
 <a href="/index.html" class="bg-white border-[3px] border-black p-4 rounded-xl [box-shadow:3px_3px_0px_#000]"><b>→ index.html</b><br>Welcome </a>
-<a href="/profil.html" class="bg-[#FFE600] border-[3px] border-black p-4 rounded-xl [box-shadow:3px_3px_0px_#000]"><b>→ profil.html</b><br>Profil Real Fix Data Lama</a>
+<a href="/profil.html" class="bg-[#FFE600] border-[3px] border-black p-4 rounded-xl [box-shadow:3px_3px_0px_#000]"><b>→ profil.html</b><br>Profil</a>
 <a href="/kelas.html" class="bg-[#67FFB7] border-[3px] border-black p-4 rounded-xl [box-shadow:3px_3px_0px_#000]"><b>→ kelas.html</b><br>Kelas Bisa Diganti</a>
 </div>
 </main>
 <script>
 async function loadSettingsReal(){
  try{
-  const r=await fetch('/api/settings'); const d=await r.json();
-  if(d.success){
-   document.getElementById('currentSettings').innerHTML=`
-    <p><b>Sekolah:</b> ${d.data.sekolahNama}</p>
-    <p><b>Alamat:</b> ${d.data.sekolahAlamat}</p>
-    <p><b>Koordinat:</b> ${d.data.lat}, ${d.data.lng}</p>
-    <p><b>Radius:</b> ${d.data.radiusMeter}m</p>
-    <p><b>Tahun:</b> ${d.data.tahunAjaran} - ${d.data.semester}</p>
-    <p><b>Jam:</b> ${d.data.jamMasuk} - Toleransi ${d.data.batasToleransi}</p>
-    <p class="text-[10px] mt-2"> - Lokasi dinamis - bukan hardcode Jakarta lagi</p>`;
-   document.getElementById('sekolahNama').value=d.data.sekolahNama;
-   document.getElementById('sekolahAlamat').value=d.data.sekolahAlamat;
-   document.getElementById('lat').value=d.data.lat;
-   document.getElementById('lng').value=d.data.lng;
-   document.getElementById('radiusMeter').value=d.data.radiusMeter;
-   document.getElementById('tahunAjaran').value=d.data.tahunAjaran;
-  }
+ const r=await fetch('/api/settings'); const d=await r.json();
+ if(d.success){
+  document.getElementById('currentSettings').innerHTML=`
+  <p><b>Sekolah:</b> ${d.data.sekolahNama}</p>
+  <p><b>Alamat:</b> ${d.data.sekolahAlamat}</p>
+  <p><b>Koordinat:</b> ${d.data.lat}, ${d.data.lng}</p>
+  <p><b>Radius:</b> ${d.data.radiusMeter}m</p>
+  <p><b>Tahun:</b> ${d.data.tahunAjaran} - ${d.data.semester}</p>
+  <p><b>Jam:</b> ${d.data.jamMasuk} - Toleransi ${d.data.batasToleransi}</p>
+  <p class="text-[10px] mt-2"> - Lokasi dinamis - bukan hardcode Jakarta lagi</p>`;
+  document.getElementById('sekolahNama').value=d.data.sekolahNama;
+  document.getElementById('sekolahAlamat').value=d.data.sekolahAlamat;
+  document.getElementById('lat').value=d.data.lat;
+  document.getElementById('lng').value=d.data.lng;
+  document.getElementById('radiusMeter').value=d.data.radiusMeter;
+  document.getElementById('tahunAjaran').value=d.data.tahunAjaran;
+ }
  }catch(e){document.getElementById('currentSettings').innerHTML='<p class="text-red-600">Gagal load ? Setup dulu di /setup.html</p>'}
 }
 async function loadKotaPreset(){
  const r=await fetch('/api/settings/kota-preset'); const d=await r.json();
  if(d.success){
-  document.getElementById('kotaPreset').innerHTML=d.data.map((k,i)=>`
-   <div class="border-[2px] border-black p-3 rounded-xl bg-[#F6F3F2]">
-    <p class="font-bold text-xs">${k.nama}</p>
-    <p class="text-[10px]">${k.alamat}</p>
-    <p class="text-[10px] mt-1">Lat:${k.lat} Lng:${k.lng}</p>
-    <button onclick="setKota(${i})" class="mt-2 w-full bg-black text-white text-[11px] py-1 rounded-full font-bold">Pakai Kota Ini</button>
-   </div>`).join('');
+ document.getElementById('kotaPreset').innerHTML=d.data.map((k,i)=>`
+  <div class="border-[2px] border-black p-3 rounded-xl bg-[#F6F3F2]">
+  <p class="font-bold text-xs">${k.nama}</p>
+  <p class="text-[10px]">${k.alamat}</p>
+  <p class="text-[10px] mt-1">Lat:${k.lat} Lng:${k.lng}</p>
+  <button onclick="setKota(${i})" class="mt-2 w-full bg-black text-white text-[11px] py-1 rounded-full font-bold">Pakai Kota Ini</button>
+  </div>`).join('');
  }
 }
 async function setKota(i){

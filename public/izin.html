@@ -1,12 +1,12 @@
 <!DOCTYPE html>
-<html lang="id"><head>
+<html lang="id" class="overflow-x-hidden"><head>
 <meta charset="utf-8"/><meta name="viewport" content="width=device-width, initial-scale=1.0"/>
 <title>Pengajuan Izin & Sakit - Final Native</title>
 <link href="https://fonts.googleapis.com/css2?family=Material+Symbols+Outlined:wght,FILL@100..700,0..1&display=swap" rel="stylesheet"/>
 <link href="https://fonts.googleapis.com/css2?family=Plus+Jakarta+Sans:wght@500;600;700;800&family=Space+Grotesk:wght@500;600;700;800&display=swap" rel="stylesheet"/>
 <script src="https://cdn.tailwindcss.com?plugins=forms,container-queries"></script>
 <script id="tailwind-config">tailwind.config={darkMode:"class",theme:{extend:{colors:{"primary-container":"#ffe600","background":"#fcf9f8","on-background":"#1c1b1b","secondary-container":"#8a4cfc","tertiary-container":"#67ffb7","error":"#ba1a1a","error-container":"#ffdad6","surface-container-lowest":"#ffffff","surface-container":"#f0edec","surface-variant":"#e5e2e1","on-surface-variant":"#4b4731","outline-variant":"#cdc7aa","secondary-fixed":"#eaddff","tertiary-fixed":"#4dffb2","primary-fixed":"#fde400","primary":"#6a5f00"},borderRadius:{DEFAULT:"0.25rem",lg:"0.5rem",xl:"0.75rem",full:"9999px"},fontFamily:{"body-lg":["Plus Jakarta Sans"],"headline-xl":["Space Grotesk"]}}}}</script>
-<style>body{min-height:max(884px,100dvh)}</style>
+<style>body{min-height:max(884px,100dvh)}html,body{overflow-x:hidden; max-width:100vw; position:relative} *{max-width:100%; box-sizing:border-box} body{overscroll-behavior-x:none}.truncate-ellipsis{overflow:hidden; text-overflow:ellipsis; white-space:nowrap; max-width:100%} .truncate-2{overflow:hidden; text-overflow:ellipsis; white-space:nowrap; max-width:140px; display:inline-block} .truncate-long{overflow:hidden; text-overflow:ellipsis; white-space:nowrap; max-width:180px}</style>
 </head>
 <body class="bg-background text-on-surface antialiased min-h-screen pb-28 select-none flex justify-center">
 <div class="w-full max-w-[420px] bg-background min-h-screen relative flex flex-col shadow-2xl">
@@ -14,12 +14,12 @@
 <div class="flex items-center gap-3">
 <div class="relative">
 <div class="w-11 h-11 rounded-full border-[2.5px] border-on-background overflow-hidden bg-primary-container [box-shadow:2px_2px_0px_#1c1b1b] flex items-center justify-center font-bold text-xl" id="realAvatar">?</div>
-<span class="absolute -bottom-1 -right-2 bg-primary-container text-on-background border-[1.5px] border-on-background text-label-sm font-label-sm px-1.5 py-0.2 rounded-full [box-shadow:1px_1px_0px_#1c1b1b] realKelasNama" id="realKelasNama">Belum ada kelas</span>
+<span class="absolute -bottom-1 -right-2 bg-primary-container text-on-background border-[1.5px] border-on-background text-label-sm font-label-sm px-1.5 py-0.2 rounded-full [box-shadow:1px_1px_0px_#1c1b1b] realKelasNama" id="realKelasNama" class="truncate-ellipsis">Belum ada kelas</span>
 </div>
 <div class="flex flex-col">
 <span class="text-headline-md font-headline-md tracking-tight text-on-background leading-tight" id="realSiswaNama">Memuat data siswa...</span>
 <span class="text-label-md font-label-md text-on-surface-variant flex items-center gap-1">
-<span class="w-2 h-2 rounded-full bg-tertiary-fixed border border-on-background inline-block"></span> TA <span class="realTahunAjaran">2026/2027</span> • <span id="realSekolahNama">Memuat sekolah...</span>
+<span class="w-2 h-2 rounded-full bg-tertiary-fixed border border-on-background inline-block"></span> TA <span class="realTahunAjaran">2026/2027</span> • <span id="realSekolahNama" class="truncate-ellipsis" title="Memuat sekolah">Memuat sekolah...</span>
 </span>
 </div>
 </div>
@@ -144,7 +144,7 @@
 </main>
 </div>
 
-<nav class="fixed bottom-0 left-0 w-full z-50 flex justify-around items-center px-4 py-2 bg-white border-t-[3px] border-black [box-shadow:0px_-3px_0px_#000] max-w-[420px] left-1/2 -translate-x-1/2 md:max-w-5xl md:left-0 md:translate-x-0">
+<nav class="fixed bottom-0 left-0 w-full z-50 flex justify-around items-center px-4 py-2 bg-white border-t-[3px] border-black [box-shadow:0px_-3px_0px_#000] max-w-[420px] left-0 ">
 <a class="flex flex-col items-center justify-center px-3 py-1.5 font-label-sm text-label-sm" href="/index.html"><span class="material-symbols-outlined text-[20px]">home</span><span>Home</span></a>
 <a class="flex flex-col items-center justify-center px-3 py-1.5 font-label-sm text-label-sm" href="/dashboard-siswa.html"><span class="material-symbols-outlined text-[20px]">dashboard</span><span>Dashboard</span></a>
 <a class="flex flex-col items-center justify-center bg-primary-container border-[2px] border-black rounded px-3 py-1.5 font-label-sm text-label-sm" href="/izin.html"><span class="material-symbols-outlined text-[20px]" style="font-variation-settings: 'FILL' 1;">assignment</span><span>Izin</span></a>
@@ -158,40 +158,40 @@
 <script>
 // Set tanggal default ke hari ini 2026-09-28
 document.addEventListener('DOMContentLoaded', ()=>{
-  const today = new Date().toISOString().split('T')[0];
-  const tglMulai = document.getElementById('tglMulai');
-  const tglSelesai = document.getElementById('tglSelesai');
-  if(tglMulai) tglMulai.value = today;
-  if(tglSelesai) {
-    const tomorrow = new Date();
-    tomorrow.setDate(tomorrow.getDate()+1);
-    tglSelesai.value = tomorrow.toISOString().split('T')[0];
+ const today = new Date().toISOString().split('T')[0];
+ const tglMulai = document.getElementById('tglMulai');
+ const tglSelesai = document.getElementById('tglSelesai');
+ if(tglMulai) tglMulai.value = today;
+ if(tglSelesai) {
+  const tomorrow = new Date();
+  tomorrow.setDate(tomorrow.getDate()+1);
+  tglSelesai.value = tomorrow.toISOString().split('T')[0];
+ }
+ // Hitung durasi
+ function hitungDurasi(){
+  if(tglMulai?.value && tglSelesai?.value){
+   const start = new Date(tglMulai.value);
+   const end = new Date(tglSelesai.value);
+   const diff = Math.ceil((end - start)/(1000*60*60*24)) + 1;
+   document.getElementById('durasiIzin').textContent = diff > 0 ? diff + ' Hari' : 'Pilih tanggal';
   }
-  // Hitung durasi
-  function hitungDurasi(){
-    if(tglMulai?.value && tglSelesai?.value){
-      const start = new Date(tglMulai.value);
-      const end = new Date(tglSelesai.value);
-      const diff = Math.ceil((end - start)/(1000*60*60*24)) + 1;
-      document.getElementById('durasiIzin').textContent = diff > 0 ? diff + ' Hari' : 'Pilih tanggal';
+ }
+ tglMulai?.addEventListener('change', hitungDurasi);
+ tglSelesai?.addEventListener('change', hitungDurasi);
+ hitungDurasi();
+ 
+ // Load riwayat izin real
+ const token = localStorage.getItem('absensiswa_token');
+ if(token){
+  fetch('/api/izin', {headers: {'Authorization': 'Bearer '+token}})
+   .then(r=>r.json())
+   .then(data=>{
+    if(data.data && data.data.length > 0){
+     // Tampilkan riwayat real jika ada
+     console.log('Riwayat izin real:', data.data);
     }
-  }
-  tglMulai?.addEventListener('change', hitungDurasi);
-  tglSelesai?.addEventListener('change', hitungDurasi);
-  hitungDurasi();
-  
-  // Load riwayat izin real
-  const token = localStorage.getItem('absensiswa_token');
-  if(token){
-    fetch('/api/izin', {headers: {'Authorization': 'Bearer '+token}})
-      .then(r=>r.json())
-      .then(data=>{
-        if(data.data && data.data.length > 0){
-          // Tampilkan riwayat real jika ada
-          console.log('Riwayat izin real:', data.data);
-        }
-      }).catch(()=>{});
-  }
+   }).catch(()=>{});
+ }
 });
 </script>
 </body></html>

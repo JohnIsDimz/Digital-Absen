@@ -9,7 +9,7 @@
 <script src="https://cdn.tailwindcss.com"></script>
 <style>
 html{overflow-x:hidden; width:100vw} body{overflow-x:hidden; width:100vw; touch-action:pan-y; overscroll-behavior-x:contain; position:relative} .no-scroll-x{overflow-x:hidden; max-width:100vw}
-body{font-family:'Plus Jakarta Sans'; background:#F5F5DC} h1,h2{font-family:'Space Grotesk'}html,body{overflow-x:hidden; max-width:100vw; position:relative} *{max-width:100%; box-sizing:border-box} body{overscroll-behavior-x:none}</style>
+body{font-family:'Plus Jakarta Sans'; background:#F5F5DC} h1,h2{font-family:'Space Grotesk'}html,body{overflow-x:hidden; max-width:100vw; position:relative} *{max-width:100%; box-sizing:border-box} body{overscroll-behavior-x:none}.truncate-ellipsis{overflow:hidden; text-overflow:ellipsis; white-space:nowrap; max-width:100%} .truncate-2{overflow:hidden; text-overflow:ellipsis; white-space:nowrap; max-width:140px; display:inline-block} .truncate-long{overflow:hidden; text-overflow:ellipsis; white-space:nowrap; max-width:180px}</style>
 </head>
 <body class="min-h-screen flex justify-center overflow-x-hidden w-full max-w-[100vw]">
 <div class="w-full max-w-[480px] bg-[#F5F5DC] min-h-screen border-x-[3px] border-black flex flex-col overflow-x-hidden relative max-w-[100vw]">
@@ -124,13 +124,13 @@ body{font-family:'Plus Jakarta Sans'; background:#F5F5DC} h1,h2{font-family:'Spa
 
 <script>
 function updateDateTime(){
-  const now = new Date();
-  const hari = ['Minggu','Senin','Selasa','Rabu','Kamis','Jumat','Sabtu'];
-  const bulan = ['Januari','Februari','Maret','April','Mei','Juni','Juli','Agustus','September','Oktober','November','Desember'];
-  const tgl = `${hari[now.getDay()]}, ${now.getDate()} ${bulan[now.getMonth()]} ${now.getFullYear()}`;
-  const jam = now.toLocaleTimeString('id-ID',{hour:'2-digit',minute:'2-digit',second:'2-digit'});
-  document.getElementById('realTanggal').textContent = tgl;
-  document.getElementById('liveClock').textContent = jam + ' WIB';
+ const now = new Date();
+ const hari = ['Minggu','Senin','Selasa','Rabu','Kamis','Jumat','Sabtu'];
+ const bulan = ['Januari','Februari','Maret','April','Mei','Juni','Juli','Agustus','September','Oktober','November','Desember'];
+ const tgl = `${hari[now.getDay()]}, ${now.getDate()} ${bulan[now.getMonth()]} ${now.getFullYear()}`;
+ const jam = now.toLocaleTimeString('id-ID',{hour:'2-digit',minute:'2-digit',second:'2-digit'});
+ document.getElementById('realTanggal').textContent = tgl;
+ document.getElementById('liveClock').textContent = jam + ' WIB';
 }
 updateDateTime();
 setInterval(updateDateTime,1000);
@@ -141,36 +141,36 @@ document.getElementById('setupForm').addEventListener('submit', async e=>{
  btn.textContent = 'Memproses...';
  btn.disabled = true;
  const body={
-  kelasNama: document.getElementById('kelasNama').value,
-  tahunAjaran: document.getElementById('tahunAjaran').value,
-  semester: document.getElementById('semester').value,
-  guruNama: document.getElementById('guruNama').value,
-  guruNip: document.getElementById('guruNip').value,
-  guruPassword: document.getElementById('guruPassword').value,
-  sekolahNama: document.getElementById('sekolahNama').value||undefined,
-  sekolahAlamat: document.getElementById('sekolahAlamat').value||undefined,
-  lat: document.getElementById('lat').value?parseFloat(document.getElementById('lat').value):undefined,
-  lng: document.getElementById('lng').value?parseFloat(document.getElementById('lng').value):undefined
+ kelasNama: document.getElementById('kelasNama').value,
+ tahunAjaran: document.getElementById('tahunAjaran').value,
+ semester: document.getElementById('semester').value,
+ guruNama: document.getElementById('guruNama').value,
+ guruNip: document.getElementById('guruNip').value,
+ guruPassword: document.getElementById('guruPassword').value,
+ sekolahNama: document.getElementById('sekolahNama').value||undefined,
+ sekolahAlamat: document.getElementById('sekolahAlamat').value||undefined,
+ lat: document.getElementById('lat').value?parseFloat(document.getElementById('lat').value):undefined,
+ lng: document.getElementById('lng').value?parseFloat(document.getElementById('lng').value):undefined
  };
  try{
-  const r=await fetch('/api/setup/init',{method:'POST',headers:{'Content-Type':'application/json'},body:JSON.stringify(body)});
-  const d=await r.json();
-  const el=document.getElementById('result');
-  el.classList.remove('hidden');
-  el.textContent=JSON.stringify(d,null,2);
-  if(d.success){
-   document.getElementById('successBox').classList.remove('hidden');
-   document.getElementById('successData').innerHTML=`
-    <p><b>Kelas:</b> ${d.data.kelas.nama} - <span class="bg-black text-[#FFE600] px-2 py-0.5 rounded">${d.data.kelas.kodeUndangan}</span> - ${d.data.kelas.tahunAjaran}</p>
-    <p><b>Guru:</b> ${d.data.guru.nama} - NIP ${d.data.guru.nip}</p>
-    <p><b>Sekolah:</b> ${d.data.settings.sekolahNama} - ${d.data.settings.lat},${d.data.settings.lng}</p>
-    <p class="mt-2 bg-black text-[#FFE600] p-2 rounded text-center">KODE UNDANGAN: ${d.data.kelas.kodeUndangan} - CATAT UNTUK LOGIN SISWA!</p>`;
-  }
+ const r=await fetch('/api/setup/init',{method:'POST',headers:{'Content-Type':'application/json'},body:JSON.stringify(body)});
+ const d=await r.json();
+ const el=document.getElementById('result');
+ el.classList.remove('hidden');
+ el.textContent=JSON.stringify(d,null,2);
+ if(d.success){
+  document.getElementById('successBox').classList.remove('hidden');
+  document.getElementById('successData').innerHTML=`
+  <p><b>Kelas:</b> ${d.data.kelas.nama} - <span class="bg-black text-[#FFE600] px-2 py-0.5 rounded">${d.data.kelas.kodeUndangan}</span> - ${d.data.kelas.tahunAjaran}</p>
+  <p><b>Guru:</b> ${d.data.guru.nama} - NIP ${d.data.guru.nip}</p>
+  <p><b>Sekolah:</b> ${d.data.settings.sekolahNama} - ${d.data.settings.lat},${d.data.settings.lng}</p>
+  <p class="mt-2 bg-black text-[#FFE600] p-2 rounded text-center">KODE UNDANGAN: ${d.data.kelas.kodeUndangan} - CATAT UNTUK LOGIN SISWA!</p>`;
+ }
  }catch(err){
-  alert('Gagal: '+err.message);
+ alert('Gagal: '+err.message);
  }finally{
-  btn.textContent = 'Buat Data Real - Digital Apsen';
-  btn.disabled = false;
+ btn.textContent = 'Buat Data Real - Digital Apsen';
+ btn.disabled = false;
  }
 });
 </script>

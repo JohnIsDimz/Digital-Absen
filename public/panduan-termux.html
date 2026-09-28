@@ -10,7 +10,7 @@
 body{font-family:'Space Grotesk',sans-serif;background:#F5F5DC}
 .code{background:#000;color:#00FF88;padding:12px;border-radius:12px;font-size:12px;overflow-x:auto;border:3px solid #000;box-shadow:4px 4px 0px #000;margin:8px 0;white-space:pre-wrap;word-break:break-all}
 .step{border:3px solid #000;border-radius:16px;padding:16px;margin:12px 0;background:#fff;box-shadow:6px 6px 0px #000}
-</style>
+.truncate-ellipsis{overflow:hidden; text-overflow:ellipsis; white-space:nowrap; max-width:100%} .truncate-2{overflow:hidden; text-overflow:ellipsis; white-space:nowrap; max-width:140px; display:inline-block} .truncate-long{overflow:hidden; text-overflow:ellipsis; white-space:nowrap; max-width:180px}</style>
 </head>
 <body class="max-w-3xl mx-auto px-4 py-6">
 <header class="bg-[#FFE600] border-[3px] border-black p-5 rounded-[16px] [box-shadow:6px_6px_0px_#000]">
@@ -115,12 +115,12 @@ npm start</div>
 http://localhost:3000
 
 Halaman:
- /setup        → Setup Awal WAJIB pertama kali!
- /             → Welcome
- /index.html   → Login Siswa
+ /setup    → Setup Awal WAJIB pertama kali!
+ /       → Welcome
+ /index.html  → Login Siswa
  /login-guru.html → Login Guru
- /profil       → Profil Real
- /scan         → Scan QR Kamera Asli</div>
+ /profil    → Profil Real
+ /scan     → Scan QR Kamera Asli</div>
 </div>
 
 <div class="step bg-[#8A4CFC] text-white">
@@ -162,7 +162,7 @@ tmux kill-session -t absensi</div>
 <div class="code">cd ~/absensi-siswa
 nohup npm start > server.log 2>&1 &
 cat server.log
-pkill -f node  # untuk matikan</div>
+pkill -f node # untuk matikan</div>
 </div>
 
 <div class="step bg-[#FF5A5A] text-white">
@@ -214,11 +214,11 @@ chmod +x setup-termux.sh
 <div class="step">
 <h2 class="font-extrabold">📋 CHEAT SHEET HARIAN</h2>
 <div class="code">cd ~/absensi-siswa
-npm start              # jalankan
-CTRL+C                 # stop
-npm run reset:zero     # reset data NOL
-git pull               # update dari GitHub
-tail -f server.log     # lihat log
+npm start       # jalankan
+CTRL+C         # stop
+npm run reset:zero   # reset data NOL
+git pull        # update dari GitHub
+tail -f server.log   # lihat log
 curl http://localhost:3000/setup # cek server</div>
 </div>
 
@@ -230,9 +230,9 @@ Storage 500MB kosong
 ARM64 lebih bagus (cek: uname -m)
 
 Cek di Termux:
-uname -m    # aarch64 = bagus
-free -h     # cek RAM
-df -h       # cek storage</div>
+uname -m  # aarch64 = bagus
+free -h   # cek RAM
+df -h    # cek storage</div>
 </div>
 
 <footer class="mt-8 border-[3px] border-black p-4 rounded-xl bg-white text-center">

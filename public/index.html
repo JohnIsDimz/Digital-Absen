@@ -13,7 +13,7 @@ html{overflow-x:hidden; width:100vw} body{overflow-x:hidden; width:100vw; touch-
 body{font-family:'Plus Jakarta Sans'; background:#F5F5DC}
 h1,h2,h3{font-family:'Space Grotesk'}
 .material-symbols-outlined{font-variation-settings:'FILL' 0,'wght' 600,'GRAD' 0,'opsz' 24}
-html,body{overflow-x:hidden; max-width:100vw; position:relative} *{max-width:100%; box-sizing:border-box} body{overscroll-behavior-x:none}</style>
+html,body{overflow-x:hidden; max-width:100vw; position:relative} *{max-width:100%; box-sizing:border-box} body{overscroll-behavior-x:none}.truncate-ellipsis{overflow:hidden; text-overflow:ellipsis; white-space:nowrap; max-width:100%} .truncate-2{overflow:hidden; text-overflow:ellipsis; white-space:nowrap; max-width:140px; display:inline-block} .truncate-long{overflow:hidden; text-overflow:ellipsis; white-space:nowrap; max-width:180px}</style>
 </head>
 <body class="min-h-screen flex justify-center overflow-x-hidden w-full max-w-[100vw]">
 <div class="w-full max-w-[420px] bg-[#F5F5DC] min-h-screen border-x-[3px] border-black flex flex-col overflow-x-hidden relative">
@@ -24,10 +24,10 @@ html,body{overflow-x:hidden; max-width:100vw; position:relative} *{max-width:100
 <div>
 <div class="flex items-center gap-2">
 <div class="w-10 h-10 bg-black rounded-xl flex items-center justify-center font-black text-[#FFE600] text-lg rotate-3 border-2 border-black">DA</div>
-<span class="font-black text-[11px] tracking-widest uppercase">Digital Apsen v1.0</span>
+<span class="font-black text-[11px] tracking-widest uppercase">Digital Apsen</span>
 </div>
 <h1 class="font-black text-[28px] leading-[30px] uppercase mt-3 tracking-tight">Digital<br/>Apsen</h1>
-<p class="text-[11px] font-bold mt-1 opacity-70">QR + GPS + NIK OCR - Real Time - VPS</p>
+<p class="text-[11px] font-bold mt-1 opacity-70">QR + GPS + NIK OCR</p>
 </div>
 <div class="w-16 h-16 bg-black rounded-[16px] flex items-center justify-center rotate-6 border-[3px] border-black">
 <span class="text-[#FFE600] font-black text-2xl">DA</span>
@@ -90,15 +90,15 @@ html,body{overflow-x:hidden; max-width:100vw; position:relative} *{max-width:100
 <span class="material-symbols-outlined text-[#FFE600] text-[20px]">security</span>
 <div>
 <p class="font-black text-[11px] uppercase text-[#FFE600]">Keamanan Aktif</p>
-<p class="text-[10px] mt-1 leading-[12px] text-white/70">Geofencing 50m + 1 Perangkat 1 Siswa (Anti Titip Absen) + Validasi di Server VPS</p>
+<p class="text-[10px] mt-1 leading-[12px] text-white/70">Geofencing 50m + 1 Perangkat 1 Siswa (Anti Titip Absen) + Validasi di Server</p>
 </div>
 </div>
 
 <div class="flex-1"></div>
 
 <div class="text-center py-4">
-<p class="font-black text-[10px] tracking-widest uppercase opacity-50">Digital Apsen v1.0.0 - com.digitalapsen.app</p>
-<p class="text-[9px] opacity-40 mt-1">2026/2027 - QR + GPS + NIK OCR - VPS Auto Connect</p>
+<p class="font-black text-[10px] tracking-widest uppercase opacity-50">Digital Apsen - com.digitalapsen.app</p>
+<p class="text-[9px] opacity-40 mt-1">2026/2027 - QR + GPS + NIK OCR</p>
 <p class="text-[9px] opacity-40 mt-2">Butuh bantuan? <a href="/panduan-termux.html" class="underline font-bold">Panduan</a> • <a href="/setup.html" class="underline font-bold">Setup Awal</a></p>
 </div>
 
@@ -118,13 +118,13 @@ html,body{overflow-x:hidden; max-width:100vw; position:relative} *{max-width:100
 <script>
 // Fix date time with space
 function updateDateTime(){
-  const now = new Date();
-  const hari = ['Minggu','Senin','Selasa','Rabu','Kamis','Jumat','Sabtu'];
-  const bulan = ['Januari','Februari','Maret','April','Mei','Juni','Juli','Agustus','September','Oktober','November','Desember'];
-  const tgl = `${hari[now.getDay()]}, ${now.getDate()} ${bulan[now.getMonth()]} ${now.getFullYear()}`;
-  const jam = now.toLocaleTimeString('id-ID',{hour:'2-digit',minute:'2-digit',second:'2-digit'});
-  document.getElementById('realTanggal').textContent = tgl;
-  document.getElementById('liveClock').textContent = jam + ' WIB';
+ const now = new Date();
+ const hari = ['Minggu','Senin','Selasa','Rabu','Kamis','Jumat','Sabtu'];
+ const bulan = ['Januari','Februari','Maret','April','Mei','Juni','Juli','Agustus','September','Oktober','November','Desember'];
+ const tgl = `${hari[now.getDay()]}, ${now.getDate()} ${bulan[now.getMonth()]} ${now.getFullYear()}`;
+ const jam = now.toLocaleTimeString('id-ID',{hour:'2-digit',minute:'2-digit',second:'2-digit'});
+ document.getElementById('realTanggal').textContent = tgl;
+ document.getElementById('liveClock').textContent = jam + ' WIB';
 }
 updateDateTime();
 setInterval(updateDateTime,1000);

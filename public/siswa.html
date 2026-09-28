@@ -6,13 +6,13 @@
 <link href="https://fonts.googleapis.com/css2?family=Material+Symbols+Outlined:wght,FILL@100..700,0..1&display=swap" rel="stylesheet"/>
 <script src="https://cdn.tailwindcss.com?plugins=forms,container-queries"></script>
 <script id="tailwind-config">tailwind.config={darkMode:"class",theme:{extend:{colors:{"primary-container":"#ffe600","background":"#fcf9f8","on-background":"#1c1b1b","secondary-container":"#8a4cfc","tertiary-container":"#67ffb7","error":"#ba1a1a","surface-container-lowest":"#ffffff","surface-container":"#f0edec","on-surface-variant":"#4b4731","outline-variant":"#cdc7aa","secondary-fixed":"#eaddff","primary-fixed":"#fde400","primary":"#6a5f00","on-surface":"#1c1b1b","surface":"#fcf9f8"},borderRadius:{DEFAULT:"0.25rem",lg:"0.5rem",xl:"0.75rem",full:"9999px"},fontFamily:{"body-lg":["Plus Jakarta Sans"],"headline-xl":["Space Grotesk"]}}}}</script>
-<style>.material-symbols-outlined{font-variation-settings:'FILL' 0,'wght' 600,'GRAD' 0,'opsz' 24} body{min-height:max(884px,100dvh)}</style>
+<style>.material-symbols-outlined{font-variation-settings:'FILL' 0,'wght' 600,'GRAD' 0,'opsz' 24} body{min-height:max(884px,100dvh)}.truncate-ellipsis{overflow:hidden; text-overflow:ellipsis; white-space:nowrap; max-width:100%} .truncate-2{overflow:hidden; text-overflow:ellipsis; white-space:nowrap; max-width:140px; display:inline-block} .truncate-long{overflow:hidden; text-overflow:ellipsis; white-space:nowrap; max-width:180px}</style>
 </head>
 <body class="bg-background text-on-background min-h-screen pb-28">
 <header class="sticky top-0 z-50 flex justify-between items-center w-full px-5 py-3 bg-background border-b-[2.5px] border-on-background [box-shadow:0px_3px_0px_#1c1b1b]">
 <div class="flex items-center gap-3">
 <a href="/" class="w-10 h-10 rounded-lg bg-surface-container-lowest border-[2.5px] border-on-background flex items-center justify-center [box-shadow:2px_2px_0px_#1c1b1b]"><span class="material-symbols-outlined">arrow_back</span></a>
-<div><h1 class="font-headline-md text-headline-md tracking-tight">Daftar Siswa </h1><p class="font-label-sm text-label-sm text-on-surface-variant"><span class="realKelasNama">Belum ada kelas</span> • <span id="realSekolahNama">Belum setup</span> • TA <span class="realTahunAjaran">2026/2027</span></p></div>
+<div><h1 class="font-headline-md text-headline-md tracking-tight">Daftar Siswa </h1><p class="font-label-sm text-label-sm text-on-surface-variant"><span class="realKelasNama truncate-ellipsis">Belum ada kelas</span> • <span id="realSekolahNama">Belum setup</span> • TA <span class="realTahunAjaran">2026/2027</span></p></div>
 </div>
 <div class="flex items-center gap-2"><span class="bg-primary-container border-[1.5px] border-on-background px-2 py-0.5 rounded-full font-label-sm text-label-sm font-bold">0 Siswa </span></div>
 </header>

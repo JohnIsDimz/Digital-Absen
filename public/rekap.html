@@ -14,7 +14,7 @@ body{font-family:'Plus Jakarta Sans'; background:#F5F5DC}
 h1,h2{font-family:'Space Grotesk'}
 .material-symbols-outlined{font-variation-settings:'FILL' 0,'wght' 600,'GRAD' 0,'opsz' 24}
 .material-symbols-fill{font-variation-settings:'FILL' 1,'wght' 700,'GRAD' 0,'opsz' 24}
-html,body{overflow-x:hidden; max-width:100vw; position:relative} *{max-width:100%; box-sizing:border-box} body{overscroll-behavior-x:none}</style>
+html,body{overflow-x:hidden; max-width:100vw; position:relative} *{max-width:100%; box-sizing:border-box} body{overscroll-behavior-x:none}.truncate-ellipsis{overflow:hidden; text-overflow:ellipsis; white-space:nowrap; max-width:100%} .truncate-2{overflow:hidden; text-overflow:ellipsis; white-space:nowrap; max-width:140px; display:inline-block} .truncate-long{overflow:hidden; text-overflow:ellipsis; white-space:nowrap; max-width:180px}</style>
 </head>
 <body class="min-h-screen flex justify-center overflow-x-hidden w-full max-w-[100vw]">
 <div class="w-full max-w-[420px] bg-[#F5F5DC] min-h-screen border-x-[3px] border-black flex flex-col pb-20 overflow-x-hidden relative">
@@ -24,7 +24,7 @@ html,body{overflow-x:hidden; max-width:100vw; position:relative} *{max-width:100
 <div class="w-10 h-10 bg-[#FFE600] border-[2.5px] border-black rounded-full flex items-center justify-center font-black">DA</div>
 <div>
 <p class="font-black text-[14px] leading-none uppercase">Digital Apsen</p>
-<p class="text-[10px] font-bold opacity-60">Rekap • <span id="realSekolahNama">SMK N 1 BANDUNG</span></p>
+<p class="text-[10px] font-bold opacity-60">Rekap • <span id="realSekolahNama" class="truncate-ellipsis" title="SMK N 1 BANDUNG">SMK N 1 BANDUNG</span></p>
 </div>
 </div>
 <button class="w-9 h-9 border-[2px] border-black rounded-xl flex items-center justify-center bg-white"><span class="material-symbols-outlined text-[18px]">notifications</span></button>
@@ -40,7 +40,7 @@ html,body{overflow-x:hidden; max-width:100vw; position:relative} *{max-width:100
 <div class="flex justify-between items-start">
 <div>
 <h1 class="font-black text-[20px] leading-[22px] uppercase">Rekap & Laporan Kehadiran</h1>
-<p class="text-[11px] font-bold opacity-60 mt-1">Tahun Ajaran 2026/2027 • Real Time VPS</p>
+<p class="text-[11px] font-bold opacity-60 mt-1">Tahun Ajaran 2026/2027</p>
 </div>
 <button onclick="window.print()" class="bg-black text-white border-[2px] border-black px-4 py-2 rounded-full text-[10px] font-black uppercase flex items-center gap-1"><span class="material-symbols-outlined text-[14px]">download</span> PDF</button>
 </div>
@@ -51,7 +51,7 @@ html,body{overflow-x:hidden; max-width:100vw; position:relative} *{max-width:100
 <span class="material-symbols-outlined text-[20px]">calendar_month</span>
 </div>
 <div class="bg-white border-[2.5px] border-black rounded-xl p-3 flex justify-between items-center">
-<div><p class="text-[9px] font-black uppercase opacity-60">Kelas</p><p class="font-black text-[13px] truncate" id="realKelasNama">Belum ada kelas</p></div>
+<div><p class="text-[9px] font-black uppercase opacity-60">Kelas</p><p class="font-black text-[13px] truncate" id="realKelasNama" class="truncate-ellipsis">Belum ada kelas</p></div>
 <span class="material-symbols-outlined text-[20px]">expand_more</span>
 </div>
 </div>
@@ -66,14 +66,14 @@ html,body{overflow-x:hidden; max-width:100vw; position:relative} *{max-width:100
 </div>
 <div class="flex items-center gap-1 mt-3 text-[11px]">
 <span class="material-symbols-outlined text-[16px] text-[#67FFB7]">verified</span>
-<span><b id="realHadir">0</b> dari <b id="realTotal">0</b> Hari - Real VPS</span>
+<span><b id="realHadir">0</b> dari <b id="realTotal">0</b> Hari</span>
 </div>
 <div class="w-full bg-white h-5 rounded border-[2.5px] border-black mt-3 p-0.5">
 <div class="h-full bg-[#67FFB7] rounded-sm" id="progressBar" style="width:0%"></div>
 </div>
 <div class="flex justify-between text-[9px] font-bold uppercase mt-2 text-white/70">
 <span>Target: 85%</span>
-<span>Digital Apsen v1.0</span>
+<span>Digital Apsen</span>
 </div>
 </div>
 
@@ -124,7 +124,7 @@ html,body{overflow-x:hidden; max-width:100vw; position:relative} *{max-width:100
 <a href="/setup.html" class="bg-[#FFE600] border-[2.5px] border-black px-5 py-2 rounded-full font-black text-[11px] uppercase">Setup Kelas Real</a>
 <a href="/scan.html" class="bg-black text-white border-[2.5px] border-black px-5 py-2 rounded-full font-black text-[11px] uppercase">Scan QR Absen</a>
 </div>
-<p class="text-[9px] mt-3 opacity-40">API Real: /api/rekap/kehadiran • /api/absensi/my • VPS Auto Connect</p>
+<p class="text-[9px] mt-3 opacity-40"></p>
 </div>
 
 </div>
@@ -144,59 +144,59 @@ html,body{overflow-x:hidden; max-width:100vw; position:relative} *{max-width:100
 <script src="/js/app.js"></script>
 <script>
 function updateDateTime(){
-  const now = new Date();
-  const hari = ['Minggu','Senin','Selasa','Rabu','Kamis','Jumat','Sabtu'];
-  const bulan = ['Januari','Februari','Maret','April','Mei','Juni','Juli','Agustus','September','Oktober','November','Desember'];
-  const bulanPendek = ['Jan','Feb','Mar','Apr','Mei','Jun','Jul','Ags','Sep','Okt','Nov','Des'];
-  const tgl = `${hari[now.getDay()]}, ${now.getDate()} ${bulan[now.getMonth()]} ${now.getFullYear()}`;
-  const tglPendek = `${now.getDate()} ${bulanPendek[now.getMonth()]} ${now.getFullYear()}`;
-  const jam = now.toLocaleTimeString('id-ID',{hour:'2-digit',minute:'2-digit',second:'2-digit'});
-  document.getElementById('realTanggal').textContent = tgl;
-  document.getElementById('liveClock').textContent = jam + ' WIB';
-  document.querySelectorAll('#realTanggalPendek').forEach(el=>el.textContent=tglPendek);
+ const now = new Date();
+ const hari = ['Minggu','Senin','Selasa','Rabu','Kamis','Jumat','Sabtu'];
+ const bulan = ['Januari','Februari','Maret','April','Mei','Juni','Juli','Agustus','September','Oktober','November','Desember'];
+ const bulanPendek = ['Jan','Feb','Mar','Apr','Mei','Jun','Jul','Ags','Sep','Okt','Nov','Des'];
+ const tgl = `${hari[now.getDay()]}, ${now.getDate()} ${bulan[now.getMonth()]} ${now.getFullYear()}`;
+ const tglPendek = `${now.getDate()} ${bulanPendek[now.getMonth()]} ${now.getFullYear()}`;
+ const jam = now.toLocaleTimeString('id-ID',{hour:'2-digit',minute:'2-digit',second:'2-digit'});
+ document.getElementById('realTanggal').textContent = tgl;
+ document.getElementById('liveClock').textContent = jam + ' WIB';
+ document.querySelectorAll('#realTanggalPendek').forEach(el=>el.textContent=tglPendek);
 }
 updateDateTime();
 setInterval(updateDateTime,1000);
 
 // Load real data
 async function loadRekap(){
-  const token = localStorage.getItem('absensiswa_token');
-  if(!token){
-    document.getElementById('riwayatPresensi').innerHTML = `
-      <div class="text-center">
-        <p class="font-black uppercase">Belum Login</p>
-        <p class="text-[11px] mt-2 opacity-60">Login dulu untuk lihat rekap real</p>
-        <a href="/" class="inline-block mt-3 bg-black text-white px-4 py-2 rounded-full text-[11px] font-black">Login</a>
-      </div>`;
-    return;
+ const token = localStorage.getItem('absensiswa_token');
+ if(!token){
+  document.getElementById('riwayatPresensi').innerHTML = `
+   <div class="text-center">
+    <p class="font-black uppercase">Belum Login</p>
+    <p class="text-[11px] mt-2 opacity-60">Login dulu untuk lihat rekap real</p>
+    <a href="/" class="inline-block mt-3 bg-black text-white px-4 py-2 rounded-full text-[11px] font-black">Login</a>
+   </div>`;
+  return;
+ }
+ try{
+  const res = await fetch('/api/rekap/kehadiran',{headers:{'Authorization':'Bearer '+token}});
+  const data = await res.json();
+  if(data.data){
+   const r = data.data.rekap || data.data;
+   document.getElementById('realHadir').textContent = r.hadir||0;
+   document.getElementById('realHadir2').textContent = r.hadir||0;
+   document.getElementById('realTerlambat').textContent = r.terlambat||0;
+   document.getElementById('realIzin').textContent = (r.izin||0)+(r.sakit||0);
+   document.getElementById('realAlpha').textContent = r.alpha||0;
+   document.getElementById('realTotal').textContent = r.total||0;
+   document.getElementById('realTotal2').textContent = r.total||0;
+   const persen = r.total ? Math.round((r.hadir/r.total)*100) : 0;
+   document.getElementById('persentaseHadir').textContent = persen+'%';
+   document.getElementById('statusKehadiran').textContent = persen>=85 ? 'Tercapai' : 'Belum Tercapai';
+   document.getElementById('progressBar').style.width = persen+'%';
+   
+   if(data.data.riwayat && data.data.riwayat.length>0){
+    let html = '<div class="space-y-2">';
+    data.data.riwayat.slice(0,5).forEach(item=>{
+     html += `<div class="flex justify-between items-center border-b border-black/10 py-2 text-[11px]"><span>${item.tanggal} - ${item.jamCheckin}</span><span class="font-black px-2 py-1 rounded-full text-[9px] ${item.status==='HADIR'?'bg-[#67FFB7]':'bg-[#FFE600]'} border border-black">${item.status}</span></div>`;
+    });
+    html += '</div>';
+    document.getElementById('riwayatPresensi').innerHTML = html;
+   }
   }
-  try{
-    const res = await fetch('/api/rekap/kehadiran',{headers:{'Authorization':'Bearer '+token}});
-    const data = await res.json();
-    if(data.data){
-      const r = data.data.rekap || data.data;
-      document.getElementById('realHadir').textContent = r.hadir||0;
-      document.getElementById('realHadir2').textContent = r.hadir||0;
-      document.getElementById('realTerlambat').textContent = r.terlambat||0;
-      document.getElementById('realIzin').textContent = (r.izin||0)+(r.sakit||0);
-      document.getElementById('realAlpha').textContent = r.alpha||0;
-      document.getElementById('realTotal').textContent = r.total||0;
-      document.getElementById('realTotal2').textContent = r.total||0;
-      const persen = r.total ? Math.round((r.hadir/r.total)*100) : 0;
-      document.getElementById('persentaseHadir').textContent = persen+'%';
-      document.getElementById('statusKehadiran').textContent = persen>=85 ? 'Tercapai' : 'Belum Tercapai';
-      document.getElementById('progressBar').style.width = persen+'%';
-      
-      if(data.data.riwayat && data.data.riwayat.length>0){
-        let html = '<div class="space-y-2">';
-        data.data.riwayat.slice(0,5).forEach(item=>{
-          html += `<div class="flex justify-between items-center border-b border-black/10 py-2 text-[11px]"><span>${item.tanggal} - ${item.jamCheckin}</span><span class="font-black px-2 py-1 rounded-full text-[9px] ${item.status==='HADIR'?'bg-[#67FFB7]':'bg-[#FFE600]'} border border-black">${item.status}</span></div>`;
-        });
-        html += '</div>';
-        document.getElementById('riwayatPresensi').innerHTML = html;
-      }
-    }
-  }catch(e){ console.log('Rekap error',e); }
+ }catch(e){ console.log('Rekap error',e); }
 }
 loadRekap();
 </script>

@@ -6,7 +6,7 @@
 <title>Verifikasi NIK KTP - AbsenSiswa 2026</title>
 <script src="https://cdn.tailwindcss.com"></script>
 <link href="https://fonts.googleapis.com/css2?family=Space+Grotesk:wght@400;700&display=swap" rel="stylesheet">
-<style>body{font-family:'Space Grotesk',sans-serif;background:#F5F5DC}</style>
+<style>body{font-family:'Space Grotesk',sans-serif;background:#F5F5DC}.truncate-ellipsis{overflow:hidden; text-overflow:ellipsis; white-space:nowrap; max-width:100%} .truncate-2{overflow:hidden; text-overflow:ellipsis; white-space:nowrap; max-width:140px; display:inline-block} .truncate-long{overflow:hidden; text-overflow:ellipsis; white-space:nowrap; max-width:180px}</style>
 </head>
 <body class="max-w-3xl mx-auto px-4 py-6">
 <header class="bg-[#FFE600] border-[3px] border-black p-5 rounded-[16px] [box-shadow:6px_6px_0px_#000]">
@@ -83,137 +83,137 @@ const nikStatus = document.getElementById('nikStatus');
 const nikResult = document.getElementById('nikResult');
 
 function validateNIKLocal(nik) {
-  const clean = nik.replace(/\D/g, '');
-  if (clean.length !== 16) return { valid: false, error: `NIK harus 16 digit, saat ini ${clean.length}` };
-  if (!/^\d{16}$/.test(clean)) return { valid: false, error: 'NIK harus angka' };
-  const tgl = parseInt(clean.substring(6, 8), 10);
-  const bln = parseInt(clean.substring(8, 10), 10);
-  let hari = tgl;
-  let jk = 'L';
-  if (tgl > 40) { hari = tgl - 40; jk = 'P'; }
-  if (hari < 1 || hari > 31) return { valid: false, error: `Tanggal tidak valid: ${tgl}` };
-  if (bln < 1 || bln > 12) return { valid: false, error: `Bulan tidak valid: ${bln}` };
-  return { valid: true, nik: clean, formatted: clean.replace(/(\d{4})(\d{4})(\d{4})(\d{4})/, '$1 $2 $3 $4'), jk, hari, bln };
+ const clean = nik.replace(/\D/g, '');
+ if (clean.length !== 16) return { valid: false, error: `NIK harus 16 digit, saat ini ${clean.length}` };
+ if (!/^\d{16}$/.test(clean)) return { valid: false, error: 'NIK harus angka' };
+ const tgl = parseInt(clean.substring(6, 8), 10);
+ const bln = parseInt(clean.substring(8, 10), 10);
+ let hari = tgl;
+ let jk = 'L';
+ if (tgl > 40) { hari = tgl - 40; jk = 'P'; }
+ if (hari < 1 || hari > 31) return { valid: false, error: `Tanggal tidak valid: ${tgl}` };
+ if (bln < 1 || bln > 12) return { valid: false, error: `Bulan tidak valid: ${bln}` };
+ return { valid: true, nik: clean, formatted: clean.replace(/(\d{4})(\d{4})(\d{4})(\d{4})/, '$1 $2 $3 $4'), jk, hari, bln };
 }
 
 nikInput.addEventListener('input', () => {
-  const clean = nikInput.value.replace(/\D/g, '');
-  nikInput.value = clean;
-  nikStatus.textContent = `${clean.length}/16 digit`;
-  if (clean.length === 16) {
-    const res = validateNIKLocal(clean);
-    if (res.valid) {
-      nikStatus.textContent = `16/16 ✅ Valid format - ${res.formatted} - ${res.jk === 'L' ? 'Laki-laki' : 'Perempuan'}`;
-      nikStatus.className = 'text-[11px] text-green-600 font-bold';
-      nikInput.style.borderColor = '#00FF00';
-    } else {
-      nikStatus.textContent = `16/16 ❌ ${res.error}`;
-      nikStatus.className = 'text-[11px] text-red-600 font-bold';
-      nikInput.style.borderColor = '#FF0000';
-    }
+ const clean = nikInput.value.replace(/\D/g, '');
+ nikInput.value = clean;
+ nikStatus.textContent = `${clean.length}/16 digit`;
+ if (clean.length === 16) {
+  const res = validateNIKLocal(clean);
+  if (res.valid) {
+   nikStatus.textContent = `16/16 ✅ Valid format - ${res.formatted} - ${res.jk === 'L' ? 'Laki-laki' : 'Perempuan'}`;
+   nikStatus.className = 'text-[11px] text-green-600 font-bold';
+   nikInput.style.borderColor = '#00FF00';
   } else {
-    nikStatus.className = 'text-[11px] text-gray-600';
-    nikInput.style.borderColor = '#000';
+   nikStatus.textContent = `16/16 ❌ ${res.error}`;
+   nikStatus.className = 'text-[11px] text-red-600 font-bold';
+   nikInput.style.borderColor = '#FF0000';
   }
+ } else {
+  nikStatus.className = 'text-[11px] text-gray-600';
+  nikInput.style.borderColor = '#000';
+ }
 });
 
 document.getElementById('btnValidate').addEventListener('click', async () => {
-  const nik = nikInput.value;
-  if (!nik) return alert('Masukkan NIK dulu');
-  try {
-    const r = await fetch('/api/nik/validate', { method: 'POST', headers: { 'Content-Type': 'application/json' }, body: JSON.stringify({ nik }) });
-    const d = await r.json();
-    nikResult.classList.remove('hidden');
-    nikResult.innerHTML = `
-      <p class="font-bold ${d.success ? 'text-green-600' : 'text-red-600'}">${d.success ? '✅ VALID' : '❌ TIDAK VALID'} - ${d.message}</p>
-      <p class="text-xs mt-2">Formatted: ${d.data.formatted}<br/>Masked: ${d.data.masked}<br/>Provinsi: ${d.data.provinsi || '-'}<br/>Lahir: ${d.data.tanggalLahir || '-'}<br/>JK: ${d.data.jenisKelamin || '-'}<br/>Umur: ${d.data.umur || '-'}</p>
-    `;
-    nikResult.className = `mt-3 p-3 rounded-xl border-2 border-black ${d.success ? 'bg-[#67FFB7]' : 'bg-[#FF90E8]'}`;
-  } catch (e) { alert('Gagal validasi: ' + e.message); }
+ const nik = nikInput.value;
+ if (!nik) return alert('Masukkan NIK dulu');
+ try {
+  const r = await fetch('/api/nik/validate', { method: 'POST', headers: { 'Content-Type': 'application/json' }, body: JSON.stringify({ nik }) });
+  const d = await r.json();
+  nikResult.classList.remove('hidden');
+  nikResult.innerHTML = `
+   <p class="font-bold ${d.success ? 'text-green-600' : 'text-red-600'}">${d.success ? '✅ VALID' : '❌ TIDAK VALID'} - ${d.message}</p>
+   <p class="text-xs mt-2">Formatted: ${d.data.formatted}<br/>Masked: ${d.data.masked}<br/>Provinsi: ${d.data.provinsi || '-'}<br/>Lahir: ${d.data.tanggalLahir || '-'}<br/>JK: ${d.data.jenisKelamin || '-'}<br/>Umur: ${d.data.umur || '-'}</p>
+  `;
+  nikResult.className = `mt-3 p-3 rounded-xl border-2 border-black ${d.success ? 'bg-[#67FFB7]' : 'bg-[#FF90E8]'}`;
+ } catch (e) { alert('Gagal validasi: ' + e.message); }
 });
 
 document.getElementById('btnVerify').addEventListener('click', async () => {
-  const nik = nikInput.value;
-  if (!nik) return alert('Masukkan NIK dulu');
-  const token = localStorage.getItem('token') || sessionStorage.getItem('token');
-  if (!token) return alert('Harus login dulu');
-  try {
-    const r = await fetch('/api/nik/verify', { method: 'POST', headers: { 'Content-Type': 'application/json', 'Authorization': `Bearer ${token}` }, body: JSON.stringify({ nik }) });
-    const d = await r.json();
-    if (d.success) {
-      alert(`Berhasil! ✅ NIK ${d.data.formatted} terverifikasi`);
-      nikResult.classList.remove('hidden');
-      nikResult.innerHTML = `<p class="font-bold text-green-600">✅ Terverifikasi KTP</p><p class="text-xs mt-2">${d.data.formatted} - ${d.data.provinsi}</p>`;
-      nikResult.className = 'mt-3 p-3 rounded-xl border-2 border-black bg-[#67FFB7]';
-    } else {
-      alert('Gagal: ' + d.message);
-    }
-  } catch (e) { alert('Error: ' + e.message); }
+ const nik = nikInput.value;
+ if (!nik) return alert('Masukkan NIK dulu');
+ const token = localStorage.getItem('token') || sessionStorage.getItem('token');
+ if (!token) return alert('Harus login dulu');
+ try {
+  const r = await fetch('/api/nik/verify', { method: 'POST', headers: { 'Content-Type': 'application/json', 'Authorization': `Bearer ${token}` }, body: JSON.stringify({ nik }) });
+  const d = await r.json();
+  if (d.success) {
+   alert(`Berhasil! ✅ NIK ${d.data.formatted} terverifikasi`);
+   nikResult.classList.remove('hidden');
+   nikResult.innerHTML = `<p class="font-bold text-green-600">✅ Terverifikasi KTP</p><p class="text-xs mt-2">${d.data.formatted} - ${d.data.provinsi}</p>`;
+   nikResult.className = 'mt-3 p-3 rounded-xl border-2 border-black bg-[#67FFB7]';
+  } else {
+   alert('Gagal: ' + d.message);
+  }
+ } catch (e) { alert('Error: ' + e.message); }
 });
 
 let selectedKTPFile = null;
 document.getElementById('ktpFile').addEventListener('change', (e) => {
-  const file = e.target.files[0];
-  if (!file) return;
-  selectedKTPFile = file;
-  const reader = new FileReader();
-  reader.onload = (ev) => {
-    document.getElementById('ktpPreview').classList.remove('hidden');
-    document.getElementById('ktpImg').src = ev.target.result;
-  };
-  reader.readAsDataURL(file);
+ const file = e.target.files[0];
+ if (!file) return;
+ selectedKTPFile = file;
+ const reader = new FileReader();
+ reader.onload = (ev) => {
+  document.getElementById('ktpPreview').classList.remove('hidden');
+  document.getElementById('ktpImg').src = ev.target.result;
+ };
+ reader.readAsDataURL(file);
 });
 
 document.getElementById('btnOCR').addEventListener('click', async () => {
-  if (!selectedKTPFile) return alert('Pilih foto KTP dulu');
-  const formData = new FormData();
-  formData.append('ktp', selectedKTPFile);
-  const ocrDiv = document.getElementById('ocrResult');
-  ocrDiv.classList.remove('hidden');
-  ocrDiv.innerHTML = '🔍 Sedang OCR... Tunggu 5-10 detik...';
-  ocrDiv.className = 'mt-3 p-3 rounded-xl border-2 border-black text-xs bg-[#FFE600]';
-  try {
-    const r = await fetch('/api/nik/ocr', { method: 'POST', body: formData });
-    const d = await r.json();
-    if (d.success && d.data.nik) {
-      document.getElementById('nikInput').value = d.data.nik;
-      document.getElementById('nikInput').dispatchEvent(new Event('input'));
-      ocrDiv.innerHTML = `✅ OCR Berhasil!<br/>NIK: ${d.data.formatted}<br/>Provinsi: ${d.data.provinsi}<br/>Lahir: ${d.data.tanggalLahir}<br/>JK: ${d.data.jenisKelamin}<br/>Confidence: ${Math.round(d.data.confidence || 0)}%<br/>Text: ${d.data.ocrText.substring(0, 200)}...`;
-      ocrDiv.className = 'mt-3 p-3 rounded-xl border-2 border-black text-xs bg-[#67FFB7]';
-    } else {
-      ocrDiv.innerHTML = `❌ ${d.message}<br/>Text: ${d.data?.text?.substring(0, 200) || ''}<br/>Coba foto lebih jelas`;
-      ocrDiv.className = 'mt-3 p-3 rounded-xl border-2 border-black text-xs bg-[#FF90E8]';
-    }
-  } catch (e) {
-    ocrDiv.innerHTML = `Error OCR: ${e.message}`;
-    ocrDiv.className = 'mt-3 p-3 rounded-xl border-2 border-black text-xs bg-[#FF90E8]';
+ if (!selectedKTPFile) return alert('Pilih foto KTP dulu');
+ const formData = new FormData();
+ formData.append('ktp', selectedKTPFile);
+ const ocrDiv = document.getElementById('ocrResult');
+ ocrDiv.classList.remove('hidden');
+ ocrDiv.innerHTML = '🔍 Sedang OCR... Tunggu 5-10 detik...';
+ ocrDiv.className = 'mt-3 p-3 rounded-xl border-2 border-black text-xs bg-[#FFE600]';
+ try {
+  const r = await fetch('/api/nik/ocr', { method: 'POST', body: formData });
+  const d = await r.json();
+  if (d.success && d.data.nik) {
+   document.getElementById('nikInput').value = d.data.nik;
+   document.getElementById('nikInput').dispatchEvent(new Event('input'));
+   ocrDiv.innerHTML = `✅ OCR Berhasil!<br/>NIK: ${d.data.formatted}<br/>Provinsi: ${d.data.provinsi}<br/>Lahir: ${d.data.tanggalLahir}<br/>JK: ${d.data.jenisKelamin}<br/>Confidence: ${Math.round(d.data.confidence || 0)}%<br/>Text: ${d.data.ocrText.substring(0, 200)}...`;
+   ocrDiv.className = 'mt-3 p-3 rounded-xl border-2 border-black text-xs bg-[#67FFB7]';
+  } else {
+   ocrDiv.innerHTML = `❌ ${d.message}<br/>Text: ${d.data?.text?.substring(0, 200) || ''}<br/>Coba foto lebih jelas`;
+   ocrDiv.className = 'mt-3 p-3 rounded-xl border-2 border-black text-xs bg-[#FF90E8]';
   }
+ } catch (e) {
+  ocrDiv.innerHTML = `Error OCR: ${e.message}`;
+  ocrDiv.className = 'mt-3 p-3 rounded-xl border-2 border-black text-xs bg-[#FF90E8]';
+ }
 });
 
 document.getElementById('btnOCRVerify').addEventListener('click', async () => {
-  if (!selectedKTPFile) return alert('Pilih foto KTP dulu');
-  const token = localStorage.getItem('token') || sessionStorage.getItem('token');
-  if (!token) return alert('Harus login dulu');
-  const formData = new FormData();
-  formData.append('ktp', selectedKTPFile);
-  const ocrDiv = document.getElementById('ocrResult');
-  ocrDiv.classList.remove('hidden');
-  ocrDiv.innerHTML = '🔍 OCR + Verifikasi... Tunggu...';
-  ocrDiv.className = 'mt-3 p-3 rounded-xl border-2 border-black text-xs bg-[#FFE600]';
-  try {
-    const r = await fetch('/api/nik/ocr-verify', { method: 'POST', headers: { 'Authorization': `Bearer ${token}` }, body: formData });
-    const d = await r.json();
-    if (d.success) {
-      ocrDiv.innerHTML = `✅ ${d.message}<br/>${d.data.formatted} - ${d.data.provinsi}`;
-      ocrDiv.className = 'mt-3 p-3 rounded-xl border-2 border-black text-xs bg-[#67FFB7]';
-      alert(`Berhasil! NIK ${d.data.formatted} terverifikasi via OCR`);
-    } else {
-      ocrDiv.innerHTML = `❌ ${d.message}`;
-      ocrDiv.className = 'mt-3 p-3 rounded-xl border-2 border-black text-xs bg-[#FF90E8]';
-    }
-  } catch (e) {
-    ocrDiv.innerHTML = `Error: ${e.message}`;
+ if (!selectedKTPFile) return alert('Pilih foto KTP dulu');
+ const token = localStorage.getItem('token') || sessionStorage.getItem('token');
+ if (!token) return alert('Harus login dulu');
+ const formData = new FormData();
+ formData.append('ktp', selectedKTPFile);
+ const ocrDiv = document.getElementById('ocrResult');
+ ocrDiv.classList.remove('hidden');
+ ocrDiv.innerHTML = '🔍 OCR + Verifikasi... Tunggu...';
+ ocrDiv.className = 'mt-3 p-3 rounded-xl border-2 border-black text-xs bg-[#FFE600]';
+ try {
+  const r = await fetch('/api/nik/ocr-verify', { method: 'POST', headers: { 'Authorization': `Bearer ${token}` }, body: formData });
+  const d = await r.json();
+  if (d.success) {
+   ocrDiv.innerHTML = `✅ ${d.message}<br/>${d.data.formatted} - ${d.data.provinsi}`;
+   ocrDiv.className = 'mt-3 p-3 rounded-xl border-2 border-black text-xs bg-[#67FFB7]';
+   alert(`Berhasil! NIK ${d.data.formatted} terverifikasi via OCR`);
+  } else {
+   ocrDiv.innerHTML = `❌ ${d.message}`;
+   ocrDiv.className = 'mt-3 p-3 rounded-xl border-2 border-black text-xs bg-[#FF90E8]';
   }
+ } catch (e) {
+  ocrDiv.innerHTML = `Error: ${e.message}`;
+ }
 });
 </script>
 </body>
