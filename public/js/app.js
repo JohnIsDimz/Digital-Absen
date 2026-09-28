@@ -1,7 +1,7 @@
 /**
  * AbsenSiswa Neo-Brutalist -  - Realistis untuk React Native
  * - Semua data dari API real - tidak ada dummy
- * - Empty state realistis, bukan
+ * - Empty state realistis, bukan 
  */
 
 const API_BASE = window.location.origin + '/api';
@@ -70,17 +70,17 @@ async function getRealGPS() {
   if(cachedPosGlobal){
     return cachedPosGlobal;
   }
-
+  
   return new Promise((resolve,reject)=>{
     if(!navigator.geolocation) return reject(new Error('GPS tidak didukung'));
-
+    
     // Try fast low-accuracy first (3s timeout, cached allowed) - CEPAT!
     navigator.geolocation.getCurrentPosition(
       pos=>{
         const data = {lat:pos.coords.latitude,lng:pos.coords.longitude,accuracy:pos.coords.accuracy};
         cachedPosGlobal = data;
         resolve(data);
-
+        
         // Then watch for better accuracy in background
         navigator.geolocation.watchPosition(
           p=>{

@@ -17,13 +17,13 @@ function parseJwtAuth(token){
     const padded = pad ? base64 + '='.repeat(4 - pad) : base64;
     const jsonPayload = decodeURIComponent(atob(padded).split('').map(c=>'%'+('00'+c.charCodeAt(0).toString(16)).slice(-2)).join(''));
     return JSON.parse(jsonPayload);
-  }catch(e){
+  }catch(e){ 
     console.warn('JWT parse fail:', e.message);
-    return null;
+    return null; 
   }
 }
 
-function getToken(){
+function getToken(){ 
   const t = localStorage.getItem('absensiswa_token');
   if(!t || t.trim() === '' || t === 'null' || t === 'undefined') return null;
   return t.trim();
@@ -108,7 +108,7 @@ function enforceRole(allowedRoles, options = {}){
   // Cek apakah role termasuk allowed - jika tidak, redirect LANGSUNG ke dashboard yang benar (jangan overlay 3.5 detik bikin mental)
   if(!allowedRoles.includes(role)){
     console.warn(`🚫 Role ${role} tidak boleh akses ${currentPath}, butuh ${allowedRoles.join(', ')}`);
-
+    
     if(!options.silent){
       // Buat overlay tapi dengan redirect CEPAT 1 detik, bukan 3.5 detik, dan pesan jelas
       const existing = document.getElementById('roleMismatchOverlay');
@@ -178,7 +178,7 @@ function autoGuard(){
   };
 
   const guard = guards[path] || { roles: [], requireAuth: false, allowPublic: true };
-
+  
   if(guard.roles && guard.roles.length>0){
     return enforceRole(guard.roles, { requireAuth: guard.requireAuth, redirectLogin: guard.redirectLogin, allowPublic: guard.allowPublic });
   } else if(guard.requireAuth){
