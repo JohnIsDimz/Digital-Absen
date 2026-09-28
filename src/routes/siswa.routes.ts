@@ -4,6 +4,7 @@ import { v4 as uuidv4 } from 'uuid';
 import { z } from 'zod';
 import bcrypt from 'bcryptjs';
 import { getIO } from '../config/socket';
+import { authenticate, authorize } from '../middlewares/auth';
 
 const router = Router();
 
@@ -33,7 +34,7 @@ const pindahKelasSchema = z.object({
 });
 
 // GET semua siswa real
-router.get('/', (req, res) => {
+router.get('/', authenticate, authorize('WALI_KELAS', 'GURU', 'ADMIN'), (req, res) => {
   const data = db.get();
   const { kelasId } = req.query;
   let siswaList = data.siswa;
@@ -51,8 +52,8 @@ router.get('/', (req, res) => {
   });
 });
 
-// POST tambah siswa baru
-router.post('/', async (req, res) => {
+// POST tambah siswa baru - SECURITY: hanya guru!
+router.post('/', authenticate, authorize('WALI_KELAS', 'GURU', 'ADMIN'), async (req, res) => {
   try {
     const parsed = siswaRealSchema.parse(req.body);
     const data = db.get();
@@ -108,7 +109,7 @@ router.post('/', async (req, res) => {
 });
 
 // GET siswa by id
-router.get('/:id', (req, res) => {
+router.get('/:id', authenticate, (req, res) => {
   const data = db.get();
   const siswa = data.siswa.find(s => s.id === req.params.id);
   if (!siswa) return res.status(404).json({ success: false, message: 'Siswa tidak ditemukan' });
@@ -126,8 +127,8 @@ router.get('/:id', (req, res) => {
   });
 });
 
-// PUT update siswa - FIX CACAT v0.3 - KELAS BISA DIGANTI
-router.put('/:id', async (req, res) => {
+// PUT update siswa - FIX CACAT v0.3 - KELAS BISA DIGANTI - SECURITY: hanya guru!
+router.put('/:id', authenticate, authorize('WALI_KELAS', 'GURU', 'ADMIN'), async (req, res) => {
   try {
     const parsed = siswaUpdateSchema.parse(req.body);
     const data = db.get();
