@@ -26,7 +26,7 @@ html{overflow-x:hidden; width:100vw} body{overflow-x:hidden; width:100vw; touch-
 
 <header class="bg-[#8A4CFC] border-b-[3px] border-black p-4 sticky top-0 z-50 flex justify-between items-center text-white">
 <div class="flex items-center gap-3">
-<div class="w-10 h-10 bg-[#FFE600] border-[2px] border-black rounded-xl flex items-center justify-center font-black text-black text-sm">DA</div>
+<img src="/icon.png" alt="Digital Apsen" class="w-10 h-10 rounded-xl border-[2px] border-black bg-[#FFE600] object-cover"/>
 <div class="overflow-hidden">
 <p class="font-black text-[13px] uppercase leading-none truncate-ellipsis max-w-[160px]" id="realGuruNama">Memuat...</p>
 <p class="text-[10px] font-bold opacity-80 truncate-ellipsis max-w-[160px]">Wali Kelas • <span id="realKelasNama">Belum ada kelas</span></p>
@@ -48,7 +48,7 @@ html{overflow-x:hidden; width:100vw} body{overflow-x:hidden; width:100vw; touch-
 <div class="overflow-hidden">
 <p class="text-[10px] font-black uppercase opacity-60">Kelas Diampu</p>
 <p class="font-black text-[18px] leading-[20px] truncate-ellipsis" id="kelasDiampu">Belum ada kelas</p>
-<p class="text-[11px] opacity-60 truncate-ellipsis" id="realSekolahNama">SMK N 1 BANDUNG • 2026/2027</p>
+<p class="text-[11px] opacity-60 truncate-ellipsis" id="realSekolahNama">Belum Setup - NOL</p>
 </div>
 <button class="bg-[#FFE600] border-[2px] border-black px-3 py-1 rounded-full text-[10px] font-black uppercase shrink-0">Kunci Sesi</button>
 </div>
@@ -356,7 +356,9 @@ document.addEventListener('DOMContentLoaded', ()=>{
         document.getElementById('realKelasNama').textContent = truncateText(d.kelas?.nama || d.kelasList?.[0]?.nama || 'Belum ada kelas', 14);
         document.getElementById('kelasDiampu').textContent = truncateText(d.kelas?.nama || d.kelasList?.[0]?.nama || 'Belum ada kelas', 18);
         document.getElementById('kelasDiampu').title = d.kelas?.nama || '';
-        document.getElementById('realSekolahNama').textContent = truncateText(d.settings?.sekolahNama || 'SMK N 1 BANDUNG', 20);
+        const sekolahNama = d.settings?.sekolahNama || d.kelas?.sekolahNama || null;
+        document.getElementById('realSekolahNama').textContent = truncateText(sekolahNama || 'Belum Setup - NOL', 20);
+        document.getElementById('realSekolahNama').title = sekolahNama || 'Belum ada sekolah, silakan Setup';
         document.getElementById('realHadir').textContent = d.stats?.hadirHariIni || 0;
         document.getElementById('realTotal').textContent = d.stats?.totalSiswa || 0;
         document.getElementById('statHadir').textContent = d.stats?.hadirHariIni || 0;

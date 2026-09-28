@@ -16,7 +16,7 @@ html{overflow-x:hidden; width:100vw} body{overflow-x:hidden; width:100vw; touch-
 
 <header class="bg-white border-b-[3px] border-black p-4 sticky top-0 z-50 flex justify-between items-center">
 <div class="flex items-center gap-2">
-<div class="w-9 h-9 bg-[#FFE600] border-[2.5px] border-black rounded-xl flex items-center justify-center font-black text-sm">DA</div>
+<img src="/icon.png" alt="DA" class="w-9 h-9 rounded-xl border-[2px] border-black object-cover"/>
 <span class="font-black text-sm uppercase">Profil Saya</span>
 </div>
 <div class="flex gap-2">
@@ -120,7 +120,7 @@ async function loadProfil(){
   if(!res.ok) throw new Error(data.message);
   const p=data.data;
   const namaKelas = p.kelas?.nama || '-';
-  const namaSekolah = p.sekolah?.nama || 'SMK N 1 BANDUNG';
+  const namaSekolah = p.sekolah?.nama || 'NOL - Belum Setup';
   container.innerHTML=`
    <div class="flex gap-4 text-left">
      <div class="w-16 h-16 bg-[#FFE600] border-[3px] border-black rounded-full flex items-center justify-center font-black text-xl shrink-0">${(p.avatarInitial||p.nama.substring(0,2)).toUpperCase()}</div>
