@@ -1,109 +1,256 @@
 <!DOCTYPE html>
-<html lang="id"><head>
-<meta charset="utf-8"/><meta name="viewport" content="width=device-width, initial-scale=1.0"/>
-<title>Dashboard Siswa </title>
-<link href="https://fonts.googleapis.com/css2?family=Plus+Jakarta+Sans:wght@500;600;700&family=Space+Grotesk:wght@600;700;800&display=swap" rel="stylesheet"/>
+<html lang="id" class="overflow-x-hidden">
+<head>
+<meta charset="utf-8"/>
+<meta name="viewport" content="width=device-width, initial-scale=1.0"/>
+<title>Digital Apsen - Dashboard Siswa</title>
+<link href="https://fonts.googleapis.com/css2?family=Plus+Jakarta+Sans:wght@500;600;700;800&family=Space+Grotesk:wght@600;700;800&display=swap" rel="stylesheet"/>
 <link href="https://fonts.googleapis.com/css2?family=Material+Symbols+Outlined:wght,FILL@100..700,0..1&display=swap" rel="stylesheet"/>
-<script src="https://cdn.tailwindcss.com?plugins=forms,container-queries"></script>
-<script id="tailwind-config">tailwind.config={darkMode:"class",theme:{extend:{colors:{"primary-container":"#ffe600","background":"#fcf9f8","on-background":"#1c1b1b","secondary-container":"#8a4cfc","tertiary-container":"#67ffb7","error":"#ba1a1a","error-container":"#ffdad6","surface-container-lowest":"#ffffff","surface":"#fcf9f8","surface-container":"#f0edec","surface-variant":"#e5e2e1","on-surface-variant":"#4b4731","outline-variant":"#cdc7aa","secondary-fixed":"#eaddff","tertiary-fixed":"#4dffb2","primary-fixed":"#fde400","primary":"#6a5f00","on-surface":"#1c1b1b"},borderRadius:{DEFAULT:"0.25rem",lg:"0.5rem",xl:"0.75rem",full:"9999px"},fontFamily:{"body-lg":["Plus Jakarta Sans"],"headline-xl":["Space Grotesk"]}}}}</script>
-<style>.material-symbols-outlined{font-variation-settings:'FILL' 0,'wght' 600,'GRAD' 0,'opsz' 24} .fill-icon{font-variation-settings:'FILL' 1,'wght' 700,'GRAD' 0,'opsz' 24} body{min-height:max(884px,100dvh)}</style>
+<script src="https://cdn.tailwindcss.com"></script>
+<style>
+html{overflow-x:hidden; width:100vw} body{overflow-x:hidden; width:100vw; touch-action:pan-y; background:#F5F5DC; font-family:'Plus Jakarta Sans'} h1,h2{font-family:'Space Grotesk'} .material-symbols-outlined{font-variation-settings:'FILL' 0,'wght' 600,'GRAD' 0,'opsz' 24} .truncate-ellipsis{overflow:hidden; text-overflow:ellipsis; white-space:nowrap; max-width:100%}
+</style>
 </head>
-<body class="bg-background text-on-background min-h-screen flex justify-center selection:bg-primary-container selection:text-on-background">
-<div class="w-full max-w-[420px] bg-background min-h-screen relative flex flex-col pb-28 border-x-[2.5px] border-on-background shadow-2xl">
-<header class="sticky top-0 z-50 flex justify-between items-center w-full px-5 py-3 bg-background border-b-[2.5px] border-on-background [box-shadow:0px_3px_0px_#1c1b1b]">
+<body class="min-h-screen flex justify-center md:bg-[#E8E0C8]">
+<div class="w-full max-w-[420px] md:max-w-[440px] bg-[#F5F5DC] min-h-screen md:min-h-screen border-x-[3px] md:border-[3px] border-black flex flex-col pb-20 overflow-x-hidden relative md:shadow-[8px_8px_0px_#000] md:my-0">
+
+<header class="bg-[#FFE600] border-b-[3px] border-black p-4 sticky top-0 z-50 flex justify-between items-center">
 <div class="flex items-center gap-3">
-<div class="relative">
-<div class="w-11 h-11 rounded-full border-[2.5px] border-on-background overflow-hidden bg-primary-container flex items-center justify-center [box-shadow:2px_2px_0px_#1c1b1b] font-bold text-xl" id="realAvatar">?</div>
-<span class="absolute -bottom-1 -right-2 bg-primary-container text-on-background font-label-sm text-label-sm border-[1.5px] border-on-background px-1.5 py-0.5 rounded rotate-[-4deg] [box-shadow:1px_1px_0px_#1c1b1b] uppercase realKelasNama" id="realKelasNama"></span>
-</div>
-<div class="flex flex-col">
-<div class="flex items-center gap-1.5">
-<h1 class="font-headline-md text-headline-md tracking-tight text-on-background" id="realSiswaNama">Memuat siswa real...</h1>
-<span class="material-symbols-outlined fill-icon text-secondary text-[16px]">verified</span>
-</div>
-<span class="font-label-sm text-label-sm text-on-surface-variant flex items-center gap-1">
-<span class="material-symbols-outlined text-[13px]">school</span>
-<span id="realSekolahNama">Memuat sekolah real... </span>
-</span>
+<div class="w-10 h-10 bg-black rounded-xl flex items-center justify-center font-black text-[#FFE600] text-sm">DA</div>
+<div class="overflow-hidden">
+<p class="font-black text-[13px] uppercase leading-none truncate-ellipsis max-w-[160px]" id="realSiswaNama">Memuat...</p>
+<p class="text-[10px] font-bold opacity-60 truncate-ellipsis max-w-[160px]"><span id="realKelasNama">Belum ada kelas</span> • <span id="realSekolahNama">SMK N 1 BANDUNG</span></p>
 </div>
 </div>
-<button class="relative w-10 h-10 rounded-lg bg-surface-container-lowest border-[2.5px] border-on-background flex items-center justify-center [box-shadow:3px_3px_0px_#1c1b1b]">
-<span class="material-symbols-outlined text-on-background">notifications</span>
-<span class="absolute -top-1 -right-1 w-3.5 h-3.5 bg-error border-[2px] border-on-background rounded-full"></span>
-</button>
+<button onclick="logout()" class="border-[2px] border-black bg-black text-white px-3 py-1.5 rounded-full text-[10px] font-black uppercase">Logout</button>
 </header>
 
-<main class="flex-1 px-5 pt-5 space-y-5">
-<!-- Status Presensi -->
-<section class="bg-primary-container border-[3px] border-on-background rounded-xl p-4 [box-shadow:4px_4px_0px_#1c1b1b] relative overflow-hidden">
-<div class="absolute -right-6 -bottom-6 opacity-10 pointer-events-none select-none"><span class="material-symbols-outlined text-[120px]">how_to_reg</span></div>
-<div class="flex justify-between items-start mb-3">
+<div class="bg-black text-white p-3 flex justify-between items-center text-[11px] font-black min-h-[40px] will-change-transform" style="font-variant-numeric:tabular-nums; transform:translateZ(0)">
+<span id="realTanggal" class="truncate-ellipsis max-w-[60%]">Memuat...</span>
+<span id="liveClock" class="shrink-0 tabular-nums min-w-[90px] text-right" style="font-variant-numeric:tabular-nums">00:00:00 WIB</span>
+</div>
+
+<main class="p-5 flex flex-col gap-5 flex-1">
+
+<!-- Status Absen Hari Ini - BEDA DARI GURU -->
+<div class="bg-white border-[3px] border-black rounded-[16px] p-4 [box-shadow:4px_4px_0px_#000]">
+<div class="flex justify-between items-start">
 <div>
-<div class="flex items-center gap-1.5 font-label-md text-label-md uppercase text-on-primary-container mb-0.5"><span class="material-symbols-outlined text-[16px]">calendar_month</span><span id="realTanggal">Memuat tanggal real - TA 2026/2027</span></div>
-<div class="font-headline-xl-mobile text-headline-xl-mobile tracking-tight font-extrabold text-on-background flex items-baseline gap-1" id="liveClock">00:00:00 <span class="font-label-md text-label-md uppercase text-on-surface-variant font-bold">WIB </span></div>
+<p class="text-[10px] font-black uppercase opacity-60 flex items-center gap-1"><span class="material-symbols-outlined text-[14px]">calendar_today</span> Hari Ini</p>
+<p class="font-black text-[16px] mt-1" id="statusAbsen">Belum Check-in</p>
+<p class="text-[11px] opacity-60 mt-1">Jam Masuk 07:00 • Toleransi 07:15</p>
 </div>
-<div class="bg-error-container border-[2px] border-on-background rounded-full px-2.5 py-1 [box-shadow:2px_2px_0px_#1c1b1b] flex items-center gap-1"><span class="w-2 h-2 rounded-full bg-error animate-ping"></span><span class="font-label-sm text-label-sm text-error font-extrabold tracking-wider uppercase">BELUM CHECK-IN - DATA NOL - FINAL NATIVE</span></div>
+<div class="bg-[#FFE600] border-[2px] border-black px-3 py-1 rounded-full text-[10px] font-black uppercase">Siswa</div>
 </div>
-<div class="bg-surface-container-lowest border-[2px] border-on-background rounded-lg p-3 grid grid-cols-2 gap-2 text-on-background [box-shadow:2px_2px_0px_#1c1b1b]">
-<div class="border-r-[2px] border-on-background pr-2 flex items-center gap-2"><div class="w-7 h-7 bg-tertiary-container border-[1.5px] border-on-background rounded flex items-center justify-center"><span class="material-symbols-outlined text-[18px] text-tertiary font-bold">schedule</span></div><div><span class="font-label-sm text-label-sm text-on-surface-variant block uppercase">Jam Masuk</span><span class="font-headline-md text-headline-md text-on-background">07:00</span></div></div>
-<div class="pl-2 flex items-center gap-2"><div class="w-7 h-7 bg-error-container border-[1.5px] border-on-background rounded flex items-center justify-center"><span class="material-symbols-outlined text-[18px] text-error font-bold">timer</span></div><div><span class="font-label-sm text-label-sm text-on-surface-variant block uppercase">Toleransi</span><span class="font-headline-md text-headline-md text-error">07:15</span></div></div>
+<div class="mt-3 bg-[#F5F5DC] border-[2px] border-black rounded-xl p-3 flex items-center gap-2">
+<span class="material-symbols-outlined text-[20px]">location_on</span>
+<div class="flex-1 overflow-hidden">
+<p class="text-[10px] font-black uppercase opacity-60">Lokasi GPS - Cepat</p>
+<p class="text-[11px] font-bold truncate-ellipsis" id="lokasiStatus">Mencari lokasi...</p>
+<p class="text-[9px] opacity-50" id="gpsAccuracy">GPS: Mencari...</p>
 </div>
-</section>
+<span class="material-symbols-outlined text-[#006c46] text-[20px]">my_location</span>
+</div>
+</div>
 
-<!-- Geo-fencing -->
-<section class="bg-surface-container-lowest border-[2.5px] border-on-background rounded-xl p-4 [box-shadow:4px_4px_0px_#1c1b1b] space-y-3.5">
-<div class="bg-tertiary-container border-[2px] border-on-background rounded-lg p-2.5 flex items-center justify-between [box-shadow:2px_2px_0px_#1c1b1b]">
-<div class="flex items-center gap-2"><span class="material-symbols-outlined text-tertiary text-[20px] font-bold fill-icon">location_on</span><div class="flex flex-col"><span class="font-label-sm text-label-sm text-on-tertiary-container uppercase tracking-wide">Status Lokasi GPS </span><span class="font-body-sm text-body-sm font-bold text-on-background">Belum setup lokasi real - Setup di /settings.html</span></div></div><span class="material-symbols-outlined text-tertiary font-extrabold text-[22px]">check_circle</span>
+<!-- QR Scan - KHUSUS SISWA -->
+<div class="bg-black border-[3px] border-black rounded-[16px] p-5 text-white [box-shadow:6px_6px_0px_#000]">
+<h2 class="font-black text-[15px] uppercase flex items-center gap-2"><span class="material-symbols-outlined text-[#FFE600]">qr_code_scanner</span> Scan QR Absen</h2>
+<p class="text-[11px] mt-1 text-white/60">Scan QR dari guru + Validasi GPS otomatis</p>
+<div class="mt-4">
+<a href="/scan.html" class="w-full bg-[#FFE600] text-black border-[2px] border-black py-3 rounded-full font-black text-[12px] uppercase flex items-center justify-center gap-2"><span class="material-symbols-outlined">videocam</span> Buka Kamera Scan</a>
 </div>
-<div class="flex flex-col gap-2.5">
-<button class="w-full bg-secondary-container text-on-secondary-container font-headline-md text-headline-md uppercase border-[3px] border-on-background rounded-lg py-3 px-4 flex items-center justify-center gap-2.5 [box-shadow:4px_4px_0px_#1c1b1b]"><span class="material-symbols-outlined text-[24px]">qr_code_scanner</span><span>Pindai QR Presensi - Real GPS</span></button>
-<button class="w-full bg-surface-container-lowest text-on-background font-label-lg text-label-lg border-[2.5px] border-on-background rounded-lg py-2.5 px-4 flex items-center justify-center gap-2 [box-shadow:3px_3px_0px_#1c1b1b]"><span class="material-symbols-outlined text-[18px]">history</span><span>Cek Riwayat Lengkap </span></button>
+<div class="mt-3 grid grid-cols-2 gap-2 text-[10px]">
+<div class="bg-white/10 border border-white/20 rounded-xl p-2 text-center"><p class="font-black text-[#FFE600]">GPS</p><p class="text-white/70">Auto Validasi</p></div>
+<div class="bg-white/10 border border-white/20 rounded-xl p-2 text-center"><p class="font-black text-[#67FFB7]">QR</p><p class="text-white/70">Scan Real</p></div>
 </div>
-</section>
+</div>
 
-<!-- Rekap - All 0 -->
-<section class="space-y-2.5">
-<div class="flex justify-between items-center px-1">
-<h2 class="font-headline-md text-headline-md text-on-background uppercase tracking-tight flex items-center gap-1.5"><span class="material-symbols-outlined text-secondary text-[20px]">pie_chart</span>Rekap Bulan Ini </h2>
-<span class="font-label-sm text-label-sm bg-surface-container-highest border-[1.5px] border-on-background px-2 py-0.5 rounded font-bold uppercase">TA 2026/2027</span>
+<!-- Stats Pribadi - BEDA DARI GURU -->
+<div>
+<h2 class="font-black text-[12px] uppercase mb-3">Rekap Pribadi Bulan Ini</h2>
+<div class="grid grid-cols-3 gap-3">
+<div class="bg-[#67FFB7] border-[2.5px] border-black rounded-xl p-3 text-center">
+<p class="text-[10px] font-black uppercase">Hadir</p>
+<p class="text-[22px] font-black" id="realHadir">0</p>
+<p class="text-[9px] font-bold opacity-60">Hari</p>
 </div>
+<div class="bg-[#FFE600] border-[2.5px] border-black rounded-xl p-3 text-center">
+<p class="text-[10px] font-black uppercase">Terlambat</p>
+<p class="text-[22px] font-black" id="realTerlambat">0</p>
+<p class="text-[9px] font-bold opacity-60">Hari</p>
+</div>
+<div class="bg-[#8A4CFC] border-[2.5px] border-black rounded-xl p-3 text-center text-white">
+<p class="text-[10px] font-black uppercase text-[#FFE600]">Izin</p>
+<p class="text-[22px] font-black" id="realIzin">0</p>
+<p class="text-[9px] font-bold text-white/70">Hari</p>
+</div>
+</div>
+</div>
+
+<!-- Menu Siswa - BEDA DARI GURU -->
+<div>
+<h2 class="font-black text-[12px] uppercase mb-3">Menu Siswa</h2>
 <div class="grid grid-cols-2 gap-3">
-<div class="bg-tertiary-container border-[2.5px] border-on-background rounded-xl p-3.5 [box-shadow:3px_3px_0px_#1c1b1b]"><div class="flex items-center justify-between"><span class="font-label-sm text-label-sm uppercase text-on-tertiary-container">Hadir</span><span class="material-symbols-outlined text-tertiary text-[18px]">check_circle</span></div><div class="mt-2"><div class="font-headline-xl-mobile text-headline-xl-mobile text-on-background leading-none" id="realHadir">0</div><span class="font-body-sm text-body-sm text-on-tertiary-container font-semibold">Hari </span></div></div>
-<div class="bg-primary-container border-[2.5px] border-on-background rounded-xl p-3.5 [box-shadow:3px_3px_0px_#1c1b1b]"><div class="flex items-center justify-between"><span class="font-label-sm text-label-sm uppercase text-on-primary-container">Terlambat</span><span class="material-symbols-outlined text-on-primary-fixed-variant text-[18px]">schedule</span></div><div class="mt-2"><div class="font-headline-xl-mobile text-headline-xl-mobile text-on-background leading-none" id="realTerlambat">0</div><span class="font-body-sm text-body-sm text-on-primary-container font-semibold">Hari </span></div></div>
-<div class="bg-secondary-fixed border-[2.5px] border-on-background rounded-xl p-3.5 [box-shadow:3px_3px_0px_#1c1b1b]"><div class="flex items-center justify-between"><span class="font-label-sm text-label-sm uppercase text-on-secondary-fixed-variant">Izin / Sakit</span><span class="material-symbols-outlined text-secondary text-[18px]">sick</span></div><div class="mt-2"><div class="font-headline-xl-mobile text-headline-xl-mobile text-on-background leading-none" id="realIzin">0</div><span class="font-body-sm text-body-sm text-on-secondary-fixed-variant font-semibold">Hari </span></div></div>
-<div class="bg-error-container border-[2.5px] border-on-background rounded-xl p-3.5 [box-shadow:3px_3px_0px_#1c1b1b]"><div class="flex items-center justify-between"><span class="font-label-sm text-label-sm uppercase text-on-error-container">Alpha</span><span class="material-symbols-outlined text-error text-[18px]">person_off</span></div><div class="mt-2"><div class="font-headline-xl-mobile text-headline-xl-mobile text-on-background leading-none" id="realAlpha">0</div><span class="font-body-sm text-body-sm text-on-error-container font-semibold">Hari </span></div></div>
+<a href="/rekap.html" class="bg-white border-[2.5px] border-black rounded-xl p-4 [box-shadow:3px_3px_0px_#000] hover:translate-x-[1px] hover:translate-y-[1px] hover:shadow-[2px_2px_0px_#000] transition-all">
+<span class="material-symbols-outlined">analytics</span>
+<p class="font-black text-[11px] uppercase mt-1">Rekap</p>
+<p class="text-[10px] opacity-60">Riwayat hadir</p>
+</a>
+<a href="/izin.html" class="bg-white border-[2.5px] border-black rounded-xl p-4 [box-shadow:3px_3px_0px_#000]">
+<span class="material-symbols-outlined">description</span>
+<p class="font-black text-[11px] uppercase mt-1">Izin</p>
+<p class="text-[10px] opacity-60">Ajukan izin</p>
+</a>
+<a href="/profil.html" class="bg-white border-[2.5px] border-black rounded-xl p-4 [box-shadow:3px_3px_0px_#000]">
+<span class="material-symbols-outlined">person</span>
+<p class="font-black text-[11px] uppercase mt-1">Profil</p>
+<p class="text-[10px] opacity-60 truncate-ellipsis" id="profilSingkat">Data siswa</p>
+</a>
+<a href="/verifikasi-nik.html" class="bg-[#FFE600] border-[2.5px] border-black rounded-xl p-4 [box-shadow:3px_3px_0px_#000]">
+<span class="material-symbols-outlined">badge</span>
+<p class="font-black text-[11px] uppercase mt-1">NIK KTP</p>
+<p class="text-[10px] opacity-60">Verifikasi</p>
+</a>
 </div>
-</section>
+</div>
 
-<!-- Riwayat - Empty State No Initials -->
-<section class="space-y-2 pb-2">
-<div class="flex justify-between items-center px-1">
-<h2 class="font-headline-md text-headline-md text-on-background uppercase tracking-tight flex items-center gap-1.5"><span class="material-symbols-outlined text-primary text-[20px]">history_edu</span>Riwayat 3 Hari Terakhir </h2>
-<a class="font-label-sm text-label-sm text-secondary font-bold underline uppercase" href="/rekap.html">Lihat Semua</a>
-</div>
-<div class="bg-white border-[3px] border-black p-8 rounded-xl [box-shadow:4px_4px_0px_#000] text-center">
-<div class="w-16 h-16 bg-[#F6F3F2] border-[3px] border-black rounded-full flex items-center justify-center mx-auto"><span class="material-symbols-outlined text-[32px]">history</span></div>
-<p class="font-bold text-lg mt-4">Belum ada riwayat absensi </p>
-<p class="text-sm mt-2 text-on-surface-variant">Riwayat akan tampil di sini setelah absensi</p>
-<p class="text-xs mt-1">Riwayat dari API real
-<a href="/scan.html" class="inline-block mt-4 bg-[#FFE600] border-[3px] border-black px-6 py-2 rounded-full font-bold [box-shadow:3px_3px_0px_#000]">Scan QR Absen Real - GPS Real</a>
-</div>
-</section>
-
-<div class="bg-[#FFE600] border-[3px] border-black p-4 rounded-xl [box-shadow:4px_4px_0px_#000] text-[11px]">
-<b>:</b> Dashboard siswa kosong karena database . Tidak ada data lama. Semua data dari API real. Jika login dengan siswa real, nama real akan tampil di <span id="realSiswaNama">realSiswaNama</span> via <code>loadProfilRealTotal()</code>. Desain original neo-brutalist tetap.
-</div>
 </main>
 
-<nav class="fixed bottom-0 left-0 w-full z-50 flex justify-around items-center px-4 py-2 bg-surface-container-lowest border-t-[3px] border-on-background [box-shadow:0px_-3px_0px_#1c1b1b] max-w-[420px] left-1/2 -translate-x-1/2">
-<a class="flex flex-col items-center justify-center bg-primary-container text-on-surface border-[2px] border-on-background [box-shadow:2px_2px_0px_#1c1b1b] rounded px-3 py-1.5 font-label-sm text-label-sm" href="/"><span class="material-symbols-outlined text-[20px]" style="font-variation-settings: 'FILL' 1;">home</span><span>Beranda</span></a>
-<a class="flex flex-col items-center justify-center text-on-surface-variant px-3 py-1.5 font-label-sm text-label-sm" href="/scan.html"><span class="material-symbols-outlined text-[20px]">qr_code_scanner</span><span>Scan</span></a>
-<a class="flex flex-col items-center justify-center text-on-surface-variant px-3 py-1.5 font-label-sm text-label-sm" href="/izin.html"><span class="material-symbols-outlined text-[20px]">assignment</span><span>Izin</span></a>
-<a class="flex flex-col items-center justify-center text-on-surface-variant px-3 py-1.5 font-label-sm text-label-sm" href="/rekap.html"><span class="material-symbols-outlined text-[20px]">analytics</span><span>Rekap</span></a>
+<nav class="fixed bottom-0 w-full max-w-[420px] md:max-w-[440px] bg-white border-t-[3px] border-black flex justify-around py-2 z-50 left-1/2 -translate-x-1/2">
+<a href="/dashboard-siswa.html" class="flex flex-col items-center bg-[#67FFB7] border-[2px] border-black rounded-xl px-4 py-1"><span class="material-symbols-outlined text-[20px]">dashboard</span><span class="text-[9px] font-black uppercase">Siswa</span></a>
+<a href="/scan.html" class="flex flex-col items-center opacity-60 px-3 py-1"><span class="material-symbols-outlined text-[20px]">qr_code_scanner</span><span class="text-[9px] font-bold uppercase">Scan</span></a>
+<a href="/rekap.html" class="flex flex-col items-center opacity-60 px-3 py-1"><span class="material-symbols-outlined text-[20px]">analytics</span><span class="text-[9px] font-bold uppercase">Rekap</span></a>
+<a href="/profil.html" class="flex flex-col items-center opacity-60 px-3 py-1"><span class="material-symbols-outlined text-[20px]">person</span><span class="text-[9px] font-bold uppercase">Profil</span></a>
 </nav>
+
 </div>
 
-<script src="/socket.io/socket.io.js"></script>
-<script src="https://unpkg.com/html5-qrcode@2.3.8/html5-qrcode.min.js"></script>
+<script src="/js/auth-guard.js"></script>
 <script src="/js/app.js"></script>
-</body></html>
+<script>
+// Fast GPS - fix lama mendeteksi
+let cachedPos = null;
+let gpsWatchId = null;
+
+function truncateText(text, max){
+  if(!text) return '-';
+  if(text.length <= max) return text;
+  return text.substring(0,max).trim() + '...';
+}
+
+async function getFastGPS(){
+  // Return cached immediately if exists
+  if(cachedPos){
+    document.getElementById('lokasiStatus').textContent = `${cachedPos.lat.toFixed(4)}, ${cachedPos.lng.toFixed(4)} (cached)`;
+    document.getElementById('gpsAccuracy').textContent = `Akurasi: ${Math.round(cachedPos.accuracy)}m - Cached`;
+    return cachedPos;
+  }
+
+  document.getElementById('lokasiStatus').textContent = 'Mencari GPS cepat...';
+
+  return new Promise((resolve, reject)=>{
+    if(!navigator.geolocation){
+      document.getElementById('lokasiStatus').textContent = 'GPS tidak didukung';
+      reject(new Error('GPS tidak didukung'));
+      return;
+    }
+
+    // Fast first fix - low accuracy, short timeout
+    navigator.geolocation.getCurrentPosition(
+      pos=>{
+        const data = {lat:pos.coords.latitude, lng:pos.coords.longitude, accuracy:pos.coords.accuracy};
+        cachedPos = data;
+        document.getElementById('lokasiStatus').textContent = `${data.lat.toFixed(4)}, ${data.lng.toFixed(4)}`;
+        document.getElementById('lokasiStatus').title = `${data.lat}, ${data.lng}`;
+        document.getElementById('gpsAccuracy').textContent = `Akurasi: ${Math.round(data.accuracy)}m - Real`;
+
+        // Start watch for better accuracy
+        if(gpsWatchId) navigator.geolocation.clearWatch(gpsWatchId);
+        gpsWatchId = navigator.geolocation.watchPosition(
+          p=>{
+            const d = {lat:p.coords.latitude, lng:p.coords.longitude, accuracy:p.coords.accuracy};
+            if(d.accuracy < (cachedPos?.accuracy || 1000)){
+              cachedPos = d;
+              document.getElementById('lokasiStatus').textContent = `${d.lat.toFixed(4)}, ${d.lng.toFixed(4)}`;
+              document.getElementById('gpsAccuracy').textContent = `Akurasi: ${Math.round(d.accuracy)}m - Real Time`;
+            }
+          },
+          ()=>{},
+          {enableHighAccuracy:true, timeout:10000, maximumAge:30000}
+        );
+
+        resolve(data);
+      },
+      err=>{
+        document.getElementById('lokasiStatus').textContent = 'GPS: Aktifkan lokasi di HP';
+        document.getElementById('gpsAccuracy').textContent = 'Error: ' + err.message;
+        // Fallback to IP or default
+        resolve({lat:-6.914744, lng:107.60981, accuracy:100});
+      },
+      {enableHighAccuracy:false, timeout:3000, maximumAge:60000} // Fast, low accuracy first
+    );
+  });
+}
+
+function updateDateTime(){
+  const now = new Date();
+  const hari = ['Minggu','Senin','Selasa','Rabu','Kamis','Jumat','Sabtu'];
+  const bulan = ['Januari','Februari','Maret','April','Mei','Juni','Juli','Agustus','September','Oktober','November','Desember'];
+  const tgl = `${hari[now.getDay()]}, ${now.getDate()} ${bulan[now.getMonth()]} ${now.getFullYear()}`;
+  const jam = now.toLocaleTimeString('id-ID',{hour:'2-digit',minute:'2-digit',second:'2-digit'});
+  document.getElementById('realTanggal').textContent = tgl;
+  document.getElementById('liveClock').textContent = jam + ' WIB';
+}
+updateDateTime();
+setInterval(updateDateTime,1000);
+
+document.addEventListener('DOMContentLoaded', ()=>{
+  getFastGPS();
+  // FIX: Cek role sebelum load, jika GURU jangan load data siswa
+  const tokenCheck = localStorage.getItem('absensiswa_token');
+  if(!tokenCheck || tokenCheck.trim() === ''){
+    window.location.href = '/login-siswa.html';
+    return;
+  }
+  try{
+    const payload = JSON.parse(decodeURIComponent(atob(tokenCheck.split('.')[1].replace(/-/g,'+').replace(/_/g,'/')).split('').map(c=>'%'+('00'+c.charCodeAt(0).toString(16)).slice(-2)).join('')));
+    if(['GURU','WALI_KELAS','ADMIN'].includes(payload.role)){
+      console.warn('Role GURU buka dashboard siswa, redirect');
+      window.location.href = '/dashboard-guru.html';
+      return;
+    }
+  }catch(e){}
+  // Load profil real
+  const token = localStorage.getItem('absensiswa_token');
+  if(token){
+    fetch('/api/profile/me',{headers:{'Authorization':'Bearer '+token}})
+      .then(r=>r.json())
+      .then(data=>{
+        if(data.data){
+          const p = data.data;
+          document.getElementById('realSiswaNama').textContent = truncateText(p.nama, 16);
+          document.getElementById('realSiswaNama').title = p.nama;
+          document.getElementById('realKelasNama').textContent = truncateText(p.kelas?.nama || 'Belum ada kelas', 14);
+          document.getElementById('realKelasNama').title = p.kelas?.nama || '';
+          document.getElementById('realSekolahNama').textContent = truncateText(p.sekolah?.nama || 'SMK N 1 BANDUNG', 18);
+          document.getElementById('realSekolahNama').title = p.sekolah?.nama || '';
+          document.getElementById('realHadir').textContent = p.rekap?.hadir || 0;
+          document.getElementById('realTerlambat').textContent = p.rekap?.terlambat || 0;
+          document.getElementById('realIzin').textContent = (p.rekap?.izin||0)+(p.rekap?.sakit||0);
+        }
+      });
+  }
+});
+
+function logout(){
+  localStorage.removeItem('absensiswa_token');
+  localStorage.removeItem('absensiswa_user');
+  localStorage.removeItem('absensiswa_siswa');
+  localStorage.removeItem('absensiswa_guru');
+  localStorage.removeItem('absensiswa_kelas');
+  location.href='/welcome.html';
+}
+</script>
+</body>
+</html>

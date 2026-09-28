@@ -1,82 +1,121 @@
 <!DOCTYPE html>
-<html lang="id"><head>
-<meta charset="utf-8"/><meta name="viewport" content="width=device-width, initial-scale=1.0"/>
-<title>Daftar Siswa </title>
-<link href="https://fonts.googleapis.com/css2?family=Plus+Jakarta+Sans:wght@500;600;700&family=Space+Grotesk:wght@600;700;800&display=swap" rel="stylesheet"/>
+<html lang="id" class="overflow-x-hidden">
+<head>
+<meta charset="utf-8"/>
+<meta name="viewport" content="width=device-width, initial-scale=1.0"/>
+<title>Digital Apsen - Daftar Siswa</title>
+<link href="https://fonts.googleapis.com/css2?family=Plus+Jakarta+Sans:wght@500;600;700;800&family=Space+Grotesk:wght@600;700;800&display=swap" rel="stylesheet"/>
 <link href="https://fonts.googleapis.com/css2?family=Material+Symbols+Outlined:wght,FILL@100..700,0..1&display=swap" rel="stylesheet"/>
-<script src="https://cdn.tailwindcss.com?plugins=forms,container-queries"></script>
-<script id="tailwind-config">tailwind.config={darkMode:"class",theme:{extend:{colors:{"primary-container":"#ffe600","background":"#fcf9f8","on-background":"#1c1b1b","secondary-container":"#8a4cfc","tertiary-container":"#67ffb7","error":"#ba1a1a","surface-container-lowest":"#ffffff","surface-container":"#f0edec","on-surface-variant":"#4b4731","outline-variant":"#cdc7aa","secondary-fixed":"#eaddff","primary-fixed":"#fde400","primary":"#6a5f00","on-surface":"#1c1b1b","surface":"#fcf9f8"},borderRadius:{DEFAULT:"0.25rem",lg:"0.5rem",xl:"0.75rem",full:"9999px"},fontFamily:{"body-lg":["Plus Jakarta Sans"],"headline-xl":["Space Grotesk"]}}}}</script>
-<style>.material-symbols-outlined{font-variation-settings:'FILL' 0,'wght' 600,'GRAD' 0,'opsz' 24} body{min-height:max(884px,100dvh)}</style>
+<script src="https://cdn.tailwindcss.com"></script>
+<style>
+html{overflow-x:hidden; width:100vw} body{overflow-x:hidden; width:100vw; touch-action:pan-y; background:#F5F5DC; font-family:'Plus Jakarta Sans'} h1,h2{font-family:'Space Grotesk'} .material-symbols-outlined{font-variation-settings:'FILL' 0,'wght' 600,'GRAD' 0,'opsz' 24} .truncate-ellipsis{overflow:hidden; text-overflow:ellipsis; white-space:nowrap; max-width:100%}
+</style>
 </head>
-<body class="bg-background text-on-background min-h-screen pb-28">
-<header class="sticky top-0 z-50 flex justify-between items-center w-full px-5 py-3 bg-background border-b-[2.5px] border-on-background [box-shadow:0px_3px_0px_#1c1b1b]">
+<body class="min-h-screen flex justify-center md:bg-[#E8E0C8]">
+<div class="w-full max-w-[420px] md:max-w-[440px] bg-[#F5F5DC] min-h-screen md:min-h-screen border-x-[3px] md:border-[3px] border-black flex flex-col pb-20 overflow-x-hidden relative md:shadow-[8px_8px_0px_#000] md:my-0">
+
+<header class="bg-white border-b-[3px] border-black p-4 sticky top-0 z-50 flex justify-between items-center">
 <div class="flex items-center gap-3">
-<a href="/" class="w-10 h-10 rounded-lg bg-surface-container-lowest border-[2.5px] border-on-background flex items-center justify-center [box-shadow:2px_2px_0px_#1c1b1b]"><span class="material-symbols-outlined">arrow_back</span></a>
-<div><h1 class="font-headline-md text-headline-md tracking-tight">Daftar Siswa </h1><p class="font-label-sm text-label-sm text-on-surface-variant"><span class="realKelasNama">Belum ada kelas</span> • <span id="realSekolahNama">Belum setup</span> • TA <span class="realTahunAjaran">2026/2027</span></p></div>
+<a href="/dashboard-guru.html" class="w-10 h-10 rounded-xl bg-[#F5F5DC] border-[2.5px] border-black flex items-center justify-center"><span class="material-symbols-outlined text-[20px]">arrow_back</span></a>
+<div>
+<h1 class="font-black text-[13px] uppercase leading-none">Daftar Siswa</h1>
+<p class="text-[10px] font-bold opacity-60 mt-0.5"><span id="realKelasNama">Memuat kelas</span> • <span id="realSekolahNama">Digital Apsen</span></p>
 </div>
-<div class="flex items-center gap-2"><span class="bg-primary-container border-[1.5px] border-on-background px-2 py-0.5 rounded-full font-label-sm text-label-sm font-bold">0 Siswa </span></div>
+</div>
+<div class="bg-[#FFE600] border-[2px] border-black px-3 py-1 rounded-full text-[10px] font-black uppercase"><span id="totalSiswaBadge">0</span> Siswa</div>
 </header>
 
-
-<!-- Date/Time Real - Fix tata letak berbeda dengan sekarang 28 Sep 2026 -->
-<div class="bg-[#FFE600] border-[2px] border-black p-2 rounded-xl mx-5 mt-3 flex justify-between items-center text-[11px] font-bold">
-<span id="realTanggal" class="realTanggalFull">Memuat tanggal real - Senin, 28 September 2026 - TA 2026/2027</span>
-<span id="liveClock" class="realJam">00:00:00 WIB</span>
+<div class="bg-black text-white p-3 flex justify-between items-center text-[11px] font-black min-h-[40px] will-change-transform" style="font-variant-numeric:tabular-nums; transform:translateZ(0)">
+<span id="realTanggal" class="truncate-ellipsis max-w-[60%]">Memuat...</span>
+<span id="liveClock" class="shrink-0 tabular-nums min-w-[90px] text-right" style="font-variant-numeric:tabular-nums">00:00:00 WIB</span>
 </div>
 
-<main class="max-w-xl mx-auto px-5 pt-5 space-y-5">
-<!-- Search - Real -->
-<div class="bg-surface-container-lowest border-[2.5px] border-on-background rounded-xl p-3 [box-shadow:3px_3px_0px_#1c1b1b]">
-<div class="flex items-center gap-2">
-<span class="material-symbols-outlined text-on-surface-variant">search</span>
-<input id="searchSiswa" class="flex-1 bg-transparent border-none focus:outline-none text-body-md" placeholder="Cari nama atau NISN siswa real... ()"/>
-<span class="material-symbols-outlined text-on-surface-variant">tune</span>
-</div>
+<main class="p-5 flex flex-col gap-4 flex-1">
+
+<div class="bg-white border-[2.5px] border-black rounded-xl p-3 [box-shadow:3px_3px_0px_#000] flex items-center gap-2">
+<span class="material-symbols-outlined opacity-60">search</span>
+<input id="searchSiswa" class="flex-1 bg-transparent border-none focus:outline-none text-[12px] font-bold placeholder:opacity-50" placeholder="Cari nama atau NISN..."/>
+<span class="material-symbols-outlined opacity-60 text-[18px]">tune</span>
 </div>
 
-<!-- Stats - All 0 -->
 <div class="grid grid-cols-3 gap-2">
-<div class="bg-tertiary-container border-[2px] border-on-background rounded-xl p-3 text-center [box-shadow:2px_2px_0px_#1c1b1b]"><div class="font-headline-md text-headline-md">0</div><div class="font-label-sm text-label-sm uppercase">Total Siswa - NOL</div></div>
-<div class="bg-primary-container border-[2px] border-on-background rounded-xl p-3 text-center [box-shadow:2px_2px_0px_#1c1b1b]"><div class="font-headline-md text-headline-md">0</div><div class="font-label-sm text-label-sm uppercase">Hadir - NOL</div></div>
-<div class="bg-error-container border-[2px] border-on-background rounded-xl p-3 text-center [box-shadow:2px_2px_0px_#1c1b1b]"><div class="font-headline-md text-headline-md">0</div><div class="font-label-sm text-label-sm uppercase">Alpha - NOL</div></div>
+<div class="bg-[#67FFB7] border-[2.5px] border-black rounded-xl p-3 text-center"><p class="font-black text-[18px]" id="statTotal">0</p><p class="text-[9px] font-black uppercase">Total</p></div>
+<div class="bg-[#FFE600] border-[2.5px] border-black rounded-xl p-3 text-center"><p class="font-black text-[18px]" id="statHadir">0</p><p class="text-[9px] font-black uppercase">Hadir</p></div>
+<div class="bg-[#FF90E8] border-[2.5px] border-black rounded-xl p-3 text-center"><p class="font-black text-[18px]" id="statAlpha">0</p><p class="text-[9px] font-black uppercase">Alpha</p></div>
 </div>
 
-<!-- Empty State -->
-<div id="siswaRealList" class="bg-white border-[3px] border-black p-8 rounded-xl [box-shadow:4px_4px_0px_#000] text-center">
-<div class="w-20 h-20 bg-[#F6F3F2] border-[3px] border-black rounded-full flex items-center justify-center mx-auto"><span class="material-symbols-outlined text-[40px]">groups</span></div>
-<h2 class="font-bold text-xl mt-4">Belum ada siswa real </h2>
-<p class="text-sm mt-2 text-on-surface-variant"></p>
-<p class="text-xs mt-2">Tidak ada siswa - . Semua data harus dari API real.</p>
-<p class="text-xs mt-1">Tambah siswa real via:</p>
-<div class="mt-3 bg-[#F6F3F2] border-[2px] border-black p-3 rounded-xl text-left text-xs font-mono">
-POST /api/siswa<br/>
-{<br/>
-&nbsp;&nbsp;"nisn": "0000000000 (NISN Real)",<br/>
-&nbsp;&nbsp;"noAbsen": 1,<br/>
-&nbsp;&nbsp;"nama": "Andi Real",<br/>
-&nbsp;&nbsp;"kelasId": "real-id",<br/>
-&nbsp;&nbsp;"pin": "123456"<br/>
-}
-</div>
-<div class="mt-4 flex gap-2 justify-center">
-<a href="/setup.html" class="bg-[#FFE600] border-[3px] border-black px-6 py-2 rounded-full font-bold [box-shadow:3px_3px_0px_#000]">Setup Data Nyata</a>
-<a href="/dashboard-guru.html" class="bg-white border-[3px] border-black px-6 py-2 rounded-full font-bold [box-shadow:3px_3px_0px_#000]">Dashboard Guru </a>
+<div id="siswaRealList" class="bg-white border-[3px] border-black p-8 rounded-[16px] [box-shadow:4px_4px_0px_#000] text-center">
+<div class="w-16 h-16 bg-[#F5F5DC] border-[3px] border-black rounded-full flex items-center justify-center mx-auto"><span class="material-symbols-outlined text-[28px]">groups</span></div>
+<h2 class="font-black text-[14px] mt-4 uppercase">Belum Ada Siswa</h2>
+<p class="text-[11px] mt-2 opacity-60">Yuk tambah siswa baru di Setup.<br/>Data akan tampil otomatis di sini.</p>
+<div class="mt-4 flex flex-col gap-2">
+<a href="/setup.html" class="bg-[#FFE600] border-[2.5px] border-black px-6 py-2.5 rounded-full font-black text-[11px] uppercase">Setup Kelas & Siswa</a>
+<a href="/dashboard-guru.html" class="bg-black text-white border-[2.5px] border-black px-6 py-2.5 rounded-full font-black text-[11px] uppercase">Dashboard Guru</a>
 </div>
 </div>
 
-<div class="bg-[#FFE600] border-[3px] border-black p-4 rounded-xl [box-shadow:4px_4px_0px_#000] text-[11px]">
-<b>:</b> Daftar siswa kosong karena database . Tidak ada data siswa - . Semua siswa dari API real <code>GET /api/profile/siswa</code>. Jika ada siswa real, akan tampil otomatis dengan avatar initial real, NISN real, poin real. Desain original neo-brutalist tetap.
+<div class="bg-[#FFE600] border-[2.5px] border-black p-4 rounded-xl text-[11px] leading-[14px]">
+<p class="font-black text-[11px] uppercase">Info Digital Apsen</p>
+<p class="mt-1 opacity-80">Daftar siswa diambil dari API. Jika kosong, buat kelas + siswa di Setup dulu, lalu login siswa via kode undangan.</p>
 </div>
+
 </main>
 
-<nav class="fixed bottom-0 left-0 w-full z-50 flex justify-around items-center px-4 py-2 bg-surface-container-lowest [box-shadow:0px_-3px_0px_#1c1b1b]">
-<a class="flex flex-col items-center justify-center text-on-surface-variant px-3 py-1.5 font-label-sm text-label-sm" href="/dashboard-guru.html"><span class="material-symbols-outlined text-[20px]">home</span><span>Beranda</span></a>
-<a class="flex flex-col items-center justify-center bg-primary-container text-on-surface border-[2px] border-on-background [box-shadow:2px_2px_0px_#1c1b1b] rounded px-3 py-1.5 font-label-sm text-label-sm" href="/siswa.html"><span class="material-symbols-outlined text-[20px]" style="font-variation-settings: 'FILL' 1;">groups</span><span>Siswa</span></a>
-<a class="flex flex-col items-center justify-center text-on-surface-variant px-3 py-1.5 font-label-sm text-label-sm" href="/rekap.html"><span class="material-symbols-outlined text-[20px]">analytics</span><span>Rekap</span></a>
-<a class="flex flex-col items-center justify-center text-on-surface-variant px-3 py-1.5 font-label-sm text-label-sm" href="/profil.html"><span class="material-symbols-outlined text-[20px]">person</span><span>Profil</span></a>
+<nav class="fixed bottom-0 w-full max-w-[420px] md:max-w-[440px] bg-white border-t-[3px] border-black flex justify-around py-2 z-50 left-1/2 -translate-x-1/2">
+<a href="/dashboard-guru.html" class="flex flex-col items-center opacity-60 px-3 py-1"><span class="material-symbols-outlined text-[20px]">dashboard</span><span class="text-[9px] font-bold uppercase">Dash</span></a>
+<a href="/kelas.html" class="flex flex-col items-center opacity-60 px-3 py-1"><span class="material-symbols-outlined text-[20px]">class</span><span class="text-[9px] font-bold uppercase">Kelas</span></a>
+<a href="/siswa.html" class="flex flex-col items-center bg-[#FFE600] border-[2px] border-black rounded-xl px-4 py-1"><span class="material-symbols-outlined text-[20px]">groups</span><span class="text-[9px] font-black uppercase">Siswa</span></a>
+<a href="/rekap.html" class="flex flex-col items-center opacity-60 px-3 py-1"><span class="material-symbols-outlined text-[20px]">analytics</span><span class="text-[9px] font-bold uppercase">Rekap</span></a>
+<a href="/profil.html" class="flex flex-col items-center opacity-60 px-3 py-1"><span class="material-symbols-outlined text-[20px]">person</span><span class="text-[9px] font-bold uppercase">Profil</span></a>
 </nav>
 
-<script src="/socket.io/socket.io.js"></script>
-<script src="https://unpkg.com/html5-qrcode@2.3.8/html5-qrcode.min.js"></script>
+</div>
+
+<script src="/js/auth-guard.js"></script>
 <script src="/js/app.js"></script>
-</body></html>
+<script>
+function updateDateTime(){
+  const now = new Date();
+  const hari = ['Minggu','Senin','Selasa','Rabu','Kamis','Jumat','Sabtu'];
+  const bulan = ['Januari','Februari','Maret','April','Mei','Juni','Juli','Agustus','September','Oktober','November','Desember'];
+  const tgl = `${hari[now.getDay()]}, ${now.getDate()} ${bulan[now.getMonth()]} ${now.getFullYear()}`;
+  const jam = now.toLocaleTimeString('id-ID',{hour:'2-digit',minute:'2-digit',second:'2-digit'});
+  document.getElementById('realTanggal').textContent = tgl;
+  document.getElementById('liveClock').textContent = jam + ' WIB';
+}
+updateDateTime();
+setInterval(updateDateTime,1000);
+
+async function loadSiswa(){
+  const token = localStorage.getItem('absensiswa_token');
+  if(!token) return;
+  try{
+    const r = await fetch('/api/siswa', {headers:{'Authorization':'Bearer '+token}});
+    const d = await r.json();
+    if(d.success && d.data && d.data.length>0){
+      document.getElementById('totalSiswaBadge').textContent = d.data.length;
+      document.getElementById('statTotal').textContent = d.data.length;
+      const list = document.getElementById('siswaRealList');
+      list.classList.remove('text-center','p-8');
+      list.classList.add('p-0','border-0','shadow-none','bg-transparent');
+      list.innerHTML = d.data.map(s=>`
+        <div class="bg-white border-[2.5px] border-black rounded-xl p-3 mb-2 flex items-center gap-3 [box-shadow:2px_2px_0px_#000]">
+          <div class="w-10 h-10 bg-[#FFE600] border-[2px] border-black rounded-full flex items-center justify-center font-black text-[12px]">${(s.nama||'S').substring(0,2).toUpperCase()}</div>
+          <div class="flex-1 overflow-hidden"><p class="font-black text-[12px] truncate">${s.nama}</p><p class="text-[10px] opacity-60">${s.nisn||'-'} • No ${s.noAbsen||'-'}</p></div>
+          <span class="bg-[#67FFB7] border border-black px-2 py-1 rounded-full text-[9px] font-black">${s.status||'Aktif'}</span>
+        </div>
+      `).join('');
+    }
+  }catch(e){}
+}
+loadSiswa();
+
+document.getElementById('searchSiswa')?.addEventListener('input', (e)=>{
+  const q = e.target.value.toLowerCase();
+  document.querySelectorAll('#siswaRealList > div').forEach(el=>{
+    el.style.display = el.textContent.toLowerCase().includes(q) ? '' : 'none';
+  });
+});
+</script>
+</body>
+</html>

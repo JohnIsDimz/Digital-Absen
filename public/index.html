@@ -1,326 +1,170 @@
 <!DOCTYPE html>
-
-<html lang="id"><head>
+<html lang="id" class="overflow-x-hidden">
+<head>
 <meta charset="utf-8"/>
-<meta content="width=device-width, initial-scale=1.0" name="viewport"/>
-<title>AbsenSiswa - Selamat Datang &amp; Pilih Peran</title>
-<!-- Google Fonts: Space Grotesk & Plus Jakarta Sans -->
-<link href="https://fonts.googleapis.com" rel="preconnect"/>
-<link crossorigin="" href="https://fonts.gstatic.com" rel="preconnect"/>
-<link href="https://fonts.googleapis.com/css2?family=Plus+Jakarta+Sans:wght@500;600;700&amp;family=Space+Grotesk:wght@700;800&amp;display=swap" rel="stylesheet"/>
-<!-- Material Symbols Outlined -->
-<link href="https://fonts.googleapis.com/css2?family=Material+Symbols+Outlined:wght,FILL@100..700,0..1&amp;display=swap" rel="stylesheet"/>
-<link href="https://fonts.googleapis.com/css2?family=Material+Symbols+Outlined:wght,FILL@100..700,0..1&amp;display=swap" rel="stylesheet"/>
-<script src="https://cdn.tailwindcss.com?plugins=forms,container-queries"></script>
-<script id="tailwind-config">
-  tailwind.config = {
-   darkMode: "class",
-   theme: {
-    extend: {
-     "colors": {
-      "primary-container": "#ffe600",
-      "background": "#fcf9f8",
-      "on-tertiary-container": "#00754b",
-      "primary": "#6a5f00",
-      "on-tertiary-fixed": "#002112",
-      "inverse-on-surface": "#f3f0ef",
-      "surface-container-high": "#ebe7e7",
-      "error-container": "#ffdad6",
-      "secondary": "#712ae2",
-      "outline-variant": "#cdc7aa",
-      "surface-tint": "#6a5f00",
-      "on-surface-variant": "#4b4731",
-      "secondary-container": "#8a4cfc",
-      "tertiary-fixed": "#4dffb2",
-      "on-background": "#1c1b1b",
-      "on-surface": "#1c1b1b",
-      "secondary-fixed-dim": "#d2bbff",
-      "on-primary": "#ffffff",
-      "error": "#ba1a1a",
-      "primary-fixed-dim": "#dec800",
-      "on-primary-fixed-variant": "#504700",
-      "inverse-primary": "#dec800",
-      "outline": "#7c775f",
-      "on-secondary": "#ffffff",
-      "primary-fixed": "#fde400",
-      "surface-container": "#f0edec",
-      "surface-variant": "#e5e2e1",
-      "secondary-fixed": "#eaddff",
-      "on-tertiary-fixed-variant": "#005234",
-      "on-primary-fixed": "#201c00",
-      "on-error": "#ffffff",
-      "surface-container-low": "#f6f3f2",
-      "surface": "#fcf9f8",
-      "inverse-surface": "#313030",
-      "on-secondary-container": "#fffbff",
-      "tertiary-container": "#67ffb7",
-      "tertiary": "#006c46",
-      "surface-container-lowest": "#ffffff",
-      "on-secondary-fixed": "#25005a",
-      "on-secondary-fixed-variant": "#5a00c6",
-      "surface-container-highest": "#e5e2e1",
-      "surface-dim": "#dcd9d9",
-      "on-error-container": "#93000a",
-      "on-tertiary": "#ffffff",
-      "surface-bright": "#fcf9f8",
-      "on-primary-container": "#726600",
-      "tertiary-fixed-dim": "#00e296"
-     },
-     "borderRadius": {
-      "DEFAULT": "0.25rem",
-      "lg": "0.5rem",
-      "xl": "0.75rem",
-      "full": "9999px"
-     },
-     "spacing": {
-      "margin": "1.25rem",
-      "space-lg": "1.25rem",
-      "space-sm": "0.5rem",
-      "space-md": "1rem",
-      "space-xl": "1.75rem",
-      "space-xs": "0.25rem",
-      "gutter": "1rem"
-     },
-     "fontFamily": {
-      "body-lg": ["Plus Jakarta Sans"],
-      "headline-xl": ["Space Grotesk"],
-      "body-md": ["Plus Jakarta Sans"],
-      "label-sm": ["Space Grotesk"],
-      "headline-xl-mobile": ["Space Grotesk"],
-      "body-sm": ["Plus Jakarta Sans"],
-      "headline-lg": ["Space Grotesk"],
-      "label-md": ["Space Grotesk"],
-      "label-lg": ["Space Grotesk"],
-      "headline-md": ["Space Grotesk"]
-     },
-     "fontSize": {
-      "body-lg": ["16px", { "lineHeight": "24px", "fontWeight": "600" }],
-      "headline-xl": ["32px", { "lineHeight": "38px", "letterSpacing": "-0.03em", "fontWeight": "700" }],
-      "body-md": ["14px", { "lineHeight": "20px", "fontWeight": "500" }],
-      "label-sm": ["10px", { "lineHeight": "14px", "letterSpacing": "0.08em", "fontWeight": "800" }],
-      "headline-xl-mobile": ["26px", { "lineHeight": "32px", "letterSpacing": "-0.02em", "fontWeight": "700" }],
-      "body-sm": ["12px", { "lineHeight": "16px", "fontWeight": "500" }],
-      "headline-lg": ["22px", { "lineHeight": "28px", "letterSpacing": "-0.02em", "fontWeight": "700" }],
-      "label-md": ["12px", { "lineHeight": "16px", "letterSpacing": "0.06em", "fontWeight": "700" }],
-      "label-lg": ["14px", { "lineHeight": "18px", "letterSpacing": "0.04em", "fontWeight": "700" }],
-      "headline-md": ["18px", { "lineHeight": "24px", "letterSpacing": "-0.01em", "fontWeight": "700" }]
-     }
-    }
-   }
-  }
- </script>
+<meta name="viewport" content="width=device-width, initial-scale=1.0"/>
+<title>Digital Apsen - Absensi Digital Modern</title>
+<link href="https://fonts.googleapis.com/css2?family=Plus+Jakarta+Sans:wght@500;600;700;800&family=Space+Grotesk:wght@600;700;800&display=swap" rel="stylesheet"/>
+<link href="https://fonts.googleapis.com/css2?family=Material+Symbols+Outlined:wght,FILL@100..700,0..1&display=swap" rel="stylesheet"/>
+<script src="https://cdn.tailwindcss.com"></script>
 <style>
-  .material-symbols-outlined {
-   font-variation-settings: 'FILL' 0, 'wght' 600, 'GRAD' 0, 'opsz' 24;
-   display: inline-block;
-   vertical-align: middle;
-   line-height: 1;
-  }
-  .material-symbols-fill {
-   font-variation-settings: 'FILL' 1, 'wght' 700, 'GRAD' 0, 'opsz' 24;
-   display: inline-block;
-   vertical-align: middle;
-   line-height: 1;
-  }
- </style>
-<style>
-  body {
-   min-height: max(884px, 100dvh);
-  }
- </style>
- </head>
-<body class="bg-background text-on-background min-h-screen flex justify-center selection:bg-primary-container selection:text-on-background">
-<!-- Mobile Container Shell (Centered 390px - 440px) -->
-<div class="w-full max-w-[440px] min-h-screen bg-background flex flex-col justify-between relative shadow-2xl border-x-[3px] border-on-background">
-<!-- 1. Header / Brand Top Bar (Shared Component Reference - Casing strictly maintained) -->
-<header class="sticky top-0 z-50 flex justify-between items-center w-full px-5 py-3 bg-background border-b-[2.5px] border-on-background [box-shadow:0px_3px_0px_#1c1b1b]">
-<div class="flex items-center gap-2.5">
-<!-- Logo Stamp Box -->
-<div class="w-10 h-10 bg-primary-container border-[2.5px] border-on-background rounded-lg flex items-center justify-center [box-shadow:2px_2px_0px_#1c1b1b]">
-<span class="material-symbols-outlined material-symbols-fill text-on-background text-xl" data-icon="verified_user">verified_user</span>
-</div>
+html{overflow-x:hidden; width:100vw} body{overflow-x:hidden; width:100vw; touch-action:pan-y; overscroll-behavior-x:contain; position:relative} .no-scroll-x{overflow-x:hidden; max-width:100vw}
+
+body{font-family:'Plus Jakarta Sans'; background:#F5F5DC}
+h1,h2,h3{font-family:'Space Grotesk'}
+.material-symbols-outlined{font-variation-settings:'FILL' 0,'wght' 600,'GRAD' 0,'opsz' 24}
+html,body{overflow-x:hidden; max-width:100vw; position:relative} *{max-width:100%; box-sizing:border-box} body{overscroll-behavior-x:none}.truncate-ellipsis{overflow:hidden; text-overflow:ellipsis; white-space:nowrap; max-width:100%} .truncate-2{overflow:hidden; text-overflow:ellipsis; white-space:nowrap; max-width:140px; display:inline-block} .truncate-long{overflow:hidden; text-overflow:ellipsis; white-space:nowrap; max-width:180px}</style>
+</head>
+<body class="min-h-screen flex justify-center overflow-x-hidden w-full max-w-[100vw] md:bg-[#E8E0C8]">
+<div class="w-full max-w-[420px] md:max-w-[440px] bg-[#F5F5DC] min-h-screen border-x-[3px] md:border-[3px] border-black flex flex-col overflow-x-hidden relative md:shadow-[8px_8px_0px_#000]">
+
+<!-- Header Digital Apsen -->
+<header class="bg-[#FFE600] border-b-[3px] border-black p-5 sticky top-0 z-50">
+<div class="flex justify-between items-center">
 <div>
-<div class="flex items-center gap-1.5">
-<span class="font-headline-lg text-headline-lg tracking-tight text-on-background">AbsenSiswa</span>
-<span class="bg-tertiary-fixed text-on-tertiary-fixed border-[1.5px] border-on-background px-1.5 py-0.2 rounded-full font-label-sm text-label-sm uppercase tracking-wide">RESMI</span>
+<div class="flex items-center gap-2">
+<div class="w-10 h-10 bg-black rounded-xl flex items-center justify-center font-black text-[#FFE600] text-lg rotate-3 border-2 border-black">DA</div>
+<span class="font-black text-[11px] tracking-widest uppercase">Digital Apsen</span>
 </div>
-<p class="font-label-sm text-label-sm text-on-surface-variant font-bold"><span id="realSekolahNama">Memuat sekolah real...</span> • TA 2026/2027 Fresh</p>
+<h1 class="font-black text-[28px] leading-[30px] uppercase mt-3 tracking-tight">Digital<br/>Apsen</h1>
+<p class="text-[11px] font-bold mt-1 opacity-70">QR + GPS + NIK OCR</p>
 </div>
+<div class="w-16 h-16 bg-black rounded-[16px] flex items-center justify-center rotate-6 border-[3px] border-black">
+<span class="text-[#FFE600] font-black text-2xl">DA</span>
 </div>
-<!-- Live Server Indicator Capsule -->
-<div class="flex items-center gap-1 bg-surface-container-lowest border-[2px] border-on-background px-2 py-1 rounded-full [box-shadow:1.5px_1.5px_0px_#1c1b1b]">
-<span class="w-2 h-2 rounded-full bg-tertiary-fixed-dim border border-on-background animate-pulse"></span>
-<span class="font-label-sm text-label-sm text-on-background font-extrabold uppercase">ONLINE</span>
 </div>
 </header>
-<!-- Main Scrollable Canvas Content -->
 
-<!-- Date/Time Real - Fix tata letak berbeda dengan sekarang 28 Sep 2026 -->
-<div class="bg-[#FFE600] border-[2px] border-black p-2 rounded-xl mx-5 mt-3 flex justify-between items-center text-[11px] font-bold">
-<span id="realTanggal" class="realTanggalFull">Memuat tanggal real - Senin, 28 September 2026 - TA 2026/2027</span>
-<span id="liveClock" class="realJam">00:00:00 WIB</span>
+<!-- Date Time Real -->
+<div class="bg-black text-white mx-5 mt-4 p-3 rounded-xl flex justify-between items-center text-[11px] font-bold border-[2px] border-black">
+<span id="realTanggal">Memuat tanggal...</span>
+<span id="liveClock" class="tabular-nums min-w-[90px] text-right" style="font-variant-numeric:tabular-nums">00:00:00 WIB</span>
 </div>
 
-<main class="flex-1 px-5 pt-5 pb-8 space-y-5">
-<!-- 2. Hero Section / Welcome Graphic -->
-<section class="space-y-3">
-<!-- Sticker Tag Badges Row -->
-<div class="flex flex-wrap items-center gap-2">
-<div class="inline-flex items-center gap-1 bg-primary-container text-on-background border-[2px] border-on-background px-2.5 py-1 rounded-md [box-shadow:2px_2px_0px_#1c1b1b] -rotate-1">
-<span class="material-symbols-outlined text-sm font-bold" data-icon="school">school</span>
-<span class="font-label-sm text-label-sm uppercase tracking-wider font-extrabold">VERSI 0.5 - SISTEM TERPADU</span>
+<main class="p-5 flex-1 flex flex-col gap-5">
+
+<div class="bg-white border-[3px] border-black rounded-[20px] p-5 [box-shadow:6px_6px_0px_#000]">
+<h2 class="font-black text-[18px] uppercase">Selamat Datang!</h2>
+<p class="text-[12px] mt-1 opacity-70 font-medium leading-[16px]">Platform absensi digital modern dengan QR, GPS Geofence, dan Verifikasi NIK KTP. Pilih peran kamu:</p>
 </div>
-<div class="inline-flex items-center gap-1 bg-secondary-fixed text-on-secondary-fixed border-[2px] border-on-background px-2 py-1 rounded-md [box-shadow:2px_2px_0px_#1c1b1b] rotate-1">
-<span class="material-symbols-outlined text-sm font-bold" data-icon="verified">verified</span>
-<span class="font-label-sm text-label-sm uppercase font-extrabold">TERAKREDITASI</span>
-</div>
-</div>
-<!-- Headline Typography -->
-<div class="space-y-1">
-<h1 class="font-headline-xl-mobile text-headline-xl-mobile font-bold text-on-background leading-none">
-      Selamat Datang di AbsenSiswa!
-     </h1>
-<p class="font-body-md text-body-md text-on-surface-variant font-medium">
-      Platform Presensi &amp; Rekap Sikap Terpadu Berbasis Geofence &amp; QR Code. Silakan tentukan hak akses peran Anda:
-     </p>
-</div>
-</section>
-<!-- 3. Role Selection Cards (Pilihan Peran) -->
-<section class="space-y-4">
-<!-- A. KARTU SISWA (Highlighted Primary Choice) -->
-<div class="relative bg-surface-container-lowest border-[3px] border-on-background rounded-xl p-4 [box-shadow:4px_4px_0px_#1c1b1b] transition-all hover:translate-x-[1px] hover:translate-y-[1px] hover:[box-shadow:3px_3px_0px_#1c1b1b]">
-<!-- Floating Highlight Ribbon -->
-<div class="absolute -top-3.5 right-3 bg-tertiary-fixed text-on-tertiary-fixed border-[2px] border-on-background px-2.5 py-0.5 rounded-full [box-shadow:2px_2px_0px_#1c1b1b] flex items-center gap-1 z-10">
-<span class="material-symbols-outlined text-xs material-symbols-fill" data-icon="verified">verified</span>
-<span class="font-label-sm text-label-sm tracking-wider font-extrabold uppercase">AKSES UTAMA</span>
-</div>
-<!-- Card Header & Badge -->
-<div class="flex items-start gap-3 mb-2.5">
-<div class="w-12 h-12 bg-primary-container border-[2.5px] border-on-background rounded-lg flex items-center justify-center [box-shadow:2.5px_2.5px_0px_#1c1b1b] shrink-0">
-<span class="material-symbols-outlined text-on-background text-2xl material-symbols-fill" data-icon="badge">badge</span>
-</div>
+
+<!-- Siswa Card -->
+<div class="bg-[#67FFB7] border-[3px] border-black rounded-[20px] p-5 [box-shadow:6px_6px_0px_#000] hover:translate-x-[2px] hover:translate-y-[2px] hover:shadow-[4px_4px_0px_#000] transition-all">
+<div class="flex justify-between items-start">
 <div class="flex-1">
 <div class="flex items-center gap-2">
-<span class="font-headline-md text-headline-md font-bold text-on-background">SAYA SISWA</span>
-<span class="bg-secondary-fixed text-on-secondary-fixed font-label-sm text-label-sm border-[1.5px] border-on-background px-1.5 py-0.5 rounded font-bold uppercase">PELAJAR</span>
+<span class="material-symbols-outlined bg-black text-white w-8 h-8 rounded-full flex items-center justify-center text-[18px]">school</span>
+<span class="font-black text-[10px] uppercase tracking-widest">Akses Siswa</span>
 </div>
-<p class="font-body-sm text-body-sm text-on-surface-variant mt-0.5 leading-snug">
-        Masuk instan menggunakan Kode Undangan Kelas atau Scan QR Aktivasi dari Wali Kelas.
-       </p>
+<h3 class="font-black text-[22px] uppercase mt-3 leading-[22px]">Saya Siswa</h3>
+<p class="text-[11px] mt-1 font-medium leading-[14px] opacity-80">Masuk pakai Kode Undangan Kelas + NISN + PIN. Scan QR + GPS real.</p>
+<div class="mt-4 flex gap-2">
+<input id="kodeUndangan" placeholder="Kode: RPL-XXXX" class="flex-1 border-[2.5px] border-black rounded-full px-4 py-2 text-[12px] font-black uppercase tracking-wide bg-[#FFE600] placeholder:text-black/50"/>
+<button id="btnGabung" class="bg-black text-white border-[2.5px] border-black px-5 py-2 rounded-full font-black text-[11px] uppercase hover:bg-[#FFE600] hover:text-black transition-colors">Gabung</button>
+</div>
+<p class="text-[10px] mt-2 opacity-60">Sudah aktivasi? <a href="/login-siswa.html" class="underline font-black">Login PIN / Biometrik</a></p>
 </div>
 </div>
-<!-- Mini Invitation Code Preview Box -->
-<div class="bg-surface-container-low border-[2px] border-on-background rounded-lg p-2.5 my-3 [box-shadow:2px_2px_0px_#1c1b1b]">
-<div class="flex justify-between items-center mb-1.5">
-<span class="font-label-sm text-label-sm text-on-surface font-extrabold flex items-center gap-1 uppercase">
-<span class="material-symbols-outlined text-sm font-bold" data-icon="key">key</span>
-        PUNYA KODE UNDANGAN?
-       </span>
-<span class="bg-primary-container border border-on-background text-on-background font-label-sm text-label-sm px-1 rounded font-bold">6 DIGIT</span>
 </div>
+
+<!-- Guru Card -->
+<div class="bg-[#8A4CFC] border-[3px] border-black rounded-[20px] p-5 [box-shadow:6px_6px_0px_#000] text-white hover:translate-x-[2px] hover:translate-y-[2px] hover:shadow-[4px_4px_0px_#000] transition-all">
+<div class="flex justify-between items-start">
+<div class="flex-1">
 <div class="flex items-center gap-2">
-<input class="w-full bg-surface-container-lowest border-[2px] border-on-background rounded px-3 py-1.5 font-label-md text-label-md text-on-background font-bold tracking-widest focus:outline-none cursor-default [box-shadow:inset_1.5px_1.5px_0px_#1c1b1b]" placeholder="CONTOH: RPL1-7A" readonly="" type="text" value="RPL-XII-B2"/>
+<span class="material-symbols-outlined bg-[#FFE600] text-black w-8 h-8 rounded-full flex items-center justify-center text-[18px] border-2 border-black">supervisor_account</span>
+<span class="font-black text-[10px] uppercase tracking-widest text-[#FFE600]">Akses Guru</span>
+</div>
+<h3 class="font-black text-[22px] uppercase mt-3 leading-[22px]">Guru & Tendik</h3>
+<p class="text-[11px] mt-1 font-medium leading-[14px] text-white/80">Kelola presensi, buka sesi QR, validasi izin, rekap laporan.</p>
+<div class="mt-4 grid grid-cols-2 gap-2">
+<button onclick="location.href='/dashboard-guru.html'" class="bg-[#FFE600] text-black border-[2.5px] border-black px-3 py-2 rounded-full font-black text-[10px] uppercase flex items-center justify-center gap-1"><span class="material-symbols-outlined text-[14px]">qr_code</span> Buka QR</button>
+<button onclick="location.href='/login-guru.html'" class="bg-black text-white border-[2.5px] border-white px-3 py-2 rounded-full font-black text-[10px] uppercase">Masuk NIP</button>
 </div>
 </div>
-<!-- Primary CTA Button (Tactile Action) -->
-<button class="w-full bg-primary-container text-on-background border-[2.5px] border-on-background py-2.5 px-3 rounded-lg font-label-lg text-label-lg font-bold uppercase flex items-center justify-between [box-shadow:3px_3px_0px_#1c1b1b] hover:translate-x-[1px] hover:translate-y-[1px] hover:[box-shadow:2px_2px_0px_#1c1b1b] active:translate-x-[3px] active:translate-y-[3px] active:[box-shadow:0px_0px_0px_#1c1b1b] transition-all">
-<span class="flex items-center gap-1.5">
-<span class="material-symbols-outlined text-lg font-extrabold" data-icon="login">login</span>
-       Gabung dengan Kode Undangan
-      </span>
-<span class="material-symbols-outlined font-extrabold" data-icon="arrow_forward">arrow_forward</span>
-</button>
-<!-- Secondary Quick Link for Existing Students -->
-<div class="mt-2.5 pt-2 border-t-[1.5px] border-on-background flex items-center justify-between text-on-surface">
-<span class="font-body-sm text-body-sm font-medium">Sudah pernah aktivasi?</span>
-<button class="font-label-md text-label-md font-bold text-secondary flex items-center gap-0.5 hover:underline">
-<span>Masuk via PIN / Biometrik</span>
-<span class="material-symbols-outlined text-sm font-bold" data-icon="how_to_reg">how_to_reg</span>
-</button>
 </div>
 </div>
-<!-- B. KARTU GURU & TENAGA PENDIDIK -->
-<div class="bg-surface-container-lowest border-[2.5px] border-on-background rounded-xl p-4 [box-shadow:4px_4px_0px_#1c1b1b] transition-all hover:translate-x-[1px] hover:translate-y-[1px] hover:[box-shadow:3px_3px_0px_#1c1b1b]">
-<div class="flex items-start gap-3 mb-3">
-<div class="w-12 h-12 bg-secondary-fixed border-[2.5px] border-on-background rounded-lg flex items-center justify-center [box-shadow:2.5px_2.5px_0px_#1c1b1b] shrink-0">
-<span class="material-symbols-outlined text-on-secondary-fixed text-2xl material-symbols-fill" data-icon="supervisor_account">supervisor_account</span>
-</div>
-<div class="flex-1">
-<div class="flex items-center gap-1.5 flex-wrap">
-<span class="font-headline-md text-headline-md font-bold text-on-background">GURU &amp; TENDIK</span>
-<span class="bg-surface-container-high text-on-surface border-[1.5px] border-on-background px-1.5 py-0.2 rounded font-label-sm text-label-sm font-extrabold uppercase">STAF / WALI</span>
-</div>
-<p class="font-body-sm text-body-sm text-on-surface-variant mt-1 leading-snug">
-        Akses pengelolaan presensi kelas, persetujuan izin, buka sesi QR, dan ekspor laporan rekapitulasi.
-       </p>
+
+<!-- Security Info -->
+<div class="bg-black text-white border-[3px] border-black rounded-[16px] p-4 flex gap-3">
+<span class="material-symbols-outlined text-[#FFE600] text-[20px]">security</span>
+<div>
+<p class="font-black text-[11px] uppercase text-[#FFE600]">Keamanan Aktif</p>
+<p class="text-[10px] mt-1 leading-[12px] text-white/70">Geofencing 50m + 1 Perangkat 1 Siswa (Anti Titip Absen) + Validasi di Server</p>
 </div>
 </div>
-<!-- Feature Bullets Pill Row -->
-<div class="grid grid-cols-2 gap-1.5 mb-3.5">
-<div class="flex items-center gap-1 bg-surface-container-low border-[1.5px] border-on-background px-2 py-1 rounded text-on-surface">
-<span class="material-symbols-outlined text-sm text-secondary font-bold" data-icon="qr_code">qr_code</span>
-<span class="font-label-sm text-label-sm uppercase font-bold">Buka Sesi QR</span>
+
+<div class="flex-1"></div>
+
+<div class="text-center py-4">
+<p class="font-black text-[10px] tracking-widest uppercase opacity-50">Digital Apsen - com.digitalapsen.app</p>
+<p class="text-[9px] opacity-40 mt-1">2026/2027 - QR + GPS + NIK OCR</p>
+<p class="text-[9px] opacity-40 mt-2">Butuh bantuan? <a href="/setup.html" class="underline font-bold">Setup Awal</a> • <a href="/welcome.html" class="underline font-bold">Welcome</a></p>
 </div>
-<div class="flex items-center gap-1 bg-surface-container-low border-[1.5px] border-on-background px-2 py-1 rounded text-on-surface">
-<span class="material-symbols-outlined text-sm text-tertiary font-bold" data-icon="verified">verified</span>
-<span class="font-label-sm text-label-sm uppercase font-bold">Validasi Izin</span>
-</div>
-</div>
-<!-- Guru CTA Button -->
-<button class="w-full bg-surface-container-lowest text-on-background border-[2.5px] border-on-background py-2.5 px-3 rounded-lg font-label-lg text-label-lg font-bold uppercase flex items-center justify-between [box-shadow:3px_3px_0px_#1c1b1b] hover:bg-secondary-fixed hover:translate-x-[1px] hover:translate-y-[1px] hover:[box-shadow:2px_2px_0px_#1c1b1b] active:translate-x-[3px] active:translate-y-[3px] active:[box-shadow:0px_0px_0px_#1c1b1b] transition-all">
-<span class="flex items-center gap-1.5">
-<span class="material-symbols-outlined text-lg font-extrabold" data-icon="lock_open">lock_open</span>
-       Masuk Akun Kedinasan / NIP
-      </span>
-<span class="material-symbols-outlined font-extrabold" data-icon="chevron_right">chevron_right</span>
-</button>
-</div>
-</section>
-<!-- 4. Footer & Trust Badges & Help -->
-<section class="space-y-3 pt-2">
-<!-- Geofence & Hardware Security Pill -->
-<div class="bg-surface-container border-[2px] border-on-background rounded-lg p-2.5 flex items-center gap-2.5 [box-shadow:2px_2px_0px_#1c1b1b]">
-<div class="w-7 h-7 bg-tertiary-fixed rounded-md border-[1.5px] border-on-background flex items-center justify-center shrink-0">
-<span class="material-symbols-outlined text-base text-on-tertiary-fixed font-bold" data-icon="security">security</span>
-</div>
-<div class="flex-1">
-<p class="font-label-sm text-label-sm text-on-surface font-extrabold uppercase leading-tight">Keamanan Geofencing Aktif</p>
-<p class="font-body-sm text-body-sm text-on-surface-variant font-medium leading-none">1 Perangkat untuk 1 Siswa (Anti Titip Absen)</p>
-</div>
-</div>
-<!-- Help Link Action Box -->
-<div class="text-center space-y-1">
-<p class="font-body-sm text-body-sm text-on-surface-variant font-medium">
-      Belum memiliki kode undangan atau lupa akses?
-     </p>
-<a class="inline-flex items-center gap-1 font-label-md text-label-md font-bold text-on-background bg-surface-container-lowest border-[1.5px] border-on-background px-3 py-1 rounded-full [box-shadow:1.5px_1.5px_0px_#1c1b1b] hover:bg-primary-container transition-colors" href="/">
-<span class="material-symbols-outlined text-base" data-icon="help">help</span>
-      Hubungi Tim IT Sekolah / Guru Piket
-     </a>
-</div>
-</section>
+
 </main>
-<!-- Bottom Anchor Bar / School Copyright -->
-<footer class="w-full bg-surface-container-lowest border-t-[2.5px] border-on-background px-5 py-2.5 flex items-center justify-between">
-<div class="flex items-center gap-1.5">
-<span class="material-symbols-outlined text-sm text-on-surface-variant" data-icon="school">school</span>
-<span class="font-label-sm text-label-sm text-on-surface-variant font-bold">SMKN 1 JAKARTA</span>
+
 </div>
-<span class="font-label-sm text-label-sm text-on-surface-variant font-bold uppercase tracking-wider">
-    SIAKAD CLOUD © 2027
-   </span>
-</footer>
-</div>
-<script src="/socket.io/socket.io.js"></script>
-<script src="https://unpkg.com/html5-qrcode@2.3.8/html5-qrcode.min.js"></script>
+
+<script src="/js/auth-guard.js"></script>
 <script src="/js/app.js"></script>
-<!-- No Old Data -->
-<nav class="fixed bottom-0 left-0 w-full z-50 flex justify-around items-center px-4 py-2 bg-white border-t-[3px] border-black [box-shadow:0px_-3px_0px_#000] max-w-[420px] left-1/2 -translate-x-1/2 md:max-w-5xl md:left-0 md:translate-x-0">
-<a class="flex flex-col items-center justify-center px-3 py-1.5 font-label-sm text-label-sm" href="/index.html"><span class="material-symbols-outlined text-[20px]">home</span><span>Home</span></a>
-<a class="flex flex-col items-center justify-center px-3 py-1.5 font-label-sm text-label-sm" href="/dashboard-siswa.html"><span class="material-symbols-outlined text-[20px]">dashboard</span><span>Siswa</span></a>
-<a class="flex flex-col items-center justify-center px-3 py-1.5 font-label-sm text-label-sm" href="/dashboard-guru.html"><span class="material-symbols-outlined text-[20px]">supervisor_account</span><span>Guru</span></a>
-<a class="flex flex-col items-center justify-center px-3 py-1.5 font-label-sm text-label-sm" href="/scan.html"><span class="material-symbols-outlined text-[20px]">qr_code_scanner</span><span>Scan</span></a>
-<a class="flex flex-col items-center justify-center px-3 py-1.5 font-label-sm text-label-sm" href="/siswa.html"><span class="material-symbols-outlined text-[20px]">groups</span><span>Siswa</span></a>
-<a class="flex flex-col items-center justify-center px-3 py-1.5 font-label-sm text-label-sm" href="/settings.html"><span class="material-symbols-outlined text-[20px]">settings</span><span>Settings</span></a>
-</nav>
-</body></html>
+<script>
+// Fix date time + Welcome first logic - dashboard ga bisa diakses sebelum login
+function updateDateTime(){
+ const now = new Date();
+ const hari = ['Minggu','Senin','Selasa','Rabu','Kamis','Jumat','Sabtu'];
+ const bulan = ['Januari','Februari','Maret','April','Mei','Juni','Juli','Agustus','September','Oktober','November','Desember'];
+ const tgl = `${hari[now.getDay()]}, ${now.getDate()} ${bulan[now.getMonth()]} ${now.getFullYear()}`;
+ const jam = now.toLocaleTimeString('id-ID',{hour:'2-digit',minute:'2-digit',second:'2-digit'});
+ document.getElementById('realTanggal').textContent = tgl;
+ document.getElementById('liveClock').textContent = jam + ' WIB';
+}
+updateDateTime();
+setInterval(updateDateTime,1000);
+
+// FIX v1.0.28: Welcome first + dashboard tidak tercampur + logout balik ke login
+document.addEventListener('DOMContentLoaded', ()=>{
+  let token = localStorage.getItem('absensiswa_token');
+  // Bersihkan token kosong (bug setup.html set token jadi '')
+  if(token && token.trim() === ''){ localStorage.removeItem('absensiswa_token'); token = null; }
+  const hasSeenWelcome = localStorage.getItem('digitalapsen_welcome_seen');
+
+  // Jika belum login dan belum pernah lihat welcome, arahkan ke welcome.html (hanya sekali)
+  if(!token && !hasSeenWelcome && (window.location.pathname === '/' || window.location.pathname === '/index.html')){
+    localStorage.setItem('digitalapsen_welcome_seen', 'true');
+    window.location.href = '/welcome.html';
+    return;
+  }
+
+  // Jika sudah login, arahkan ke dashboard sesuai role (fix identitas hilang)
+  if(token){
+    try{
+      const base64Url = token.split('.')[1];
+      const base64 = base64Url.replace(/-/g,'+').replace(/_/g,'/');
+      const pad = base64.length % 4;
+      const padded = pad ? base64 + '='.repeat(4 - pad) : base64;
+      const jsonPayload = decodeURIComponent(atob(padded).split('').map(c=>'%'+('00'+c.charCodeAt(0).toString(16)).slice(-2)).join(''));
+      const payload = JSON.parse(jsonPayload);
+      const role = payload.role;
+      // Cek expiry
+      if(payload.exp && Date.now() >= payload.exp * 1000){
+        localStorage.removeItem('absensiswa_token');
+        localStorage.removeItem('absensiswa_siswa');
+        localStorage.removeItem('absensiswa_guru');
+        console.warn('Token expired di index, hapus');
+        return;
+      }
+      if(role === 'SISWA' && (window.location.pathname === '/' || window.location.pathname === '/index.html')){
+        window.location.href = '/dashboard-siswa.html';
+      } else if(['GURU','WALI_KELAS','ADMIN'].includes(role) && (window.location.pathname === '/' || window.location.pathname === '/index.html')){
+        window.location.href = '/dashboard-guru.html';
+      }
+    }catch(e){
+      console.warn('Token invalid di index, hapus', e);
+      localStorage.removeItem('absensiswa_token');
+    }
+  }
+});
+</script>
+</body>
+</html>
