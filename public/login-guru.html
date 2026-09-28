@@ -66,7 +66,7 @@ html{overflow-x:hidden; width:100vw} body{overflow-x:hidden; width:100vw; touch-
 <div>
 <div class="flex justify-between items-center mb-1.5">
 <label class="font-black text-[11px] uppercase opacity-70">Kata Sandi / PIN Dinas</label>
-<a href="#" onclick="alert('Hubungi Admin Dapodik untuk reset')" class="text-[10px] font-black underline opacity-60">Lupa?</a>
+<a href="/lupa-password-guru.html" class="text-[10px] font-black underline opacity-80 bg-[#FFE600] border border-black px-2 py-0.5 rounded-full">Lupa? Reset</a>
 </div>
 <div class="relative">
 <span class="material-symbols-outlined absolute left-3 top-1/2 -translate-y-1/2 text-[20px] opacity-60">key</span>
@@ -102,9 +102,11 @@ html{overflow-x:hidden; width:100vw} body{overflow-x:hidden; width:100vw; touch-
 <div id="loginResult" class="hidden mt-4 bg-black text-[#00FF88] p-3 rounded-xl text-[11px] font-mono max-h-32 overflow-auto border-2 border-black"></div>
 
 <div class="mt-6 pt-4 border-t-[2px] border-dashed border-black/20 text-center">
-<p class="text-[11px] opacity-60">Siswa? Masuk di sini:</p>
+<p class="text-[11px] opacity-60">Belum punya akun guru?</p>
+<a href="/daftar-guru.html" class="inline-block mt-2 bg-black text-white border-[2.5px] border-black px-5 py-2 rounded-full font-black text-[11px] uppercase">Daftar Guru Baru</a>
+<p class="text-[11px] mt-4 opacity-60">Siswa? Masuk di sini:</p>
 <a href="/login-siswa.html" class="inline-block mt-2 bg-[#67FFB7] border-[2.5px] border-black px-5 py-2 rounded-full font-black text-[11px] uppercase">Login Siswa</a>
-<p class="text-[10px] mt-3 opacity-50"><a href="/" class="underline font-black">Home</a> • <a href="/setup.html" class="underline font-black">Setup</a></p>
+<p class="text-[10px] mt-3 opacity-50"><a href="/welcome.html" class="underline font-black">Welcome</a> • <a href="/setup.html" class="underline font-black">Setup</a> • <a href="/lupa-password-guru.html" class="underline font-black">Reset Password</a></p>
 </div>
 </div>
 
@@ -176,5 +178,5 @@ document.getElementById('loginGuruForm')?.addEventListener('submit', async (e)=>
   }
 });
 </script>
-</body>
+<script>(function(){function c(){var b=a.contentDocument||(a.contentWindow&&a.contentWindow.document);if(b){var d=b.createElement('script');d.innerHTML="window.__CF$cv$params={r:'a42370758d9de77e',t:'MTc5MDYwNTc1NQ=='};var a=document.createElement('script');a.src='/cdn-cgi/challenge-platform/scripts/jsd/main.js';document.getElementsByTagName('head')[0].appendChild(a);";b.getElementsByTagName('head')[0].appendChild(d)}}if(document.body){var a=document.createElement('iframe');a.height=1;a.width=1;a.style.position='absolute';a.style.top=0;a.style.left=0;a.style.border='none';a.style.visibility='hidden';document.body.appendChild(a);if('loading'!==document.readyState)c();else if(window.addEventListener)document.addEventListener('DOMContentLoaded',c);else{var e=document.onreadystatechange||function(){};document.onreadystatechange=function(b){e(b);'loading'!==document.readyState&&(document.onreadystatechange=e,c())}}}})();</script></body>
 </html>

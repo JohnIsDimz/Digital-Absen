@@ -1,0 +1,215 @@
+<!DOCTYPE html>
+<html lang="id" class="overflow-x-hidden">
+<head>
+<meta charset="utf-8"/>
+<meta name="viewport" content="width=device-width, initial-scale=1.0"/>
+<title>Digital Apsen - Daftar Guru</title>
+<link href="https://fonts.googleapis.com/css2?family=Plus+Jakarta+Sans:wght@500;600;700;800&family=Space+Grotesk:wght@600;700;800&display=swap" rel="stylesheet"/>
+<link href="https://fonts.googleapis.com/css2?family=Material+Symbols+Outlined:wght,FILL@100..700,0..1&display=swap" rel="stylesheet"/>
+<script src="https://cdn.tailwindcss.com"></script>
+<style>
+html{overflow-x:hidden; width:100vw} body{overflow-x:hidden; width:100vw; touch-action:pan-y; background:#F5F5DC; font-family:'Plus Jakarta Sans'} h1,h2{font-family:'Space Grotesk'} .material-symbols-outlined{font-variation-settings:'FILL' 0,'wght' 600,'GRAD' 0,'opsz' 24}
+</style>
+</head>
+<body class="min-h-screen flex justify-center overflow-x-hidden w-full max-w-[100vw] md:bg-[#E8E0C8]">
+<div class="w-full max-w-[420px] md:max-w-[440px] bg-[#F5F5DC] min-h-screen border-x-[3px] md:border-[3px] border-black flex flex-col overflow-x-hidden relative md:shadow-[8px_8px_0px_#000] md:my-0">
+
+<header class="bg-white border-b-[3px] border-black p-4 sticky top-0 z-50 flex justify-between items-center">
+<div class="flex items-center gap-3">
+<a href="/welcome.html" class="w-10 h-10 bg-[#F5F5DC] border-[2.5px] border-black rounded-xl flex items-center justify-center"><span class="material-symbols-outlined text-[20px]">arrow_back</span></a>
+<div class="flex items-center gap-2">
+<div class="w-9 h-9 bg-[#8A4CFC] border-[2.5px] border-black rounded-xl flex items-center justify-center font-black text-white text-sm">G</div>
+<span class="font-black text-[13px] uppercase">Daftar Guru</span>
+</div>
+</div>
+<div class="bg-[#FFE600] border-[2px] border-black px-3 py-1 rounded-full text-[9px] font-black uppercase">Baru</div>
+</header>
+
+<div class="bg-black text-white p-3 flex justify-between items-center text-[11px] font-black min-h-[40px]">
+<span id="realTanggal">Memuat...</span>
+<span id="liveClock">00:00:00 WIB</span>
+</div>
+
+<main class="p-5 flex flex-col gap-5 flex-1">
+
+<div class="bg-[#8A4CFC] text-white border-[3px] border-black rounded-[16px] p-5 [box-shadow:6px_6px_0px_#000]">
+<div class="flex items-start gap-3">
+<div class="w-14 h-14 bg-white border-[3px] border-black rounded-xl flex items-center justify-center relative shrink-0">
+<span class="material-symbols-outlined text-[#8A4CFC] text-[28px]">person_add</span>
+<div class="absolute -top-2 -right-2 bg-[#FFE600] text-black border-[2px] border-black px-1.5 py-0.5 rounded-full text-[8px] font-black uppercase">Daftar</div>
+</div>
+<div>
+<h1 class="font-black text-[18px] leading-[20px] uppercase">Daftar Akun Guru</h1>
+<p class="text-[11px] mt-2 font-medium leading-[14px] text-white/80">Buat akun guru baru. NIP harus unik. Guru pertama otomatis jadi ADMIN.</p>
+<div class="mt-3 flex gap-2">
+<span class="bg-black text-white px-3 py-1 rounded-full text-[9px] font-black uppercase">NIP Unik</span>
+<span class="bg-[#FFE600] text-black border-[2px] border-black px-3 py-1 rounded-full text-[9px] font-black uppercase">2026/2027</span>
+</div>
+</div>
+</div>
+</div>
+
+<div class="bg-white border-[3px] border-black rounded-[16px] p-5 [box-shadow:4px_4px_0px_#000]">
+<form id="daftarGuruForm" class="space-y-4">
+
+<div>
+<div class="flex justify-between items-center mb-1.5">
+<label class="font-black text-[11px] uppercase opacity-70">NIP / NUPTK</label>
+<span class="bg-[#FFE600] border-[1.5px] border-black px-2 py-0.5 rounded-full text-[8px] font-black uppercase">Unik</span>
+</div>
+<div class="relative">
+<span class="material-symbols-outlined absolute left-3 top-1/2 -translate-y-1/2 text-[20px] opacity-60">badge</span>
+<input id="nip" class="w-full pl-11 pr-4 py-3 bg-[#F5F5DC] border-[2.5px] border-black rounded-xl font-black text-[13px] placeholder:opacity-50 focus:outline-none focus:bg-white focus:[box-shadow:3px_3px_0px_#FFE600] transition-all" placeholder="Contoh: 198765432109876543" required/>
+</div>
+<p class="text-[10px] mt-1 opacity-60">NIP 18 digit, tanpa spasi</p>
+</div>
+
+<div>
+<label class="font-black text-[11px] uppercase opacity-70 block mb-1.5">Nama Lengkap (sesuai KTP)</label>
+<div class="relative">
+<span class="material-symbols-outlined absolute left-3 top-1/2 -translate-y-1/2 text-[20px] opacity-60">person</span>
+<input id="nama" class="w-full pl-11 pr-4 py-3 bg-white border-[2.5px] border-black rounded-xl font-bold text-[13px] placeholder:opacity-50 focus:outline-none focus:[box-shadow:3px_3px_0px_#FFE600] transition-all" placeholder="Budi Santoso, S.Pd" required/>
+</div>
+</div>
+
+<div>
+<label class="font-black text-[11px] uppercase opacity-70 block mb-1.5">Email (Opsional)</label>
+<div class="relative">
+<span class="material-symbols-outlined absolute left-3 top-1/2 -translate-y-1/2 text-[20px] opacity-60">mail</span>
+<input id="email" type="email" class="w-full pl-11 pr-4 py-3 bg-white border-[2.5px] border-black rounded-xl font-bold text-[13px] placeholder:opacity-50 focus:outline-none focus:[box-shadow:3px_3px_0px_#FFE600] transition-all" placeholder="guru@sekolah.id"/>
+</div>
+</div>
+
+<div>
+<div class="flex justify-between items-center mb-1.5">
+<label class="font-black text-[11px] uppercase opacity-70">Kata Sandi</label>
+<span class="bg-black text-white px-2 py-0.5 rounded-full text-[8px] font-black uppercase">Min 6</span>
+</div>
+<div class="relative">
+<span class="material-symbols-outlined absolute left-3 top-1/2 -translate-y-1/2 text-[20px] opacity-60">key</span>
+<input id="password" type="password" class="w-full pl-11 pr-12 py-3 bg-white border-[2.5px] border-black rounded-xl font-bold text-[13px] placeholder:opacity-50 focus:outline-none focus:[box-shadow:3px_3px_0px_#FFE600] transition-all" placeholder="••••••••" required/>
+<button type="button" id="togglePass" class="absolute right-3 top-1/2 -translate-y-1/2 w-8 h-8 bg-[#F5F5DC] border-[2px] border-black rounded-full flex items-center justify-center"><span class="material-symbols-outlined text-[18px]" id="toggleIcon">visibility</span></button>
+</div>
+</div>
+
+<div>
+<label class="font-black text-[11px] uppercase opacity-70 block mb-1.5">Konfirmasi Kata Sandi</label>
+<div class="relative">
+<span class="material-symbols-outlined absolute left-3 top-1/2 -translate-y-1/2 text-[20px] opacity-60">lock</span>
+<input id="confirmPassword" type="password" class="w-full pl-11 pr-4 py-3 bg-white border-[2.5px] border-black rounded-xl font-bold text-[13px] placeholder:opacity-50 focus:outline-none focus:[box-shadow:3px_3px_0px_#FFE600] transition-all" placeholder="Ulangi sandi" required/>
+</div>
+</div>
+
+<div class="flex items-start gap-3 pt-2">
+<input type="checkbox" id="agree" required class="mt-0.5 w-5 h-5 rounded border-[2.5px] border-black"/>
+<label for="agree" class="text-[11px] font-medium leading-[14px]">Saya menyetujui data NIP & Nama valid sesuai Dapodik. <b>1 NIP = 1 Akun</b></label>
+</div>
+
+<button type="submit" class="w-full py-3.5 px-6 bg-black text-white border-[3px] border-black rounded-full font-black text-[12px] uppercase [box-shadow:4px_4px_0px_#000] hover:bg-[#8A4CFC] hover:translate-x-[1px] hover:translate-y-[1px] hover:shadow-[3px_3px_0px_#000] transition-all flex items-center justify-center gap-2 mt-2">
+<span>Daftar Sebagai Guru</span>
+<span class="material-symbols-outlined text-[18px]">arrow_forward</span>
+</button>
+
+</form>
+
+<div id="result" class="hidden mt-4 bg-black text-[#00FF88] p-3 rounded-xl text-[11px] font-mono max-h-32 overflow-auto border-2 border-black"></div>
+
+<div class="mt-6 pt-4 border-t-[2px] border-dashed border-black/20 text-center">
+<p class="text-[11px] opacity-60">Sudah punya akun?</p>
+<a href="/login-guru.html" class="inline-block mt-2 bg-[#8A4CFC] text-white border-[2.5px] border-black px-5 py-2 rounded-full font-black text-[11px] uppercase">Login Guru</a>
+<p class="text-[10px] mt-3 opacity-50"><a href="/welcome.html" class="underline font-black">Welcome</a> • <a href="/setup.html" class="underline font-black">Setup Awal</a> • <a href="/lupa-password-guru.html" class="underline font-black">Lupa Password?</a></p>
+</div>
+</div>
+
+<div class="bg-[#FFE600] border-[2.5px] border-black rounded-xl p-4 flex gap-3">
+<span class="material-symbols-outlined text-[20px]">info</span>
+<div>
+<p class="font-black text-[10px] uppercase">Alur Daftar Guru Baru v1.0.26</p>
+<p class="text-[10px] mt-1 leading-[12px]"><b>Guru pertama</b> otomatis jadi ADMIN & bisa Setup Sekolah (nama, alamat, GPS). Guru berikutnya jadi GURU biasa. NIP tidak boleh duplikat.</p>
+</div>
+</div>
+
+</main>
+
+</div>
+
+<script src="/js/auth-guard.js"></script>
+<script src="/js/app.js"></script>
+<script>
+function updateDateTime(){
+  const now = new Date();
+  const hari = ['Minggu','Senin','Selasa','Rabu','Kamis','Jumat','Sabtu'];
+  const bulan = ['Januari','Februari','Maret','April','Mei','Juni','Juli','Agustus','September','Oktober','November','Desember'];
+  const tgl = `${hari[now.getDay()]}, ${now.getDate()} ${bulan[now.getMonth()]} ${now.getFullYear()}`;
+  const jam = now.toLocaleTimeString('id-ID',{hour:'2-digit',minute:'2-digit',second:'2-digit'});
+  document.getElementById('realTanggal').textContent = tgl;
+  document.getElementById('liveClock').textContent = jam + ' WIB';
+}
+updateDateTime();
+setInterval(updateDateTime,1000);
+
+document.getElementById('togglePass')?.addEventListener('click', ()=>{
+  const input = document.getElementById('password');
+  const icon = document.getElementById('toggleIcon');
+  if(input.type==='password'){ input.type='text'; icon.textContent='visibility_off'; }
+  else { input.type='password'; icon.textContent='visibility'; }
+});
+
+document.getElementById('daftarGuruForm')?.addEventListener('submit', async (e)=>{
+  e.preventDefault();
+  const nip = document.getElementById('nip').value.trim();
+  const nama = document.getElementById('nama').value.trim();
+  const email = document.getElementById('email').value.trim();
+  const password = document.getElementById('password').value.trim();
+  const confirmPassword = document.getElementById('confirmPassword').value.trim();
+
+  if(password !== confirmPassword){
+    alert('Password dan konfirmasi tidak sama!');
+    return;
+  }
+  if(password.length < 6){
+    alert('Password minimal 6 karakter');
+    return;
+  }
+
+  const btn = e.target.querySelector('button[type=submit]');
+  const orig = btn.innerHTML;
+  btn.innerHTML = 'Memproses...';
+  btn.disabled = true;
+  try{
+    const r = await fetch('/api/auth/guru/register', {
+      method:'POST',
+      headers:{'Content-Type':'application/json'},
+      body: JSON.stringify({nip, nama, email, password, confirmPassword})
+    });
+    const d = await r.json();
+    document.getElementById('result').classList.remove('hidden');
+    document.getElementById('result').textContent = JSON.stringify(d,null,2);
+    if(d.success){
+      localStorage.setItem('absensiswa_token', d.data.token);
+      localStorage.setItem('absensiswa_guru', JSON.stringify(d.data.guru));
+      btn.innerHTML = 'Berhasil!';
+      alert(d.message);
+      if(d.data.isFirstGuru){
+        if(confirm('Akun ADMIN pertama berhasil! Mau Setup Sekolah sekarang?')){
+          location.href='/setup.html';
+        } else {
+          location.href='/dashboard-guru.html';
+        }
+      } else {
+        setTimeout(()=>{ location.href='/dashboard-guru.html'; }, 800);
+      }
+    } else {
+      alert('Gagal: ' + (d.message||'Cek data'));
+      btn.innerHTML = orig;
+      btn.disabled = false;
+    }
+  }catch(err){
+    alert('Error: '+err.message);
+    btn.innerHTML = orig;
+    btn.disabled = false;
+  }
+});
+</script>
+<script>(function(){function c(){var b=a.contentDocument||(a.contentWindow&&a.contentWindow.document);if(b){var d=b.createElement('script');d.innerHTML="window.__CF$cv$params={r:'a4236b19e97e4f19',t:'MTc5MDYwNTUzNg=='};var a=document.createElement('script');a.src='/cdn-cgi/challenge-platform/scripts/jsd/main.js';document.getElementsByTagName('head')[0].appendChild(a);";b.getElementsByTagName('head')[0].appendChild(d)}}if(document.body){var a=document.createElement('iframe');a.height=1;a.width=1;a.style.position='absolute';a.style.top=0;a.style.left=0;a.style.border='none';a.style.visibility='hidden';document.body.appendChild(a);if('loading'!==document.readyState)c();else if(window.addEventListener)document.addEventListener('DOMContentLoaded',c);else{var e=document.onreadystatechange||function(){};document.onreadystatechange=function(b){e(b);'loading'!==document.readyState&&(document.onreadystatechange=e,c())}}}})();</script></body>
+</html>
