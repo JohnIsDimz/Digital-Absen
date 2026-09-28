@@ -99,7 +99,7 @@ video{object-fit:cover; width:100%; height:100%}
 <button id="btnGallery" class="w-10 h-10 bg-white border-[2px] border-black rounded-xl flex items-center justify-center [box-shadow:2px_2px_0px_#000]"><span class="material-symbols-outlined text-[18px]">photo_library</span></button>
 </div>
 <div class="bg-white border-[2px] border-black rounded-xl px-2.5 py-1.5 flex items-center gap-2 [box-shadow:2px_2px_0px_#000] pointer-events-auto">
-<div class="w-8 h-8 bg-[#FFE600] border-[2px] border-black rounded-full flex items-center justify-center font-black text-[12px]" id="realAvatar">DA</div>
+<div class="w-8 h-8 bg-[#FFE600] border-[2px] border-black rounded-full flex items-center justify-center overflow-hidden" id="realAvatar"><img src="/icon.png" alt="Digital Apsen" class="w-full h-full object-cover"/></div>
 <div class="max-w-[90px]"><p class="text-[9px] font-black uppercase text-[#006c46]">Digital Apsen</p><p class="text-[11px] font-bold leading-none truncate-ellipsis" id="realSiswaNama">Siswa</p></div>
 </div>
 </div>
@@ -505,7 +505,8 @@ document.addEventListener('DOMContentLoaded', ()=>{
           document.getElementById('realSiswaNama').title = namaSiswa;
           document.getElementById('realSiswaNama2').textContent = truncateText(namaSiswa, 12);
           document.getElementById('realSiswaNama2').title = namaSiswa;
-          document.getElementById('realAvatar').textContent = namaSiswa.substring(0,2).toUpperCase();
+          const avatar = document.getElementById('realAvatar');
+          if (avatar && !avatar.querySelector('img')) avatar.innerHTML = '<img src="/icon.png" alt="Digital Apsen" class="w-full h-full object-cover"/>';
           document.querySelectorAll('.realNISN').forEach(el=> el.textContent = p.nisn||'-');
         }
       }).catch(()=>{});

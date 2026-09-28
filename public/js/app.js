@@ -158,7 +158,9 @@ async function loadProfilRealTotal() {
       if(izinEl) izinEl.textContent=(p.rekap.izin||0)+(p.rekap.sakit||0);
       if(alphaEl) alphaEl.textContent=p.rekap.alpha;
     }
-    document.querySelectorAll('#realAvatar').forEach(el=>el.textContent=p.avatarInitial||p.nama.substring(0,2).toUpperCase());
+    document.querySelectorAll('#realAvatar').forEach(el=>{
+      if(!el.querySelector('img')) el.innerHTML='<img src="/icon.png" alt="Digital Apsen" class="w-full h-full object-cover"/>';
+    });
     loadSettingsRealTotal();
   } catch(e){
     console.log('Profil API gagal, coba fallback localStorage:', e.message);
