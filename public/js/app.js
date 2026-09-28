@@ -161,11 +161,56 @@ async function loadProfilRealTotal() {
     document.querySelectorAll('#realAvatar').forEach(el=>el.textContent=p.avatarInitial||p.nama.substring(0,2).toUpperCase());
     loadSettingsRealTotal();
   } catch(e){
-    console.log('Profil belum ada:', e.message);
-    document.querySelectorAll('#realSiswaNama').forEach(el=>el.textContent='Belum ada data siswa');
-    document.querySelectorAll('#realGuruNama').forEach(el=>el.textContent='Belum ada data guru');
-    document.querySelectorAll('#realSekolahNama').forEach(el=>el.textContent='Belum ada sekolah');
-    document.querySelectorAll('.realKelasNama').forEach(el=>el.textContent='Belum ada kelas');
+    console.log('Profil API gagal, coba fallback localStorage:', e.message);
+    // FIX v1.0.35: Jangan tampil "Belum ada data guru", coba ambil dari localStorage
+    try{
+      const guruData = localStorage.getItem('absensiswa_guru');
+      const siswaData = localStorage.getItem('absensiswa_siswa');
+      const userData = localStorage.getItem('absensiswa_user');
+      let fallbackNama = null;
+      let fallbackKelas = null;
+      if(guruData){
+        const g = JSON.parse(guruData);
+        fallbackNama = g.nama || g.name || 'Guru';
+      } else if(siswaData){
+        const s = JSON.parse(siswaData);
+        fallbackNama = s.nama || s.name || 'Siswa';
+        fallbackKelas = s.kelas || s.kelasNama || null;
+      } else if(userData){
+        const u = JSON.parse(userData);
+        fallbackNama = u.nama || u.name || 'User';
+      }
+      if(fallbackNama){
+        document.querySelectorAll('#realGuruNama').forEach(el=>el.textContent=fallbackNama);
+        document.querySelectorAll('#realSiswaNama').forEach(el=>el.textContent=fallbackNama);
+        document.querySelectorAll('#realNama').forEach(el=>el.textContent=fallbackNama);
+        console.log('Fallback nama dari localStorage:', fallbackNama);
+      } else {
+        document.querySelectorAll('#realSiswaNama').forEach(el=>el.textContent='Memuat...');
+        document.querySelectorAll('#realGuruNama').forEach(el=>el.textContent='Memuat...');
+      }
+      // Kelas dari localStorage
+      const kelasData = localStorage.getItem('absensiswa_kelas');
+      if(kelasData){
+        try{
+          const k = JSON.parse(kelasData);
+          const namaKelas = k.nama || k.kelas || 'Kelas';
+          document.querySelectorAll('#realKelasNama').forEach(el=>el.textContent=namaKelas);
+          document.querySelectorAll('.realKelasNama').forEach(el=>el.textContent=namaKelas);
+        }catch{}
+      }
+      // Jika tetap gagal, jangan tampil "Belum ada data guru" yang bikin bingung, tampil "Guru" saja
+      document.querySelectorAll('#realGuruNama').forEach(el=>{
+        if(el.textContent.includes('Belum ada data')) el.textContent = fallbackNama || 'Guru';
+      });
+      document.querySelectorAll('#realSiswaNama').forEach(el=>{
+        if(el.textContent.includes('Belum ada data')) el.textContent = fallbackNama || 'Siswa';
+      });
+    }catch{
+      // Last resort
+      document.querySelectorAll('#realSiswaNama').forEach(el=>el.textContent='Siswa');
+      document.querySelectorAll('#realGuruNama').forEach(el=>el.textContent='Guru');
+    }
   }
 }
 
