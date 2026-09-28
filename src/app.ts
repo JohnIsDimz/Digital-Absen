@@ -168,6 +168,11 @@ app.get('/kelas', (req, res) => res.sendFile(path.join(__dirname, '../public/kel
 app.get('/setup', (req, res) => res.sendFile(path.join(__dirname, '../public/setup.html')));
 app.get('/verifikasi-nik', (req, res) => res.sendFile(path.join(__dirname, '../public/verifikasi-nik.html')));
 app.get('/nik', (req, res) => res.sendFile(path.join(__dirname, '../public/verifikasi-nik.html')));
+// NEW v1.0.26 - Fix Bug Guru Daftar & Reset Password
+app.get('/daftar-guru', (req, res) => res.sendFile(path.join(__dirname, '../public/daftar-guru.html')));
+app.get('/register-guru', (req, res) => res.sendFile(path.join(__dirname, '../public/daftar-guru.html')));
+app.get('/lupa-password-guru', (req, res) => res.sendFile(path.join(__dirname, '../public/lupa-password-guru.html')));
+app.get('/reset-password-guru', (req, res) => res.sendFile(path.join(__dirname, '../public/lupa-password-guru.html')));
 
 app.use(notFound);
 app.use(errorHandler);
