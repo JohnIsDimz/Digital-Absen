@@ -163,7 +163,6 @@ function autoGuard(){
     '/kelas.html': { roles: ['GURU','WALI_KELAS','ADMIN'], requireAuth: true, redirectLogin: '/login-guru.html' },
     '/siswa.html': { roles: ['GURU','WALI_KELAS','ADMIN'], requireAuth: true, redirectLogin: '/login-guru.html' },
     '/settings.html': { roles: ['GURU','WALI_KELAS','ADMIN'], requireAuth: true, redirectLogin: '/login-guru.html' },
-    '/export.html': { roles: ['GURU','WALI_KELAS','ADMIN'], requireAuth: true, redirectLogin: '/login-guru.html' },
     '/rekap.html': { roles: [], requireAuth: true, redirectLogin: '/welcome.html' },
     '/profil.html': { roles: [], requireAuth: true, redirectLogin: '/welcome.html' },
     '/verifikasi-nik.html': { roles: [], requireAuth: true, redirectLogin: '/welcome.html' },
