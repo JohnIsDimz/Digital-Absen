@@ -152,6 +152,8 @@ function autoGuard(){
     // login pages public
     '/login-siswa.html': { roles: [], requireAuth: false, allowPublic: true },
     '/login-guru.html': { roles: [], requireAuth: false, allowPublic: true },
+    '/daftar-guru.html': { roles: [], requireAuth: false, allowPublic: true },
+    '/lupa-password-guru.html': { roles: [], requireAuth: false, allowPublic: true },
     '/index.html': { roles: [], requireAuth: false, allowPublic: true },
     '/': { roles: [], requireAuth: false, allowPublic: true },
     '/welcome.html': { roles: [], requireAuth: false, allowPublic: true },
