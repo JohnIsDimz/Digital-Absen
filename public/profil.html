@@ -1,0 +1,110 @@
+<!DOCTYPE html>
+<html lang="id"><head>
+<meta charset="utf-8"/><meta name="viewport" content="width=device-width, initial-scale=1.0"/>
+<title>Profil Real Fix Data Lama</title>
+<link href="https://fonts.googleapis.com/css2?family=Plus+Jakarta+Sans:wght@500;600;700&family=Space+Grotesk:wght@600;700;800&display=swap" rel="stylesheet"/>
+<link href="https://fonts.googleapis.com/css2?family=Material+Symbols+Outlined:wght,FILL@100..700,0..1&display=swap" rel="stylesheet"/>
+<script src="https://cdn.tailwindcss.com?plugins=forms,container-queries"></script>
+<script>tailwind.config={theme:{extend:{colors:{"primary-container":"#ffe600","background":"#fcf9f8","secondary-container":"#8a4cfc","tertiary-container":"#67ffb7"}}}}</script>
+<style>body{font-family:'Plus Jakarta Sans'} h1,h2{font-family:'Space Grotesk'} .material-symbols-outlined{font-variation-settings:'FILL' 0,'wght' 600,'GRAD' 0,'opsz' 24}</style>
+</head>
+<body class="bg-[#FDF8F0] min-h-screen">
+<header class="border-b-[3px] border-black bg-white sticky top-0 z-50">
+<div class="max-w-5xl mx-auto px-5 py-3 flex justify-between items-center">
+<a href="/" class="flex items-center gap-2"><div class="w-10 h-10 bg-[#FFE600] border-[3px] border-black rounded-xl flex items-center justify-center font-bold">AS</div><span class="font-bold text-sm">AbsenSiswa Profil Real</span></a>
+<div class="flex gap-2"><a href="/settings.html" class="border-[2px] border-black px-3 py-1 rounded-full text-xs font-bold bg-[#67FFB7]">Settings</a><a href="/" class="border-[2px] border-black px-3 py-1 rounded-full text-xs font-bold bg-white">Home</a></div>
+</div>
+</header>
+
+<!-- Date/Time Real - Fix tata letak berbeda dengan sekarang 28 Sep 2026 -->
+<div class="bg-[#FFE600] border-[2px] border-black p-2 rounded-xl mx-5 mt-3 flex justify-between items-center text-[11px] font-bold">
+<span id="realTanggal" class="realTanggalFull">Memuat tanggal real - Senin, 28 September 2026 - TA 2026/2027</span>
+<span id="liveClock" class="realJam">00:00:00 WIB</span>
+</div>
+
+<main class="max-w-3xl mx-auto px-5 py-6">
+<div class="bg-[#FFE600] border-[3px] border-black p-5 rounded-[16px] [box-shadow:6px_6px_0px_#000]">
+<h1 class="text-[26px] font-extrabold uppercase leading-[28px]">PROFIL REAL <br/>Fix Data Lama</h1>
+<p class="mt-2 text-sm font-medium">Sebelumnya profil murid masih hardcode , , NISN di HTML. Sekarang 100% dari API real <code>/api/profile/me</code> - data nyata.</p>
+<div class="mt-3 flex gap-2"><span class="bg-black text-white text-[10px] font-bold px-3 py-1 rounded-full">PROFIL REAL</span><span class="bg-white border-2 border-black text-[10px] font-bold px-3 py-1 rounded-full">NO OLD DATA</span><span class="bg-[#67FFB7] border-2 border-black text-[10px] font-bold px-3 py-1 rounded-full">TA 2026/2027</span></div>
+</div>
+
+<div id="profilContainer" class="mt-6 bg-white border-[3px] border-black p-6 rounded-[16px] [box-shadow:4px_4px_0px_#000] text-center">Memuat profil real ... Login dulu dengan data nyata.</div>
+
+<div class="mt-6 grid md:grid-cols-2 gap-5">
+<div class="bg-white border-[3px] border-black p-5 rounded-[16px] [box-shadow:4px_4px_0px_#000]">
+<h2 class="font-bold uppercase text-sm">Edit Profil Real - PUT /api/profile/me</h2>
+<form id="editProfilForm" class="mt-3 space-y-3">
+<input id="editNama" placeholder="Nama Real Baru - ex: Budi Real" class="w-full border-[2px] border-black p-3 rounded-xl text-sm"/>
+<input id="editWA" placeholder="WA Ortu Real - 6281234567890" class="w-full border-[2px] border-black p-3 rounded-xl text-sm"/>
+<input id="editPin" placeholder="PIN Baru 4-6 digit" class="w-full border-[2px] border-black p-3 rounded-xl text-sm"/>
+<button class="w-full bg-[#FFE600] border-[3px] border-black py-3 font-extrabold rounded-full [box-shadow:3px_3px_0px_#000]">UPDATE PROFIL REAL</button>
+</form>
+<pre id="editResult" class="mt-3 bg-black text-green-400 p-3 text-[11px] rounded-xl max-h-32 overflow-auto hidden"></pre>
+</div>
+<div class="bg-white border-[3px] border-black p-5 rounded-[16px] [box-shadow:4px_4px_0px_#000]">
+<h2 class="font-bold uppercase text-sm">Cara Login Real (Bukan Dummy)</h2>
+<div class="mt-3 space-y-3 text-xs">
+<div class="bg-[#F6F3F2] border-2 border-black p-3 rounded-xl"><b>Siswa:</b><br/>Kode Undangan Real (RPL-XXXX dari /setup.html) + NISN Real + PIN Real<br/><button onclick="location.href='/welcome.html'" class="mt-2 w-full bg-black text-white py-1 rounded-full font-bold">Login Siswa</button></div>
+<div class="bg-[#F6F3F2] border-2 border-black p-3 rounded-xl"><b>Guru:</b><br/>NIP Real + Password Real<br/><button onclick="location.href='/login-guru.html'" class="mt-2 w-full bg-[#8A4CFC] text-white py-1 rounded-full font-bold">Login Guru</button></div>
+<div class="bg-[#FFE600] border-2 border-black p-3 rounded-xl"><b>Penjelasan Native TS:</b><br/>HTML kamu berguna sebagai View. Backend TS Express di <code>src/routes/profile.routes.ts</code> yang supply data real. HTML tidak punya data hardcode lagi, semua fetch API real-time + Socket.IO.</div>
+</div>
+</div>
+</div>
+
+<div class="mt-6 bg-white border-[3px] border-black p-4 rounded-xl">
+<h3 class="font-bold text-sm">Menu Profil</h3>
+<div class="mt-3 grid grid-cols-2 gap-2 text-[11px]">
+<a href="/dashboard-siswa.html" class="border-2 border-black p-3 rounded-xl bg-[#F6F3F2] text-center"><span class="material-symbols-outlined text-[20px]">dashboard</span><br/>Dashboard Siswa</a>
+<a href="/dashboard-guru.html" class="border-2 border-black p-3 rounded-xl bg-[#F6F3F2] text-center"><span class="material-symbols-outlined text-[20px]">supervisor_account</span><br/>Dashboard Guru</a>
+<a href="/settings.html" class="border-2 border-black p-3 rounded-xl bg-[#67FFB7] text-center"><span class="material-symbols-outlined text-[20px]">settings</span><br/>Settings</a>
+<a href="/kelas.html" class="border-2 border-black p-3 rounded-xl bg-[#8A4CFC] text-white text-center"><span class="material-symbols-outlined text-[20px]">class</span><br/>Kelas (Guru Only)</a>
+</div>
+</div>
+</main>
+<script>
+async function loadProfilRealV05(){
+ const token=localStorage.getItem('absensiswa_token');
+ const container=document.getElementById('profilContainer');
+ if(!token){ container.innerHTML='<div class="bg-red-100 border-2 border-black p-4 rounded-xl"><p class="font-bold">Belum login</p><p class="text-sm mt-1">Silakan login dengan data nyata. Jika belum ada data, buat dulu di setup.html dengan tahun 2026/2027 dan lokasi dinamis.</p><a href="/setup.html" class="inline-block mt-3 bg-black text-white px-4 py-2 rounded-full text-xs font-bold">Ke Setup </a></div>'; return; }
+ try{
+  const res=await fetch('/api/profile/me',{headers:{'Authorization':'Bearer '+token}});
+  const data=await res.json();
+  if(!res.ok) throw new Error(data.message);
+  const p=data.data;
+  container.innerHTML=`
+   <div class="flex gap-4 text-left">
+    <div class="w-20 h-20 bg-[#FFE600] border-[3px] border-black rounded-full flex items-center justify-center font-extrabold text-2xl">${p.avatarInitial||p.nama.substring(0,2).toUpperCase()}</div>
+    <div class="flex-1">
+     <h2 class="font-extrabold text-xl">${p.nama}</h2>
+     <p class="text-xs mt-1"><span class="bg-black text-white px-2 py-0.5 rounded-full">${p.nisn||p.nip}</span> <span class="bg-[#F6F3F2] border border-black px-2 py-0.5 rounded-full ml-1">No Absen: ${p.noAbsen||'-'}</span></p>
+     <p class="text-sm mt-2"><b>Kelas:</b> ${p.kelas?.nama||'-'} | <b>TA:</b> ${p.kelas?.tahunAjaran||'2026/2027'}</p>
+     <p class="text-sm"><b>Sekolah:</b> ${p.sekolah?.nama||'-'}</p>
+     <p class="text-xs mt-1">Poin: ${p.poinSikap} | Predikat: ${p.predikat} | Device: ${p.deviceId}</p>
+     <p class="text-xs">WA Ortu: ${p.ortuWhatsapp||'Belum'} | Total Absensi: ${p.totalAbsensi}</p>
+     <div class="mt-3 grid grid-cols-4 gap-2 text-[11px]">
+      <div class="bg-[#67FFB7] border-2 border-black p-2 rounded-xl text-center"><b>${p.rekap?.hadir||0}</b><br/>Hadir</div>
+      <div class="bg-[#FFE600] border-2 border-black p-2 rounded-xl text-center"><b>${p.rekap?.terlambat||0}</b><br/>Terlambat</div>
+      <div class="bg-[#8A4CFC] text-white border-2 border-black p-2 rounded-xl text-center"><b>${p.rekap?.izin||0}</b><br/>Izin</div>
+      <div class="bg-[#FF4D6D] text-white border-2 border-black p-2 rounded-xl text-center"><b>${p.rekap?.alpha||0}</b><br/>Alpha</div>
+     </div>
+     ${p.riwayatKelas?`<p class="text-[11px] mt-3 bg-[#F6F3F2] border-2 border-black p-2 rounded-xl"><b>Riwayat Kelas:</b> ${p.riwayatKelas.map(r=>r.kelasNama).join(' → ')}</p>`:''}
+    </div>
+   </div>
+   <p class="text-[10px] mt-4 text-gray-500"> - Data nyata 100% dari API real - Data Real - Real-time Socket.IO</p>`;
+ }catch(e){ container.innerHTML=`<div class="bg-red-100 border-2 border-black p-4 rounded-xl"><p>Gagal load profil real: ${e.message}</p><p class="text-xs mt-1">Token mungkin expired - login ulang di index.html</p></div>`; }
+}
+document.getElementById('editProfilForm').addEventListener('submit', async e=>{
+ e.preventDefault();
+ const token=localStorage.getItem('absensiswa_token');
+ const body={}; if(editNama.value) body.nama=editNama.value; if(editWA.value) body.ortuWhatsapp=editWA.value; if(editPin.value) body.pin=editPin.value;
+ const r=await fetch('/api/profile/me',{method:'PUT',headers:{'Content-Type':'application/json','Authorization':'Bearer '+token},body:JSON.stringify(body)});
+ const d=await r.json(); const el=document.getElementById('editResult'); el.classList.remove('hidden'); el.textContent=JSON.stringify(d,null,2);
+ if(d.success){ alert('Profil real update!'); loadProfilRealV05(); }
+});
+loadProfilRealV05();
+</script>
+<script src="/socket.io/socket.io.js"></script>
+<script src="https://unpkg.com/html5-qrcode@2.3.8/html5-qrcode.min.js"></script>
+<script src="/js/app.js"></script>
+</body></html>

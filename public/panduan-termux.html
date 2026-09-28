@@ -1,0 +1,244 @@
+<!DOCTYPE html>
+<html lang="id">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>Panduan Termux - AbsenSiswa v0.5.4</title>
+<script src="https://cdn.tailwindcss.com"></script>
+<link href="https://fonts.googleapis.com/css2?family=Space+Grotesk:wght@400;700&display=swap" rel="stylesheet">
+<style>
+body{font-family:'Space Grotesk',sans-serif;background:#F5F5DC}
+.code{background:#000;color:#00FF88;padding:12px;border-radius:12px;font-size:12px;overflow-x:auto;border:3px solid #000;box-shadow:4px 4px 0px #000;margin:8px 0;white-space:pre-wrap;word-break:break-all}
+.step{border:3px solid #000;border-radius:16px;padding:16px;margin:12px 0;background:#fff;box-shadow:6px 6px 0px #000}
+</style>
+</head>
+<body class="max-w-3xl mx-auto px-4 py-6">
+<header class="bg-[#FFE600] border-[3px] border-black p-5 rounded-[16px] [box-shadow:6px_6px_0px_#000]">
+<h1 class="text-[24px] font-extrabold uppercase">📱 PANDUAN TERMUX<br/>TANPA LAPTOP - v0.5.4</h1>
+<p class="mt-2 text-sm font-bold">Jalankan AbsenSiswa di HP Android 100% - Tahun 2026/2027</p>
+<div class="mt-2 text-[11px] bg-black text-white inline-block px-3 py-1 rounded-full">No Laptop Needed - HP Only</div>
+</header>
+
+<div class="step bg-[#FF90E8]">
+<h2 class="font-extrabold text-lg">1️⃣ INSTALL TERMUX (JANGAN DARI PLAY STORE!)</h2>
+<p class="text-sm mt-2">Play Store versi lama (2 tahun tidak update). Install dari F-Droid:</p>
+<div class="code">Buka Chrome HP:
+https://f-droid.org/en/packages/com.termux/
+
+Download APK → Install → Buka Termux</div>
+</div>
+
+<div class="step">
+<h2 class="font-extrabold">2️⃣ SETUP AWAL TERMUX (Copy Paste 1 per 1)</h2>
+<div class="code">pkg update -y && pkg upgrade -y
+
+pkg install nodejs git nano termux-tools tmux -y
+
+node -v
+# Harus v18+ / v20+ ✅
+
+npm -v
+
+termux-setup-storage
+# Klik ALLOW / IZINKAN
+
+pkg install unzip -y</div>
+</div>
+
+<div class="step bg-[#67FFB7]">
+<h2 class="font-extrabold">3️⃣ MASUKKAN PROJECT KE TERMUX</h2>
+<p class="text-xs font-bold mt-2">PILIH SALAH 1 CARA:</p>
+<p class="text-xs mt-2"><b>CARA A - GitHub (Paling Mudah):</b></p>
+<div class="code">cd ~
+git clone https://github.com/username/absensi-siswa.git
+cd absensi-siswa</div>
+
+<p class="text-xs mt-3"><b>CARA B - Dari Download ZIP:</b></p>
+<div class="code">cd ~
+unzip ~/storage/downloads/absensi-siswa.zip -d ~
+cd ~/absensi-siswa
+ls -la
+# Harus ada package.json, src/, public/</div>
+
+<p class="text-xs mt-3"><b>CARA C - Jika file sudah di HP:</b></p>
+<div class="code">cp -r ~/storage/downloads/absensi-siswa ~/
+cd ~/absensi-siswa</div>
+</div>
+
+<div class="step">
+<h2 class="font-extrabold">4️⃣ INSTALL & BUILD</h2>
+<div class="code">cd ~/absensi-siswa
+
+npm install
+# Jika HP RAM kecil & error:
+# npm install --no-audit --no-fund
+
+cp .env.example .env
+nano .env
+# Edit jika perlu, simpan CTRL+X → Y → Enter
+
+# Reset database jadi NOL (0 data)
+echo '{"settings":null,"kelas":[],"guru":[],"siswa":[],"sesiAbsen":[],"absensi":[],"izin":[],"rekapSikap":[]}' > data/database.json
+
+# Build
+npm run build
+# Jika ada error TS tapi dist/ terbuat, itu NORMAL
+# Karena pakai transpile-only
+
+ls dist/
+# Harus ada dist/index.js ✅</div>
+</div>
+
+<div class="step bg-[#FFE600]">
+<h2 class="font-extrabold">5️⃣ JALANKAN SERVER</h2>
+<p class="text-xs font-bold mt-2">PILIHAN 1 - Mode Dev (Rekomendasi untuk Termux, auto-reload, ignore error TS):</p>
+<div class="code">npm run dev</div>
+<p class="text-xs mt-2">Output sukses:</p>
+<div class="code">🎓 AbsenSiswa Neo-Brutalist System v0.5
+🌐 Server: http://localhost:3000
+📅 Tahun: 2026 - 2026/2027</div>
+
+<p class="text-xs font-bold mt-3">PILIHAN 2 - Mode Production (Hemat RAM):</p>
+<div class="code">npm run build
+npm start</div>
+
+<p class="text-xs font-bold mt-3">Jika Port 3000 sudah dipakai:</p>
+<div class="code">pkill -f node
+npm start</div>
+</div>
+
+<div class="step">
+<h2 class="font-extrabold">6️⃣ AKSES DI BROWSER HP</h2>
+<div class="code">1. Jangan tutup Termux
+2. Buka Chrome HP
+3. Ketik:
+http://localhost:3000
+
+Halaman:
+ /setup        → Setup Awal WAJIB pertama kali!
+ /             → Welcome
+ /index.html   → Login Siswa
+ /login-guru.html → Login Guru
+ /profil       → Profil Real
+ /scan         → Scan QR Kamera Asli</div>
+</div>
+
+<div class="step bg-[#8A4CFC] text-white">
+<h2 class="font-extrabold">7️⃣ SETUP PERTAMA KALI (WAJIB!)</h2>
+<div class="code" style="background:#fff;color:#000">Buka http://localhost:3000/setup
+Isi:
+- Kelas: XII RPL 1
+- Tahun: 2026/2027
+- Semester: GANJIL
+- Nama Guru: Nama kamu
+- NIP: 197405122000031002
+- Password: buat password
+- Sekolah: SMK N 1 BANDUNG
+- Lat: -6.914744 (Bandung) atau kosongkan
+- Lng: 107.60981 atau kosongkan
+
+Klik "Buat Data Nyata Tahun 2026"
+Catat KODE UNDANGAN (RPL-XXXX)
+Pakai kode itu untuk login siswa</div>
+</div>
+
+<div class="step">
+<h2 class="font-extrabold">8️⃣ BIAR TETAP JALAN SAAT DI-MINIMIZE</h2>
+<p class="text-xs font-bold">Pakai tmux:</p>
+<div class="code">tmux new -s absensi
+cd ~/absensi-siswa
+npm start
+
+# Keluar tanpa matikan:
+# Tekan CTRL + B lalu D
+
+# Balik lagi:
+tmux attach -t absensi
+
+# Matikan:
+tmux kill-session -t absensi</div>
+
+<p class="text-xs font-bold mt-3">Pakai nohup (lebih simpel):</p>
+<div class="code">cd ~/absensi-siswa
+nohup npm start > server.log 2>&1 &
+cat server.log
+pkill -f node  # untuk matikan</div>
+</div>
+
+<div class="step bg-[#FF5A5A] text-white">
+<h2 class="font-extrabold">9️⃣ TROUBLESHOOTING</h2>
+<div class="code" style="background:#fff;color:#000">Error EADDRINUSE Port 3000:
+pkill -f node
+npm start
+
+Error Cannot find module:
+rm -rf node_modules package-lock.json
+npm install
+
+HP Lemot RAM 1-2GB:
+npm run build
+node dist/index.js
+# Jangan pakai npm run dev (lebih berat)
+
+Kamera /scan tidak jalan:
+- Harus ALLOW permission kamera di Chrome
+- Buka via http://localhost:3000 (bukan file://)
+- Coba di Chrome, bukan browser lain
+
+Tidak bisa akses localhost:
+- Pastikan server masih jalan di Termux
+- Cek: curl http://localhost:3000
+- Ganti port di .env jadi 8080 lalu npm start lagi
+
+Storage penuh:
+npm cache clean --force
+pkg clean</div>
+</div>
+
+<div class="step">
+<h2 class="font-extrabold">🔟 SCRIPT OTOMATIS 1-KLIK</h2>
+<div class="code">cd ~/absensi-siswa
+chmod +x setup-termux.sh
+./setup-termux.sh
+# Otomatis install semua & jalan</div>
+</div>
+
+<div class="step bg-[#000] text-white">
+<h2 class="font-extrabold">1️⃣1️⃣ BIAR BISA DIAKSES TEMAN (Public URL Gratis)</h2>
+<p class="text-xs mt-2">Pakai Serveo (tanpa install):</p>
+<div class="code">ssh -R 80:localhost:3000 serveo.net
+# Dapat URL https://xxxx.serveo.net
+# Share ke teman</div>
+</div>
+
+<div class="step">
+<h2 class="font-extrabold">📋 CHEAT SHEET HARIAN</h2>
+<div class="code">cd ~/absensi-siswa
+npm start              # jalankan
+CTRL+C                 # stop
+npm run reset:zero     # reset data NOL
+git pull               # update dari GitHub
+tail -f server.log     # lihat log
+curl http://localhost:3000/setup # cek server</div>
+</div>
+
+<div class="step bg-[#FFE600]">
+<h2 class="font-extrabold">✅ SPESIFIKASI MINIMAL</h2>
+<div class="code">Android 7.0+
+RAM 2GB minimal (3GB+ recommended)
+Storage 500MB kosong
+ARM64 lebih bagus (cek: uname -m)
+
+Cek di Termux:
+uname -m    # aarch64 = bagus
+free -h     # cek RAM
+df -h       # cek storage</div>
+</div>
+
+<footer class="mt-8 border-[3px] border-black p-4 rounded-xl bg-white text-center">
+<p class="font-extrabold text-sm">🎓 AbsenSiswa v0.5.4 - 2026/2027</p>
+<p class="text-[11px] mt-1">Made for Termux - No Laptop Needed - HP Only</p>
+<a href="/setup" class="mt-3 inline-block bg-[#FFE600] border-[3px] border-black px-6 py-2 rounded-full font-bold text-sm [box-shadow:3px_3px_0px_#000]">→ Buka Setup 2026</a>
+</footer>
+</body>
+</html>

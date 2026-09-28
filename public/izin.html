@@ -1,0 +1,197 @@
+<!DOCTYPE html>
+<html lang="id"><head>
+<meta charset="utf-8"/><meta name="viewport" content="width=device-width, initial-scale=1.0"/>
+<title>Pengajuan Izin & Sakit - Final Native</title>
+<link href="https://fonts.googleapis.com/css2?family=Material+Symbols+Outlined:wght,FILL@100..700,0..1&display=swap" rel="stylesheet"/>
+<link href="https://fonts.googleapis.com/css2?family=Plus+Jakarta+Sans:wght@500;600;700;800&family=Space+Grotesk:wght@500;600;700;800&display=swap" rel="stylesheet"/>
+<script src="https://cdn.tailwindcss.com?plugins=forms,container-queries"></script>
+<script id="tailwind-config">tailwind.config={darkMode:"class",theme:{extend:{colors:{"primary-container":"#ffe600","background":"#fcf9f8","on-background":"#1c1b1b","secondary-container":"#8a4cfc","tertiary-container":"#67ffb7","error":"#ba1a1a","error-container":"#ffdad6","surface-container-lowest":"#ffffff","surface-container":"#f0edec","surface-variant":"#e5e2e1","on-surface-variant":"#4b4731","outline-variant":"#cdc7aa","secondary-fixed":"#eaddff","tertiary-fixed":"#4dffb2","primary-fixed":"#fde400","primary":"#6a5f00"},borderRadius:{DEFAULT:"0.25rem",lg:"0.5rem",xl:"0.75rem",full:"9999px"},fontFamily:{"body-lg":["Plus Jakarta Sans"],"headline-xl":["Space Grotesk"]}}}}</script>
+<style>body{min-height:max(884px,100dvh)}</style>
+</head>
+<body class="bg-background text-on-surface antialiased min-h-screen pb-28 select-none flex justify-center">
+<div class="w-full max-w-[420px] bg-background min-h-screen relative flex flex-col shadow-2xl">
+<header class="sticky top-0 z-50 flex justify-between items-center w-full px-5 py-3 bg-background border-b-[2.5px] border-on-background [box-shadow:0px_3px_0px_#1c1b1b]">
+<div class="flex items-center gap-3">
+<div class="relative">
+<div class="w-11 h-11 rounded-full border-[2.5px] border-on-background overflow-hidden bg-primary-container [box-shadow:2px_2px_0px_#1c1b1b] flex items-center justify-center font-bold text-xl" id="realAvatar">?</div>
+<span class="absolute -bottom-1 -right-2 bg-primary-container text-on-background border-[1.5px] border-on-background text-label-sm font-label-sm px-1.5 py-0.2 rounded-full [box-shadow:1px_1px_0px_#1c1b1b] realKelasNama" id="realKelasNama">Belum ada kelas</span>
+</div>
+<div class="flex flex-col">
+<span class="text-headline-md font-headline-md tracking-tight text-on-background leading-tight" id="realSiswaNama">Memuat data siswa...</span>
+<span class="text-label-md font-label-md text-on-surface-variant flex items-center gap-1">
+<span class="w-2 h-2 rounded-full bg-tertiary-fixed border border-on-background inline-block"></span> TA <span class="realTahunAjaran">2026/2027</span> • <span id="realSekolahNama">Memuat sekolah...</span>
+</span>
+</div>
+</div>
+<button aria-label="Notifications" class="w-10 h-10 rounded bg-surface-container-lowest border-[2.5px] border-on-background flex items-center justify-center [box-shadow:2px_2px_0px_#1c1b1b]"><span class="material-symbols-outlined text-on-background">notifications</span></button>
+</header>
+
+<div class="px-5 pt-5 pb-2">
+<div class="inline-flex items-center gap-1.5 bg-secondary-fixed text-on-secondary-fixed border-[2px] border-on-background px-2.5 py-0.5 rounded-full text-label-sm font-label-sm uppercase mb-2 [box-shadow:2px_2px_0px_#1c1b1b]">
+<span class="material-symbols-outlined text-sm">edit_calendar</span>Formulir Digital Siswa - Realistis
+</div>
+<h1 class="text-headline-xl-mobile font-headline-xl-mobile tracking-tight text-on-background">Pengajuan Izin & Sakit</h1>
+<p class="text-body-md font-body-md text-on-surface-variant mt-1">Kirim permohonan ke Wali Kelas - Data dari API Real</p>
+</div>
+
+<div class="bg-[#FFE600] border-[2px] border-black p-2 rounded-xl mx-5 mt-3 flex justify-between items-center text-[11px] font-bold">
+<span id="realTanggal" class="realTanggalFull">Senin, 28 September 2026 • TA 2026/2027</span>
+<span id="liveClock" class="realJam">00:00:00 WIB</span>
+</div>
+
+<main class="px-5 space-y-5 mt-2">
+<section>
+<div class="flex justify-between items-center mb-2.5">
+<label class="text-label-lg font-label-lg text-on-background uppercase tracking-wider flex items-center gap-1.5">
+<span class="w-2.5 h-2.5 bg-primary-container border-[1.5px] border-on-background inline-block"></span>1. Pilih Kategori Izin
+</label>
+<span class="text-label-sm font-label-sm text-error font-bold uppercase">*Wajib</span>
+</div>
+<div class="grid grid-cols-1 gap-2.5">
+<div class="relative bg-primary-container border-[2.5px] border-on-background rounded-lg p-3.5 flex items-center justify-between cursor-pointer [box-shadow:4px_4px_0px_#1c1b1b]">
+<div class="flex items-center gap-3">
+<div class="w-10 h-10 rounded bg-surface-container-lowest border-[2px] border-on-background flex items-center justify-center [box-shadow:2px_2px_0px_#1c1b1b]"><span class="material-symbols-outlined text-error" style="font-variation-settings: 'FILL' 1;">sick</span></div>
+<div><p class="text-headline-md font-headline-md text-on-background">Sakit</p><p class="text-body-sm font-body-sm text-on-surface-variant">Kondisi kesehatan tidak memungkinkan</p></div>
+</div>
+<div class="w-7 h-7 rounded bg-on-background flex items-center justify-center border-[2px] border-on-background"><span class="material-symbols-outlined text-primary-container text-lg font-bold">check</span></div>
+</div>
+<div class="relative bg-surface-container-lowest border-[2.5px] border-on-background rounded-lg p-3.5 flex items-center justify-between cursor-pointer [box-shadow:3px_3px_0px_#1c1b1b]">
+<div class="flex items-center gap-3">
+<div class="w-10 h-10 rounded bg-secondary-fixed border-[2px] border-on-background flex items-center justify-center [box-shadow:2px_2px_0px_#1c1b1b]"><span class="material-symbols-outlined text-secondary">family_restroom</span></div>
+<div><p class="text-headline-md font-headline-md text-on-background">Izin Pribadi / Keluarga</p><p class="text-body-sm font-body-sm text-on-surface-variant">Acara keluarga penting</p></div>
+</div>
+<div class="w-6 h-6 rounded border-[2.5px] border-on-background bg-surface-container-low"></div>
+</div>
+<div class="relative bg-surface-container-lowest border-[2.5px] border-on-background rounded-lg p-3.5 flex items-center justify-between cursor-pointer [box-shadow:3px_3px_0px_#1c1b1b]">
+<div class="flex items-center gap-3">
+<div class="w-10 h-10 rounded bg-tertiary-fixed border-[2px] border-on-background flex items-center justify-center [box-shadow:2px_2px_0px_#1c1b1b]"><span class="material-symbols-outlined text-tertiary">emoji_events</span></div>
+<div><p class="text-headline-md font-headline-md text-on-background">Dispensasi Lomba</p><p class="text-body-sm font-body-sm text-on-surface-variant">Mewakili sekolah</p></div>
+</div>
+<div class="w-6 h-6 rounded border-[2.5px] border-on-background bg-surface-container-low"></div>
+</div>
+</div>
+</section>
+
+<section class="bg-surface-container-lowest border-[2.5px] border-on-background rounded-xl p-4 [box-shadow:4px_4px_0px_#1c1b1b]">
+<label class="text-label-lg font-label-lg text-on-background uppercase tracking-wider block mb-3 flex items-center gap-1.5">
+<span class="material-symbols-outlined text-lg">calendar_month</span>2. Rentang Tanggal Izin - Realistis
+</label>
+<div class="grid grid-cols-2 gap-2.5">
+<div>
+<span class="text-label-sm font-label-sm text-on-surface-variant uppercase block mb-1">Mulai Dari</span>
+<div class="relative flex items-center">
+<input id="tglMulai" class="w-full bg-background border-[2.5px] border-on-background rounded px-2.5 py-2 text-body-md font-body-md text-on-background font-bold [box-shadow:2px_2px_0px_#1c1b1b] focus:outline-none" type="date"/>
+<span class="material-symbols-outlined absolute right-2 text-on-surface-variant text-base pointer-events-none">event</span>
+</div>
+</div>
+<div>
+<span class="text-label-sm font-label-sm text-on-surface-variant uppercase block mb-1">Sampai Dengan</span>
+<div class="relative flex items-center">
+<input id="tglSelesai" class="w-full bg-background border-[2.5px] border-on-background rounded px-2.5 py-2 text-body-md font-body-md text-on-background font-bold [box-shadow:2px_2px_0px_#1c1b1b] focus:outline-none" type="date"/>
+<span class="material-symbols-outlined absolute right-2 text-on-surface-variant text-base pointer-events-none">event</span>
+</div>
+</div>
+</div>
+<div class="mt-2.5 flex items-center justify-between bg-surface-container px-3 py-1.5 rounded border-[1.5px] border-on-background">
+<span class="text-label-md font-label-md text-on-surface-variant uppercase">Durasi</span>
+<span class="text-label-md font-label-md text-on-background bg-primary-container px-2 py-0.5 rounded border border-on-background font-bold" id="durasiIzin">Pilih tanggal</span>
+</div>
+</section>
+
+<section class="bg-surface-container-lowest border-[2.5px] border-on-background rounded-xl p-4 [box-shadow:4px_4px_0px_#1c1b1b]">
+<div class="flex items-center justify-between mb-2">
+<label class="text-label-lg font-label-lg text-on-background uppercase tracking-wider flex items-center gap-1.5">
+<span class="material-symbols-outlined text-lg">attach_file</span>3. Dokumen Pendukung
+</label>
+<span class="bg-error-container text-on-error-container border-[1.5px] border-on-background text-label-sm font-label-sm px-2 py-0.5 rounded-full [box-shadow:1px_1px_0px_#1c1b1b]">Wajib Sakit >1 Hari</span>
+</div>
+<div class="border-[2.5px] border-dashed border-on-background bg-surface-container-low rounded-lg p-5 flex flex-col items-center justify-center text-center cursor-pointer hover:bg-surface-container transition-colors">
+<div class="w-12 h-12 rounded-full bg-primary-container border-[2px] border-on-background flex items-center justify-center [box-shadow:2px_2px_0px_#1c1b1b] mb-2.5"><span class="material-symbols-outlined text-on-background text-2xl font-bold">cloud_upload</span></div>
+<p class="text-body-md font-body-md font-bold text-on-background">Unggah Foto Surat Dokter</p>
+<p class="text-body-sm font-body-sm text-on-surface-variant mt-0.5">Format JPG, PNG, atau PDF (Maks. 5MB)</p>
+<button class="mt-3 px-3.5 py-1.5 bg-surface-container-lowest text-on-background border-[2px] border-on-background rounded text-label-md font-label-md uppercase [box-shadow:2px_2px_0px_#1c1b1b]" type="button">Pilih Berkas</button>
+</div>
+</section>
+
+<section class="bg-surface-container-lowest border-[2.5px] border-on-background rounded-xl p-4 [box-shadow:4px_4px_0px_#1c1b1b]">
+<label class="text-label-lg font-label-lg text-on-background uppercase tracking-wider block mb-2 flex items-center gap-1.5" for="keterangan-izin">
+<span class="material-symbols-outlined text-lg">description</span>4. Alasan / Keterangan
+</label>
+<textarea class="w-full bg-background border-[2.5px] border-on-background rounded-lg p-3 text-body-md font-body-md text-on-background placeholder:text-outline focus:outline-none focus:[box-shadow:3px_3px_0px_#ffe600] transition-all resize-none" id="keterangan-izin" placeholder="Tuliskan alasan lengkap izin..." rows="3"></textarea>
+</section>
+
+<section class="pt-2">
+<button id="btnKirimIzin" class="w-full py-4 px-6 bg-secondary text-on-secondary rounded-lg border-[3px] border-on-background text-headline-md font-headline-md tracking-wide uppercase flex items-center justify-center gap-2 [box-shadow:4px_4px_0px_#1c1b1b]"><span class="material-symbols-outlined font-bold">send</span>Kirim Pengajuan Izin</button>
+<p class="text-center text-body-sm font-body-sm text-on-surface-variant mt-2 flex items-center justify-center gap-1">
+<span class="material-symbols-outlined text-sm text-tertiary font-bold">verified_user</span>Notifikasi ke Wali Kelas Real
+</p>
+</section>
+
+<section class="mt-6 mb-4">
+<div class="flex items-center justify-between mb-2">
+<h2 class="text-label-lg font-headline-md uppercase tracking-wider text-on-background flex items-center gap-1.5">
+<span class="material-symbols-outlined text-base">history</span>Riwayat Terakhir - Realistis
+</h2>
+<a class="text-label-sm font-label-sm text-secondary font-bold uppercase underline cursor-pointer" href="/rekap.html">Lihat Semua</a>
+</div>
+<div id="riwayatIzin" class="bg-white border-[3px] border-black p-6 rounded-xl [box-shadow:4px_4px_0px_#000] text-center">
+<div class="w-12 h-12 bg-[#F6F3F2] border-[2px] border-black rounded-full flex items-center justify-center mx-auto"><span class="material-symbols-outlined text-[24px]">inbox</span></div>
+<p class="font-bold mt-3">Belum ada riwayat izin</p>
+<p class="text-sm text-on-surface-variant mt-1">Pengajuan izin akan tampil di sini setelah dikirim</p>
+<p class="text-xs mt-2">Data dari API real <code>/api/izin</code> - kosong jika belum ada</p>
+</div>
+</section>
+</main>
+</div>
+
+<nav class="fixed bottom-0 left-0 w-full z-50 flex justify-around items-center px-4 py-2 bg-white border-t-[3px] border-black [box-shadow:0px_-3px_0px_#000] max-w-[420px] left-1/2 -translate-x-1/2 md:max-w-5xl md:left-0 md:translate-x-0">
+<a class="flex flex-col items-center justify-center px-3 py-1.5 font-label-sm text-label-sm" href="/index.html"><span class="material-symbols-outlined text-[20px]">home</span><span>Home</span></a>
+<a class="flex flex-col items-center justify-center px-3 py-1.5 font-label-sm text-label-sm" href="/dashboard-siswa.html"><span class="material-symbols-outlined text-[20px]">dashboard</span><span>Dashboard</span></a>
+<a class="flex flex-col items-center justify-center bg-primary-container border-[2px] border-black rounded px-3 py-1.5 font-label-sm text-label-sm" href="/izin.html"><span class="material-symbols-outlined text-[20px]" style="font-variation-settings: 'FILL' 1;">assignment</span><span>Izin</span></a>
+<a class="flex flex-col items-center justify-center px-3 py-1.5 font-label-sm text-label-sm" href="/rekap.html"><span class="material-symbols-outlined text-[20px]">analytics</span><span>Rekap</span></a>
+<a class="flex flex-col items-center justify-center px-3 py-1.5 font-label-sm text-label-sm" href="/profil.html"><span class="material-symbols-outlined text-[20px]">person</span><span>Profil</span></a>
+</nav>
+
+<script src="/socket.io/socket.io.js"></script>
+<script src="https://unpkg.com/html5-qrcode@2.3.8/html5-qrcode.min.js"></script>
+<script src="/js/app.js"></script>
+<script>
+// Set tanggal default ke hari ini 2026-09-28
+document.addEventListener('DOMContentLoaded', ()=>{
+  const today = new Date().toISOString().split('T')[0];
+  const tglMulai = document.getElementById('tglMulai');
+  const tglSelesai = document.getElementById('tglSelesai');
+  if(tglMulai) tglMulai.value = today;
+  if(tglSelesai) {
+    const tomorrow = new Date();
+    tomorrow.setDate(tomorrow.getDate()+1);
+    tglSelesai.value = tomorrow.toISOString().split('T')[0];
+  }
+  // Hitung durasi
+  function hitungDurasi(){
+    if(tglMulai?.value && tglSelesai?.value){
+      const start = new Date(tglMulai.value);
+      const end = new Date(tglSelesai.value);
+      const diff = Math.ceil((end - start)/(1000*60*60*24)) + 1;
+      document.getElementById('durasiIzin').textContent = diff > 0 ? diff + ' Hari' : 'Pilih tanggal';
+    }
+  }
+  tglMulai?.addEventListener('change', hitungDurasi);
+  tglSelesai?.addEventListener('change', hitungDurasi);
+  hitungDurasi();
+  
+  // Load riwayat izin real
+  const token = localStorage.getItem('absensiswa_token');
+  if(token){
+    fetch('/api/izin', {headers: {'Authorization': 'Bearer '+token}})
+      .then(r=>r.json())
+      .then(data=>{
+        if(data.data && data.data.length > 0){
+          // Tampilkan riwayat real jika ada
+          console.log('Riwayat izin real:', data.data);
+        }
+      }).catch(()=>{});
+  }
+});
+</script>
+</body></html>

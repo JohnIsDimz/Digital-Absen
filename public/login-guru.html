@@ -1,0 +1,441 @@
+<!DOCTYPE html>
+
+<html lang="id"><head>
+<meta charset="utf-8"/>
+<meta content="width=device-width, initial-scale=1.0" name="viewport"/>
+<title>Login Akun Kedinasan Guru &amp; Tendik - AbsenSiswa</title>
+<!-- Material Symbols Outlined -->
+<link href="https://fonts.googleapis.com/css2?family=Material+Symbols+Outlined:wght,FILL@100..700,0..1&amp;display=swap" rel="stylesheet"/>
+<!-- Google Fonts: Space Grotesk & Plus Jakarta Sans -->
+<link href="https://fonts.googleapis.com" rel="preconnect"/>
+<link crossorigin="" href="https://fonts.gstatic.com" rel="preconnect"/>
+<link href="https://fonts.googleapis.com/css2?family=Plus+Jakarta+Sans:wght@400;500;600;700&amp;family=Space+Grotesk:wght@500;700;800&amp;display=swap" rel="stylesheet"/>
+<link href="https://fonts.googleapis.com/css2?family=Material+Symbols+Outlined:wght,FILL@100..700,0..1&amp;display=swap" rel="stylesheet"/>
+<!-- Tailwind CSS CDN with Plugins -->
+<script src="https://cdn.tailwindcss.com?plugins=forms,container-queries"></script>
+<!-- Tailwind Config Verbatim -->
+<script id="tailwind-config">
+  tailwind.config = {
+   darkMode: "class",
+   theme: {
+    extend: {
+     "colors": {
+      "on-primary": "#ffffff",
+      "on-secondary-fixed-variant": "#5a00c6",
+      "on-error-container": "#93000a",
+      "on-tertiary-container": "#00754b",
+      "on-secondary": "#ffffff",
+      "error-container": "#ffdad6",
+      "surface-variant": "#e5e2e1",
+      "surface-container-low": "#f6f3f2",
+      "primary": "#6a5f00",
+      "tertiary-fixed-dim": "#00e296",
+      "on-tertiary-fixed": "#002112",
+      "on-tertiary": "#ffffff",
+      "on-secondary-container": "#fffbff",
+      "surface-container-lowest": "#ffffff",
+      "secondary-fixed-dim": "#d2bbff",
+      "tertiary-container": "#67ffb7",
+      "error": "#ba1a1a",
+      "on-primary-fixed": "#201c00",
+      "tertiary-fixed": "#4dffb2",
+      "inverse-primary": "#dec800",
+      "primary-fixed-dim": "#dec800",
+      "surface-tint": "#6a5f00",
+      "inverse-on-surface": "#f3f0ef",
+      "on-secondary-fixed": "#25005a",
+      "on-background": "#1c1b1b",
+      "primary-container": "#ffe600",
+      "background": "#fcf9f8",
+      "on-surface": "#1c1b1b",
+      "surface-container-highest": "#e5e2e1",
+      "on-tertiary-fixed-variant": "#005234",
+      "outline-variant": "#cdc7aa",
+      "on-primary-container": "#726600",
+      "surface": "#fcf9f8",
+      "surface-container-high": "#ebe7e7",
+      "on-surface-variant": "#4b4731",
+      "inverse-surface": "#313030",
+      "surface-bright": "#fcf9f8",
+      "secondary": "#712ae2",
+      "surface-dim": "#dcd9d9",
+      "secondary-fixed": "#eaddff",
+      "secondary-container": "#8a4cfc",
+      "tertiary": "#006c46",
+      "surface-container": "#f0edec",
+      "primary-fixed": "#fde400",
+      "outline": "#7c775f",
+      "on-primary-fixed-variant": "#504700",
+      "on-error": "#ffffff"
+     },
+     "borderRadius": {
+      "DEFAULT": "0.25rem",
+      "lg": "0.5rem",
+      "xl": "0.75rem",
+      "full": "9999px"
+     },
+     "spacing": {
+      "margin": "1.25rem",
+      "space-lg": "1.25rem",
+      "space-sm": "0.5rem",
+      "space-xl": "1.75rem",
+      "space-md": "1rem",
+      "gutter": "1rem",
+      "space-xs": "0.25rem"
+     },
+     "fontFamily": {
+      "label-sm": [
+       "Space Grotesk"
+      ],
+      "headline-md": [
+       "Space Grotesk"
+      ],
+      "body-md": [
+       "Plus Jakarta Sans"
+      ],
+      "label-md": [
+       "Space Grotesk"
+      ],
+      "headline-lg": [
+       "Space Grotesk"
+      ],
+      "headline-xl": [
+       "Space Grotesk"
+      ],
+      "label-lg": [
+       "Space Grotesk"
+      ],
+      "headline-xl-mobile": [
+       "Space Grotesk"
+      ],
+      "body-sm": [
+       "Plus Jakarta Sans"
+      ],
+      "body-lg": [
+       "Plus Jakarta Sans"
+      ]
+     },
+     "fontSize": {
+      "label-sm": [
+       "10px",
+       {
+        "lineHeight": "14px",
+        "letterSpacing": "0.08em",
+        "fontWeight": "800"
+       }
+      ],
+      "headline-md": [
+       "18px",
+       {
+        "lineHeight": "24px",
+        "letterSpacing": "-0.01em",
+        "fontWeight": "700"
+       }
+      ],
+      "body-md": [
+       "14px",
+       {
+        "lineHeight": "20px",
+        "fontWeight": "500"
+       }
+      ],
+      "label-md": [
+       "12px",
+       {
+        "lineHeight": "16px",
+        "letterSpacing": "0.06em",
+        "fontWeight": "700"
+       }
+      ],
+      "headline-lg": [
+       "22px",
+       {
+        "lineHeight": "28px",
+        "letterSpacing": "-0.02em",
+        "fontWeight": "700"
+       }
+      ],
+      "headline-xl": [
+       "32px",
+       {
+        "lineHeight": "38px",
+        "letterSpacing": "-0.03em",
+        "fontWeight": "700"
+       }
+      ],
+      "label-lg": [
+       "14px",
+       {
+        "lineHeight": "18px",
+        "letterSpacing": "0.04em",
+        "fontWeight": "700"
+       }
+      ],
+      "headline-xl-mobile": [
+       "26px",
+       {
+        "lineHeight": "32px",
+        "letterSpacing": "-0.02em",
+        "fontWeight": "700"
+       }
+      ],
+      "body-sm": [
+       "12px",
+       {
+        "lineHeight": "16px",
+        "fontWeight": "500"
+       }
+      ],
+      "body-lg": [
+       "16px",
+       {
+        "lineHeight": "24px",
+        "fontWeight": "600"
+       }
+      ]
+     }
+    },
+   },
+  }
+ </script>
+<style>
+  .material-symbols-outlined {
+   font-variation-settings: 'FILL' 0, 'wght' 600, 'GRAD' 0, 'opsz' 24;
+   display: inline-block;
+   vertical-align: middle;
+   line-height: 1;
+  }
+  .material-symbols-outlined.fill-icon {
+   font-variation-settings: 'FILL' 1, 'wght' 600, 'GRAD' 0, 'opsz' 24;
+  }
+  /* Mechanical Press Effect */
+  .brutal-btn-active:active {
+   transform: translate(2px, 2px);
+   box-shadow: 1px 1px 0px #1c1b1b !important;
+  }
+ </style>
+<style>
+  body {
+   min-height: max(884px, 100dvh);
+  }
+ </style>
+ </head>
+<body class="bg-background text-on-background min-h-screen selection:bg-primary-container selection:text-on-background antialiased flex flex-col justify-between">
+<!-- TOP APP HEADER / BRAND BAR -->
+<header class="sticky top-0 z-50 flex items-center justify-between px-5 py-3.5 bg-background border-b-[2.5px] border-on-background [box-shadow:0px_3px_0px_#1c1b1b]">
+<!-- Back to Welcome button -->
+<a aria-label="Kembali ke layar Welcome" class="inline-flex items-center justify-center w-10 h-10 bg-surface-container-lowest border-[2.5px] border-on-background rounded [box-shadow:2px_2px_0px_#1c1b1b] hover:translate-x-[1px] hover:translate-y-[1px] hover:[box-shadow:1px_1px_0px_#1c1b1b] brutal-btn-active transition-all" href="/">
+<span class="material-symbols-outlined text-on-surface">arrow_back</span>
+</a>
+<!-- School & Institutional Badges -->
+<div class="flex items-center gap-2">
+<div class="hidden sm:flex items-center gap-1.5 px-2.5 py-1 bg-surface-container-lowest border-[2px] border-on-background rounded [box-shadow:2px_2px_0px_#1c1b1b]">
+<span class="material-symbols-outlined text-secondary text-base">school</span>
+<span class="font-label-sm text-label-sm text-on-surface"><span id="realSekolahNama">Memuat sekolah real...</span></span>
+</div>
+<div class="flex items-center gap-1 px-2.5 py-1 bg-secondary-fixed border-[2px] border-on-background rounded [box-shadow:2px_2px_0px_#1c1b1b]">
+<span class="w-2 h-2 rounded-full bg-secondary"></span>
+<span class="font-label-sm text-label-sm text-on-secondary-fixed">PORTAL KEDINASAN</span>
+</div>
+</div>
+<!-- Security Indicator Pill -->
+<div class="flex items-center gap-1.5 px-2.5 py-1 bg-tertiary-container border-[2px] border-on-background rounded [box-shadow:2px_2px_0px_#1c1b1b]">
+<span class="material-symbols-outlined text-tertiary text-sm fill-icon" style="font-variation-settings: 'FILL' 1;">lock</span>
+<span class="font-label-sm text-label-sm text-on-tertiary-container">SSL &amp; TTE</span>
+</div>
+</header>
+<!-- MAIN CANVAS (Centered for compact viewports, responsive expansion) -->
+
+<!-- Date/Time Real - Fix tata letak berbeda dengan sekarang 28 Sep 2026 -->
+<div class="bg-[#FFE600] border-[2px] border-black p-2 rounded-xl mx-5 mt-3 flex justify-between items-center text-[11px] font-bold">
+<span id="realTanggal" class="realTanggalFull">Memuat tanggal real - Senin, 28 September 2026 - TA 2026/2027</span>
+<span id="liveClock" class="realJam">00:00:00 WIB</span>
+</div>
+
+<main class="w-full max-w-xl mx-auto px-5 py-6 sm:py-8 flex-1 flex flex-col justify-center">
+<!-- HERO SECTION & IDENTITY -->
+<section class="mb-6 text-left">
+<div class="flex items-center gap-3.5 mb-3">
+<!-- Lencana Dinas Guru / Badge Container -->
+<div class="w-14 h-14 bg-secondary-fixed border-[3px] border-on-background rounded-xl [box-shadow:3px_3px_0px_#1c1b1b] flex items-center justify-center relative">
+<span class="material-symbols-outlined text-secondary text-3xl fill-icon" style="font-variation-settings: 'FILL' 1;">badge</span>
+<!-- Micro Pill Indicator -->
+<div class="absolute -top-2 -right-2 px-1.5 py-0.5 bg-primary-container border-[2px] border-on-background rounded font-label-sm text-label-sm leading-none">
+      GURU
+     </div>
+</div>
+<div>
+<div class="inline-block px-2 py-0.5 mb-1 bg-surface-container-high border-[1.5px] border-on-background rounded font-label-sm text-label-sm text-on-surface-variant">
+      AUTENTIKASI RESMI V0.5
+     </div>
+<h1 class="font-headline-xl-mobile sm:font-headline-xl text-headline-xl-mobile sm:text-headline-xl text-on-background leading-tight">
+      Masuk Portal Guru
+     </h1>
+</div>
+</div>
+<p class="font-body-md text-body-md text-on-surface-variant max-w-lg">
+    Akses Terpusat Pengelolaan Presensi Kelas, Validasi Izin, &amp; Nilai Sikap Rapor
+   </p>
+</section>
+<!-- BRUTALIST CARD CONTAINER (Formulir Login) -->
+<div class="bg-surface-container-lowest border-[3px] border-on-background rounded-2xl p-5 sm:p-7 [box-shadow:4px_4px_0px_#1c1b1b] mb-6">
+<form class="space-y-5" onsubmit="event.preventDefault();">
+<!-- INPUT 1: NIP / NUPTK / ID PEGAWAI -->
+<div>
+<div class="flex items-center justify-between mb-1.5">
+<label class="font-label-md text-label-md text-on-surface flex items-center gap-1.5" for="nip_field">
+<span>NIP / NUPTK / ID PEGAWAI</span>
+</label>
+<span class="px-2 py-0.5 bg-primary-container border-[1.5px] border-on-background rounded font-label-sm text-label-sm text-on-primary-container">
+       18 DIGIT
+      </span>
+</div>
+<div class="relative">
+<div class="absolute inset-y-0 left-0 pl-3.5 flex items-center pointer-events-none text-on-surface">
+<span class="material-symbols-outlined text-xl">badge</span>
+</div>
+<input class="w-full pl-11 pr-4 py-3 bg-surface-container-lowest border-[2.5px] border-on-background rounded-lg font-headline-md text-headline-md text-on-surface placeholder:text-outline placeholder:font-body-md placeholder:text-body-md focus:outline-none focus:border-on-background focus:[box-shadow:3px_3px_0px_#ffe600] transition-all" id="nip_field" name="nip" placeholder="NIP Real - 00000000 000000 0 000" required="" type="text"/>
+</div>
+<p class="mt-1.5 flex items-center gap-1 font-body-sm text-body-sm text-on-surface-variant">
+<span class="material-symbols-outlined text-sm text-primary">verified</span>
+      Gunakan NIP resmi terdaftar di Dapodik / Kemenag
+     </p>
+</div>
+<!-- INPUT 2: KATA SANDI / PIN KEDINASAN -->
+<div>
+<div class="flex items-center justify-between mb-1.5">
+<label class="font-label-md text-label-md text-on-surface" for="password_field">
+       KATA SANDI / PIN KEDINASAN
+      </label>
+<a class="font-label-sm text-label-sm text-secondary underline hover:text-on-secondary-fixed-variant decoration-[1.5px]" href="/login-guru.html">
+       Lupa Kata Sandi?
+      </a>
+</div>
+<div class="relative">
+<div class="absolute inset-y-0 left-0 pl-3.5 flex items-center pointer-events-none text-on-surface">
+<span class="material-symbols-outlined text-xl">key</span>
+</div>
+<input class="w-full pl-11 pr-12 py-3 bg-surface-container-lowest border-[2.5px] border-on-background rounded-lg font-headline-md text-headline-md text-on-surface placeholder:text-outline focus:outline-none focus:border-on-background focus:[box-shadow:3px_3px_0px_#ffe600] transition-all" id="password_field" name="password" placeholder="••••••••••••" required="" type="password"/>
+<button aria-label="Tampilkan atau sembunyikan kata sandi" class="absolute inset-y-0 right-0 pr-3.5 flex items-center text-on-surface hover:text-on-surface-variant" id="toggle_password_btn" onclick="
+        const input = document.getElementById('password_field');
+        const icon = document.getElementById('toggle_icon');
+        if (input.type === 'password') {
+         input.type = 'text';
+         icon.textContent = 'visibility_off';
+        } else {
+         input.type = 'password';
+         icon.textContent = 'visibility';
+        }
+       " type="button">
+<span class="material-symbols-outlined text-xl" id="toggle_icon">visibility</span>
+</button>
+</div>
+</div>
+<!-- PILIHAN TAHUN AJARAN & SEMESTER -->
+<div>
+<label class="block font-label-md text-label-md text-on-surface mb-1.5" for="academic_year">
+      TAHUN AJARAN &amp; PERIODE AKTIF
+     </label>
+<div class="relative">
+<div class="absolute inset-y-0 left-0 pl-3.5 flex items-center pointer-events-none text-on-surface">
+<span class="material-symbols-outlined text-xl">calendar_month</span>
+</div>
+<select class="w-full pl-11 pr-10 py-2.5 bg-surface-container-lowest border-[2.5px] border-on-background rounded-lg font-label-lg text-label-lg text-on-surface appearance-none focus:outline-none focus:border-on-background focus:[box-shadow:3px_3px_0px_#ffe600] cursor-pointer" id="academic_year">
+<option selected="" value="2026_genap">TA 2026/2027 • Semester Genap (Aktif)</option>
+<option value="2026_ganjil">TA 2026/2027 • Semester Ganjil (Arsip)</option>
+<option value="2023_genap">TA 2023/2026 • Semester Genap (Arsip)</option>
+</select>
+<div class="absolute inset-y-0 right-0 pr-3 flex items-center pointer-events-none text-on-surface">
+<span class="material-symbols-outlined text-xl">arrow_drop_down</span>
+</div>
+</div>
+</div>
+<!-- CHECKBOX: INGAT PERANGKAT -->
+<div class="flex items-start gap-3 pt-1">
+<input checked="" class="mt-0.5 w-5 h-5 rounded-[4px] border-[2.5px] border-on-background text-secondary focus:ring-0 focus:outline-none cursor-pointer" id="remember_device" name="remember_device" type="checkbox"/>
+<label class="font-body-md text-body-md text-on-surface leading-tight cursor-pointer select-none" for="remember_device">
+      Ingat Perangkat Ini <span class="font-bold text-on-background">(30 Hari di Gawai Pribadi)</span>
+</label>
+</div>
+<!-- TOMBOL UTAMA SUBMIT -->
+<button class="w-full py-3.5 px-6 bg-primary-container text-on-surface border-[3px] border-on-background rounded-xl font-label-lg text-label-lg [box-shadow:4px_4px_0px_#1c1b1b] hover:translate-x-[1px] hover:translate-y-[1px] hover:[box-shadow:2px_2px_0px_#1c1b1b] brutal-btn-active transition-all flex items-center justify-center gap-2 mt-4" type="submit">
+<span>MASUK SEBAGAI GURU / WALI KELAS</span>
+<span class="material-symbols-outlined font-bold text-xl">arrow_forward</span>
+</button>
+</form>
+<!-- DIVIDER: ATAU MASUK DENGAN -->
+<div class="relative my-6 text-center">
+<div aria-hidden="true" class="absolute inset-0 flex items-center">
+<div class="w-full border-t-[2.5px] border-on-background"></div>
+</div>
+<div class="relative flex justify-center">
+<span class="px-3 bg-surface-container-lowest font-label-sm text-label-sm text-on-surface-variant border-[2px] border-on-background rounded [box-shadow:1px_1px_0px_#1c1b1b]">
+      ATAU MASUK DENGAN
+     </span>
+</div>
+</div>
+<!-- OPSI ALTERNATIF AUTHENTICATION (SSO) -->
+<div class="grid grid-cols-1 gap-3">
+<!-- SSO Google Workspace Sekolah -->
+<button class="w-full py-2.5 px-4 bg-surface-container-lowest border-[2.5px] border-on-background rounded-lg font-label-md text-label-md text-on-surface [box-shadow:3px_3px_0px_#1c1b1b] hover:translate-x-[1px] hover:translate-y-[1px] hover:[box-shadow:1px_1px_0px_#1c1b1b] brutal-btn-active transition-all flex items-center justify-between" type="button">
+<div class="flex items-center gap-3">
+<div class="w-6 h-6 rounded bg-primary-container border-[1.5px] border-on-background flex items-center justify-center font-bold text-xs">
+       G
+      </div>
+<span class="text-left">Google Workspace Sekolah (@smkn1jkt.sch.id)</span>
+</div>
+<span class="material-symbols-outlined text-lg">open_in_new</span>
+</button>
+<!-- SSO Akun Belajar.id -->
+<button class="w-full py-2.5 px-4 bg-surface-container-lowest border-[2.5px] border-on-background rounded-lg font-label-md text-label-md text-on-surface [box-shadow:3px_3px_0px_#1c1b1b] hover:translate-x-[1px] hover:translate-y-[1px] hover:[box-shadow:1px_1px_0px_#1c1b1b] brutal-btn-active transition-all flex items-center justify-between" type="button">
+<div class="flex items-center gap-3">
+<div class="w-6 h-6 rounded bg-secondary-fixed border-[1.5px] border-on-background flex items-center justify-center text-secondary font-bold text-xs">
+       id
+      </div>
+<span class="text-left">Akun Belajar.id (Kemendikbudristek)</span>
+</div>
+<span class="material-symbols-outlined text-lg">open_in_new</span>
+</button>
+</div>
+</div>
+<!-- INFORMASI KEAMANAN & BANTUAN TENDIK (Box Alert Neobrutalist) -->
+<div class="space-y-3.5">
+<!-- Security Warning Callout -->
+<div class="bg-secondary-fixed border-[2.5px] border-on-background rounded-xl p-4 [box-shadow:3px_3px_0px_#1c1b1b] flex items-start gap-3">
+<div class="p-1.5 bg-surface-container-lowest border-[2px] border-on-background rounded">
+<span class="material-symbols-outlined text-secondary text-xl fill-icon" style="font-variation-settings: 'FILL' 1;">security</span>
+</div>
+<div>
+<h4 class="font-label-md text-label-md text-on-secondary-fixed mb-0.5">
+      Pemberitahuan Keamanan:
+     </h4>
+<p class="font-body-sm text-body-sm text-on-secondary-fixed-variant leading-relaxed">
+      Akses guru memiliki otorisasi perubahan nilai sikap &amp; log presensi legal. Dilarang membagikan NIP &amp; sandi kepada siswa.
+     </p>
+</div>
+</div>
+<!-- Helpdesk & Operator Link -->
+<div class="bg-tertiary-container border-[2px] border-on-background rounded-lg p-3 [box-shadow:2px_2px_0px_#1c1b1b] flex items-center justify-between">
+<div class="flex items-center gap-2">
+<span class="material-symbols-outlined text-tertiary text-lg">help</span>
+<span class="font-body-sm text-body-sm text-on-tertiary-container">Kendala Akun? Hubungi Admin Dapodik / Tim IT Sekolah</span>
+</div>
+<a class="font-label-sm text-label-sm bg-surface-container-lowest border-[1.5px] border-on-background px-2.5 py-1 rounded text-on-surface hover:bg-surface-container-low transition-colors" href="/settings.html">
+     BANTUAN
+    </a>
+</div>
+</div>
+</main>
+<!-- FOOTER PROTOCOL INFO -->
+<footer class="w-full py-4 text-center border-t-[2px] border-outline-variant bg-surface-container-low mt-8">
+<div class="flex flex-wrap items-center justify-center gap-2 px-4">
+<span class="font-label-sm text-label-sm text-on-surface-variant">AbsenSiswa Fresh Start • SIAKAD CLOUD</span>
+<span class="w-1.5 h-1.5 rounded-full bg-tertiary"></span>
+<span class="font-body-sm text-body-sm text-on-surface-variant">Enkripsi 256-Bit Terakreditasi BSSN</span>
+</div>
+</footer>
+<script src="/socket.io/socket.io.js"></script>
+<script src="https://unpkg.com/html5-qrcode@2.3.8/html5-qrcode.min.js"></script>
+<script src="/js/app.js"></script>
+<!-- No Old Data -->
+</body></html>

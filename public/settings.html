@@ -1,0 +1,135 @@
+<!DOCTYPE html>
+<html lang="id"><head>
+<meta charset="utf-8"/>
+<meta name="viewport" content="width=device-width, initial-scale=1.0"/>
+<title>Settings Lokasi Dinamis & Tahun 2026</title>
+<link href="https://fonts.googleapis.com" rel="preconnect"/>
+<link crossorigin href="https://fonts.gstatic.com" rel="preconnect"/>
+<link href="https://fonts.googleapis.com/css2?family=Plus+Jakarta+Sans:wght@500;600;700&family=Space+Grotesk:wght@600;700;800&display=swap" rel="stylesheet"/>
+<link href="https://fonts.googleapis.com/css2?family=Material+Symbols+Outlined:wght,FILL@100..700,0..1&display=swap" rel="stylesheet"/>
+<script src="https://cdn.tailwindcss.com?plugins=forms,container-queries"></script>
+<script id="tailwind-config">
+tailwind.config={darkMode:"class",theme:{extend:{colors:{"primary-container":"#ffe600","background":"#fcf9f8","primary":"#6a5f00","surface":"#fcf9f8","on-surface":"#1c1b1b","secondary":"#712ae2","secondary-container":"#8a4cfc","tertiary-container":"#67ffb7","error":"#ba1a1a"},borderRadius:{DEFAULT:"0.25rem",lg:"0.5rem",xl:"0.75rem",full:"9999px"},fontFamily:{"body-lg":["Plus Jakarta Sans"],"headline-xl":["Space Grotesk"]}}}}
+</script>
+<style>body{font-family:'Plus Jakarta Sans',sans-serif} h1,h2,h3{font-family:'Space Grotesk',sans-serif} .material-symbols-outlined{font-variation-settings:'FILL' 0,'wght' 600,'GRAD' 0,'opsz' 24}</style>
+</head>
+<body class="bg-[#FDF8F0] min-h-screen">
+<header class="border-b-[3px] border-black bg-white sticky top-0 z-50">
+<div class="max-w-5xl mx-auto px-5 py-3 flex justify-between items-center">
+<a href="/" class="flex items-center gap-2"><div class="w-10 h-10 bg-[#FFE600] border-[3px] border-black rounded-xl flex items-center justify-center font-bold">AS</div><span class="font-bold text-sm">AbsenSiswa </span></a>
+<div class="flex gap-2"><a href="/profil.html" class="border-[2px] border-black px-3 py-1 rounded-full text-xs font-bold bg-[#67FFB7]">Profil Real</a><a href="/" class="border-[2px] border-black px-3 py-1 rounded-full text-xs font-bold bg-white">Home</a></div>
+</div>
+</header>
+
+<!-- Date/Time Real - Fix tata letak berbeda dengan sekarang 28 Sep 2026 -->
+<div class="bg-[#FFE600] border-[2px] border-black p-2 rounded-xl mx-5 mt-3 flex justify-between items-center text-[11px] font-bold">
+<span id="realTanggal" class="realTanggalFull">Memuat tanggal real - Senin, 28 September 2026 - TA 2026/2027</span>
+<span id="liveClock" class="realJam">00:00:00 WIB</span>
+</div>
+
+<main class="max-w-5xl mx-auto px-5 py-6">
+<div class="bg-[#67FFB7] border-[3px] border-black p-5 rounded-[16px] [box-shadow:6px_6px_0px_#000]">
+<div class="flex justify-between items-start">
+<div><h1 class="text-[28px] font-extrabold leading-[32px] tracking-tight uppercase">SETTINGS <br/>TAHUN 2026 + LOKASI DINAMIS</h1><p class="mt-2 text-sm font-medium max-w-md">Ganti lokasi sekolah bukan cuma Jakarta - bisa Bandung, Surabaya, Yogyakarta, dll. Tahun otomatis 2026/2027 - Fix 2024.</p></div>
+<div class="hidden md:flex w-16 h-16 bg-white border-[3px] border-black rounded-full items-center justify-center"><span class="material-symbols-outlined">settings</span></div>
+</div>
+<div class="mt-4 flex gap-2"><span class="bg-black text-white text-[10px] font-extrabold px-3 py-1 rounded-full">TA 2026/2027</span><span class="bg-white border-[2px] border-black text-[10px] font-extrabold px-3 py-1 rounded-full">LOKASI DINAMIS</span><span class="bg-[#FFE600] border-[2px] border-black text-[10px] font-extrabold px-3 py-1 rounded-full">REAL-TIME</span></div>
+</div>
+
+<div class="grid md:grid-cols-2 gap-5 mt-6">
+<div class="bg-white border-[3px] border-black p-5 rounded-[16px] [box-shadow:4px_4px_0px_#000]">
+<h2 class="font-bold uppercase text-sm flex items-center gap-2"><span class="material-symbols-outlined text-[20px]">location_on</span> Lokasi Saat Ini Real</h2>
+<div id="currentSettings" class="mt-3 space-y-2 text-sm bg-[#F6F3F2] border-[2px] border-black p-3 rounded-xl">Memuat settings real ...</div>
+<button onclick="loadSettingsReal()" class="mt-3 w-full bg-black text-white py-2 rounded-full font-bold text-sm">Reload Real-Time</button>
+<div class="mt-3 p-3 bg-[#FFE600] border-[2px] border-black rounded-xl text-[11px]"><b>Penjelasan Native TS:</b> Settings disimpan di database.json (bukan hardcode). Backend TS Express di <code>src/routes/settings.routes.ts</code> baca/tulis settings real. Frontend HTML ini hanya view, data dari API real.</div>
+</div>
+
+<div class="bg-white border-[3px] border-black p-5 rounded-[16px] [box-shadow:4px_4px_0px_#000]">
+<h2 class="font-bold uppercase text-sm flex items-center gap-2"><span class="material-symbols-outlined text-[20px]">edit_location</span> Ganti Lokasi & Tahun Real</h2>
+<form id="settingsForm" class="mt-3 space-y-3">
+<input id="sekolahNama" placeholder="Nama Sekolah Real - ex: SMK N 1 BANDUNG" class="w-full border-[2px] border-black p-3 rounded-xl text-sm"/>
+<input id="sekolahAlamat" placeholder="Alamat Sekolah Real" class="w-full border-[2px] border-black p-3 rounded-xl text-sm"/>
+<div class="grid grid-cols-2 gap-2">
+<input id="lat" placeholder="Latitude -6.914744" type="number" step="any" class="w-full border-[2px] border-black p-3 rounded-xl text-sm"/>
+<input id="lng" placeholder="Longitude 107.60981" type="number" step="any" class="w-full border-[2px] border-black p-3 rounded-xl text-sm"/>
+</div>
+<div class="grid grid-cols-2 gap-2">
+<input id="radiusMeter" placeholder="Radius 50m" type="number" class="w-full border-[2px] border-black p-3 rounded-xl text-sm"/>
+<input id="tahunAjaran" placeholder="Tahun 2026/2027" class="w-full border-[2px] border-black p-3 rounded-xl text-sm"/>
+</div>
+<button class="w-full bg-[#FFE600] border-[3px] border-black py-3 font-extrabold uppercase rounded-full [box-shadow:3px_3px_0px_#000]">Update Settings Real </button>
+</form>
+<pre id="settingsResult" class="mt-3 bg-black text-green-400 p-3 text-[11px] rounded-xl max-h-32 overflow-auto hidden"></pre>
+</div>
+</div>
+
+<div class="mt-6 bg-white border-[3px] border-black p-5 rounded-[16px] [box-shadow:4px_4px_0px_#000]">
+<h2 class="font-bold uppercase text-sm flex items-center gap-2"><span class="material-symbols-outlined text-[20px]">map</span> Preset 8 Kota - Bukan Cuma Jakarta (Fix Hardcode)</h2>
+<p class="text-xs mt-1 text-gray-600">Dulu lokasi hardcode Jakarta -6.182339,106.832. Sekarang bisa pilih 8 kota real.</p>
+<div id="kotaPreset" class="grid md:grid-cols-4 gap-3 mt-4"></div>
+</div>
+
+<div class="mt-6 grid md:grid-cols-3 gap-3 text-[11px]">
+<a href="/index.html" class="bg-white border-[3px] border-black p-4 rounded-xl [box-shadow:3px_3px_0px_#000]"><b>→ index.html</b><br>Welcome </a>
+<a href="/profil.html" class="bg-[#FFE600] border-[3px] border-black p-4 rounded-xl [box-shadow:3px_3px_0px_#000]"><b>→ profil.html</b><br>Profil Real Fix Data Lama</a>
+<a href="/kelas.html" class="bg-[#67FFB7] border-[3px] border-black p-4 rounded-xl [box-shadow:3px_3px_0px_#000]"><b>→ kelas.html</b><br>Kelas Bisa Diganti</a>
+</div>
+</main>
+<script>
+async function loadSettingsReal(){
+ try{
+  const r=await fetch('/api/settings'); const d=await r.json();
+  if(d.success){
+   document.getElementById('currentSettings').innerHTML=`
+    <p><b>Sekolah:</b> ${d.data.sekolahNama}</p>
+    <p><b>Alamat:</b> ${d.data.sekolahAlamat}</p>
+    <p><b>Koordinat:</b> ${d.data.lat}, ${d.data.lng}</p>
+    <p><b>Radius:</b> ${d.data.radiusMeter}m</p>
+    <p><b>Tahun:</b> ${d.data.tahunAjaran} - ${d.data.semester}</p>
+    <p><b>Jam:</b> ${d.data.jamMasuk} - Toleransi ${d.data.batasToleransi}</p>
+    <p class="text-[10px] mt-2"> - Lokasi dinamis - bukan hardcode Jakarta lagi</p>`;
+   document.getElementById('sekolahNama').value=d.data.sekolahNama;
+   document.getElementById('sekolahAlamat').value=d.data.sekolahAlamat;
+   document.getElementById('lat').value=d.data.lat;
+   document.getElementById('lng').value=d.data.lng;
+   document.getElementById('radiusMeter').value=d.data.radiusMeter;
+   document.getElementById('tahunAjaran').value=d.data.tahunAjaran;
+  }
+ }catch(e){document.getElementById('currentSettings').innerHTML='<p class="text-red-600">Gagal load ? Setup dulu di /setup.html</p>'}
+}
+async function loadKotaPreset(){
+ const r=await fetch('/api/settings/kota-preset'); const d=await r.json();
+ if(d.success){
+  document.getElementById('kotaPreset').innerHTML=d.data.map((k,i)=>`
+   <div class="border-[2px] border-black p-3 rounded-xl bg-[#F6F3F2]">
+    <p class="font-bold text-xs">${k.nama}</p>
+    <p class="text-[10px]">${k.alamat}</p>
+    <p class="text-[10px] mt-1">Lat:${k.lat} Lng:${k.lng}</p>
+    <button onclick="setKota(${i})" class="mt-2 w-full bg-black text-white text-[11px] py-1 rounded-full font-bold">Pakai Kota Ini</button>
+   </div>`).join('');
+ }
+}
+async function setKota(i){
+ const r=await fetch('/api/settings/set-kota/'+i,{method:'POST'}); const d=await r.json();
+ if(d.success){ alert('Lokasi ganti ke '+d.data.sekolahNama+' - '+d.data.lat+','+d.data.lng); loadSettingsReal(); }
+}
+document.getElementById('settingsForm').addEventListener('submit', async e=>{
+ e.preventDefault();
+ const body={};
+ if(sekolahNama.value) body.sekolahNama=sekolahNama.value;
+ if(sekolahAlamat.value) body.sekolahAlamat=sekolahAlamat.value;
+ if(lat.value) body.lat=parseFloat(lat.value);
+ if(lng.value) body.lng=parseFloat(lng.value);
+ if(radiusMeter.value) body.radiusMeter=parseInt(radiusMeter.value);
+ if(tahunAjaran.value) body.tahunAjaran=tahunAjaran.value;
+ const r=await fetch('/api/settings',{method:'PUT',headers:{'Content-Type':'application/json'},body:JSON.stringify(body)});
+ const d=await r.json();
+ const el=document.getElementById('settingsResult'); el.classList.remove('hidden'); el.textContent=JSON.stringify(d,null,2);
+ if(d.success) loadSettingsReal();
+});
+loadSettingsReal(); loadKotaPreset();
+</script>
+<script src="/socket.io/socket.io.js"></script>
+<script src="https://unpkg.com/html5-qrcode@2.3.8/html5-qrcode.min.js"></script>
+<script src="/js/app.js"></script>
+</body></html>

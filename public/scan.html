@@ -1,0 +1,222 @@
+<!DOCTYPE html>
+<html lang="id"><head>
+<meta charset="utf-8"/><meta name="viewport" content="width=device-width, initial-scale=1.0"/>
+<title>Pindai QR Presensi - Kamera Asli - Final Native</title>
+<link href="https://fonts.googleapis.com/css2?family=Material+Symbols+Outlined:wght,FILL@100..700,0..1&display=swap" rel="stylesheet"/>
+<link href="https://fonts.googleapis.com/css2?family=Plus+Jakarta+Sans:wght@500;600;700;800&family=Space+Grotesk:wght@600;700;800&display=swap" rel="stylesheet"/>
+<script src="https://cdn.tailwindcss.com?plugins=forms,container-queries"></script>
+<script id="tailwind-config">tailwind.config={darkMode:"class",theme:{extend:{colors:{"primary-container":"#ffe600","background":"#fcf9f8","on-background":"#1c1b1b","secondary-container":"#8a4cfc","tertiary-container":"#67ffb7","error":"#ba1a1a","surface-container-lowest":"#ffffff","surface":"#fcf9f8","surface-container":"#f0edec","on-surface-variant":"#4b4731","outline-variant":"#cdc7aa","secondary-fixed":"#eaddff","tertiary-fixed":"#4dffb2","primary-fixed":"#fde400","primary":"#6a5f00"},borderRadius:{DEFAULT:"0.25rem",lg:"0.5rem",xl:"0.75rem",full:"9999px"},fontFamily:{"body-lg":["Plus Jakarta Sans"],"headline-xl":["Space Grotesk"]}}}}</script>
+<style>
+.material-symbols-outlined{font-variation-settings:'FILL' 0,'wght' 600,'GRAD' 0,'opsz' 24}
+@keyframes scanMove{0%{top:6%;opacity:0.9}50%{top:90%;opacity:1}100%{top:6%;opacity:0.9}} .animate-laser{animation:scanMove 2.6s ease-in-out infinite}
+@keyframes pulseRing{0%{transform:scale(0.95);opacity:0.8}50%{transform:scale(1.15);opacity:0.4}100%{transform:scale(0.95);opacity:0.8}} .pulse-dot{animation:pulseRing 1.8s infinite ease-in-out}
+body{min-height:max(884px,100dvh)}
+video{object-fit:cover; width:100%; height:100%}
+</style>
+</head>
+<body class="bg-background text-on-background min-h-screen flex flex-col justify-between antialiased selection:bg-primary-container selection:text-on-surface">
+<header class="sticky top-0 z-50 flex justify-between items-center w-full px-5 py-3 bg-background border-b-[2.5px] border-on-background [box-shadow:0px_3px_0px_#1c1b1b]">
+<div class="flex items-center gap-3">
+<button onclick="history.back()" aria-label="Kembali" class="w-10 h-10 flex items-center justify-center bg-surface-container-lowest border-[2.5px] border-on-background rounded [box-shadow:2px_2px_0px_#1c1b1b]"><span class="material-symbols-outlined text-on-surface">arrow_back</span></button>
+<div><h1 class="font-headline-md text-headline-md tracking-tight text-on-background leading-none">Pindai QR Masuk - Kamera Asli</h1><p class="font-body-sm text-body-sm text-on-surface-variant font-semibold mt-0.5">Kamera asli - bukan PNG lama</p></div>
+</div>
+<button aria-label="Bantuan" class="w-10 h-10 flex items-center justify-center bg-primary-container border-[2.5px] border-on-background rounded [box-shadow:2px_2px_0px_#1c1b1b]"><span class="material-symbols-outlined text-on-surface">help</span></button>
+</header>
+
+<div class="bg-[#FFE600] border-[2px] border-black p-2 rounded-xl mx-5 mt-3 flex justify-between items-center text-[11px] font-bold">
+<span id="realTanggal" class="realTanggalFull">Senin, 28 September 2026 • TA 2026/2027</span>
+<span id="liveClock" class="realJam">00:00:00 WIB</span>
+</div>
+
+<main class="flex-1 w-full max-w-md mx-auto px-5 pt-3 pb-24 flex flex-col justify-between gap-3">
+<!-- CAMERA VIEWFINDER - KAMERA ASLI, BUKAN PNG LAMA -->
+<div class="relative w-full aspect-[4/4.3] bg-black rounded-xl border-[3px] border-on-background [box-shadow:4px_4px_0px_#1c1b1b] overflow-hidden flex flex-col items-center justify-between p-3.5">
+<!-- Real Camera Video Element - Kamera Asli -->
+<video id="realCamera" autoplay playsinline muted class="absolute inset-0 w-full h-full object-cover"></video>
+<canvas id="cameraCanvas" class="absolute inset-0 w-full h-full hidden"></canvas>
+
+<!-- Fallback jika kamera tidak ada - bukan PNG lama -->
+<div id="cameraFallback" class="absolute inset-0 bg-inverse-surface flex flex-col items-center justify-center p-5 text-center hidden">
+<div class="w-16 h-16 bg-[#FFE600] border-[3px] border-black rounded-full flex items-center justify-center"><span class="material-symbols-outlined text-[32px]">videocam_off</span></div>
+<p class="font-bold text-white mt-3">Kamera tidak tersedia</p>
+<p class="text-sm text-white/70 mt-1">Gunakan QR Scanner manual atau upload gambar</p>
+<button onclick="document.getElementById('qr-reader').classList.remove('hidden')" class="mt-3 bg-white text-black border-2 border-black px-4 py-2 rounded-full font-bold text-xs">Buka Scanner Manual</button>
+</div>
+
+<div class="absolute inset-0 bg-[radial-gradient(#ffe600_1px,transparent_1px)] [background-size:18px_18px] opacity-15 pointer-events-none"></div>
+
+<!-- TOP GPS PILL - Real GPS -->
+<div class="relative z-10 w-full flex justify-center">
+<div class="bg-surface-container-lowest border-[2px] border-on-background rounded-full px-3 py-1.5 flex items-center gap-2 [box-shadow:2px_2px_0px_#1c1b1b]">
+<span class="relative flex h-2.5 w-2.5"><span class="pulse-dot absolute inline-flex h-full w-full rounded-full bg-tertiary-fixed opacity-75"></span><span class="relative inline-flex rounded-full h-2.5 w-2.5 bg-tertiary"></span></span>
+<span class="font-label-sm text-label-sm text-on-surface tracking-wider uppercase" id="gpsStatus">GPS: Mencari lokasi real...</span>
+<span class="material-symbols-outlined text-[16px] text-tertiary" style="font-variation-settings: 'FILL' 1;">verified</span>
+</div>
+</div>
+
+<!-- CENTRAL SCANNING RETICLE - Kamera Asli -->
+<div class="relative z-10 w-56 h-56 flex items-center justify-center">
+<div class="absolute left-1 right-1 h-1 bg-primary-container [box-shadow:0_0_12px_#ffe600,0_0_4px_#ffe600] animate-laser z-20"></div>
+<div class="absolute -top-1 -left-1 w-8 h-8 border-t-[5px] border-l-[5px] border-primary-container"></div>
+<div class="absolute -top-1 -right-1 w-8 h-8 border-t-[5px] border-r-[5px] border-primary-container"></div>
+<div class="absolute -bottom-1 -left-1 w-8 h-8 border-b-[5px] border-l-[5px] border-primary-container"></div>
+<div class="absolute -bottom-1 -right-1 w-8 h-8 border-b-[5px] border-r-[5px] border-primary-container"></div>
+<div class="w-full h-full border border-dashed border-white/60 rounded flex items-center justify-center bg-black/20">
+<span class="material-symbols-outlined text-white/40 text-5xl">filter_center_focus</span>
+</div>
+</div>
+
+<!-- BOTTOM CONTROLS - Real Camera Controls -->
+<div class="relative z-10 w-full flex items-end justify-between">
+<div class="flex items-center gap-2">
+<button id="btnFlash" aria-label="Lampu Kilat" class="w-11 h-11 bg-surface-container-lowest border-[2px] border-on-background rounded-lg flex items-center justify-center [box-shadow:2px_2px_0px_#1c1b1b]"><span class="material-symbols-outlined text-on-surface">flash_on</span></button>
+<button id="btnSwitchCamera" aria-label="Ganti Kamera" class="w-11 h-11 bg-surface-container-lowest border-[2px] border-on-background rounded-lg flex items-center justify-center [box-shadow:2px_2px_0px_#1c1b1b]"><span class="material-symbols-outlined text-on-surface">flip_camera_ios</span></button>
+<button id="btnGallery" aria-label="Galeri" class="w-11 h-11 bg-surface-container-lowest border-[2px] border-on-background rounded-lg flex items-center justify-center [box-shadow:2px_2px_0px_#1c1b1b]"><span class="material-symbols-outlined text-on-surface">photo_library</span></button>
+</div>
+<div class="flex items-center gap-2 bg-surface-container-lowest border-[2px] border-on-background px-2.5 py-1.5 rounded-lg [box-shadow:2px_2px_0px_#1c1b1b]">
+<div class="relative w-8 h-8 rounded-full border-[2px] border-on-background overflow-hidden bg-primary-container flex items-center justify-center font-bold" id="realAvatar">?</div>
+<div class="flex flex-col">
+<span class="font-label-sm text-label-sm text-tertiary leading-none">KAMERA ASLI</span>
+<span class="font-body-sm text-body-sm font-bold text-on-surface leading-tight" id="realSiswaNama">Memuat...</span>
+</div>
+<span class="material-symbols-outlined text-tertiary text-lg" style="font-variation-settings: 'FILL' 1;">videocam</span>
+</div>
+</div>
+</div>
+
+<!-- QR Reader Manual (Html5Qrcode) - Real Scanner -->
+<div id="qr-reader" class="w-full border-[3px] border-black rounded-xl overflow-hidden hidden"></div>
+<input type="file" id="qrFileInput" accept="image/*" class="hidden"/>
+
+<!-- BOTTOM INFO SHEET -->
+<div class="w-full bg-surface-container-lowest rounded-xl border-[3px] border-on-background p-4 [box-shadow:4px_4px_0px_#1c1b1b] flex flex-col gap-3.5">
+<div class="grid grid-cols-2 gap-2.5">
+<div class="bg-surface-container-low border-[2px] border-on-background rounded-lg p-2.5 flex flex-col">
+<div class="flex items-center gap-1.5 text-on-surface-variant mb-1"><span class="material-symbols-outlined text-[17px] text-secondary">pin_drop</span><span class="font-label-sm text-label-sm uppercase">Lokasi Real</span></div>
+<span class="font-headline-md text-[14px] leading-tight text-on-surface" id="realLokasi">Mencari GPS real...</span>
+<span class="font-body-sm text-[11px] text-on-surface-variant mt-0.5" id="realRadius">Radius: Memuat...</span>
+</div>
+<div class="bg-surface-container-low border-[2px] border-on-background rounded-lg p-2.5 flex flex-col">
+<div class="flex items-center gap-1.5 text-on-surface-variant mb-1"><span class="material-symbols-outlined text-[17px] text-tertiary">schedule</span><span class="font-label-sm text-label-sm uppercase">Waktu Real</span></div>
+<span class="font-headline-md text-[14px] leading-tight text-on-surface realJam" id="liveClock2">00:00:00 WIB</span>
+<div class="inline-flex items-center gap-1 mt-0.5"><span class="w-1.5 h-1.5 rounded-full bg-tertiary"></span><span class="font-label-sm text-[10px] text-tertiary uppercase" id="realStatus">Menunggu QR</span></div>
+</div>
+</div>
+
+<div class="flex items-center justify-between border-t-[2px] border-dashed border-outline-variant pt-2.5 px-0.5">
+<div class="flex items-center gap-2">
+<div class="w-7 h-7 rounded-full bg-primary-container border-[1.5px] border-on-background flex items-center justify-center font-headline-md text-[12px] realKelasNama" id="realKelasNama">—</div>
+<div class="flex flex-col">
+<span class="font-headline-md text-[13px] text-on-background leading-none" id="realSiswaNama2">Belum ada siswa</span>
+<span class="font-body-sm text-[11px] text-on-surface-variant leading-none mt-1">NISN: <span class="realNISN">—</span></span>
+</div>
+</div>
+<span class="bg-tertiary-container text-on-tertiary-container font-label-sm text-label-sm border-[1.5px] border-on-background px-2 py-0.5 rounded-full [box-shadow:1px_1px_0px_#1c1b1b]">KAMERA ASLI</span>
+</div>
+
+<input type="hidden" id="qrToken"/>
+<button id="btnKonfirmasi" class="w-full py-3.5 px-4 bg-tertiary-fixed text-on-tertiary-fixed font-headline-md text-headline-md uppercase tracking-normal border-[3px] border-on-background rounded-lg [box-shadow:4px_4px_0px_#1c1b1b] flex items-center justify-center gap-2"><span class="material-symbols-outlined text-2xl font-bold" style="font-variation-settings: 'FILL' 1;">check_circle</span><span>KONFIRMASI HADIR - KAMERA ASLI</span></button>
+<p class="text-center text-[10px] text-on-surface-variant">Kamera asli via getUserMedia - bukan PNG lama - Real GPS + Real QR</p>
+</div>
+</main>
+
+<nav class="fixed bottom-0 left-0 w-full z-50 flex justify-around items-center px-4 py-2 bg-white border-t-[3px] border-black [box-shadow:0px_-3px_0px_#000] max-w-[420px] left-1/2 -translate-x-1/2 md:max-w-5xl md:left-0 md:translate-x-0">
+<a class="flex flex-col items-center justify-center px-3 py-1.5" href="/index.html"><span class="material-symbols-outlined text-[20px]">home</span><span>Home</span></a>
+<a class="flex flex-col items-center justify-center px-3 py-1.5" href="/dashboard-siswa.html"><span class="material-symbols-outlined text-[20px]">dashboard</span><span>Dashboard</span></a>
+<a class="flex flex-col items-center justify-center bg-primary-container border-[2px] border-black rounded px-3 py-1.5" href="/scan.html"><span class="material-symbols-outlined text-[20px]" style="font-variation-settings: 'FILL' 1;">qr_code_scanner</span><span>Scan</span></a>
+<a class="flex flex-col items-center justify-center px-3 py-1.5" href="/rekap.html"><span class="material-symbols-outlined text-[20px]">analytics</span><span>Rekap</span></a>
+<a class="flex flex-col items-center justify-center px-3 py-1.5" href="/profil.html"><span class="material-symbols-outlined text-[20px]">person</span><span>Profil</span></a>
+</nav>
+
+<script src="/socket.io/socket.io.js"></script>
+<script src="https://unpkg.com/html5-qrcode@2.3.8/html5-qrcode.min.js"></script>
+<script src="/js/app.js"></script>
+<script>
+// Kamera Asli - Bukan PNG Lama - Final Native
+let currentStream = null;
+let facingMode = 'environment';
+
+async function startRealCamera(){
+  const video = document.getElementById('realCamera');
+  const fallback = document.getElementById('cameraFallback');
+  try{
+    if(currentStream) currentStream.getTracks().forEach(t=>t.stop());
+    const stream = await navigator.mediaDevices.getUserMedia({
+      video: {facingMode: facingMode, width: {ideal: 1280}, height: {ideal: 720}},
+      audio: false
+    });
+    currentStream = stream;
+    video.srcObject = stream;
+    video.classList.remove('hidden');
+    fallback.classList.add('hidden');
+    console.log('✅ Kamera asli aktif - bukan PNG lama');
+    
+    // Update GPS real
+    if(navigator.geolocation){
+      navigator.geolocation.getCurrentPosition(pos=>{
+        document.getElementById('gpsStatus').textContent = `GPS: ${pos.coords.latitude.toFixed(5)}, ${pos.coords.longitude.toFixed(5)} - Akurasi ${Math.round(pos.coords.accuracy)}m`;
+        document.getElementById('realLokasi').textContent = `${pos.coords.latitude.toFixed(4)}, ${pos.coords.longitude.toFixed(4)}`;
+        document.getElementById('realRadius').textContent = `Akurasi: ${Math.round(pos.coords.accuracy)}m - Real GPS`;
+      }, err=>{
+        document.getElementById('gpsStatus').textContent = 'GPS: Izin ditolak - Aktifkan lokasi';
+      }, {enableHighAccuracy:true});
+    }
+  }catch(e){
+    console.log('Kamera gagal:', e);
+    video.classList.add('hidden');
+    fallback.classList.remove('hidden');
+    document.getElementById('gpsStatus').textContent = 'Kamera: Tidak tersedia - Gunakan scanner manual';
+  }
+}
+
+document.getElementById('btnSwitchCamera')?.addEventListener('click', ()=>{
+  facingMode = facingMode === 'environment' ? 'user' : 'environment';
+  startRealCamera();
+});
+
+document.getElementById('btnGallery')?.addEventListener('click', ()=>{
+  document.getElementById('qrFileInput').click();
+});
+
+document.getElementById('qrFileInput')?.addEventListener('change', (e)=>{
+  const file = e.target.files[0];
+  if(!file) return;
+  const html5QrCode = new Html5Qrcode('qr-reader');
+  document.getElementById('qr-reader').classList.remove('hidden');
+  html5QrCode.scanFile(file, true).then(decoded=>{
+    document.getElementById('qrToken').value = decoded;
+    document.getElementById('realStatus').textContent = 'QR Terdeteksi: ' + decoded.substring(0,20);
+    alert('QR dari galeri: '+decoded);
+  }).catch(err=>alert('Gagal baca QR: '+err));
+});
+
+// Flash toggle (jika support)
+let flashOn = false;
+document.getElementById('btnFlash')?.addEventListener('click', async ()=>{
+  if(!currentStream) return;
+  const track = currentStream.getVideoTracks()[0];
+  try{
+    flashOn = !flashOn;
+    await track.applyConstraints({advanced: [{torch: flashOn}]});
+    document.getElementById('btnFlash').innerHTML = flashOn ? '<span class="material-symbols-outlined">flash_off</span>' : '<span class="material-symbols-outlined">flash_on</span>';
+  }catch(e){ alert('Flash tidak didukung di kamera ini'); }
+});
+
+document.addEventListener('DOMContentLoaded', ()=>{
+  startRealCamera();
+  // Init QR scanner real
+  if(typeof Html5Qrcode !== 'undefined'){
+    const qrReader = document.getElementById('qr-reader');
+    qrReader.classList.remove('hidden');
+    const html5QrCode = new Html5Qrcode('qr-reader');
+    html5QrCode.start({facingMode: 'environment'}, {fps:10, qrbox:250},
+      decoded=>{
+        document.getElementById('qrToken').value = decoded;
+        document.getElementById('realStatus').textContent = 'QR Real Terdeteksi';
+        console.log('QR Real:', decoded);
+      }, ()=>{}
+    ).catch(()=>{ qrReader.classList.add('hidden'); });
+  }
+});
+</script>
+</body></html>

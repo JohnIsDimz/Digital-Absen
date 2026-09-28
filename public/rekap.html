@@ -1,0 +1,167 @@
+<!DOCTYPE html>
+<html lang="id"><head>
+<meta charset="utf-8"/><meta name="viewport" content="width=device-width, initial-scale=1.0"/>
+<title>Rekap Kehadiran - Final Native - Realistis</title>
+<script src="https://cdn.tailwindcss.com?plugins=forms,container-queries"></script>
+<link href="https://fonts.googleapis.com/css2?family=Plus+Jakarta+Sans:wght@500;600;700;800&family=Space+Grotesk:wght@600;700;800&display=swap" rel="stylesheet"/>
+<link href="https://fonts.googleapis.com/css2?family=Material+Symbols+Outlined:wght,FILL@100..700,0..1&display=swap" rel="stylesheet"/>
+<script id="tailwind-config">tailwind.config={darkMode:"class",theme:{extend:{colors:{"primary-container":"#ffe600","background":"#fcf9f8","on-background":"#1c1b1b","secondary-container":"#8a4cfc","tertiary-container":"#67ffb7","error":"#ba1a1a","error-container":"#ffdad6","surface-container-lowest":"#ffffff","surface":"#fcf9f8","surface-container":"#f0edec","on-surface-variant":"#4b4731","secondary-fixed":"#eaddff","tertiary-fixed":"#4dffb2","primary-fixed":"#fde400","primary":"#6a5f00"},borderRadius:{DEFAULT:"0.25rem",lg:"0.5rem",xl:"0.75rem",full:"9999px"},fontFamily:{"body-lg":["Plus Jakarta Sans"],"headline-xl":["Space Grotesk"]}}}}</script>
+<style>.material-symbols-outlined{font-variation-settings:'FILL' 0,'wght' 600,'GRAD' 0,'opsz' 24} .material-symbols-fill{font-variation-settings:'FILL' 1,'wght' 700,'GRAD' 0,'opsz' 24} body{min-height:max(884px,100dvh)}</style>
+</head>
+<body class="bg-background text-on-background min-h-screen flex justify-center antialiased font-body-md select-none">
+<div class="w-full max-w-[420px] bg-background min-h-screen relative pb-28 border-x-[2.5px] border-on-background flex flex-col">
+<header class="sticky top-0 z-50 flex justify-between items-center w-full px-5 py-3 bg-background border-b-[2.5px] border-on-background [box-shadow:0px_3px_0px_#1c1b1b]">
+<div class="flex items-center gap-3">
+<div class="relative">
+<div class="w-10 h-10 rounded-full border-[2.5px] border-on-background overflow-hidden bg-primary-container flex items-center justify-center font-bold text-lg" id="realAvatar">?</div>
+<span class="absolute -bottom-1 -right-2 bg-primary-container text-on-surface text-[9px] font-headline-lg px-1.5 py-0.2 rounded-full border-[1.5px] border-on-background uppercase realKelasNama" id="realKelasNama">Belum ada kelas</span>
+</div>
+<div>
+<span class="font-headline-xl-mobile text-headline-xl-mobile uppercase tracking-tight text-on-background block leading-none">AbsenSiswa</span>
+<span class="font-label-sm text-[10px] text-on-surface-variant font-bold uppercase tracking-wider">Laporan Presensi • <span id="realSekolahNama">Memuat sekolah...</span></span>
+</div>
+</div>
+<button aria-label="Notifikasi" class="w-9 h-9 rounded-lg bg-surface-container-lowest border-[2px] border-on-background flex items-center justify-center"><span class="material-symbols-outlined text-[20px] text-on-background">notifications</span></button>
+</header>
+
+<div class="bg-[#FFE600] border-[2px] border-black p-2 rounded-xl mx-5 mt-3 flex justify-between items-center text-[11px] font-bold">
+<span id="realTanggal" class="realTanggalFull">Senin, 28 September 2026 • TA 2026/2027</span>
+<span id="liveClock" class="realJam">00:00:00 WIB</span>
+</div>
+
+<main class="px-5 pt-5 flex-1 flex flex-col space-y-5">
+<div class="flex items-center justify-between gap-2">
+<div>
+<h1 class="font-headline-lg text-headline-lg text-on-background leading-tight">Rekap & Laporan Kehadiran</h1>
+<p class="font-body-sm text-body-sm text-on-surface-variant font-semibold">Tahun Ajaran <span class="realTahunAjaran">2026/2027</span> • <span id="realSekolahNama">Memuat sekolah...</span></p>
+</div>
+<button class="flex items-center gap-1.5 bg-primary-container text-on-background font-headline-md text-label-md uppercase px-3 py-2 border-[2.5px] border-on-background rounded hover:translate-x-[1px] hover:translate-y-[1px] transition-all shrink-0"><span class="material-symbols-outlined text-[18px]">download</span><span>PDF</span></button>
+</div>
+
+<section class="grid grid-cols-2 gap-2.5">
+<div class="relative bg-surface-container-lowest border-[2.5px] border-on-background rounded-lg p-2.5 flex items-center justify-between">
+<div class="flex flex-col"><span class="font-label-sm text-[9px] uppercase tracking-wider text-on-surface-variant font-black">Periode</span><span class="font-headline-md text-label-lg text-on-background truncate realTanggalPendek" id="realTanggalPendek">28 Sep 2026</span></div>
+<span class="material-symbols-outlined text-[20px] text-on-background">calendar_month</span>
+</div>
+<div class="relative bg-surface-container-lowest border-[2.5px] border-on-background rounded-lg p-2.5 flex items-center justify-between">
+<div class="flex flex-col"><span class="font-label-sm text-[9px] uppercase tracking-wider text-on-surface-variant font-black">Semester</span><span class="font-headline-md text-label-lg text-on-background truncate">Ganjil • <span class="realKelasNama">Belum ada kelas</span></span></div>
+<span class="material-symbols-outlined text-[20px] text-on-background">expand_more</span>
+</div>
+</section>
+
+<section class="bg-secondary-container text-on-secondary-container border-[3px] border-on-background rounded-xl p-5 relative overflow-hidden">
+<div class="absolute -top-3 -right-3 bg-primary-container text-on-surface border-[2.5px] border-on-background font-headline-md text-label-sm px-3 py-1 rotate-6 uppercase">Status</div>
+<div class="flex items-start justify-between mb-2">
+<div>
+<span class="font-label-sm text-label-sm uppercase tracking-widest text-secondary-fixed block mb-1">Tingkat Kehadiran</span>
+<div class="flex items-baseline gap-2">
+<span class="font-headline-xl text-[44px] leading-none font-headline-lg tracking-tighter text-surface-container-lowest drop-shadow-[2px_2px_0px_#1c1b1b]">0%</span>
+<span class="font-headline-md text-label-lg text-tertiary-fixed font-bold bg-on-background px-2 py-0.5 rounded border border-surface-container-lowest">Belum ada data</span>
+</div>
+</div>
+</div>
+<div class="flex items-center gap-1.5 mt-2 mb-3.5 text-secondary-fixed font-body-md text-body-sm">
+<span class="material-symbols-outlined text-[16px]">verified</span>
+<span class="font-bold text-surface-container-lowest"><span id="realHadir">0</span> dari <span id="realTotal">0</span> Hari</span> - Belum ada absensi
+</div>
+<div class="w-full bg-surface-container-lowest h-6 rounded-md border-[2.5px] border-on-background p-0.5 flex items-stretch">
+<div class="h-full bg-tertiary-fixed border-r-[2.5px] border-on-background rounded-sm" style="width: 0%;"></div>
+</div>
+<div class="flex justify-between items-center mt-2 text-[10px] font-label-sm uppercase text-secondary-fixed">
+<span>Target Minimum: 85%</span>
+<span class="font-bold text-surface-container-lowest">Realistis - API Real</span>
+</div>
+</section>
+
+<section>
+<div class="flex items-center justify-between mb-2.5">
+<h2 class="font-headline-md text-headline-md text-on-background">Statistik Absensi - Realistis</h2>
+<span class="font-label-sm text-[10px] uppercase font-bold text-on-surface-variant">Total <span id="realTotal">0</span> Hari • Kosong</span>
+</div>
+<div class="grid grid-cols-2 gap-3">
+<div class="bg-tertiary-container border-[2.5px] border-on-background rounded-lg p-3 flex flex-col justify-between">
+<div class="flex items-center justify-between"><span class="font-headline-lg text-label-md uppercase text-on-tertiary-container font-black">Hadir</span><span class="material-symbols-outlined text-tertiary text-[18px] material-symbols-fill">check_circle</span></div>
+<div class="mt-3 flex items-baseline gap-1"><span class="font-headline-xl text-[28px] font-headline-lg leading-none text-on-background" id="realHadir">0</span><span class="font-label-sm text-label-sm uppercase font-bold text-on-surface-variant">Hari</span></div>
+<div class="mt-2 text-[10px] font-body-sm text-on-tertiary-container font-bold border-t border-on-background/20 pt-1">Belum ada data hadir</div>
+</div>
+<div class="bg-primary-container border-[2.5px] border-on-background rounded-lg p-3 flex flex-col justify-between">
+<div class="flex items-center justify-between"><span class="font-headline-lg text-label-md uppercase text-on-primary-container font-black">Terlambat</span><span class="material-symbols-outlined text-primary text-[18px] material-symbols-fill">schedule</span></div>
+<div class="mt-3 flex items-baseline gap-1"><span class="font-headline-xl text-[28px] font-headline-lg leading-none text-on-background" id="realTerlambat">0</span><span class="font-label-sm text-label-sm uppercase font-bold text-on-surface-variant">Hari</span></div>
+<div class="mt-2 text-[10px] font-body-sm text-on-primary-container font-bold border-t border-on-background/20 pt-1">Belum ada keterlambatan</div>
+</div>
+<div class="bg-secondary-fixed border-[2.5px] border-on-background rounded-lg p-3 flex flex-col justify-between">
+<div class="flex items-center justify-between"><span class="font-headline-lg text-label-md uppercase text-on-secondary-fixed-variant font-black">Izin</span><span class="material-symbols-outlined text-secondary text-[18px] material-symbols-fill">description</span></div>
+<div class="mt-3 flex items-baseline gap-1"><span class="font-headline-xl text-[28px] font-headline-lg leading-none text-on-background" id="realIzin">0</span><span class="font-label-sm text-label-sm uppercase font-bold text-on-surface-variant">Hari</span></div>
+<div class="mt-2 text-[10px] font-body-sm text-on-secondary-fixed-variant font-bold border-t border-on-background/20 pt-1">Belum ada izin</div>
+</div>
+<div class="bg-error-container border-[2.5px] border-on-background rounded-lg p-3 flex flex-col justify-between">
+<div class="flex items-center justify-between"><span class="font-headline-lg text-label-md uppercase text-on-error-container font-black">Alpha</span><span class="material-symbols-outlined text-error text-[18px] material-symbols-fill">person_off</span></div>
+<div class="mt-3 flex items-baseline gap-1"><span class="font-headline-xl text-[28px] font-headline-lg leading-none text-on-background" id="realAlpha">0</span><span class="font-label-sm text-label-sm uppercase font-bold text-on-surface-variant">Hari</span></div>
+<div class="mt-2 text-[10px] font-body-sm text-on-error-container font-bold border-t border-on-background/20 pt-1">Belum ada alpha</div>
+</div>
+</div>
+</section>
+
+<!-- Riwayat Presensi Harian - HARUS NOL - Final Native Realistis -->
+<section class="space-y-3 pb-4">
+<div class="flex items-center justify-between">
+<div class="flex items-center gap-2"><span class="material-symbols-outlined text-[20px] text-on-background">history</span><h2 class="font-headline-md text-headline-md text-on-background">Riwayat Presensi Harian - Kosong</h2></div>
+<span class="font-label-sm text-label-sm text-primary underline font-bold cursor-pointer">Lihat Semua</span>
+</div>
+<div id="riwayatPresensi" class="bg-white border-[3px] border-black p-8 rounded-xl [box-shadow:4px_4px_0px_#000] text-center">
+<div class="w-16 h-16 bg-[#F6F3F2] border-[3px] border-black rounded-full flex items-center justify-center mx-auto"><span class="material-symbols-outlined text-[32px]">history</span></div>
+<p class="font-bold text-lg mt-4">Belum ada riwayat presensi harian</p>
+<p class="text-sm mt-2 text-on-surface-variant">Data harusnya nol - belum ada absensi</p>
+<p class="text-xs mt-1">Final Native - Semua riwayat dari API real <code>/api/absensi</code> dan <code>/api/rekap/kehadiran</code></p>
+<p class="text-xs mt-1">Jika ada absensi real, akan tampil di sini dengan jam real, lokasi real, status real</p>
+<a href="/scan.html" class="inline-block mt-4 bg-[#FFE600] border-[3px] border-black px-6 py-2 rounded-full font-bold [box-shadow:3px_3px_0px_#000]">Scan QR untuk Absen Real</a>
+</div>
+</section>
+</main>
+</div>
+
+<nav class="fixed bottom-0 left-0 w-full z-50 flex justify-around items-center px-4 py-2 bg-white border-t-[3px] border-black [box-shadow:0px_-3px_0px_#000] max-w-[420px] left-1/2 -translate-x-1/2 md:max-w-5xl md:left-0 md:translate-x-0">
+<a class="flex flex-col items-center justify-center px-3 py-1.5" href="/index.html"><span class="material-symbols-outlined text-[20px]">home</span><span>Home</span></a>
+<a class="flex flex-col items-center justify-center px-3 py-1.5" href="/dashboard-siswa.html"><span class="material-symbols-outlined text-[20px]">dashboard</span><span>Dashboard</span></a>
+<a class="flex flex-col items-center justify-center px-3 py-1.5" href="/scan.html"><span class="material-symbols-outlined text-[20px]">qr_code_scanner</span><span>Scan</span></a>
+<a class="flex flex-col items-center justify-center bg-primary-container border-[2px] border-black rounded px-3 py-1.5" href="/rekap.html"><span class="material-symbols-outlined text-[20px]" style="font-variation-settings: 'FILL' 1;">analytics</span><span>Rekap</span></a>
+<a class="flex flex-col items-center justify-center px-3 py-1.5" href="/profil.html"><span class="material-symbols-outlined text-[20px]">person</span><span>Profil</span></a>
+</nav>
+
+<script src="/socket.io/socket.io.js"></script>
+<script src="https://unpkg.com/html5-qrcode@2.3.8/html5-qrcode.min.js"></script>
+<script src="/js/app.js"></script>
+<script>
+document.addEventListener('DOMContentLoaded', async ()=>{
+  const token = localStorage.getItem('absensiswa_token');
+  if(!token){
+    document.getElementById('riwayatPresensi').innerHTML = `
+      <div class="bg-white border-[3px] border-black p-8 rounded-xl text-center">
+        <p class="font-bold">Belum login</p>
+        <p class="text-sm mt-2">Login dulu untuk melihat riwayat presensi harian real</p>
+        <a href="/" class="inline-block mt-3 bg-black text-white px-4 py-2 rounded-full text-xs">Login</a>
+      </div>`;
+    return;
+  }
+  try{
+    const res = await fetch('/api/rekap/kehadiran', {headers: {'Authorization': 'Bearer '+token}});
+    const data = await res.json();
+    if(data.data && data.data.riwayat && data.data.riwayat.length > 0){
+      // Tampilkan riwayat real jika ada
+      const container = document.getElementById('riwayatPresensi');
+      container.innerHTML = data.data.riwayat.map(item=>`
+        <div class="bg-surface-container-lowest border-[2.5px] border-on-background rounded-xl p-3.5">
+          <div class="flex justify-between"><span class="font-bold">${item.hari||item.tanggal}</span><span class="bg-tertiary-fixed border-2 border-black px-2 py-0.5 rounded-full text-xs font-bold">${item.status}</span></div>
+          <p class="text-sm mt-1">${item.jam||''} • ${item.lokasi||''}</p>
+        </div>
+      `).join('');
+    } else {
+      // Tetap kosong - harusnya nol untuk final native
+      console.log('Riwayat presensi harian kosong - harusnya nol - final native');
+    }
+  }catch(e){
+    console.log('Riwayat belum ada - harusnya nol');
+  }
+});
+</script>
+</body></html>

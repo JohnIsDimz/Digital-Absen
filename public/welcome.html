@@ -1,0 +1,326 @@
+<!DOCTYPE html>
+
+<html lang="id"><head>
+<meta charset="utf-8"/>
+<meta content="width=device-width, initial-scale=1.0" name="viewport"/>
+<title>AbsenSiswa - Selamat Datang &amp; Pilih Peran</title>
+<!-- Google Fonts: Space Grotesk & Plus Jakarta Sans -->
+<link href="https://fonts.googleapis.com" rel="preconnect"/>
+<link crossorigin="" href="https://fonts.gstatic.com" rel="preconnect"/>
+<link href="https://fonts.googleapis.com/css2?family=Plus+Jakarta+Sans:wght@500;600;700&amp;family=Space+Grotesk:wght@700;800&amp;display=swap" rel="stylesheet"/>
+<!-- Material Symbols Outlined -->
+<link href="https://fonts.googleapis.com/css2?family=Material+Symbols+Outlined:wght,FILL@100..700,0..1&amp;display=swap" rel="stylesheet"/>
+<link href="https://fonts.googleapis.com/css2?family=Material+Symbols+Outlined:wght,FILL@100..700,0..1&amp;display=swap" rel="stylesheet"/>
+<script src="https://cdn.tailwindcss.com?plugins=forms,container-queries"></script>
+<script id="tailwind-config">
+  tailwind.config = {
+   darkMode: "class",
+   theme: {
+    extend: {
+     "colors": {
+      "primary-container": "#ffe600",
+      "background": "#fcf9f8",
+      "on-tertiary-container": "#00754b",
+      "primary": "#6a5f00",
+      "on-tertiary-fixed": "#002112",
+      "inverse-on-surface": "#f3f0ef",
+      "surface-container-high": "#ebe7e7",
+      "error-container": "#ffdad6",
+      "secondary": "#712ae2",
+      "outline-variant": "#cdc7aa",
+      "surface-tint": "#6a5f00",
+      "on-surface-variant": "#4b4731",
+      "secondary-container": "#8a4cfc",
+      "tertiary-fixed": "#4dffb2",
+      "on-background": "#1c1b1b",
+      "on-surface": "#1c1b1b",
+      "secondary-fixed-dim": "#d2bbff",
+      "on-primary": "#ffffff",
+      "error": "#ba1a1a",
+      "primary-fixed-dim": "#dec800",
+      "on-primary-fixed-variant": "#504700",
+      "inverse-primary": "#dec800",
+      "outline": "#7c775f",
+      "on-secondary": "#ffffff",
+      "primary-fixed": "#fde400",
+      "surface-container": "#f0edec",
+      "surface-variant": "#e5e2e1",
+      "secondary-fixed": "#eaddff",
+      "on-tertiary-fixed-variant": "#005234",
+      "on-primary-fixed": "#201c00",
+      "on-error": "#ffffff",
+      "surface-container-low": "#f6f3f2",
+      "surface": "#fcf9f8",
+      "inverse-surface": "#313030",
+      "on-secondary-container": "#fffbff",
+      "tertiary-container": "#67ffb7",
+      "tertiary": "#006c46",
+      "surface-container-lowest": "#ffffff",
+      "on-secondary-fixed": "#25005a",
+      "on-secondary-fixed-variant": "#5a00c6",
+      "surface-container-highest": "#e5e2e1",
+      "surface-dim": "#dcd9d9",
+      "on-error-container": "#93000a",
+      "on-tertiary": "#ffffff",
+      "surface-bright": "#fcf9f8",
+      "on-primary-container": "#726600",
+      "tertiary-fixed-dim": "#00e296"
+     },
+     "borderRadius": {
+      "DEFAULT": "0.25rem",
+      "lg": "0.5rem",
+      "xl": "0.75rem",
+      "full": "9999px"
+     },
+     "spacing": {
+      "margin": "1.25rem",
+      "space-lg": "1.25rem",
+      "space-sm": "0.5rem",
+      "space-md": "1rem",
+      "space-xl": "1.75rem",
+      "space-xs": "0.25rem",
+      "gutter": "1rem"
+     },
+     "fontFamily": {
+      "body-lg": ["Plus Jakarta Sans"],
+      "headline-xl": ["Space Grotesk"],
+      "body-md": ["Plus Jakarta Sans"],
+      "label-sm": ["Space Grotesk"],
+      "headline-xl-mobile": ["Space Grotesk"],
+      "body-sm": ["Plus Jakarta Sans"],
+      "headline-lg": ["Space Grotesk"],
+      "label-md": ["Space Grotesk"],
+      "label-lg": ["Space Grotesk"],
+      "headline-md": ["Space Grotesk"]
+     },
+     "fontSize": {
+      "body-lg": ["16px", { "lineHeight": "24px", "fontWeight": "600" }],
+      "headline-xl": ["32px", { "lineHeight": "38px", "letterSpacing": "-0.03em", "fontWeight": "700" }],
+      "body-md": ["14px", { "lineHeight": "20px", "fontWeight": "500" }],
+      "label-sm": ["10px", { "lineHeight": "14px", "letterSpacing": "0.08em", "fontWeight": "800" }],
+      "headline-xl-mobile": ["26px", { "lineHeight": "32px", "letterSpacing": "-0.02em", "fontWeight": "700" }],
+      "body-sm": ["12px", { "lineHeight": "16px", "fontWeight": "500" }],
+      "headline-lg": ["22px", { "lineHeight": "28px", "letterSpacing": "-0.02em", "fontWeight": "700" }],
+      "label-md": ["12px", { "lineHeight": "16px", "letterSpacing": "0.06em", "fontWeight": "700" }],
+      "label-lg": ["14px", { "lineHeight": "18px", "letterSpacing": "0.04em", "fontWeight": "700" }],
+      "headline-md": ["18px", { "lineHeight": "24px", "letterSpacing": "-0.01em", "fontWeight": "700" }]
+     }
+    }
+   }
+  }
+ </script>
+<style>
+  .material-symbols-outlined {
+   font-variation-settings: 'FILL' 0, 'wght' 600, 'GRAD' 0, 'opsz' 24;
+   display: inline-block;
+   vertical-align: middle;
+   line-height: 1;
+  }
+  .material-symbols-fill {
+   font-variation-settings: 'FILL' 1, 'wght' 700, 'GRAD' 0, 'opsz' 24;
+   display: inline-block;
+   vertical-align: middle;
+   line-height: 1;
+  }
+ </style>
+<style>
+  body {
+   min-height: max(884px, 100dvh);
+  }
+ </style>
+ </head>
+<body class="bg-background text-on-background min-h-screen flex justify-center selection:bg-primary-container selection:text-on-background">
+<!-- Mobile Container Shell (Centered 390px - 440px) -->
+<div class="w-full max-w-[440px] min-h-screen bg-background flex flex-col justify-between relative shadow-2xl border-x-[3px] border-on-background">
+<!-- 1. Header / Brand Top Bar (Shared Component Reference - Casing strictly maintained) -->
+<header class="sticky top-0 z-50 flex justify-between items-center w-full px-5 py-3 bg-background border-b-[2.5px] border-on-background [box-shadow:0px_3px_0px_#1c1b1b]">
+<div class="flex items-center gap-2.5">
+<!-- Logo Stamp Box -->
+<div class="w-10 h-10 bg-primary-container border-[2.5px] border-on-background rounded-lg flex items-center justify-center [box-shadow:2px_2px_0px_#1c1b1b]">
+<span class="material-symbols-outlined material-symbols-fill text-on-background text-xl" data-icon="verified_user">verified_user</span>
+</div>
+<div>
+<div class="flex items-center gap-1.5">
+<span class="font-headline-lg text-headline-lg tracking-tight text-on-background">AbsenSiswa</span>
+<span class="bg-tertiary-fixed text-on-tertiary-fixed border-[1.5px] border-on-background px-1.5 py-0.2 rounded-full font-label-sm text-label-sm uppercase tracking-wide">RESMI</span>
+</div>
+<p class="font-label-sm text-label-sm text-on-surface-variant font-bold"><span id="realSekolahNama">Memuat sekolah real...</span> • TA 2026/2027 Fresh</p>
+</div>
+</div>
+<!-- Live Server Indicator Capsule -->
+<div class="flex items-center gap-1 bg-surface-container-lowest border-[2px] border-on-background px-2 py-1 rounded-full [box-shadow:1.5px_1.5px_0px_#1c1b1b]">
+<span class="w-2 h-2 rounded-full bg-tertiary-fixed-dim border border-on-background animate-pulse"></span>
+<span class="font-label-sm text-label-sm text-on-background font-extrabold uppercase">ONLINE</span>
+</div>
+</header>
+<!-- Main Scrollable Canvas Content -->
+
+<!-- Date/Time Real - Fix tata letak berbeda dengan sekarang 28 Sep 2026 -->
+<div class="bg-[#FFE600] border-[2px] border-black p-2 rounded-xl mx-5 mt-3 flex justify-between items-center text-[11px] font-bold">
+<span id="realTanggal" class="realTanggalFull">Memuat tanggal real - Senin, 28 September 2026 - TA 2026/2027</span>
+<span id="liveClock" class="realJam">00:00:00 WIB</span>
+</div>
+
+<main class="flex-1 px-5 pt-5 pb-8 space-y-5">
+<!-- 2. Hero Section / Welcome Graphic -->
+<section class="space-y-3">
+<!-- Sticker Tag Badges Row -->
+<div class="flex flex-wrap items-center gap-2">
+<div class="inline-flex items-center gap-1 bg-primary-container text-on-background border-[2px] border-on-background px-2.5 py-1 rounded-md [box-shadow:2px_2px_0px_#1c1b1b] -rotate-1">
+<span class="material-symbols-outlined text-sm font-bold" data-icon="school">school</span>
+<span class="font-label-sm text-label-sm uppercase tracking-wider font-extrabold">VERSI 0.5 - SISTEM TERPADU</span>
+</div>
+<div class="inline-flex items-center gap-1 bg-secondary-fixed text-on-secondary-fixed border-[2px] border-on-background px-2 py-1 rounded-md [box-shadow:2px_2px_0px_#1c1b1b] rotate-1">
+<span class="material-symbols-outlined text-sm font-bold" data-icon="verified">verified</span>
+<span class="font-label-sm text-label-sm uppercase font-extrabold">TERAKREDITASI</span>
+</div>
+</div>
+<!-- Headline Typography -->
+<div class="space-y-1">
+<h1 class="font-headline-xl-mobile text-headline-xl-mobile font-bold text-on-background leading-none">
+      Selamat Datang di AbsenSiswa!
+     </h1>
+<p class="font-body-md text-body-md text-on-surface-variant font-medium">
+      Platform Presensi &amp; Rekap Sikap Terpadu Berbasis Geofence &amp; QR Code. Silakan tentukan hak akses peran Anda:
+     </p>
+</div>
+</section>
+<!-- 3. Role Selection Cards (Pilihan Peran) -->
+<section class="space-y-4">
+<!-- A. KARTU SISWA (Highlighted Primary Choice) -->
+<div class="relative bg-surface-container-lowest border-[3px] border-on-background rounded-xl p-4 [box-shadow:4px_4px_0px_#1c1b1b] transition-all hover:translate-x-[1px] hover:translate-y-[1px] hover:[box-shadow:3px_3px_0px_#1c1b1b]">
+<!-- Floating Highlight Ribbon -->
+<div class="absolute -top-3.5 right-3 bg-tertiary-fixed text-on-tertiary-fixed border-[2px] border-on-background px-2.5 py-0.5 rounded-full [box-shadow:2px_2px_0px_#1c1b1b] flex items-center gap-1 z-10">
+<span class="material-symbols-outlined text-xs material-symbols-fill" data-icon="verified">verified</span>
+<span class="font-label-sm text-label-sm tracking-wider font-extrabold uppercase">AKSES UTAMA</span>
+</div>
+<!-- Card Header & Badge -->
+<div class="flex items-start gap-3 mb-2.5">
+<div class="w-12 h-12 bg-primary-container border-[2.5px] border-on-background rounded-lg flex items-center justify-center [box-shadow:2.5px_2.5px_0px_#1c1b1b] shrink-0">
+<span class="material-symbols-outlined text-on-background text-2xl material-symbols-fill" data-icon="badge">badge</span>
+</div>
+<div class="flex-1">
+<div class="flex items-center gap-2">
+<span class="font-headline-md text-headline-md font-bold text-on-background">SAYA SISWA</span>
+<span class="bg-secondary-fixed text-on-secondary-fixed font-label-sm text-label-sm border-[1.5px] border-on-background px-1.5 py-0.5 rounded font-bold uppercase">PELAJAR</span>
+</div>
+<p class="font-body-sm text-body-sm text-on-surface-variant mt-0.5 leading-snug">
+        Masuk instan menggunakan Kode Undangan Kelas atau Scan QR Aktivasi dari Wali Kelas.
+       </p>
+</div>
+</div>
+<!-- Mini Invitation Code Preview Box -->
+<div class="bg-surface-container-low border-[2px] border-on-background rounded-lg p-2.5 my-3 [box-shadow:2px_2px_0px_#1c1b1b]">
+<div class="flex justify-between items-center mb-1.5">
+<span class="font-label-sm text-label-sm text-on-surface font-extrabold flex items-center gap-1 uppercase">
+<span class="material-symbols-outlined text-sm font-bold" data-icon="key">key</span>
+        PUNYA KODE UNDANGAN?
+       </span>
+<span class="bg-primary-container border border-on-background text-on-background font-label-sm text-label-sm px-1 rounded font-bold">6 DIGIT</span>
+</div>
+<div class="flex items-center gap-2">
+<input class="w-full bg-surface-container-lowest border-[2px] border-on-background rounded px-3 py-1.5 font-label-md text-label-md text-on-background font-bold tracking-widest focus:outline-none cursor-default [box-shadow:inset_1.5px_1.5px_0px_#1c1b1b]" placeholder="CONTOH: RPL1-7A" readonly="" type="text" value="RPL-XII-B2"/>
+</div>
+</div>
+<!-- Primary CTA Button (Tactile Action) -->
+<button class="w-full bg-primary-container text-on-background border-[2.5px] border-on-background py-2.5 px-3 rounded-lg font-label-lg text-label-lg font-bold uppercase flex items-center justify-between [box-shadow:3px_3px_0px_#1c1b1b] hover:translate-x-[1px] hover:translate-y-[1px] hover:[box-shadow:2px_2px_0px_#1c1b1b] active:translate-x-[3px] active:translate-y-[3px] active:[box-shadow:0px_0px_0px_#1c1b1b] transition-all">
+<span class="flex items-center gap-1.5">
+<span class="material-symbols-outlined text-lg font-extrabold" data-icon="login">login</span>
+       Gabung dengan Kode Undangan
+      </span>
+<span class="material-symbols-outlined font-extrabold" data-icon="arrow_forward">arrow_forward</span>
+</button>
+<!-- Secondary Quick Link for Existing Students -->
+<div class="mt-2.5 pt-2 border-t-[1.5px] border-on-background flex items-center justify-between text-on-surface">
+<span class="font-body-sm text-body-sm font-medium">Sudah pernah aktivasi?</span>
+<button class="font-label-md text-label-md font-bold text-secondary flex items-center gap-0.5 hover:underline">
+<span>Masuk via PIN / Biometrik</span>
+<span class="material-symbols-outlined text-sm font-bold" data-icon="how_to_reg">how_to_reg</span>
+</button>
+</div>
+</div>
+<!-- B. KARTU GURU & TENAGA PENDIDIK -->
+<div class="bg-surface-container-lowest border-[2.5px] border-on-background rounded-xl p-4 [box-shadow:4px_4px_0px_#1c1b1b] transition-all hover:translate-x-[1px] hover:translate-y-[1px] hover:[box-shadow:3px_3px_0px_#1c1b1b]">
+<div class="flex items-start gap-3 mb-3">
+<div class="w-12 h-12 bg-secondary-fixed border-[2.5px] border-on-background rounded-lg flex items-center justify-center [box-shadow:2.5px_2.5px_0px_#1c1b1b] shrink-0">
+<span class="material-symbols-outlined text-on-secondary-fixed text-2xl material-symbols-fill" data-icon="supervisor_account">supervisor_account</span>
+</div>
+<div class="flex-1">
+<div class="flex items-center gap-1.5 flex-wrap">
+<span class="font-headline-md text-headline-md font-bold text-on-background">GURU &amp; TENDIK</span>
+<span class="bg-surface-container-high text-on-surface border-[1.5px] border-on-background px-1.5 py-0.2 rounded font-label-sm text-label-sm font-extrabold uppercase">STAF / WALI</span>
+</div>
+<p class="font-body-sm text-body-sm text-on-surface-variant mt-1 leading-snug">
+        Akses pengelolaan presensi kelas, persetujuan izin, buka sesi QR, dan ekspor laporan rekapitulasi.
+       </p>
+</div>
+</div>
+<!-- Feature Bullets Pill Row -->
+<div class="grid grid-cols-2 gap-1.5 mb-3.5">
+<div class="flex items-center gap-1 bg-surface-container-low border-[1.5px] border-on-background px-2 py-1 rounded text-on-surface">
+<span class="material-symbols-outlined text-sm text-secondary font-bold" data-icon="qr_code">qr_code</span>
+<span class="font-label-sm text-label-sm uppercase font-bold">Buka Sesi QR</span>
+</div>
+<div class="flex items-center gap-1 bg-surface-container-low border-[1.5px] border-on-background px-2 py-1 rounded text-on-surface">
+<span class="material-symbols-outlined text-sm text-tertiary font-bold" data-icon="verified">verified</span>
+<span class="font-label-sm text-label-sm uppercase font-bold">Validasi Izin</span>
+</div>
+</div>
+<!-- Guru CTA Button -->
+<button class="w-full bg-surface-container-lowest text-on-background border-[2.5px] border-on-background py-2.5 px-3 rounded-lg font-label-lg text-label-lg font-bold uppercase flex items-center justify-between [box-shadow:3px_3px_0px_#1c1b1b] hover:bg-secondary-fixed hover:translate-x-[1px] hover:translate-y-[1px] hover:[box-shadow:2px_2px_0px_#1c1b1b] active:translate-x-[3px] active:translate-y-[3px] active:[box-shadow:0px_0px_0px_#1c1b1b] transition-all">
+<span class="flex items-center gap-1.5">
+<span class="material-symbols-outlined text-lg font-extrabold" data-icon="lock_open">lock_open</span>
+       Masuk Akun Kedinasan / NIP
+      </span>
+<span class="material-symbols-outlined font-extrabold" data-icon="chevron_right">chevron_right</span>
+</button>
+</div>
+</section>
+<!-- 4. Footer & Trust Badges & Help -->
+<section class="space-y-3 pt-2">
+<!-- Geofence & Hardware Security Pill -->
+<div class="bg-surface-container border-[2px] border-on-background rounded-lg p-2.5 flex items-center gap-2.5 [box-shadow:2px_2px_0px_#1c1b1b]">
+<div class="w-7 h-7 bg-tertiary-fixed rounded-md border-[1.5px] border-on-background flex items-center justify-center shrink-0">
+<span class="material-symbols-outlined text-base text-on-tertiary-fixed font-bold" data-icon="security">security</span>
+</div>
+<div class="flex-1">
+<p class="font-label-sm text-label-sm text-on-surface font-extrabold uppercase leading-tight">Keamanan Geofencing Aktif</p>
+<p class="font-body-sm text-body-sm text-on-surface-variant font-medium leading-none">1 Perangkat untuk 1 Siswa (Anti Titip Absen)</p>
+</div>
+</div>
+<!-- Help Link Action Box -->
+<div class="text-center space-y-1">
+<p class="font-body-sm text-body-sm text-on-surface-variant font-medium">
+      Belum memiliki kode undangan atau lupa akses?
+     </p>
+<a class="inline-flex items-center gap-1 font-label-md text-label-md font-bold text-on-background bg-surface-container-lowest border-[1.5px] border-on-background px-3 py-1 rounded-full [box-shadow:1.5px_1.5px_0px_#1c1b1b] hover:bg-primary-container transition-colors" href="/">
+<span class="material-symbols-outlined text-base" data-icon="help">help</span>
+      Hubungi Tim IT Sekolah / Guru Piket
+     </a>
+</div>
+</section>
+</main>
+<!-- Bottom Anchor Bar / School Copyright -->
+<footer class="w-full bg-surface-container-lowest border-t-[2.5px] border-on-background px-5 py-2.5 flex items-center justify-between">
+<div class="flex items-center gap-1.5">
+<span class="material-symbols-outlined text-sm text-on-surface-variant" data-icon="school">school</span>
+<span class="font-label-sm text-label-sm text-on-surface-variant font-bold">SMKN 1 JAKARTA</span>
+</div>
+<span class="font-label-sm text-label-sm text-on-surface-variant font-bold uppercase tracking-wider">
+    SIAKAD CLOUD © 2027
+   </span>
+</footer>
+</div>
+<script src="/socket.io/socket.io.js"></script>
+<script src="https://unpkg.com/html5-qrcode@2.3.8/html5-qrcode.min.js"></script>
+<script src="/js/app.js"></script>
+<!-- No Old Data -->
+<nav class="fixed bottom-0 left-0 w-full z-50 flex justify-around items-center px-4 py-2 bg-white border-t-[3px] border-black [box-shadow:0px_-3px_0px_#000] max-w-[420px] left-1/2 -translate-x-1/2 md:max-w-5xl md:left-0 md:translate-x-0">
+<a class="flex flex-col items-center justify-center px-3 py-1.5 font-label-sm text-label-sm" href="/index.html"><span class="material-symbols-outlined text-[20px]">home</span><span>Home</span></a>
+<a class="flex flex-col items-center justify-center px-3 py-1.5 font-label-sm text-label-sm" href="/dashboard-siswa.html"><span class="material-symbols-outlined text-[20px]">dashboard</span><span>Siswa</span></a>
+<a class="flex flex-col items-center justify-center px-3 py-1.5 font-label-sm text-label-sm" href="/dashboard-guru.html"><span class="material-symbols-outlined text-[20px]">supervisor_account</span><span>Guru</span></a>
+<a class="flex flex-col items-center justify-center px-3 py-1.5 font-label-sm text-label-sm" href="/scan.html"><span class="material-symbols-outlined text-[20px]">qr_code_scanner</span><span>Scan</span></a>
+<a class="flex flex-col items-center justify-center px-3 py-1.5 font-label-sm text-label-sm" href="/siswa.html"><span class="material-symbols-outlined text-[20px]">groups</span><span>Siswa</span></a>
+<a class="flex flex-col items-center justify-center px-3 py-1.5 font-label-sm text-label-sm" href="/settings.html"><span class="material-symbols-outlined text-[20px]">settings</span><span>Settings</span></a>
+</nav>
+</body></html>

@@ -1,0 +1,109 @@
+<!DOCTYPE html>
+<html lang="id"><head>
+<meta charset="utf-8"/><meta name="viewport" content="width=device-width, initial-scale=1.0"/>
+<title>Dashboard Siswa </title>
+<link href="https://fonts.googleapis.com/css2?family=Plus+Jakarta+Sans:wght@500;600;700&family=Space+Grotesk:wght@600;700;800&display=swap" rel="stylesheet"/>
+<link href="https://fonts.googleapis.com/css2?family=Material+Symbols+Outlined:wght,FILL@100..700,0..1&display=swap" rel="stylesheet"/>
+<script src="https://cdn.tailwindcss.com?plugins=forms,container-queries"></script>
+<script id="tailwind-config">tailwind.config={darkMode:"class",theme:{extend:{colors:{"primary-container":"#ffe600","background":"#fcf9f8","on-background":"#1c1b1b","secondary-container":"#8a4cfc","tertiary-container":"#67ffb7","error":"#ba1a1a","error-container":"#ffdad6","surface-container-lowest":"#ffffff","surface":"#fcf9f8","surface-container":"#f0edec","surface-variant":"#e5e2e1","on-surface-variant":"#4b4731","outline-variant":"#cdc7aa","secondary-fixed":"#eaddff","tertiary-fixed":"#4dffb2","primary-fixed":"#fde400","primary":"#6a5f00","on-surface":"#1c1b1b"},borderRadius:{DEFAULT:"0.25rem",lg:"0.5rem",xl:"0.75rem",full:"9999px"},fontFamily:{"body-lg":["Plus Jakarta Sans"],"headline-xl":["Space Grotesk"]}}}}</script>
+<style>.material-symbols-outlined{font-variation-settings:'FILL' 0,'wght' 600,'GRAD' 0,'opsz' 24} .fill-icon{font-variation-settings:'FILL' 1,'wght' 700,'GRAD' 0,'opsz' 24} body{min-height:max(884px,100dvh)}</style>
+</head>
+<body class="bg-background text-on-background min-h-screen flex justify-center selection:bg-primary-container selection:text-on-background">
+<div class="w-full max-w-[420px] bg-background min-h-screen relative flex flex-col pb-28 border-x-[2.5px] border-on-background shadow-2xl">
+<header class="sticky top-0 z-50 flex justify-between items-center w-full px-5 py-3 bg-background border-b-[2.5px] border-on-background [box-shadow:0px_3px_0px_#1c1b1b]">
+<div class="flex items-center gap-3">
+<div class="relative">
+<div class="w-11 h-11 rounded-full border-[2.5px] border-on-background overflow-hidden bg-primary-container flex items-center justify-center [box-shadow:2px_2px_0px_#1c1b1b] font-bold text-xl" id="realAvatar">?</div>
+<span class="absolute -bottom-1 -right-2 bg-primary-container text-on-background font-label-sm text-label-sm border-[1.5px] border-on-background px-1.5 py-0.5 rounded rotate-[-4deg] [box-shadow:1px_1px_0px_#1c1b1b] uppercase realKelasNama" id="realKelasNama"></span>
+</div>
+<div class="flex flex-col">
+<div class="flex items-center gap-1.5">
+<h1 class="font-headline-md text-headline-md tracking-tight text-on-background" id="realSiswaNama">Memuat siswa real...</h1>
+<span class="material-symbols-outlined fill-icon text-secondary text-[16px]">verified</span>
+</div>
+<span class="font-label-sm text-label-sm text-on-surface-variant flex items-center gap-1">
+<span class="material-symbols-outlined text-[13px]">school</span>
+<span id="realSekolahNama">Memuat sekolah real... </span>
+</span>
+</div>
+</div>
+<button class="relative w-10 h-10 rounded-lg bg-surface-container-lowest border-[2.5px] border-on-background flex items-center justify-center [box-shadow:3px_3px_0px_#1c1b1b]">
+<span class="material-symbols-outlined text-on-background">notifications</span>
+<span class="absolute -top-1 -right-1 w-3.5 h-3.5 bg-error border-[2px] border-on-background rounded-full"></span>
+</button>
+</header>
+
+<main class="flex-1 px-5 pt-5 space-y-5">
+<!-- Status Presensi -->
+<section class="bg-primary-container border-[3px] border-on-background rounded-xl p-4 [box-shadow:4px_4px_0px_#1c1b1b] relative overflow-hidden">
+<div class="absolute -right-6 -bottom-6 opacity-10 pointer-events-none select-none"><span class="material-symbols-outlined text-[120px]">how_to_reg</span></div>
+<div class="flex justify-between items-start mb-3">
+<div>
+<div class="flex items-center gap-1.5 font-label-md text-label-md uppercase text-on-primary-container mb-0.5"><span class="material-symbols-outlined text-[16px]">calendar_month</span><span id="realTanggal">Memuat tanggal real - TA 2026/2027</span></div>
+<div class="font-headline-xl-mobile text-headline-xl-mobile tracking-tight font-extrabold text-on-background flex items-baseline gap-1" id="liveClock">00:00:00 <span class="font-label-md text-label-md uppercase text-on-surface-variant font-bold">WIB </span></div>
+</div>
+<div class="bg-error-container border-[2px] border-on-background rounded-full px-2.5 py-1 [box-shadow:2px_2px_0px_#1c1b1b] flex items-center gap-1"><span class="w-2 h-2 rounded-full bg-error animate-ping"></span><span class="font-label-sm text-label-sm text-error font-extrabold tracking-wider uppercase">BELUM CHECK-IN - DATA NOL - FINAL NATIVE</span></div>
+</div>
+<div class="bg-surface-container-lowest border-[2px] border-on-background rounded-lg p-3 grid grid-cols-2 gap-2 text-on-background [box-shadow:2px_2px_0px_#1c1b1b]">
+<div class="border-r-[2px] border-on-background pr-2 flex items-center gap-2"><div class="w-7 h-7 bg-tertiary-container border-[1.5px] border-on-background rounded flex items-center justify-center"><span class="material-symbols-outlined text-[18px] text-tertiary font-bold">schedule</span></div><div><span class="font-label-sm text-label-sm text-on-surface-variant block uppercase">Jam Masuk</span><span class="font-headline-md text-headline-md text-on-background">07:00</span></div></div>
+<div class="pl-2 flex items-center gap-2"><div class="w-7 h-7 bg-error-container border-[1.5px] border-on-background rounded flex items-center justify-center"><span class="material-symbols-outlined text-[18px] text-error font-bold">timer</span></div><div><span class="font-label-sm text-label-sm text-on-surface-variant block uppercase">Toleransi</span><span class="font-headline-md text-headline-md text-error">07:15</span></div></div>
+</div>
+</section>
+
+<!-- Geo-fencing -->
+<section class="bg-surface-container-lowest border-[2.5px] border-on-background rounded-xl p-4 [box-shadow:4px_4px_0px_#1c1b1b] space-y-3.5">
+<div class="bg-tertiary-container border-[2px] border-on-background rounded-lg p-2.5 flex items-center justify-between [box-shadow:2px_2px_0px_#1c1b1b]">
+<div class="flex items-center gap-2"><span class="material-symbols-outlined text-tertiary text-[20px] font-bold fill-icon">location_on</span><div class="flex flex-col"><span class="font-label-sm text-label-sm text-on-tertiary-container uppercase tracking-wide">Status Lokasi GPS </span><span class="font-body-sm text-body-sm font-bold text-on-background">Belum setup lokasi real - Setup di /settings.html</span></div></div><span class="material-symbols-outlined text-tertiary font-extrabold text-[22px]">check_circle</span>
+</div>
+<div class="flex flex-col gap-2.5">
+<button class="w-full bg-secondary-container text-on-secondary-container font-headline-md text-headline-md uppercase border-[3px] border-on-background rounded-lg py-3 px-4 flex items-center justify-center gap-2.5 [box-shadow:4px_4px_0px_#1c1b1b]"><span class="material-symbols-outlined text-[24px]">qr_code_scanner</span><span>Pindai QR Presensi - Real GPS</span></button>
+<button class="w-full bg-surface-container-lowest text-on-background font-label-lg text-label-lg border-[2.5px] border-on-background rounded-lg py-2.5 px-4 flex items-center justify-center gap-2 [box-shadow:3px_3px_0px_#1c1b1b]"><span class="material-symbols-outlined text-[18px]">history</span><span>Cek Riwayat Lengkap </span></button>
+</div>
+</section>
+
+<!-- Rekap - All 0 -->
+<section class="space-y-2.5">
+<div class="flex justify-between items-center px-1">
+<h2 class="font-headline-md text-headline-md text-on-background uppercase tracking-tight flex items-center gap-1.5"><span class="material-symbols-outlined text-secondary text-[20px]">pie_chart</span>Rekap Bulan Ini </h2>
+<span class="font-label-sm text-label-sm bg-surface-container-highest border-[1.5px] border-on-background px-2 py-0.5 rounded font-bold uppercase">TA 2026/2027</span>
+</div>
+<div class="grid grid-cols-2 gap-3">
+<div class="bg-tertiary-container border-[2.5px] border-on-background rounded-xl p-3.5 [box-shadow:3px_3px_0px_#1c1b1b]"><div class="flex items-center justify-between"><span class="font-label-sm text-label-sm uppercase text-on-tertiary-container">Hadir</span><span class="material-symbols-outlined text-tertiary text-[18px]">check_circle</span></div><div class="mt-2"><div class="font-headline-xl-mobile text-headline-xl-mobile text-on-background leading-none" id="realHadir">0</div><span class="font-body-sm text-body-sm text-on-tertiary-container font-semibold">Hari </span></div></div>
+<div class="bg-primary-container border-[2.5px] border-on-background rounded-xl p-3.5 [box-shadow:3px_3px_0px_#1c1b1b]"><div class="flex items-center justify-between"><span class="font-label-sm text-label-sm uppercase text-on-primary-container">Terlambat</span><span class="material-symbols-outlined text-on-primary-fixed-variant text-[18px]">schedule</span></div><div class="mt-2"><div class="font-headline-xl-mobile text-headline-xl-mobile text-on-background leading-none" id="realTerlambat">0</div><span class="font-body-sm text-body-sm text-on-primary-container font-semibold">Hari </span></div></div>
+<div class="bg-secondary-fixed border-[2.5px] border-on-background rounded-xl p-3.5 [box-shadow:3px_3px_0px_#1c1b1b]"><div class="flex items-center justify-between"><span class="font-label-sm text-label-sm uppercase text-on-secondary-fixed-variant">Izin / Sakit</span><span class="material-symbols-outlined text-secondary text-[18px]">sick</span></div><div class="mt-2"><div class="font-headline-xl-mobile text-headline-xl-mobile text-on-background leading-none" id="realIzin">0</div><span class="font-body-sm text-body-sm text-on-secondary-fixed-variant font-semibold">Hari </span></div></div>
+<div class="bg-error-container border-[2.5px] border-on-background rounded-xl p-3.5 [box-shadow:3px_3px_0px_#1c1b1b]"><div class="flex items-center justify-between"><span class="font-label-sm text-label-sm uppercase text-on-error-container">Alpha</span><span class="material-symbols-outlined text-error text-[18px]">person_off</span></div><div class="mt-2"><div class="font-headline-xl-mobile text-headline-xl-mobile text-on-background leading-none" id="realAlpha">0</div><span class="font-body-sm text-body-sm text-on-error-container font-semibold">Hari </span></div></div>
+</div>
+</section>
+
+<!-- Riwayat - Empty State No Initials -->
+<section class="space-y-2 pb-2">
+<div class="flex justify-between items-center px-1">
+<h2 class="font-headline-md text-headline-md text-on-background uppercase tracking-tight flex items-center gap-1.5"><span class="material-symbols-outlined text-primary text-[20px]">history_edu</span>Riwayat 3 Hari Terakhir </h2>
+<a class="font-label-sm text-label-sm text-secondary font-bold underline uppercase" href="/rekap.html">Lihat Semua</a>
+</div>
+<div class="bg-white border-[3px] border-black p-8 rounded-xl [box-shadow:4px_4px_0px_#000] text-center">
+<div class="w-16 h-16 bg-[#F6F3F2] border-[3px] border-black rounded-full flex items-center justify-center mx-auto"><span class="material-symbols-outlined text-[32px]">history</span></div>
+<p class="font-bold text-lg mt-4">Belum ada riwayat absensi </p>
+<p class="text-sm mt-2 text-on-surface-variant">Riwayat akan tampil di sini setelah absensi</p>
+<p class="text-xs mt-1">Riwayat dari API real
+<a href="/scan.html" class="inline-block mt-4 bg-[#FFE600] border-[3px] border-black px-6 py-2 rounded-full font-bold [box-shadow:3px_3px_0px_#000]">Scan QR Absen Real - GPS Real</a>
+</div>
+</section>
+
+<div class="bg-[#FFE600] border-[3px] border-black p-4 rounded-xl [box-shadow:4px_4px_0px_#000] text-[11px]">
+<b>:</b> Dashboard siswa kosong karena database . Tidak ada data lama. Semua data dari API real. Jika login dengan siswa real, nama real akan tampil di <span id="realSiswaNama">realSiswaNama</span> via <code>loadProfilRealTotal()</code>. Desain original neo-brutalist tetap.
+</div>
+</main>
+
+<nav class="fixed bottom-0 left-0 w-full z-50 flex justify-around items-center px-4 py-2 bg-surface-container-lowest border-t-[3px] border-on-background [box-shadow:0px_-3px_0px_#1c1b1b] max-w-[420px] left-1/2 -translate-x-1/2">
+<a class="flex flex-col items-center justify-center bg-primary-container text-on-surface border-[2px] border-on-background [box-shadow:2px_2px_0px_#1c1b1b] rounded px-3 py-1.5 font-label-sm text-label-sm" href="/"><span class="material-symbols-outlined text-[20px]" style="font-variation-settings: 'FILL' 1;">home</span><span>Beranda</span></a>
+<a class="flex flex-col items-center justify-center text-on-surface-variant px-3 py-1.5 font-label-sm text-label-sm" href="/scan.html"><span class="material-symbols-outlined text-[20px]">qr_code_scanner</span><span>Scan</span></a>
+<a class="flex flex-col items-center justify-center text-on-surface-variant px-3 py-1.5 font-label-sm text-label-sm" href="/izin.html"><span class="material-symbols-outlined text-[20px]">assignment</span><span>Izin</span></a>
+<a class="flex flex-col items-center justify-center text-on-surface-variant px-3 py-1.5 font-label-sm text-label-sm" href="/rekap.html"><span class="material-symbols-outlined text-[20px]">analytics</span><span>Rekap</span></a>
+</nav>
+</div>
+
+<script src="/socket.io/socket.io.js"></script>
+<script src="https://unpkg.com/html5-qrcode@2.3.8/html5-qrcode.min.js"></script>
+<script src="/js/app.js"></script>
+</body></html>
