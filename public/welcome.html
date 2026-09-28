@@ -156,9 +156,9 @@
 <!-- Main Scrollable Canvas Content -->
 
 <!-- Date/Time Real - Fix tata letak berbeda dengan sekarang 28 Sep 2026 -->
-<div class="bg-[#FFE600] border-[2px] border-black p-2 rounded-xl mx-5 mt-3 flex justify-between items-center text-[11px] font-bold">
-<span id="realTanggal" class="realTanggalFull">Memuat tanggal real - Senin, 28 September 2026 - TA 2026/2027</span>
-<span id="liveClock" class="realJam">00:00:00 WIB</span>
+<div class="bg-black text-white p-3 flex justify-between items-center text-[11px] font-black min-h-[40px] will-change-transform" style="font-variant-numeric:tabular-nums; transform:translateZ(0)">
+<span id="realTanggal" class="truncate-ellipsis max-w-[60%]">Memuat...</span>
+<span id="liveClock" class="shrink-0 tabular-nums min-w-[90px] text-right" style="font-variant-numeric:tabular-nums">00:00:00 WIB</span>
 </div>
 
 <main class="flex-1 px-5 pt-5 pb-8 space-y-5">
@@ -315,7 +315,7 @@
 <script src="https://unpkg.com/html5-qrcode@2.3.8/html5-qrcode.min.js"></script>
 <script src="/js/app.js"></script>
 <!-- No Old Data -->
-<nav class="fixed bottom-0 left-0 w-full z-50 flex justify-around items-center px-4 py-2 bg-white border-t-[3px] border-black [box-shadow:0px_-3px_0px_#000] max-w-[420px] left-1/2 -translate-x-1/2 md:max-w-5xl md:left-0 md:translate-x-0">
+<nav class="fixed bottom-0 w-full max-w-[420px] bg-white border-t-[3px] border-black flex justify-around py-2 z-50 left-1/2 -translate-x-1/2 md:max-w-5xl md:left-0 md:translate-x-0">
 <a class="flex flex-col items-center justify-center px-3 py-1.5 font-label-sm text-label-sm" href="/index.html"><span class="material-symbols-outlined text-[20px]">home</span><span>Home</span></a>
 <a class="flex flex-col items-center justify-center px-3 py-1.5 font-label-sm text-label-sm" href="/dashboard-siswa.html"><span class="material-symbols-outlined text-[20px]">dashboard</span><span>Siswa</span></a>
 <a class="flex flex-col items-center justify-center px-3 py-1.5 font-label-sm text-label-sm" href="/dashboard-guru.html"><span class="material-symbols-outlined text-[20px]">supervisor_account</span><span>Guru</span></a>

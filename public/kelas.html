@@ -1,90 +1,120 @@
 <!DOCTYPE html>
-<html lang="id" class="overflow-x-hidden"><head>
-<meta charset="utf-8"/><meta name="viewport" content="width=device-width, initial-scale=1.0"/>
-<title>Kelola Kelas - Khusus Guru - Final Native</title>
-<link href="https://fonts.googleapis.com/css2?family=Plus+Jakarta+Sans:wght@500;600;700&family=Space+Grotesk:wght@600;700;800&display=swap" rel="stylesheet"/>
+<html lang="id" class="overflow-x-hidden">
+<head>
+<meta charset="utf-8"/>
+<meta name="viewport" content="width=device-width, initial-scale=1.0"/>
+<title>Digital Apsen - Kelola Kelas</title>
+<link href="https://fonts.googleapis.com/css2?family=Plus+Jakarta+Sans:wght@500;600;700;800&family=Space+Grotesk:wght@600;700;800&display=swap" rel="stylesheet"/>
 <link href="https://fonts.googleapis.com/css2?family=Material+Symbols+Outlined:wght,FILL@100..700,0..1&display=swap" rel="stylesheet"/>
-<script src="https://cdn.tailwindcss.com?plugins=forms,container-queries"></script>
-<style>body{font-family:'Plus Jakarta Sans'} h1,h2{font-family:'Space Grotesk'} .material-symbols-outlined{font-variation-settings:'FILL' 0,'wght' 600,'GRAD' 0,'opsz' 24}html,body{overflow-x:hidden; max-width:100vw; position:relative} *{max-width:100%; box-sizing:border-box} body{overscroll-behavior-x:none}.truncate-ellipsis{overflow:hidden; text-overflow:ellipsis; white-space:nowrap; max-width:100%} .truncate-2{overflow:hidden; text-overflow:ellipsis; white-space:nowrap; max-width:140px; display:inline-block} .truncate-long{overflow:hidden; text-overflow:ellipsis; white-space:nowrap; max-width:180px}</style>
+<script src="https://cdn.tailwindcss.com"></script>
+<style>
+html{overflow-x:hidden; width:100vw} body{overflow-x:hidden; width:100vw; touch-action:pan-y; background:#F5F5DC; font-family:'Plus Jakarta Sans'} h1,h2{font-family:'Space Grotesk'} .material-symbols-outlined{font-variation-settings:'FILL' 0,'wght' 600,'GRAD' 0,'opsz' 24} .truncate-ellipsis{overflow:hidden; text-overflow:ellipsis; white-space:nowrap; max-width:100%}
+</style>
 </head>
-<body class="bg-[#FDF8F0] min-h-screen overflow-x-hidden w-full max-w-[100vw]">
-<header class="border-b-[3px] border-black bg-white sticky top-0 z-50">
-<div class="max-w-5xl mx-auto px-5 py-3 flex justify-between items-center">
-<a href="/" class="flex items-center gap-2"><div class="w-10 h-10 bg-[#8A4CFC] border-[3px] border-black rounded-xl flex items-center justify-center font-bold text-white">K</div><span class="font-bold text-sm">Kelola Kelas - Khusus Guru</span></a>
-<div class="flex gap-2"><span class="bg-[#FFE600] border-[2px] border-black px-3 py-1 rounded-full text-[10px] font-bold">HANYA GURU</span><a href="/" class="border-[2px] border-black px-3 py-1 rounded-full text-xs font-bold bg-white">Home</a></div>
+<body class="min-h-screen flex justify-center">
+<div class="w-full max-w-[420px] bg-[#F5F5DC] min-h-screen border-x-[3px] border-black flex flex-col pb-20 overflow-x-hidden relative">
+
+<header class="bg-[#8A4CFC] border-b-[3px] border-black p-4 sticky top-0 z-50 flex justify-between items-center text-white">
+<div class="flex items-center gap-3">
+<div class="w-10 h-10 bg-black rounded-xl flex items-center justify-center font-black text-[#FFE600] text-sm border-2 border-black">K</div>
+<div>
+<p class="font-black text-[13px] uppercase leading-none">Kelola Kelas</p>
+<p class="text-[10px] font-bold opacity-80 mt-0.5">Khusus Wali Kelas</p>
+</div>
+</div>
+<div class="flex gap-2">
+<span class="bg-[#FFE600] text-black border-[2px] border-black px-3 py-1 rounded-full text-[9px] font-black uppercase">Guru Only</span>
+<a href="/" class="bg-white text-black border-[2px] border-black px-3 py-1 rounded-full text-[10px] font-black">Home</a>
 </div>
 </header>
 
-<div class="bg-[#FFE600] border-[2px] border-black p-2 rounded-xl mx-5 mt-3 flex justify-between items-center text-[11px] font-bold">
-<span id="realTanggal" class="realTanggalFull">Senin, 28 September 2026 • TA 2026/2027</span>
-<span id="liveClock" class="realJam">00:00:00 WIB</span>
+<div class="bg-black text-white p-3 flex justify-between items-center text-[11px] font-black min-h-[40px] will-change-transform" style="font-variant-numeric:tabular-nums; transform:translateZ(0)">
+<span id="realTanggal" class="truncate-ellipsis max-w-[60%]">Memuat...</span>
+<span id="liveClock" class="shrink-0 tabular-nums min-w-[90px] text-right" style="font-variant-numeric:tabular-nums">00:00:00 WIB</span>
 </div>
 
-<main class="max-w-5xl mx-auto px-5 py-6">
+<main class="p-5 flex flex-col gap-5 flex-1">
+
 <div class="bg-[#8A4CFC] text-white border-[3px] border-black p-5 rounded-[16px] [box-shadow:6px_6px_0px_#000]">
-<h1 class="text-[26px] font-extrabold uppercase leading-[28px]">KELOLA KELAS<br/>KHUSUS GURU - WALI KELAS</h1>
-<p class="mt-2 text-sm">Halaman ini hanya bisa diatur oleh guru wali kelas, bukan murid. Guru bisa ganti nama kelas, tahun ajaran 2026/2027, kode undangan, dan pindah siswa antar kelas. Murid tidak bisa akses setting kelas.</p>
-<div class="mt-3 flex gap-2 text-[10px]"><span class="bg-black text-white px-3 py-1 rounded-full">GURU ONLY</span><span class="bg-white text-black border-2 border-black px-3 py-1 rounded-full">TA 2026/2027</span><span class="bg-[#67FFB7] text-black border-2 border-black px-3 py-1 rounded-full">REAL-TIME</span></div>
+<h1 class="text-[18px] font-black uppercase leading-[20px]">Kelola Kelas<br/>Wali Kelas</h1>
+<p class="mt-2 text-[11px] leading-[14px] text-white/80">Halaman khusus guru wali kelas untuk mengatur nama kelas, tahun ajaran, kode undangan, dan pindah siswa.</p>
+<div class="mt-3 flex gap-2">
+<span class="bg-black text-white px-3 py-1 rounded-full text-[9px] font-black uppercase">Guru Only</span>
+<span class="bg-white text-black border-2 border-black px-3 py-1 rounded-full text-[9px] font-black uppercase">2026/2027</span>
+</div>
 </div>
 
-<div id="guruOnlyCheck" class="mt-6 bg-white border-[3px] border-black p-5 rounded-[16px] [box-shadow:4px_4px_0px_#000] text-center">
-<p class="font-bold">Memeriksa akses guru...</p>
-<p class="text-sm mt-1">Halaman kelas hanya untuk guru wali kelas</p>
+<div id="guruOnlyCheck" class="bg-white border-[3px] border-black p-6 rounded-[16px] [box-shadow:4px_4px_0px_#000] text-center">
+<div class="w-12 h-12 bg-[#F5F5DC] border-[2px] border-black rounded-full flex items-center justify-center mx-auto animate-pulse"><span class="material-symbols-outlined">hourglass_top</span></div>
+<p class="font-black mt-3 text-[12px] uppercase">Memeriksa Akses Guru...</p>
+<p class="text-[11px] mt-1 opacity-60">Halaman kelas hanya untuk wali kelas</p>
 </div>
 
-<div id="kelasContent" class="hidden">
-<div class="grid md:grid-cols-2 gap-5 mt-6">
+<div id="kelasContent" class="hidden flex flex-col gap-5">
+
 <div class="bg-white border-[3px] border-black p-5 rounded-[16px] [box-shadow:4px_4px_0px_#000]">
-<h2 class="font-bold uppercase text-sm flex items-center gap-2"><span class="material-symbols-outlined text-[18px]">class</span> Daftar Kelas Real - Khusus Guru</h2>
-<div id="kelasList" class="mt-3 space-y-2">Memuat kelas real...</div>
-<button onclick="loadKelasReal()" class="mt-3 w-full bg-black text-white py-2 rounded-full font-bold text-sm">Reload Real-Time</button>
-<div class="mt-3 p-3 bg-[#F6F3F2] border-2 border-black rounded-xl text-[11px]"><b>Info:</b> Hanya guru wali kelas yang bisa melihat dan mengelola daftar kelas. Murid hanya bisa join via kode undangan, tidak bisa ganti setting kelas.</div>
+<h2 class="font-black uppercase text-[11px] flex items-center gap-2"><span class="material-symbols-outlined text-[18px]">class</span> Daftar Kelas</h2>
+<div id="kelasList" class="mt-3 space-y-3">Memuat kelas...</div>
+<button onclick="loadKelasReal()" class="mt-4 w-full bg-black text-white py-2.5 rounded-full font-black text-[11px] uppercase">Reload</button>
 </div>
+
 <div class="bg-white border-[3px] border-black p-5 rounded-[16px] [box-shadow:4px_4px_0px_#000]">
-<h2 class="font-bold uppercase text-sm flex items-center gap-2"><span class="material-symbols-outlined text-[18px]">edit</span> Ganti Kelas - Khusus Guru</h2>
-<p class="text-[11px] mt-1 text-gray-600">Hanya guru yang bisa ganti nama, tahun, kode undangan kelas via PUT /api/kelas/:id</p>
-<form id="editForm" class="mt-3 space-y-3">
-<input id="editId" placeholder="Kelas ID Real - pilih dari list" class="w-full border-[2px] border-black p-3 rounded-xl text-sm" required/>
-<input id="editNama" placeholder="Nama Baru Real - ex: XII RPL 2" class="w-full border-[2px] border-black p-3 rounded-xl text-sm"/>
-<input id="editTahun" placeholder="Tahun Baru - 2026/2027" class="w-full border-[2px] border-black p-3 rounded-xl text-sm"/>
-<input id="editKode" placeholder="Kode Baru - RPL-XXXX" class="w-full border-[2px] border-black p-3 rounded-xl text-sm"/>
-<button class="w-full bg-[#FFE600] border-[3px] border-black py-3 font-extrabold rounded-full [box-shadow:3px_3px_0px_#000]">GANTI KELAS - KHUSUS GURU</button>
+<h2 class="font-black uppercase text-[11px] flex items-center gap-2"><span class="material-symbols-outlined text-[18px]">edit</span> Edit Kelas</h2>
+<form id="editForm" class="mt-4 space-y-3">
+<input id="editId" placeholder="Kelas ID - pilih dari list" class="w-full border-[2.5px] border-black p-3 rounded-xl text-[12px] font-bold bg-[#F5F5DC]" required/>
+<input id="editNama" placeholder="Nama Baru - ex: XII RPL 2" class="w-full border-[2.5px] border-black p-3 rounded-xl text-[12px] font-bold bg-white"/>
+<input id="editTahun" placeholder="Tahun - 2026/2027" class="w-full border-[2.5px] border-black p-3 rounded-xl text-[12px] font-bold bg-white"/>
+<input id="editKode" placeholder="Kode - RPL-XXXX" class="w-full border-[2.5px] border-black p-3 rounded-xl text-[12px] font-bold bg-white"/>
+<button class="w-full bg-[#FFE600] border-[3px] border-black py-3 font-black rounded-full text-[11px] uppercase [box-shadow:3px_3px_0px_#000]">Simpan Perubahan</button>
 </form>
-<pre id="editRes" class="mt-3 bg-black text-green-400 p-3 text-[11px] rounded-xl max-h-32 overflow-auto hidden"></pre>
-</div>
+<pre id="editRes" class="mt-3 bg-black text-[#00FF88] p-3 text-[11px] rounded-xl max-h-32 overflow-auto hidden border-2 border-black"></pre>
 </div>
 
-<div class="mt-6 bg-white border-[3px] border-black p-5 rounded-[16px] [box-shadow:4px_4px_0px_#000]">
-<h2 class="font-bold uppercase text-sm flex items-center gap-2"><span class="material-symbols-outlined text-[18px]">swap_horiz</span> Pindah Siswa Antar Kelas - Khusus Guru</h2>
-<p class="text-[11px] mt-1 text-gray-600">Hanya guru wali kelas yang bisa pindah siswa antar kelas. Murid tidak bisa pindah sendiri.</p>
-<form id="pindahForm" class="mt-3 grid md:grid-cols-3 gap-3">
-<input id="siswaId" placeholder="Siswa ID Real" class="w-full border-[2px] border-black p-3 rounded-xl text-sm" required/>
-<input id="kelasBaru" placeholder="Kelas Baru ID Real" class="w-full border-[2px] border-black p-3 rounded-xl text-sm" required/>
-<input id="alasan" placeholder="Alasan pindah" class="w-full border-[2px] border-black p-3 rounded-xl text-sm" value="Pindah kelas - kenaikan tingkat"/>
-<button class="md:col-span-3 w-full bg-[#8A4CFC] text-white border-[3px] border-black py-3 font-extrabold rounded-full">PINDAH KELAS - KHUSUS GURU + RIWAYAT</button>
+<div class="bg-white border-[3px] border-black p-5 rounded-[16px] [box-shadow:4px_4px_0px_#000]">
+<h2 class="font-black uppercase text-[11px] flex items-center gap-2"><span class="material-symbols-outlined text-[18px]">swap_horiz</span> Pindah Siswa</h2>
+<form id="pindahForm" class="mt-4 space-y-3">
+<input id="siswaId" placeholder="Siswa ID" class="w-full border-[2.5px] border-black p-3 rounded-xl text-[12px] font-bold bg-white" required/>
+<input id="kelasBaru" placeholder="Kelas Baru ID" class="w-full border-[2.5px] border-black p-3 rounded-xl text-[12px] font-bold bg-white" required/>
+<input id="alasan" placeholder="Alasan pindah" class="w-full border-[2.5px] border-black p-3 rounded-xl text-[12px] font-bold bg-white" value="Pindah kelas"/>
+<button class="w-full bg-[#8A4CFC] text-white border-[3px] border-black py-3 font-black rounded-full text-[11px] uppercase">Pindah Kelas</button>
 </form>
-<pre id="pindahRes" class="mt-3 bg-black text-green-400 p-3 text-[11px] rounded-xl max-h-32 overflow-auto hidden"></pre>
-</div>
+<pre id="pindahRes" class="mt-3 bg-black text-[#00FF88] p-3 text-[11px] rounded-xl max-h-32 overflow-auto hidden border-2 border-black"></pre>
 </div>
 
-<div class="mt-6 flex gap-2 text-[11px]">
-<a href="/siswa.html" class="bg-white border-[3px] border-black px-4 py-2 rounded-full font-bold">Daftar Siswa</a>
-<a href="/profil.html" class="bg-[#FFE600] border-[3px] border-black px-4 py-2 rounded-full font-bold">Profil Guru</a>
-<a href="/settings.html" class="bg-[#67FFB7] border-[3px] border-black px-4 py-2 rounded-full font-bold">Settings Sekolah</a>
+<div class="grid grid-cols-3 gap-2">
+<a href="/siswa.html" class="bg-white border-[2.5px] border-black px-2 py-3 rounded-xl font-black text-[10px] uppercase text-center">Siswa</a>
+<a href="/profil.html" class="bg-[#FFE600] border-[2.5px] border-black px-2 py-3 rounded-xl font-black text-[10px] uppercase text-center">Profil</a>
+<a href="/settings.html" class="bg-[#67FFB7] border-[2.5px] border-black px-2 py-3 rounded-xl font-black text-[10px] uppercase text-center">Settings</a>
 </div>
+
+</div>
+
 </main>
 
-<nav class="fixed bottom-0 left-0 w-full z-50 flex justify-around items-center px-4 py-2 bg-white border-t-[3px] border-black [box-shadow:0px_-3px_0px_#000]">
-<a class="flex flex-col items-center justify-center px-3 py-1.5" href="/"><span class="material-symbols-outlined text-[20px]">home</span><span>Home</span></a>
-<a class="flex flex-col items-center justify-center px-3 py-1.5" href="/dashboard-guru.html"><span class="material-symbols-outlined text-[20px]">dashboard</span><span>Dashboard</span></a>
-<a class="flex flex-col items-center justify-center bg-[#8A4CFC] text-white border-[2px] border-black rounded px-3 py-1.5" href="/kelas.html"><span class="material-symbols-outlined text-[20px]" style="font-variation-settings: 'FILL' 1;">class</span><span>Kelas</span></a>
-<a class="flex flex-col items-center justify-center px-3 py-1.5" href="/siswa.html"><span class="material-symbols-outlined text-[20px]">groups</span><span>Siswa</span></a>
-<a class="flex flex-col items-center justify-center px-3 py-1.5" href="/settings.html"><span class="material-symbols-outlined text-[20px]">settings</span><span>Settings</span></a>
+<nav class="fixed bottom-0 w-full max-w-[420px] bg-white border-t-[3px] border-black flex justify-around py-2 z-50 left-1/2 -translate-x-1/2">
+<a href="/" class="flex flex-col items-center opacity-60 px-3 py-1"><span class="material-symbols-outlined text-[20px]">home</span><span class="text-[9px] font-bold uppercase">Home</span></a>
+<a href="/dashboard-guru.html" class="flex flex-col items-center opacity-60 px-3 py-1"><span class="material-symbols-outlined text-[20px]">dashboard</span><span class="text-[9px] font-bold uppercase">Dash</span></a>
+<a href="/kelas.html" class="flex flex-col items-center bg-[#8A4CFC] text-white border-[2px] border-black rounded-xl px-4 py-1"><span class="material-symbols-outlined text-[20px]">class</span><span class="text-[9px] font-black uppercase">Kelas</span></a>
+<a href="/siswa.html" class="flex flex-col items-center opacity-60 px-3 py-1"><span class="material-symbols-outlined text-[20px]">groups</span><span class="text-[9px] font-bold uppercase">Siswa</span></a>
+<a href="/settings.html" class="flex flex-col items-center opacity-60 px-3 py-1"><span class="material-symbols-outlined text-[20px]">settings</span><span class="text-[9px] font-bold uppercase">Settings</span></a>
 </nav>
 
-<script src="/socket.io/socket.io.js"></script>
+</div>
+
 <script src="/js/app.js"></script>
 <script>
+function updateDateTime(){
+  const now = new Date();
+  const hari = ['Minggu','Senin','Selasa','Rabu','Kamis','Jumat','Sabtu'];
+  const bulan = ['Januari','Februari','Maret','April','Mei','Juni','Juli','Agustus','September','Oktober','November','Desember'];
+  const tgl = `${hari[now.getDay()]}, ${now.getDate()} ${bulan[now.getMonth()]} ${now.getFullYear()}`;
+  const jam = now.toLocaleTimeString('id-ID',{hour:'2-digit',minute:'2-digit',second:'2-digit'});
+  document.getElementById('realTanggal').textContent = tgl;
+  document.getElementById('liveClock').textContent = jam + ' WIB';
+}
+updateDateTime();
+setInterval(updateDateTime,1000);
+
 function parseJwt(token){
  try{ if(!token) return null; const base64Url = token.split('.')[1]; const base64 = base64Url.replace(/-/g,'+').replace(/_/g,'/'); const jsonPayload = decodeURIComponent(atob(base64).split('').map(c=>'%'+('00'+c.charCodeAt(0).toString(16)).slice(-2)).join('')); return JSON.parse(jsonPayload);}catch{ return null; }
 }
@@ -92,57 +122,48 @@ async function checkGuruAccess(){
  const token = localStorage.getItem('absensiswa_token');
  const checkEl = document.getElementById('guruOnlyCheck');
  const contentEl = document.getElementById('kelasContent');
- 
  if(!token){
   checkEl.innerHTML = `
-   <div class="bg-red-100 border-2 border-black p-4 rounded-xl">
-    <p class="font-bold">Akses Ditolak - Hanya Guru</p>
-    <p class="text-sm mt-1">Halaman kelola kelas hanya bisa diatur oleh guru wali kelas, bukan murid.</p>
-    <p class="text-xs mt-2">Silakan login sebagai guru di /login-guru.html</p>
-    <a href="/login-guru.html" class="inline-block mt-3 bg-black text-white px-4 py-2 rounded-full text-xs font-bold">Login Guru</a>
-    <a href="/" class="ml-2 inline-block bg-white border-2 border-black px-4 py-2 rounded-full text-xs font-bold">Home</a>
+   <div class="bg-[#FF90E8] border-[2px] border-black p-4 rounded-xl text-center">
+    <p class="font-black text-[12px] uppercase">Hai, Belum Login!</p>
+    <p class="text-[11px] mt-2">Halaman ini khusus guru wali kelas. Yuk login dulu.</p>
+    <a href="/login-guru.html" class="inline-block mt-3 bg-black text-white px-4 py-2 rounded-full text-[11px] font-black">Login Guru</a>
    </div>`;
   return;
  }
- 
  const payload = parseJwt(token);
  if(payload?.role !== 'GURU' && payload?.role !== 'WALI_KELAS'){
   checkEl.innerHTML = `
-   <div class="bg-yellow-100 border-2 border-black p-4 rounded-xl">
-    <p class="font-bold">Akses Terbatas - Murid Tidak Bisa Atur Kelas</p>
-    <p class="text-sm mt-1">Kelas hanya bisa diatur oleh guru wali kelas. Murid hanya bisa join kelas via kode undangan.</p>
-    <p class="text-xs mt-2">Role kamu: ${payload?.role||'SISWA'} - Murid tidak bisa ganti setting kelas</p>
-    <a href="/dashboard/siswa" class="inline-block mt-3 bg-black text-white px-4 py-2 rounded-full text-xs font-bold">Dashboard Siswa</a>
+   <div class="bg-[#FFE600] border-[2px] border-black p-4 rounded-xl text-center">
+    <p class="font-black text-[12px] uppercase">Akses Terbatas</p>
+    <p class="text-[11px] mt-2">Kelas hanya bisa diatur wali kelas. Kamu login sebagai ${payload?.role||'Siswa'}.</p>
+    <a href="/dashboard-siswa.html" class="inline-block mt-3 bg-black text-white px-4 py-2 rounded-full text-[11px] font-black">Dashboard Siswa</a>
    </div>`;
   return;
  }
- 
- // Guru access OK
  checkEl.classList.add('hidden');
  contentEl.classList.remove('hidden');
  loadKelasReal();
 }
-
 async function loadKelasReal(){
  try{
   const r=await fetch('/api/kelas', {headers: {'Authorization': 'Bearer '+localStorage.getItem('absensiswa_token')}});
   const d=await r.json();
   const el=document.getElementById('kelasList');
   if(!d.success || d.data.length===0){
-   el.innerHTML='<p class="bg-yellow-100 border-2 border-black p-3 rounded-xl text-sm">Belum ada kelas - Buat di /setup.html<br/>Hanya guru yang bisa buat dan atur kelas</p>';
+   el.innerHTML='<p class="bg-[#F5F5DC] border-[2px] border-black p-3 rounded-xl text-[11px] text-center">Belum ada kelas. Yuk buat di <a href="/setup.html" class="underline font-black">Setup</a></p>';
    return;
   }
   el.innerHTML=d.data.map(k=>`
-   <div class="border-[2px] border-black p-3 rounded-xl bg-[#F6F3F2]">
-    <p class="font-bold text-sm">${k.nama} - ${k.kodeUndangan}</p>
-    <p class="text-[11px]">ID: ${k.id}<br/>TA: ${k.tahunAjaran} - ${k.totalSiswaReal} siswa<br/>Wali: ${k.waliKelas?.nama||'-'}</p>
-    <button onclick="document.getElementById('editId').value='${k.id}'" class="mt-2 w-full bg-[#FFE600] border-2 border-black py-1 rounded-full text-[11px] font-bold">Pilih untuk Edit (Guru Only)</button>
+   <div class="border-[2px] border-black p-3 rounded-xl bg-[#F5F5DC]">
+    <p class="font-black text-[12px]">${k.nama} - ${k.kodeUndangan}</p>
+    <p class="text-[10px] mt-1">TA: ${k.tahunAjaran} • ${k.totalSiswaReal||0} siswa<br/>Wali: ${k.waliKelas?.nama||'-'}</p>
+    <button onclick="document.getElementById('editId').value='${k.id}'" class="mt-2 w-full bg-[#FFE600] border-[2px] border-black py-2 rounded-full text-[10px] font-black uppercase">Pilih Edit</button>
    </div>`).join('');
  }catch(e){
-  document.getElementById('kelasList').innerHTML='<p class="text-red-600 text-sm">Gagal load kelas: '+e.message+'</p>';
+  document.getElementById('kelasList').innerHTML='<p class="text-red-600 text-[11px]">Gagal load: '+e.message+'</p>';
  }
 }
-
 document.getElementById('editForm')?.addEventListener('submit', async e=>{
  e.preventDefault();
  const id=document.getElementById('editId').value;
@@ -151,13 +172,12 @@ document.getElementById('editForm')?.addEventListener('submit', async e=>{
  const d=await r.json(); const el=document.getElementById('editRes'); el.classList.remove('hidden'); el.textContent=JSON.stringify(d,null,2);
  if(d.success) loadKelasReal();
 });
-
 document.getElementById('pindahForm')?.addEventListener('submit', async e=>{
  e.preventDefault();
  const r=await fetch('/api/siswa/'+siswaId.value+'/pindah-kelas',{method:'POST',headers:{'Content-Type':'application/json','Authorization':'Bearer '+localStorage.getItem('absensiswa_token')},body:JSON.stringify({kelasIdBaru:kelasBaru.value,alasan:alasan.value})});
  const d=await r.json(); const el=document.getElementById('pindahRes'); el.classList.remove('hidden'); el.textContent=JSON.stringify(d,null,2);
 });
-
 checkGuruAccess();
 </script>
-</body></html>
+</body>
+</html>
