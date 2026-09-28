@@ -25,9 +25,9 @@ html{overflow-x:hidden; width:100vw} body{overflow-x:hidden; width:100vw; touch-
 </div>
 </header>
 
-<div class="bg-black text-white p-3 flex justify-between items-center text-[11px] font-black">
-<span id="realTanggal" class="truncate-ellipsis">Memuat...</span>
-<span id="liveClock" class="shrink-0">00:00:00 WIB</span>
+<div class="bg-black text-white p-3 flex justify-between items-center text-[11px] font-black min-h-[40px] will-change-transform" style="font-variant-numeric:tabular-nums; transform:translateZ(0)">
+<span id="realTanggal" class="truncate-ellipsis max-w-[60%]">Memuat...</span>
+<span id="liveClock" class="shrink-0 tabular-nums min-w-[90px] text-right" style="font-variant-numeric:tabular-nums">00:00:00 WIB</span>
 </div>
 
 <main class="p-5 flex flex-col gap-5 flex-1">
