@@ -5,35 +5,11 @@
       "src": "api/index.js",
       "use": "@vercel/node",
       "config": {
-        "includeFiles": ["public/**", "dist/**"]
+        "includeFiles": ["public/**", "dist/**", "data/**"]
       }
-    },
-    {
-      "src": "public/**",
-      "use": "@vercel/static"
     }
   ],
   "routes": [
-    {
-      "src": "/api/(.*)",
-      "dest": "api/index.js"
-    },
-    {
-      "src": "/(.*\\.(html|js|css|png|jpg|jpeg|svg|ico|json|webp|woff|woff2|xml|txt))",
-      "dest": "/public/$1"
-    },
-    {
-      "src": "/manifest.json",
-      "dest": "/public/manifest.json"
-    },
-    {
-      "src": "/service-worker.js",
-      "dest": "/public/service-worker.js"
-    },
-    {
-      "src": "/icon.png",
-      "dest": "/public/icon.png"
-    },
     {
       "src": "/(.*)",
       "dest": "api/index.js"
