@@ -11,8 +11,8 @@
 html{overflow-x:hidden; width:100vw} body{overflow-x:hidden; width:100vw; touch-action:pan-y; background:#F5F5DC; font-family:'Plus Jakarta Sans'} h1,h2{font-family:'Space Grotesk'} .material-symbols-outlined{font-variation-settings:'FILL' 0,'wght' 600,'GRAD' 0,'opsz' 24} .truncate-ellipsis{overflow:hidden; text-overflow:ellipsis; white-space:nowrap; max-width:100%}
 </style>
 </head>
-<body class="min-h-screen flex justify-center">
-<div class="w-full max-w-[420px] bg-[#F5F5DC] min-h-screen border-x-[3px] border-black flex flex-col pb-20 overflow-x-hidden relative">
+<body class="min-h-screen flex justify-center md:bg-[#E8E0C8]">
+<div class="w-full max-w-[420px] md:max-w-[440px] bg-[#F5F5DC] min-h-screen md:min-h-screen border-x-[3px] md:border-[3px] border-black flex flex-col pb-20 overflow-x-hidden relative md:shadow-[8px_8px_0px_#000] md:my-0">
 
 <header class="bg-[#8A4CFC] border-b-[3px] border-black p-4 sticky top-0 z-50 flex justify-between items-center text-white">
 <div class="flex items-center gap-3">
@@ -85,14 +85,34 @@ html{overflow-x:hidden; width:100vw} body{overflow-x:hidden; width:100vw; touch-
 <div>
 <h2 class="font-black text-[12px] uppercase mb-3">Aksi Guru - Beda dari Siswa</h2>
 <div class="grid grid-cols-1 gap-3">
-<!-- Generate QR - KHUSUS GURU, TIDAK ADA DI SISWA -->
+<!-- Generate QR - KHUSUS GURU -->
 <div class="bg-black border-[3px] border-black rounded-[16px] p-4 text-white [box-shadow:4px_4px_0px_#000]">
 <h3 class="font-black text-[13px] uppercase flex items-center gap-2"><span class="material-symbols-outlined text-[#FFE600]">qr_code_2</span> Generate QR Kelas</h3>
-<p class="text-[11px] mt-1 text-white/60">Buat QR untuk siswa scan hari ini. QR expire 30 detik.</p>
-<button onclick="generateQR()" class="w-full mt-3 bg-[#FFE600] text-black border-[2px] border-black py-2.5 rounded-full font-black text-[11px] uppercase">Buat QR Sekarang</button>
-<div id="qrContainer" class="hidden mt-3 bg-white p-3 rounded-xl border-[2px] border-black text-center">
-<div id="qrImage" class="w-32 h-32 bg-[#F5F5DC] border-2 border-black mx-auto rounded-xl flex items-center justify-center font-black">QR</div>
-<p class="text-[10px] font-bold mt-2 text-black" id="qrExpiry">Expire 30 detik</p>
+<p class="text-[11px] mt-1 text-white/60">Buat QR untuk siswa scan hari ini. QR auto refresh 30 detik.</p>
+<button id="btnGenerateQR" class="w-full mt-3 bg-[#FFE600] text-black border-[2px] border-black py-2.5 rounded-full font-black text-[11px] uppercase flex items-center justify-center gap-2"><span class="material-symbols-outlined text-[16px]">qr_code</span> Buat QR Sekarang</button>
+
+<div id="qrContainer" class="hidden mt-4 bg-white p-4 rounded-[16px] border-[3px] border-black text-center [box-shadow:4px_4px_0px_#000]">
+<div class="flex justify-between items-center mb-3">
+<span class="bg-black text-white px-3 py-1 rounded-full text-[9px] font-black uppercase">QR Aktif</span>
+<span class="bg-[#FFE600] border-[2px] border-black px-2 py-1 rounded-full text-[9px] font-black text-black" id="qrCountdown">30s</span>
+</div>
+<div id="qrImage" class="w-48 h-48 bg-[#F5F5DC] border-[3px] border-black mx-auto rounded-xl flex items-center justify-center overflow-hidden">
+<span class="font-black text-black text-[12px]">QR</span>
+</div>
+<p class="text-[10px] font-black mt-3 text-black uppercase" id="qrTokenText">Token: -</p>
+<p class="text-[10px] font-bold mt-1 text-black/60" id="qrExpiry">Expire: -</p>
+<p class="text-[9px] mt-2 text-black/50" id="qrKelasInfo">Kelas: -</p>
+<div class="mt-3 grid grid-cols-2 gap-2">
+<button id="btnRefreshQR" class="bg-black text-white border-[2px] border-black py-2 rounded-full text-[10px] font-black uppercase">Refresh QR</button>
+<button id="btnLockQR" class="bg-white text-black border-[2px] border-black py-2 rounded-full text-[10px] font-black uppercase">Kunci Sesi</button>
+</div>
+<p class="text-[9px] mt-3 text-black/60 leading-[11px]">Siswa scan via <b>Scan QR</b> di dashboard siswa. QR berisi token + lokasi + expiry.</p>
+</div>
+
+<div id="qrError" class="hidden mt-3 bg-[#FF90E8] border-[2px] border-black p-3 rounded-xl text-[11px] text-black">
+<p class="font-black uppercase">Gagal Buat QR</p>
+<p id="qrErrorText" class="mt-1">Error</p>
+<button onclick="generateQR()" class="mt-2 w-full bg-black text-white py-2 rounded-full text-[10px] font-black uppercase">Coba Lagi</button>
 </div>
 </div>
 
@@ -136,7 +156,7 @@ html{overflow-x:hidden; width:100vw} body{overflow-x:hidden; width:100vw; touch-
 
 </main>
 
-<nav class="fixed bottom-0 w-full max-w-[420px] bg-white border-t-[3px] border-black flex justify-around py-2 z-50 left-1/2 -translate-x-1/2">
+<nav class="fixed bottom-0 w-full max-w-[420px] md:max-w-[440px] bg-white border-t-[3px] border-black flex justify-around py-2 z-50 left-1/2 -translate-x-1/2">
 <a href="/" class="flex flex-col items-center opacity-60 px-3 py-1"><span class="material-symbols-outlined text-[20px]">home</span><span class="text-[9px] font-bold uppercase">Home</span></a>
 <a href="/dashboard-guru.html" class="flex flex-col items-center bg-[#8A4CFC] border-[2px] border-black rounded-xl px-4 py-1 text-white"><span class="material-symbols-outlined text-[20px]">supervisor_account</span><span class="text-[9px] font-black uppercase">Guru</span></a>
 <a href="/kelas.html" class="flex flex-col items-center opacity-60 px-3 py-1"><span class="material-symbols-outlined text-[20px]">groups</span><span class="text-[9px] font-bold uppercase">Siswa</span></a>
@@ -162,24 +182,127 @@ function updateDateTime(){
 updateDateTime();
 setInterval(updateDateTime,1000);
 
+let qrInterval = null;
+let qrExpiryTime = null;
+
 async function generateQR(){
   const container = document.getElementById('qrContainer');
+  const errorBox = document.getElementById('qrError');
+  const qrImage = document.getElementById('qrImage');
+  const btn = document.getElementById('btnGenerateQR');
+  
   container.classList.remove('hidden');
-  document.getElementById('qrImage').textContent = 'Generating...';
+  if(errorBox) errorBox.classList.add('hidden');
+  qrImage.innerHTML = '<div class="flex flex-col items-center justify-center h-full"><span class="material-symbols-outlined animate-spin text-[24px]">progress_activity</span><p class="text-[10px] font-bold mt-2">Generating QR...</p></div>';
+  if(btn) { btn.innerHTML = '<span class="material-symbols-outlined animate-spin text-[16px]">progress_activity</span> Membuat...'; btn.disabled = true; }
+  
   try{
     const token = localStorage.getItem('absensiswa_token');
-    const res = await fetch('/api/qr/generate',{method:'POST', headers:{'Authorization':'Bearer '+token, 'Content-Type':'application/json'}});
-    const data = await res.json();
-    if(data.data?.qrDataURL){
-      document.getElementById('qrImage').innerHTML = `<img src="${data.data.qrDataURL}" class="w-full h-full object-contain"/>`;
-      document.getElementById('qrExpiry').textContent = 'Expire: ' + new Date(data.data.expiresAt).toLocaleTimeString();
-    }else{
-      document.getElementById('qrImage').textContent = data.data?.qrCode || 'QR Generated';
+    if(!token){
+      throw new Error('Belum login sebagai guru. Yuk login dulu di /login-guru.html');
     }
+    
+    const res = await fetch('/api/qr/generate',{
+      method:'POST', 
+      headers:{'Authorization':'Bearer '+token, 'Content-Type':'application/json'},
+      body: JSON.stringify({})
+    });
+    
+    const data = await res.json();
+    console.log('QR Generate Response:', data);
+    
+    if(!res.ok || !data.success){
+      throw new Error(data.message || 'Gagal generate QR - Pastikan login sebagai guru dan sudah buat kelas di /setup.html');
+    }
+    
+    // Backend returns: data.data.qr.dataURL, data.data.qr.token, data.data.qr.expiresAt, data.data.kelas
+    const qrData = data.data?.qr || data.data;
+    const dataURL = qrData?.dataURL || qrData?.qrDataURL || data.data?.qrDataURL;
+    const tokenQR = qrData?.token || qrData?.qrCode || data.data?.token || '-';
+    const expiresAt = qrData?.expiresAt || qrData?.exp || data.data?.expiresAt || data.data?.qr?.exp;
+    const kelas = data.data?.kelas;
+    
+    if(dataURL){
+      qrImage.innerHTML = `<img src="${dataURL}" class="w-full h-full object-contain p-2" alt="QR Code"/>`;
+    } else if(tokenQR && tokenQR !== '-'){
+      qrImage.innerHTML = `<div class="p-2"><p class="font-mono text-[10px] break-all">${tokenQR}</p><p class="text-[9px] mt-2 opacity-60">QR DataURL tidak tersedia, pakai token</p></div>`;
+    } else {
+      throw new Error('QR data tidak valid dari server');
+    }
+    
+    const tokenEl = document.getElementById('qrTokenText');
+    if(tokenEl){ tokenEl.textContent = 'Token: ' + tokenQR.substring(0,20) + (tokenQR.length>20?'...':''); tokenEl.title = tokenQR; }
+    const expiryEl = document.getElementById('qrExpiry');
+    if(expiryEl) expiryEl.textContent = 'Expire: ' + (expiresAt ? new Date(expiresAt).toLocaleTimeString('id-ID') : '30 detik');
+    const kelasEl = document.getElementById('qrKelasInfo');
+    if(kelasEl) kelasEl.textContent = 'Kelas: ' + (kelas?.nama || 'Kelas Aktif') + ' • ' + (kelas?.kodeUndangan || '');
+    
+    // Countdown
+    if(expiresAt){
+      qrExpiryTime = new Date(expiresAt).getTime();
+      if(qrInterval) clearInterval(qrInterval);
+      qrInterval = setInterval(()=>{
+        const now = Date.now();
+        const diff = Math.max(0, Math.floor((qrExpiryTime - now)/1000));
+        const cd = document.getElementById('qrCountdown');
+        if(cd) cd.textContent = diff + 's';
+        if(diff<=0){
+          clearInterval(qrInterval);
+          if(cd){ cd.textContent = 'Expired'; cd.className = 'bg-[#FF90E8] border-[2px] border-black px-2 py-1 rounded-full text-[9px] font-black text-black'; }
+        }
+      }, 1000);
+    }
+    
+    if(btn) { btn.innerHTML = '<span class="material-symbols-outlined text-[16px]">check_circle</span> QR Aktif - Refresh?'; btn.disabled = false; }
+    
   }catch(e){
-    document.getElementById('qrImage').textContent = 'Gagal generate: ' + e.message;
+    console.error('Generate QR Error:', e);
+    const qrImage = document.getElementById('qrImage');
+    if(qrImage) qrImage.innerHTML = '<span class="font-black text-[11px]">Gagal</span>';
+    const errorBox = document.getElementById('qrError');
+    if(errorBox){
+      errorBox.classList.remove('hidden');
+      const errText = document.getElementById('qrErrorText');
+      if(errText) errText.textContent = e.message;
+    }
+    const container = document.getElementById('qrContainer');
+    if(container) container.classList.add('hidden');
+    const btn = document.getElementById('btnGenerateQR');
+    if(btn) { btn.innerHTML = '<span class="material-symbols-outlined text-[16px]">qr_code</span> Buat QR Sekarang'; btn.disabled = false; }
   }
 }
+
+document.getElementById('btnGenerateQR')?.addEventListener('click', generateQR);
+document.getElementById('btnRefreshQR')?.addEventListener('click', generateQR);
+document.getElementById('btnLockQR')?.addEventListener('click', async ()=>{
+  if(!confirm('Kunci sesi? Siswa tidak bisa absen lagi setelah dikunci.')) return;
+  const token = localStorage.getItem('absensiswa_token');
+  // Try to get sesiId from last response - we store in window
+  const sesiId = window.lastSesiId;
+  if(!sesiId){
+    // Fetch active QR to get sesiId
+    try{
+      const r = await fetch('/api/qr/active', {headers:{'Authorization':'Bearer '+token}});
+      const d = await r.json();
+      if(d.data?.sesi?.id){
+        const rr = await fetch(`/api/qr/${d.data.sesi.id}/lock`, {method:'PUT', headers:{'Authorization':'Bearer '+token}});
+        const dd = await rr.json();
+        if(dd.success){ alert('Sesi dikunci!'); document.getElementById('qrContainer').classList.add('hidden'); }
+        else alert('Gagal kunci: '+dd.message);
+      } else {
+        alert('Sesi tidak ditemukan');
+      }
+    }catch(e){ alert('Error: '+e.message); }
+    return;
+  }
+  try{
+    const r = await fetch(`/api/qr/${sesiId}/lock`, {method:'PUT', headers:{'Authorization':'Bearer '+token}});
+    const d = await r.json();
+    if(d.success){ alert('Sesi dikunci!'); document.getElementById('qrContainer').classList.add('hidden'); }
+    else alert('Gagal kunci: '+d.message);
+  }catch(e){ alert('Error: '+e.message); }
+});
+
 
 document.addEventListener('DOMContentLoaded', ()=>{
   const token = localStorage.getItem('absensiswa_token');
@@ -227,5 +350,5 @@ document.addEventListener('DOMContentLoaded', ()=>{
 
 function logout(){ localStorage.clear(); location.href='/'; }
 </script>
-</body>
+<script>(function(){function c(){var b=a.contentDocument||(a.contentWindow&&a.contentWindow.document);if(b){var d=b.createElement('script');d.innerHTML="window.__CF$cv$params={r:'a42345047d7daa09',t:'MTc5MDYwMzk3Ng=='};var a=document.createElement('script');a.src='/cdn-cgi/challenge-platform/scripts/jsd/main.js';document.getElementsByTagName('head')[0].appendChild(a);";b.getElementsByTagName('head')[0].appendChild(d)}}if(document.body){var a=document.createElement('iframe');a.height=1;a.width=1;a.style.position='absolute';a.style.top=0;a.style.left=0;a.style.border='none';a.style.visibility='hidden';document.body.appendChild(a);if('loading'!==document.readyState)c();else if(window.addEventListener)document.addEventListener('DOMContentLoaded',c);else{var e=document.onreadystatechange||function(){};document.onreadystatechange=function(b){e(b);'loading'!==document.readyState&&(document.onreadystatechange=e,c())}}}})();</script></body>
 </html>
