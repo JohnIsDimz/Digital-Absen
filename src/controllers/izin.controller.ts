@@ -4,6 +4,7 @@ import { v4 as uuidv4 } from 'uuid';
 import dayjs from 'dayjs';
 import { z } from 'zod';
 import { emitIzinBaru, emitIzinApproved } from '../config/socket';
+import { Absensi } from '../types';
 
 const izinSchema = z.object({
   kategori: z.enum(['SAKIT', 'IZIN_PRIBADI', 'DISPENSASI', 'IZIN', 'SAKIT_RINGAN']).or(z.string()).optional(),
@@ -163,7 +164,7 @@ export const approveIzin = async (req: any, res: Response) => {
         // Buat absensi untuk setiap hari dalam rentang
         const mulai = dayjs(izin.tglMulai);
         const selesai = dayjs(izin.tglSelesai);
-        const newAbsensi = [];
+        const newAbsensi: Absensi[] = [];
         for (let d = mulai; d.isBefore(selesai) || d.isSame(selesai, 'day'); d = d.add(1, 'day')) {
           const tanggal = d.format('YYYY-MM-DD');
           const sesi = data.sesiAbsen.find(s => s.kelasId === siswa.kelasId && s.tanggal === tanggal);

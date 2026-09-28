@@ -127,7 +127,7 @@ router.put('/:id', async (req, res) => {
       kelas: d.kelas.map(k => {
         // Jika kelas sebelumnya diampu guru ini tapi sekarang tidak, hapus wali
         if (k.waliKelasId === guru.id && parsed.kelasDiampu && !parsed.kelasDiampu.includes(k.id)) {
-          return { ...k, waliKelasId: null };
+          return { ...k, waliKelasId: undefined };
         }
         // Jika kelas baru diampu dan belum ada wali, set guru ini jadi wali (opsional)
         return k;
@@ -160,7 +160,7 @@ router.delete('/:id', (req, res) => {
   const data = db.get();
   const guru = data.guru.find(g => g.id === req.params.id);
   if (!guru) return res.status(404).json({ success: false, message: 'Guru tidak ditemukan' });
-  db.update(d => ({ ...d, guru: d.guru.filter(g => g.id !== req.params.id), kelas: d.kelas.map(k => k.waliKelasId === guru.id ? { ...k, waliKelasId: null } : k) }));
+  db.update(d => ({ ...d, guru: d.guru.filter(g => g.id !== req.params.id), kelas: d.kelas.map(k => k.waliKelasId === guru.id ? { ...k, waliKelasId: undefined } : k) }));
   try {
     const io = getIO();
     io.emit('guru:hapus', { guruId: guru.id, nama: guru.nama });

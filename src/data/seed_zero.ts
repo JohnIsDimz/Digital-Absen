@@ -9,6 +9,7 @@ const resetZero = async () => {
   console.log('🗑️ Reset database ke NOL - v0.1...');
   
   db.set({
+    settings: null,
     kelas: [],
     guru: [],
     siswa: [],

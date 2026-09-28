@@ -15,6 +15,7 @@ const seedV02Real = async () => {
 
   // TRUE ZERO - no data at all
   const emptyDB = {
+    settings: null,
     kelas: [],
     guru: [],
     siswa: [],

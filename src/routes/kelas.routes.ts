@@ -164,7 +164,7 @@ router.put('/:id', async (req, res) => {
       tahunAjaran: parsed.tahunAjaran || kelas.tahunAjaran,
       semester: parsed.semester || kelas.semester,
       kodeUndangan: parsed.kodeUndangan || kelas.kodeUndangan,
-      waliKelasId: parsed.waliKelasId !== undefined ? parsed.waliKelasId : kelas.waliKelasId,
+      waliKelasId: parsed.waliKelasId === null ? undefined : parsed.waliKelasId !== undefined ? parsed.waliKelasId : kelas.waliKelasId,
       updatedAt: new Date().toISOString()
     };
 
