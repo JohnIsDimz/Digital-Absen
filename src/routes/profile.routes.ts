@@ -71,7 +71,7 @@ router.get('/me', authenticate, (req: any, res) => {
   }
 });
 
-// PUT update my profile - siswa
+// PUT update my profile - siswa - SECURITY: siswa tidak bisa ganti peran jadi guru!
 router.put('/me', authenticate, async (req: any, res) => {
   try {
     const data = db.get();
@@ -79,6 +79,18 @@ router.put('/me', authenticate, async (req: any, res) => {
 
     if (user.role !== 'SISWA') {
       return res.status(403).json({ success: false, message: 'Hanya siswa bisa update profil via endpoint ini' });
+    }
+
+    // SECURITY FIX: Cegah murid ganti peran jadi guru - masalah besar!
+    // Tolak jika ada field berbahaya di body
+    const forbiddenFields = ['role', 'nip', 'id', 'kelasId', 'nisn', 'noAbsen', 'poinSikap', 'predikat', 'deviceId', 'nik', 'nikVerified'];
+    const attemptedForbidden = forbiddenFields.filter(f => req.body[f] !== undefined);
+    if (attemptedForbidden.length > 0) {
+      return res.status(403).json({
+        success: false,
+        message: `Akses ditolak! Murid tidak boleh ganti ${attemptedForbidden.join(', ')} - Security violation!`,
+        code: 'ROLE_ESCALATION_BLOCKED'
+      });
     }
 
     const siswa = data.siswa.find(s => s.id === user.id);

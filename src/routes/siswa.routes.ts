@@ -4,6 +4,7 @@ import { v4 as uuidv4 } from 'uuid';
 import { z } from 'zod';
 import bcrypt from 'bcryptjs';
 import { getIO } from '../config/socket';
+import { authenticate, authorize } from '../middlewares/auth';
 
 const router = Router();
 
@@ -33,7 +34,7 @@ const pindahKelasSchema = z.object({
 });
 
 // GET semua siswa real
-router.get('/', (req, res) => {
+router.get('/', authenticate, authorize('WALI_KELAS', 'GURU', 'ADMIN'), (req, res) => {
   const data = db.get();
   const { kelasId } = req.query;
   let siswaList = data.siswa;
@@ -51,8 +52,8 @@ router.get('/', (req, res) => {
   });
 });
 
-// POST tambah siswa baru
-router.post('/', async (req, res) => {
+// POST tambah siswa baru - SECURITY: hanya guru!
+router.post('/', authenticate, authorize('WALI_KELAS', 'GURU', 'ADMIN'), async (req, res) => {
   try {
     const parsed = siswaRealSchema.parse(req.body);
     const data = db.get();
@@ -108,7 +109,7 @@ router.post('/', async (req, res) => {
 });
 
 // GET siswa by id
-router.get('/:id', (req, res) => {
+router.get('/:id', authenticate, (req, res) => {
   const data = db.get();
   const siswa = data.siswa.find(s => s.id === req.params.id);
   if (!siswa) return res.status(404).json({ success: false, message: 'Siswa tidak ditemukan' });
@@ -126,8 +127,8 @@ router.get('/:id', (req, res) => {
   });
 });
 
-// PUT update siswa - FIX CACAT v0.3 - KELAS BISA DIGANTI
-router.put('/:id', async (req, res) => {
+// PUT update siswa - FIX CACAT v0.3 - KELAS BISA DIGANTI - SECURITY: hanya guru!
+router.put('/:id', authenticate, authorize('WALI_KELAS', 'GURU', 'ADMIN'), async (req, res) => {
   try {
     const parsed = siswaUpdateSchema.parse(req.body);
     const data = db.get();
@@ -140,7 +141,7 @@ router.put('/:id', async (req, res) => {
     if (parsed.kelasId && parsed.kelasId !== siswa.kelasId) {
       kelasBaru = data.kelas.find(k => k.id === parsed.kelasId);
       if (!kelasBaru) return res.status(404).json({ success: false, message: `Kelas baru ID ${parsed.kelasId} tidak ditemukan` });
-      
+
       // Cek no absen duplikat di kelas baru
       if (parsed.noAbsen || true) {
         const noAbsenToCheck = parsed.noAbsen || siswa.noAbsen;
@@ -170,7 +171,7 @@ router.put('/:id', async (req, res) => {
       avatarInitial: (parsed.nama || siswa.nama).split(' ').map((n: string) => n[0]).join('').substring(0, 2).toUpperCase(),
       kodeUndangan: parsed.kelasId ? (kelasBaru?.kodeUndangan || siswa.kodeUndangan) : siswa.kodeUndangan,
       updatedAt: new Date().toISOString(),
-      riwayatKelas: parsed.kelasId && parsed.kelasId !== siswa.kelasId 
+      riwayatKelas: parsed.kelasId && parsed.kelasId !== siswa.kelasId
         ? [...((siswa as any).riwayatKelas||[]), { kelasId: parsed.kelasId, kelasNama: kelasBaru?.nama, tanggal: new Date().toISOString(), alasan: 'Pindah kelas via edit' }]
         : (siswa as any).riwayatKelas
     };
@@ -204,7 +205,7 @@ router.put('/:id', async (req, res) => {
 
     res.json({
       success: true,
-      message: parsed.kelasId && parsed.kelasId !== siswa.kelasId 
+      message: parsed.kelasId && parsed.kelasId !== siswa.kelasId
         ? `Siswa ${siswa.nama} berhasil pindah kelas: ${kelasLama?.nama} → ${kelasBaru?.nama} - Fix cacat v0.3`
         : `Siswa ${siswa.nama} diupdate - v0.3`,
       data: {
@@ -237,8 +238,8 @@ router.post('/:id/pindah-kelas', async (req, res) => {
 
     // Cek no absen duplikat
     if (data.siswa.some(s => s.kelasId === parsed.kelasIdBaru && s.noAbsen === siswa.noAbsen)) {
-      return res.status(400).json({ 
-        success: false, 
+      return res.status(400).json({
+        success: false,
         message: `No absen ${siswa.noAbsen} sudah ada di kelas ${kelasBaru.nama}. Ganti no absen dulu.`,
         solution: `PUT /api/siswa/${siswa.id} dengan noAbsen baru`
       });
@@ -249,10 +250,10 @@ router.post('/:id/pindah-kelas', async (req, res) => {
       kelasId: parsed.kelasIdBaru,
       kodeUndangan: kelasBaru.kodeUndangan,
       updatedAt: new Date().toISOString(),
-      riwayatKelas: [...((siswa as any).riwayatKelas||[]), { 
-        kelasId: parsed.kelasIdBaru, 
-        kelasNama: kelasBaru.nama, 
-        tanggal: new Date().toISOString(), 
+      riwayatKelas: [...((siswa as any).riwayatKelas||[]), {
+        kelasId: parsed.kelasIdBaru,
+        kelasNama: kelasBaru.nama,
+        tanggal: new Date().toISOString(),
         alasan: parsed.alasan || 'Pindah kelas',
         dari: kelasLama?.nama
       }]
