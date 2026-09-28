@@ -99,25 +99,17 @@ html,body{overflow-x:hidden; max-width:100vw; position:relative} *{max-width:100
 <div class="text-center py-4">
 <p class="font-black text-[10px] tracking-widest uppercase opacity-50">Digital Apsen - com.digitalapsen.app</p>
 <p class="text-[9px] opacity-40 mt-1">2026/2027 - QR + GPS + NIK OCR</p>
-<p class="text-[9px] opacity-40 mt-2">Butuh bantuan? <a href="/setup.html" class="underline font-bold">Setup Awal</a></p>
+<p class="text-[9px] opacity-40 mt-2">Butuh bantuan? <a href="/setup.html" class="underline font-bold">Setup Awal</a> • <a href="/welcome.html" class="underline font-bold">Welcome</a></p>
 </div>
 
 </main>
-
-<nav class="sticky bottom-0 bg-white border-t-[3px] border-black flex justify-around py-2 px-2">
-<a href="/" class="flex flex-col items-center bg-[#FFE600] border-[2px] border-black rounded-xl px-4 py-2"><span class="material-symbols-outlined text-[20px]">home</span><span class="text-[9px] font-black uppercase mt-1">Home</span></a>
-<a href="/dashboard-siswa.html" class="flex flex-col items-center px-3 py-2 opacity-60"><span class="material-symbols-outlined text-[20px]">dashboard</span><span class="text-[9px] font-bold uppercase mt-1">Siswa</span></a>
-<a href="/scan.html" class="flex flex-col items-center px-3 py-2 opacity-60"><span class="material-symbols-outlined text-[20px]">qr_code_scanner</span><span class="text-[9px] font-bold uppercase mt-1">Scan</span></a>
-<a href="/rekap.html" class="flex flex-col items-center px-3 py-2 opacity-60"><span class="material-symbols-outlined text-[20px]">analytics</span><span class="text-[9px] font-bold uppercase mt-1">Rekap</span></a>
-<a href="/profil.html" class="flex flex-col items-center px-3 py-2 opacity-60"><span class="material-symbols-outlined text-[20px]">person</span><span class="text-[9px] font-bold uppercase mt-1">Profil</span></a>
-</nav>
 
 </div>
 
 <script src="/js/auth-guard.js"></script>
 <script src="/js/app.js"></script>
 <script>
-// Fix date time with space
+// Fix date time + Welcome first logic - dashboard ga bisa diakses sebelum login
 function updateDateTime(){
  const now = new Date();
  const hari = ['Minggu','Senin','Selasa','Rabu','Kamis','Jumat','Sabtu'];
@@ -129,6 +121,35 @@ function updateDateTime(){
 }
 updateDateTime();
 setInterval(updateDateTime,1000);
+
+// Welcome.html harus muncul pertama kali - jika belum login, redirect ke welcome.html
+document.addEventListener('DOMContentLoaded', ()=>{
+  const token = localStorage.getItem('absensiswa_token');
+  const hasSeenWelcome = localStorage.getItem('digitalapsen_welcome_seen');
+  
+  // Jika belum login dan belum pernah lihat welcome, arahkan ke welcome.html
+  if(!token && !hasSeenWelcome && (window.location.pathname === '/' || window.location.pathname === '/index.html')){
+    localStorage.setItem('digitalapsen_welcome_seen', 'true');
+    window.location.href = '/welcome.html';
+    return;
+  }
+  
+  // Jika sudah login, arahkan ke dashboard sesuai role
+  if(token){
+    try{
+      const base64Url = token.split('.')[1];
+      const base64 = base64Url.replace(/-/g,'+').replace(/_/g,'/');
+      const jsonPayload = decodeURIComponent(atob(base64).split('').map(c=>'%'+('00'+c.charCodeAt(0).toString(16)).slice(-2)).join(''));
+      const payload = JSON.parse(jsonPayload);
+      const role = payload.role;
+      if(role === 'SISWA' && (window.location.pathname === '/' || window.location.pathname === '/index.html')){
+        window.location.href = '/dashboard-siswa.html';
+      } else if(['GURU','WALI_KELAS','ADMIN'].includes(role) && (window.location.pathname === '/' || window.location.pathname === '/index.html')){
+        window.location.href = '/dashboard-guru.html';
+      }
+    }catch(e){}
+  }
+});
 </script>
 </body>
 </html>
