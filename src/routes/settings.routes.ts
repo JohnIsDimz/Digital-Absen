@@ -4,6 +4,7 @@ import { env } from '../config/env';
 import { v4 as uuidv4 } from 'uuid';
 import { z } from 'zod';
 import { getIO } from '../config/socket';
+import { authenticate, authorize } from '../middlewares/auth';
 
 const router = Router();
 
@@ -20,39 +21,39 @@ const settingsSchema = z.object({
   batasToleransi: z.string().regex(/^\d{2}:\d{2}$/).optional(),
 });
 
-// GET settings - lokasi & tahun
-router.get('/', (req, res) => {
+// GET settings - lokasi & tahun - FIX v1.0.34: Jika NOL, return NOL, bukan default Jakarta
+router.get('/', authenticate, (req, res) => {
   const data = db.get();
-  const settings = data.settings || {
-    id: 'default',
-    sekolahNama: env.SCHOOL_NAME,
-    sekolahAlamat: env.SCHOOL_ADDRESS,
-    lat: env.SCHOOL_LAT,
-    lng: env.SCHOOL_LNG,
-    radiusMeter: env.GEOFENCE_RADIUS,
-    tahunAjaran: env.TAHUN_AJARAN, // 2026/2027
-    semester: env.SEMESTER,
-    jamMasuk: env.JAM_MASUK,
-    batasToleransi: env.BATAS_TOLERANSI,
-    updatedAt: new Date().toISOString(),
-    source: 'env - default Jakarta, bisa diganti via PUT /api/settings'
-  };
+  // Jika settings null dan belum ada kelas/guru, return NOL (bukan default)
+  if(!data.settings){
+    return res.json({
+      success: true,
+      version: '1.0.34 - NOL jika belum setup',
+      data: null,
+      isEmpty: true,
+      message: 'Belum ada settings - Data NOL - Silakan Setup di /setup.html',
+      info: {
+        tahunSekarang: env.CURRENT_YEAR,
+        caraSetup: 'POST /api/setup/init atau via /setup.html'
+      }
+    });
+  }
+
+  const settings = data.settings;
 
   res.json({
     success: true,
-    version: '0.4.0 - Tahun 2026 + Lokasi Dinamis',
+    version: '1.0.34 - Data Real',
     data: settings,
     info: {
-      tahunSekarang: env.CURRENT_YEAR, // 2026
-      tahunAjaranDefault: `${env.CURRENT_YEAR}/${env.NEXT_YEAR}`, // 2026/2027
-      lokasiDefault: 'Jakarta (-6.182339, 106.832) - bisa diganti untuk semua kota',
-      caraGanti: 'PUT /api/settings dengan lat,lng, sekolahNama, tahunAjaran'
+      tahunSekarang: env.CURRENT_YEAR,
+      tahunAjaranDefault: `${env.CURRENT_YEAR}/${env.NEXT_YEAR}`,
     }
   });
 });
 
 // PUT update settings - Lokasi bisa diganti untuk semua kota
-router.put('/', (req, res) => {
+router.put('/', authenticate, authorize('WALI_KELAS','GURU','ADMIN'), (req, res) => {
   try {
     const parsed = settingsSchema.parse(req.body);
     const data = db.get();
@@ -122,7 +123,7 @@ router.put('/', (req, res) => {
 });
 
 // GET daftar kota preset - untuk semua daerah
-router.get('/kota-preset', (req, res) => {
+router.get('/kota-preset', authenticate, (req, res) => {
   const kotaPreset = [
     { nama: 'SMK NEGERI 1 JAKARTA', alamat: 'Jl. Budi Utomo No. 7, Jakarta Pusat', lat: -6.182339, lng: 106.832, radius: 50 },
     { nama: 'SMK NEGERI 1 BANDUNG', alamat: 'Jl. Wastukencana No. 3, Bandung', lat: -6.914744, lng: 107.60981, radius: 50 },
@@ -146,7 +147,7 @@ router.get('/kota-preset', (req, res) => {
 });
 
 // POST set lokasi dari preset
-router.post('/set-kota/:index', (req, res) => {
+router.post('/set-kota/:index', authenticate, authorize('WALI_KELAS','GURU','ADMIN'), (req, res) => {
   const index = parseInt(req.params.index);
   const kotaPreset = [
     { nama: 'SMK NEGERI 1 JAKARTA', alamat: 'Jl. Budi Utomo No. 7, Jakarta Pusat', lat: -6.182339, lng: 106.832, radius: 50 },
