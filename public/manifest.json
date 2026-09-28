@@ -1,0 +1,33 @@
+{
+  "name": "Digital Apsen - QR + GPS + NIK OCR",
+  "short_name": "Digital Apsen",
+  "description": "Platform Presensi & Rekap Sikap Terpadu Berbasis Geofence & QR Code",
+  "start_url": "/welcome.html",
+  "display": "standalone",
+  "background_color": "#FFE600",
+  "theme_color": "#FFE600",
+  "orientation": "portrait",
+  "icons": [
+    {
+      "src": "/icon.png",
+      "sizes": "1024x1024",
+      "type": "image/png",
+      "purpose": "any maskable"
+    },
+    {
+      "src": "/adaptive-icon.png",
+      "sizes": "1024x1024",
+      "type": "image/png",
+      "purpose": "any"
+    },
+    {
+      "src": "/favicon.png",
+      "sizes": "48x48",
+      "type": "image/png",
+      "purpose": "any"
+    }
+  ],
+  "categories": ["education", "productivity"],
+  "lang": "id",
+  "dir": "ltr"
+}

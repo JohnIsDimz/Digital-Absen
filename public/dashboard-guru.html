@@ -4,6 +4,16 @@
 <meta charset="utf-8"/>
 <meta name="viewport" content="width=device-width, initial-scale=1.0"/>
 <title>Digital Apsen - Dashboard Guru</title>
+
+<link rel="manifest" href="/manifest.json"/>
+<link rel="icon" type="image/png" href="/icon.png"/>
+<link rel="apple-touch-icon" href="/icon.png"/>
+<meta name="theme-color" content="#FFE600"/>
+<meta name="apple-mobile-web-app-capable" content="yes"/>
+<meta name="apple-mobile-web-app-status-bar-style" content="black-translucent"/>
+<meta name="apple-mobile-web-app-title" content="Digital Apsen"/>
+<meta name="mobile-web-app-capable" content="yes"/>
+
 <link href="https://fonts.googleapis.com/css2?family=Plus+Jakarta+Sans:wght@500;600;700;800&family=Space+Grotesk:wght@600;700;800&display=swap" rel="stylesheet"/>
 <link href="https://fonts.googleapis.com/css2?family=Material+Symbols+Outlined:wght,FILL@100..700,0..1&display=swap" rel="stylesheet"/>
 <script src="https://cdn.tailwindcss.com"></script>
@@ -323,13 +333,26 @@ document.addEventListener('DOMContentLoaded', ()=>{
     }
   }catch(e){}
   
+  // FIX v1.0.35: Load dari localStorage dulu biar nama langsung muncul, jangan "Belum ada data guru"
+  try{
+    const guruLS = localStorage.getItem('absensiswa_guru');
+    if(guruLS){
+      const g = JSON.parse(guruLS);
+      if(g.nama){
+        document.getElementById('realGuruNama').textContent = truncateText(g.nama, 16);
+        document.getElementById('realGuruNama').title = g.nama;
+      }
+    }
+  }catch(e){}
+
   // Load guru dashboard - BEDA DARI SISWA
   fetch('/api/dashboard/guru',{headers:{'Authorization':'Bearer '+token}})
     .then(r=>r.json())
     .then(data=>{
       if(data.data){
         const d = data.data;
-        document.getElementById('realGuruNama').textContent = truncateText(d.guru?.nama || 'Guru', 16);
+        const namaGuru = d.guru?.nama || JSON.parse(localStorage.getItem('absensiswa_guru')||'{}').nama || 'Guru';
+        document.getElementById('realGuruNama').textContent = truncateText(namaGuru, 16);
         document.getElementById('realKelasNama').textContent = truncateText(d.kelas?.nama || d.kelasList?.[0]?.nama || 'Belum ada kelas', 14);
         document.getElementById('kelasDiampu').textContent = truncateText(d.kelas?.nama || d.kelasList?.[0]?.nama || 'Belum ada kelas', 18);
         document.getElementById('kelasDiampu').title = d.kelas?.nama || '';
@@ -345,22 +368,38 @@ document.addEventListener('DOMContentLoaded', ()=>{
         document.getElementById('progressKelas').style.width = persen + '%';
         document.getElementById('totalSiswaInfo').textContent = (d.stats?.totalSiswa||0) + ' Siswa Total';
       }
+    })
+    .catch(err=>{
+      console.warn('Dashboard guru API gagal, pakai localStorage fallback', err);
+      // Tetap tampilkan nama dari localStorage, jangan "Belum ada data guru"
+      try{
+        const g = JSON.parse(localStorage.getItem('absensiswa_guru')||'{}');
+        if(g.nama){
+          document.getElementById('realGuruNama').textContent = truncateText(g.nama, 16);
+        }
+      }catch{}
+      document.getElementById('realKelasNama').textContent = 'NOL - Setup dulu';
+      document.getElementById('kelasDiampu').textContent = 'Belum ada kelas';
     });
     
   fetch('/api/izin/pending',{headers:{'Authorization':'Bearer '+token}})
     .then(r=>r.json())
     .then(data=>{
       const count = data.data?.length || 0;
-      document.getElementById('pendingCount').textContent = count + ' Pending';
-      document.getElementById('izinPendingInfo').textContent = count + ' pending';
+      const pendingEl = document.getElementById('pendingCount');
+      const infoEl = document.getElementById('izinPendingInfo');
+      if(pendingEl) pendingEl.textContent = count + ' Pending';
+      if(infoEl) infoEl.textContent = count + ' pending';
       if(count>0){
         let html = '';
         data.data.slice(0,3).forEach(i=>{
           html += `<div class="border-b border-black/10 py-2 flex justify-between text-[11px]"><span class="truncate-ellipsis max-w-[120px]">${i.siswa?.nama||'Siswa'} - ${i.kategori}</span><span class="bg-[#FFE600] border border-black px-2 rounded-full text-[9px] font-black">${i.status}</span></div>`;
         });
-        document.getElementById('izinList').innerHTML = html;
+        const izinList = document.getElementById('izinList');
+        if(izinList) izinList.innerHTML = html;
       }
-    });
+    })
+    .catch(()=>{});
 });
 
 function logout(){ 
