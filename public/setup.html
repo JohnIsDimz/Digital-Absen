@@ -1,101 +1,178 @@
 <!DOCTYPE html>
-<html lang="id"><head>
-<meta charset="utf-8"/><meta name="viewport" content="width=device-width, initial-scale=1.0"/>
-<title>Setup Tahun 2026 + Lokasi Dinamis</title>
-<link href="https://fonts.googleapis.com/css2?family=Plus+Jakarta+Sans:wght@500;600;700&family=Space+Grotesk:wght@600;700;800&display=swap" rel="stylesheet"/>
+<html lang="id" class="overflow-x-hidden">
+<head>
+<meta charset="utf-8"/>
+<meta name="viewport" content="width=device-width, initial-scale=1.0"/>
+<title>Digital Apsen - Setup Awal 2026</title>
+<link href="https://fonts.googleapis.com/css2?family=Plus+Jakarta+Sans:wght@500;600;700;800&family=Space+Grotesk:wght@600;700;800&display=swap" rel="stylesheet"/>
 <link href="https://fonts.googleapis.com/css2?family=Material+Symbols+Outlined:wght,FILL@100..700,0..1&display=swap" rel="stylesheet"/>
-<script src="https://cdn.tailwindcss.com?plugins=forms,container-queries"></script>
-<style>body{font-family:'Plus Jakarta Sans'} h1,h2{font-family:'Space Grotesk'}</style>
+<script src="https://cdn.tailwindcss.com"></script>
+<style>
+html{overflow-x:hidden; width:100vw} body{overflow-x:hidden; width:100vw; touch-action:pan-y; overscroll-behavior-x:contain; position:relative} .no-scroll-x{overflow-x:hidden; max-width:100vw}
+body{font-family:'Plus Jakarta Sans'; background:#F5F5DC} h1,h2{font-family:'Space Grotesk'}html,body{overflow-x:hidden; max-width:100vw; position:relative} *{max-width:100%; box-sizing:border-box} body{overscroll-behavior-x:none}</style>
 </head>
-<body class="bg-[#FDF8F0] min-h-screen">
-<header class="border-b-[3px] border-black bg-white sticky top-0 z-50">
-<div class="max-w-5xl mx-auto px-5 py-3 flex justify-between items-center">
-<a href="/" class="flex items-center gap-2"><div class="w-10 h-10 bg-[#FFE600] border-[3px] border-black rounded-xl flex items-center justify-center font-bold">AS</div><span class="font-bold text-sm">Setup Tahun 2026</span></a>
-<a href="/" class="border-[2px] border-black px-3 py-1 rounded-full text-xs font-bold bg-white">Home</a>
+<body class="min-h-screen flex justify-center overflow-x-hidden w-full max-w-[100vw]">
+<div class="w-full max-w-[480px] bg-[#F5F5DC] min-h-screen border-x-[3px] border-black flex flex-col overflow-x-hidden relative max-w-[100vw]">
+
+<header class="bg-white border-b-[3px] border-black p-4 sticky top-0 z-50 flex justify-between items-center">
+<div class="flex items-center gap-2">
+<div class="w-9 h-9 bg-[#FFE600] border-[2.5px] border-black rounded-xl flex items-center justify-center font-black text-sm">DA</div>
+<span class="font-black text-sm uppercase">Digital Apsen Setup</span>
 </div>
+<a href="/" class="border-[2px] border-black px-3 py-1 rounded-full text-[11px] font-black bg-[#FFE600]">Home</a>
 </header>
 
-<!-- Date/Time Real - Fix tata letak berbeda dengan sekarang 28 Sep 2026 -->
-<div class="bg-[#FFE600] border-[2px] border-black p-2 rounded-xl mx-5 mt-3 flex justify-between items-center text-[11px] font-bold">
-<span id="realTanggal" class="realTanggalFull">Memuat tanggal real - Senin, 28 September 2026 - TA 2026/2027</span>
-<span id="liveClock" class="realJam">00:00:00 WIB</span>
+<div class="bg-[#FFE600] border-y-[3px] border-black p-3 flex justify-between items-center text-[11px] font-black">
+<span id="realTanggal">Memuat...</span>
+<span id="liveClock">00:00:00 WIB</span>
 </div>
 
-<main class="max-w-2xl mx-auto px-5 py-6">
-<div class="bg-[#FFE600] border-[3px] border-black p-5 rounded-[16px] [box-shadow:6px_6px_0px_#000]">
-<h1 class="text-[26px] font-extrabold uppercase leading-[28px]">SETUP <br/>TAHUN 2026 + LOKASI DINAMIS + PROFIL REAL</h1>
-<p class="mt-2 text-sm">Setup Awal - Semua data harus nyata tahun 2026. Lokasi bisa Bandung/Surabaya, bukan cuma Jakarta.</p>
+<main class="p-5 flex flex-col gap-5">
+
+<div class="bg-[#FFE600] border-[3px] border-black rounded-[16px] p-5 [box-shadow:6px_6px_0px_#000]">
+<h1 class="font-black text-[22px] leading-[24px] uppercase">Setup Awal<br/>Digital Apsen 2026</h1>
+<p class="text-[11px] mt-2 font-bold opacity-70 leading-[14px]">Buat kelas + guru + lokasi sekolah real. Data disimpan di VPS, bukan dummy. Lokasi bisa Bandung, Surabaya, dll.</p>
 </div>
 
-<div class="mt-6 bg-white border-[3px] border-black p-6 rounded-[16px] [box-shadow:4px_4px_0px_#000]">
-<h2 class="font-bold uppercase text-sm">Buat Kelas + Guru + Lokasi Real </h2>
+<div class="bg-white border-[3px] border-black rounded-[16px] p-5 [box-shadow:4px_4px_0px_#000]">
+<h2 class="font-black text-[13px] uppercase flex items-center gap-2"><span class="material-symbols-outlined text-[18px]">school</span> Buat Data Real</h2>
+
 <form id="setupForm" class="mt-4 space-y-3">
-<input id="kelasNama" placeholder="Kelas Real - XII RPL 1" class="w-full border-[2px] border-black p-3 rounded-xl text-sm" required/>
-<div class="grid grid-cols-2 gap-2">
-<input id="tahunAjaran" placeholder="Tahun 2026/2027" class="w-full border-[2px] border-black p-3 rounded-xl text-sm" value="2026/2027" required/>
-<select id="semester" class="w-full border-[2px] border-black p-3 rounded-xl text-sm"><option>GANJIL</option><option>GENAP</option></select>
+<div>
+<label class="font-black text-[10px] uppercase opacity-60">Nama Kelas</label>
+<input id="kelasNama" placeholder="XII RPL 1" class="w-full border-[2.5px] border-black p-3 rounded-xl text-sm font-bold bg-white mt-1" required/>
 </div>
-<input id="guruNama" placeholder="Nama Guru Real - Budi Real " class="w-full border-[2px] border-black p-3 rounded-xl text-sm" required/>
-<div class="grid grid-cols-2 gap-2">
-<input id="guruNip" placeholder="NIP Real" class="w-full border-[2px] border-black p-3 rounded-xl text-sm" required/>
-<input id="guruPassword" placeholder="Password Real" type="password" class="w-full border-[2px] border-black p-3 rounded-xl text-sm" required/>
+
+<div class="grid grid-cols-2 gap-3">
+<div>
+<label class="font-black text-[10px] uppercase opacity-60">Tahun Ajaran</label>
+<input id="tahunAjaran" value="2026/2027" class="w-full border-[2.5px] border-black p-3 rounded-xl text-sm font-bold mt-1" required/>
 </div>
-<input id="sekolahNama" placeholder="Sekolah Real - SMK N 1 BANDUNG (bukan cuma Jakarta)" class="w-full border-[2px] border-black p-3 rounded-xl text-sm"/>
-<input id="sekolahAlamat" placeholder="Alamat Sekolah Real" class="w-full border-[2px] border-black p-3 rounded-xl text-sm"/>
-<div class="grid grid-cols-2 gap-2">
-<input id="lat" placeholder="Latitude -6.914744 Bandung" type="number" step="any" class="w-full border-[2px] border-black p-3 rounded-xl text-sm"/>
-<input id="lng" placeholder="Longitude 107.60981" type="number" step="any" class="w-full border-[2px] border-black p-3 rounded-xl text-sm"/>
-</div>
-<button class="w-full bg-[#FFE600] border-[3px] border-black py-3 font-extrabold uppercase rounded-full [box-shadow:3px_3px_0px_#000]">Buat Data Nyata Tahun 2026</button>
-</form>
-<pre id="result" class="mt-4 bg-black text-green-400 p-3 rounded-xl text-[11px] max-h-64 overflow-auto hidden"></pre>
-<div id="successBox" class="hidden mt-4 bg-[#67FFB7] border-[3px] border-black p-4 rounded-xl">
-<p class="font-bold text-sm">Berhasil! Data nyata dibuat:</p>
-<div id="successData" class="mt-2 text-xs"></div>
-<div class="mt-3 flex gap-2">
-<a href="/index.html" class="bg-black text-white px-4 py-2 rounded-full text-xs font-bold">Login Siswa</a>
-<a href="/login-guru.html" class="bg-white border-2 border-black px-4 py-2 rounded-full text-xs font-bold">Login Guru</a>
-<a href="/profil.html" class="bg-[#FFE600] border-2 border-black px-4 py-2 rounded-full text-xs font-bold">Cek Profil Real</a>
-</div>
+<div>
+<label class="font-black text-[10px] uppercase opacity-60">Semester</label>
+<select id="semester" class="w-full border-[2.5px] border-black p-3 rounded-xl text-sm font-bold mt-1"><option>GANJIL</option><option>GENAP</option></select>
 </div>
 </div>
 
-<div class="mt-6 grid grid-cols-2 md:grid-cols-4 gap-2 text-[11px]">
-<a href="/index.html" class="border-2 border-black p-3 rounded-xl bg-white"><b>index.html</b><br/>Welcome</a>
-<a href="/settings.html" class="border-2 border-black p-3 rounded-xl bg-[#67FFB7]"><b>settings.html</b><br/>NEW </a>
-<a href="/profil.html" class="border-2 border-black p-3 rounded-xl bg-[#FFE600]"><b>profil.html</b><br/>Profil Real</a>
-<a href="/kelas.html" class="border-2 border-black p-3 rounded-xl bg-[#8A4CFC] text-white"><b>kelas.html</b><br/>Kelas Fix</a>
+<div>
+<label class="font-black text-[10px] uppercase opacity-60">Nama Guru (Wali Kelas)</label>
+<input id="guruNama" placeholder="Budi Santoso" class="w-full border-[2.5px] border-black p-3 rounded-xl text-sm font-bold mt-1" required/>
 </div>
+
+<div class="grid grid-cols-2 gap-3">
+<div>
+<label class="font-black text-[10px] uppercase opacity-60">NIP Guru</label>
+<input id="guruNip" placeholder="198001012006041001" class="w-full border-[2.5px] border-black p-3 rounded-xl text-sm font-bold mt-1" required/>
+</div>
+<div>
+<label class="font-black text-[10px] uppercase opacity-60">Password Guru</label>
+<input id="guruPassword" placeholder="admin123" type="password" class="w-full border-[2.5px] border-black p-3 rounded-xl text-sm font-bold mt-1" required/>
+</div>
+</div>
+
+<div>
+<label class="font-black text-[10px] uppercase opacity-60">Nama Sekolah</label>
+<input id="sekolahNama" placeholder="SMK N 1 BANDUNG" class="w-full border-[2.5px] border-black p-3 rounded-xl text-sm font-bold mt-1"/>
+</div>
+
+<div>
+<label class="font-black text-[10px] uppercase opacity-60">Alamat Sekolah</label>
+<input id="sekolahAlamat" placeholder="Jl. Telekomunikasi No.1" class="w-full border-[2.5px] border-black p-3 rounded-xl text-sm font-bold mt-1"/>
+</div>
+
+<div class="grid grid-cols-2 gap-3">
+<div>
+<label class="font-black text-[10px] uppercase opacity-60">Latitude</label>
+<input id="lat" placeholder="-6.914744" type="number" step="any" class="w-full border-[2.5px] border-black p-3 rounded-xl text-sm font-bold mt-1"/>
+</div>
+<div>
+<label class="font-black text-[10px] uppercase opacity-60">Longitude</label>
+<input id="lng" placeholder="107.60981" type="number" step="any" class="w-full border-[2.5px] border-black p-3 rounded-xl text-sm font-bold mt-1"/>
+</div>
+</div>
+
+<button type="submit" class="w-full bg-black text-white border-[3px] border-black py-3 font-black uppercase rounded-full text-sm [box-shadow:3px_3px_0px_#000] hover:bg-[#FFE600] hover:text-black transition-colors">Buat Data Real - Digital Apsen</button>
+</form>
+
+<div id="result" class="hidden mt-4 bg-black text-[#00FF88] p-3 rounded-xl text-[11px] font-mono max-h-64 overflow-auto border-2 border-black"></div>
+
+<div id="successBox" class="hidden mt-4 bg-[#67FFB7] border-[3px] border-black p-4 rounded-xl [box-shadow:4px_4px_0px_#000]">
+<p class="font-black text-sm uppercase flex items-center gap-2"><span class="material-symbols-outlined">check_circle</span> Berhasil! Data Real Dibuat:</p>
+<div id="successData" class="mt-3 text-[11px] font-bold leading-[14px] space-y-1"></div>
+<div class="mt-4 grid grid-cols-3 gap-2">
+<a href="/" class="bg-black text-white px-3 py-2 rounded-full text-[10px] font-black uppercase text-center">Login Siswa</a>
+<a href="/login-guru.html" class="bg-white border-[2px] border-black px-3 py-2 rounded-full text-[10px] font-black uppercase text-center">Login Guru</a>
+<a href="/dashboard-siswa.html" class="bg-[#FFE600] border-[2px] border-black px-3 py-2 rounded-full text-[10px] font-black uppercase text-center">Dashboard</a>
+</div>
+</div>
+
+</div>
+
+<div class="bg-black text-white border-[3px] border-black rounded-xl p-4">
+<p class="font-black text-[11px] uppercase text-[#FFE600] flex items-center gap-1"><span class="material-symbols-outlined text-[16px]">lightbulb</span> Tips Setup Vercel:</p>
+<p class="text-[10px] mt-2 leading-[13px] text-white/70">Di Vercel database JSON reset tiap deploy. Untuk dev tidak masalah. Setup ulang setelah deploy. Untuk production pakai VPS biar persistent. Kode undangan catat!</p>
+</div>
+
+<div class="grid grid-cols-2 gap-3 text-[11px]">
+<a href="/" class="border-[2.5px] border-black p-3 rounded-xl bg-[#FFE600] font-black"><span class="material-symbols-outlined text-[16px]">home</span><br/>Home</a>
+<a href="/settings.html" class="border-[2.5px] border-black p-3 rounded-xl bg-white font-black"><span class="material-symbols-outlined text-[16px]">settings</span><br/>Settings</a>
+</div>
+
 </main>
+
+</div>
+
 <script>
+function updateDateTime(){
+  const now = new Date();
+  const hari = ['Minggu','Senin','Selasa','Rabu','Kamis','Jumat','Sabtu'];
+  const bulan = ['Januari','Februari','Maret','April','Mei','Juni','Juli','Agustus','September','Oktober','November','Desember'];
+  const tgl = `${hari[now.getDay()]}, ${now.getDate()} ${bulan[now.getMonth()]} ${now.getFullYear()}`;
+  const jam = now.toLocaleTimeString('id-ID',{hour:'2-digit',minute:'2-digit',second:'2-digit'});
+  document.getElementById('realTanggal').textContent = tgl;
+  document.getElementById('liveClock').textContent = jam + ' WIB';
+}
+updateDateTime();
+setInterval(updateDateTime,1000);
+
 document.getElementById('setupForm').addEventListener('submit', async e=>{
  e.preventDefault();
+ const btn = e.target.querySelector('button');
+ btn.textContent = 'Memproses...';
+ btn.disabled = true;
  const body={
-  kelasNama: kelasNama.value,
-  tahunAjaran: tahunAjaran.value,
-  semester: semester.value,
-  guruNama: guruNama.value,
-  guruNip: guruNip.value,
-  guruPassword: guruPassword.value,
-  sekolahNama: sekolahNama.value||undefined,
-  sekolahAlamat: sekolahAlamat.value||undefined,
-  lat: lat.value?parseFloat(lat.value):undefined,
-  lng: lng.value?parseFloat(lng.value):undefined
+  kelasNama: document.getElementById('kelasNama').value,
+  tahunAjaran: document.getElementById('tahunAjaran').value,
+  semester: document.getElementById('semester').value,
+  guruNama: document.getElementById('guruNama').value,
+  guruNip: document.getElementById('guruNip').value,
+  guruPassword: document.getElementById('guruPassword').value,
+  sekolahNama: document.getElementById('sekolahNama').value||undefined,
+  sekolahAlamat: document.getElementById('sekolahAlamat').value||undefined,
+  lat: document.getElementById('lat').value?parseFloat(document.getElementById('lat').value):undefined,
+  lng: document.getElementById('lng').value?parseFloat(document.getElementById('lng').value):undefined
  };
- const r=await fetch('/api/setup/init',{method:'POST',headers:{'Content-Type':'application/json'},body:JSON.stringify(body)});
- const d=await r.json();
- const el=document.getElementById('result'); el.classList.remove('hidden'); el.textContent=JSON.stringify(d,null,2);
- if(d.success){
-  document.getElementById('successBox').classList.remove('hidden');
-  document.getElementById('successData').innerHTML=`
-   <p><b>Kelas:</b> ${d.data.kelas.nama} - ${d.data.kelas.kodeUndangan} - TA ${d.data.kelas.tahunAjaran}</p>
-   <p><b>Guru:</b> ${d.data.guru.nama} - NIP ${d.data.guru.nip}</p>
-   <p><b>Sekolah:</b> ${d.data.settings.sekolahNama} - ${d.data.settings.lat},${d.data.settings.lng}</p>
-   <p class="mt-2 text-[10px]">Kode Undangan untuk siswa: <b>${d.data.kelas.kodeUndangan}</b> - Catat!</p>`;
+ try{
+  const r=await fetch('/api/setup/init',{method:'POST',headers:{'Content-Type':'application/json'},body:JSON.stringify(body)});
+  const d=await r.json();
+  const el=document.getElementById('result');
+  el.classList.remove('hidden');
+  el.textContent=JSON.stringify(d,null,2);
+  if(d.success){
+   document.getElementById('successBox').classList.remove('hidden');
+   document.getElementById('successData').innerHTML=`
+    <p><b>Kelas:</b> ${d.data.kelas.nama} - <span class="bg-black text-[#FFE600] px-2 py-0.5 rounded">${d.data.kelas.kodeUndangan}</span> - ${d.data.kelas.tahunAjaran}</p>
+    <p><b>Guru:</b> ${d.data.guru.nama} - NIP ${d.data.guru.nip}</p>
+    <p><b>Sekolah:</b> ${d.data.settings.sekolahNama} - ${d.data.settings.lat},${d.data.settings.lng}</p>
+    <p class="mt-2 bg-black text-[#FFE600] p-2 rounded text-center">KODE UNDANGAN: ${d.data.kelas.kodeUndangan} - CATAT UNTUK LOGIN SISWA!</p>`;
+  }
+ }catch(err){
+  alert('Gagal: '+err.message);
+ }finally{
+  btn.textContent = 'Buat Data Real - Digital Apsen';
+  btn.disabled = false;
  }
 });
 </script>
-<script src="/socket.io/socket.io.js"></script>
-<script src="https://unpkg.com/html5-qrcode@2.3.8/html5-qrcode.min.js"></script>
-<script src="/js/app.js"></script>
-</body></html>
+</body>
+</html>
