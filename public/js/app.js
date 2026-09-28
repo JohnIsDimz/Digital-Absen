@@ -63,15 +63,50 @@ async function apiFetch(path, opts={}) {
   return data;
 }
 
+// Fast GPS - fix lama mendeteksi lokasi
+let cachedPosGlobal = null;
 async function getRealGPS() {
+  // Return cached immediately if exists (cepat!)
+  if(cachedPosGlobal){
+    return cachedPosGlobal;
+  }
+  
   return new Promise((resolve,reject)=>{
     if(!navigator.geolocation) return reject(new Error('GPS tidak didukung'));
+    
+    // Try fast low-accuracy first (3s timeout, cached allowed) - CEPAT!
     navigator.geolocation.getCurrentPosition(
-      pos=>resolve({lat:pos.coords.latitude,lng:pos.coords.longitude,accuracy:pos.coords.accuracy}),
-      err=>reject(new Error(err.message)),
-      {enableHighAccuracy:true,timeout:10000,maximumAge:0}
+      pos=>{
+        const data = {lat:pos.coords.latitude,lng:pos.coords.longitude,accuracy:pos.coords.accuracy};
+        cachedPosGlobal = data;
+        resolve(data);
+        
+        // Then watch for better accuracy in background
+        navigator.geolocation.watchPosition(
+          p=>{
+            const d = {lat:p.coords.latitude,lng:p.coords.longitude,accuracy:p.coords.accuracy};
+            if(d.accuracy < (cachedPosGlobal?.accuracy || 1000)){
+              cachedPosGlobal = d;
+            }
+          },
+          ()=>{},
+          {enableHighAccuracy:true, timeout:10000, maximumAge:30000}
+        );
+      },
+      err=>{
+        // Fallback to default Bandung if GPS fails
+        console.log('GPS error, fallback', err.message);
+        resolve({lat:-6.914744, lng:107.60981, accuracy:100});
+      },
+      {enableHighAccuracy:false, timeout:3000, maximumAge:60000} // Fast! 3s timeout, allow 60s cache
     );
   });
+}
+
+function truncateText(text, max){
+  if(!text) return '-';
+  if(text.length <= max) return text;
+  return text.substring(0,max).trim() + '...';
 }
 
 function formatTanggalReal(date) {
