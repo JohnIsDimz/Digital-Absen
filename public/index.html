@@ -106,7 +106,7 @@ html,body{overflow-x:hidden; max-width:100vw; position:relative} *{max-width:100
 
 </div>
 
-<script src="/js/auth-guard.js"></script>
+<script src="/js/auth-guard.js?v=1.0.31"></script>
 <script src="/js/app.js"></script>
 <script>
 // Fix date time + Welcome first logic - dashboard ga bisa diakses sebelum login
@@ -128,14 +128,14 @@ document.addEventListener('DOMContentLoaded', ()=>{
   // Bersihkan token kosong (bug setup.html set token jadi '')
   if(token && token.trim() === ''){ localStorage.removeItem('absensiswa_token'); token = null; }
   const hasSeenWelcome = localStorage.getItem('digitalapsen_welcome_seen');
-
+  
   // Jika belum login dan belum pernah lihat welcome, arahkan ke welcome.html (hanya sekali)
   if(!token && !hasSeenWelcome && (window.location.pathname === '/' || window.location.pathname === '/index.html')){
     localStorage.setItem('digitalapsen_welcome_seen', 'true');
     window.location.href = '/welcome.html';
     return;
   }
-
+  
   // Jika sudah login, arahkan ke dashboard sesuai role (fix identitas hilang)
   if(token){
     try{

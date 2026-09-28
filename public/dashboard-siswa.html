@@ -117,7 +117,7 @@ html{overflow-x:hidden; width:100vw} body{overflow-x:hidden; width:100vw; touch-
 
 </main>
 
-<nav class="fixed bottom-0 w-full max-w-[420px] md:max-w-[440px] bg-white border-t-[3px] border-black flex justify-around py-2 z-50 left-1/2 -translate-x-1/2">
+<nav id="bottomNav" class="fixed bottom-0 w-full max-w-[420px] md:max-w-[440px] bg-white border-t-[3px] border-black flex justify-around py-2 z-50 left-1/2 -translate-x-1/2">
 <a href="/dashboard-siswa.html" class="flex flex-col items-center bg-[#67FFB7] border-[2px] border-black rounded-xl px-4 py-1"><span class="material-symbols-outlined text-[20px]">dashboard</span><span class="text-[9px] font-black uppercase">Siswa</span></a>
 <a href="/scan.html" class="flex flex-col items-center opacity-60 px-3 py-1"><span class="material-symbols-outlined text-[20px]">qr_code_scanner</span><span class="text-[9px] font-bold uppercase">Scan</span></a>
 <a href="/rekap.html" class="flex flex-col items-center opacity-60 px-3 py-1"><span class="material-symbols-outlined text-[20px]">analytics</span><span class="text-[9px] font-bold uppercase">Rekap</span></a>
@@ -126,7 +126,8 @@ html{overflow-x:hidden; width:100vw} body{overflow-x:hidden; width:100vw; touch-
 
 </div>
 
-<script src="/js/auth-guard.js"></script>
+<script src="/js/auth-guard.js?v=1.0.32"></script>
+<script src="/js/nav.js?v=1.0.32"></script>
 <script src="/js/app.js"></script>
 <script>
 // Fast GPS - fix lama mendeteksi
@@ -146,16 +147,16 @@ async function getFastGPS(){
     document.getElementById('gpsAccuracy').textContent = `Akurasi: ${Math.round(cachedPos.accuracy)}m - Cached`;
     return cachedPos;
   }
-
+  
   document.getElementById('lokasiStatus').textContent = 'Mencari GPS cepat...';
-
+  
   return new Promise((resolve, reject)=>{
     if(!navigator.geolocation){
       document.getElementById('lokasiStatus').textContent = 'GPS tidak didukung';
       reject(new Error('GPS tidak didukung'));
       return;
     }
-
+    
     // Fast first fix - low accuracy, short timeout
     navigator.geolocation.getCurrentPosition(
       pos=>{
@@ -164,7 +165,7 @@ async function getFastGPS(){
         document.getElementById('lokasiStatus').textContent = `${data.lat.toFixed(4)}, ${data.lng.toFixed(4)}`;
         document.getElementById('lokasiStatus').title = `${data.lat}, ${data.lng}`;
         document.getElementById('gpsAccuracy').textContent = `Akurasi: ${Math.round(data.accuracy)}m - Real`;
-
+        
         // Start watch for better accuracy
         if(gpsWatchId) navigator.geolocation.clearWatch(gpsWatchId);
         gpsWatchId = navigator.geolocation.watchPosition(
@@ -179,7 +180,7 @@ async function getFastGPS(){
           ()=>{},
           {enableHighAccuracy:true, timeout:10000, maximumAge:30000}
         );
-
+        
         resolve(data);
       },
       err=>{
@@ -243,13 +244,13 @@ document.addEventListener('DOMContentLoaded', ()=>{
   }
 });
 
-function logout(){
+function logout(){ 
   localStorage.removeItem('absensiswa_token');
   localStorage.removeItem('absensiswa_user');
   localStorage.removeItem('absensiswa_siswa');
   localStorage.removeItem('absensiswa_guru');
   localStorage.removeItem('absensiswa_kelas');
-  location.href='/welcome.html';
+  location.href='/welcome.html'; 
 }
 </script>
 </body>

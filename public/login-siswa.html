@@ -118,7 +118,7 @@ html{overflow-x:hidden; width:100vw} body{overflow-x:hidden; width:100vw; touch-
 
 </div>
 
-<script src="/js/auth-guard.js"></script>
+<script src="/js/auth-guard.js?v=1.0.31"></script>
 <script src="/js/app.js"></script>
 <script>
 function updateDateTime(){
@@ -158,12 +158,12 @@ document.getElementById('loginSiswaForm')?.addEventListener('submit', async (e)=
   const nisn = document.getElementById('nisn').value.trim();
   const pin = document.getElementById('pin').value.trim();
   const deviceId = getDeviceId();
-
+  
   const btn = e.target.querySelector('button[type=submit]');
   const original = btn.innerHTML;
   btn.innerHTML = '<span class="material-symbols-outlined animate-spin text-[18px]">progress_activity</span> Memproses...';
   btn.disabled = true;
-
+  
   try{
     const r = await fetch('/api/auth/siswa/join', {
       method:'POST',
@@ -174,7 +174,7 @@ document.getElementById('loginSiswaForm')?.addEventListener('submit', async (e)=
     const resultEl = document.getElementById('loginResult');
     resultEl.classList.remove('hidden');
     resultEl.textContent = JSON.stringify(d, null, 2);
-
+    
     if(d.success){
       // FIX: Bersihkan data guru dulu biar ga tercampur
       localStorage.removeItem('absensiswa_guru');
@@ -183,12 +183,12 @@ document.getElementById('loginSiswaForm')?.addEventListener('submit', async (e)=
       localStorage.setItem('absensiswa_siswa', JSON.stringify(d.data.siswa));
       localStorage.setItem('absensiswa_user', JSON.stringify(d.data.siswa));
       if(d.data.kelas) localStorage.setItem('absensiswa_kelas', JSON.stringify(d.data.kelas));
-
+      
       // Success feedback
       btn.innerHTML = '<span class="material-symbols-outlined text-[18px]">check_circle</span> Berhasil!';
       btn.classList.remove('bg-black','text-white');
       btn.classList.add('bg-[#67FFB7]','text-black');
-
+      
       setTimeout(()=>{
         alert('Yeay! Selamat datang, ' + d.data.siswa.nama + '!');
         location.href = '/dashboard-siswa.html';
