@@ -9,6 +9,7 @@ const uuid_1 = require("uuid");
 const zod_1 = require("zod");
 const bcryptjs_1 = __importDefault(require("bcryptjs"));
 const socket_1 = require("../config/socket");
+const auth_1 = require("../middlewares/auth");
 const router = (0, express_1.Router)();
 const siswaRealSchema = zod_1.z.object({
     nisn: zod_1.z.string().min(5),
@@ -33,7 +34,7 @@ const pindahKelasSchema = zod_1.z.object({
     alasan: zod_1.z.string().min(5).optional(),
 });
 // GET semua siswa real
-router.get('/', (req, res) => {
+router.get('/', auth_1.authenticate, (0, auth_1.authorize)('WALI_KELAS', 'GURU', 'ADMIN'), (req, res) => {
     const data = db_1.db.get();
     const { kelasId } = req.query;
     let siswaList = data.siswa;
@@ -50,8 +51,8 @@ router.get('/', (req, res) => {
         message: siswaList.length === 0 ? 'Belum ada siswa - Data NOL v0.3' : `${siswaList.length} siswa real - kelas bisa diganti via PUT /api/siswa/:id`
     });
 });
-// POST tambah siswa baru
-router.post('/', async (req, res) => {
+// POST tambah siswa baru - SECURITY: hanya guru!
+router.post('/', auth_1.authenticate, (0, auth_1.authorize)('WALI_KELAS', 'GURU', 'ADMIN'), async (req, res) => {
     try {
         const parsed = siswaRealSchema.parse(req.body);
         const data = db_1.db.get();
@@ -106,7 +107,7 @@ router.post('/', async (req, res) => {
     }
 });
 // GET siswa by id
-router.get('/:id', (req, res) => {
+router.get('/:id', auth_1.authenticate, (req, res) => {
     const data = db_1.db.get();
     const siswa = data.siswa.find(s => s.id === req.params.id);
     if (!siswa)
@@ -124,8 +125,8 @@ router.get('/:id', (req, res) => {
         }
     });
 });
-// PUT update siswa - FIX CACAT v0.3 - KELAS BISA DIGANTI
-router.put('/:id', async (req, res) => {
+// PUT update siswa - FIX CACAT v0.3 - KELAS BISA DIGANTI - SECURITY: hanya guru!
+router.put('/:id', auth_1.authenticate, (0, auth_1.authorize)('WALI_KELAS', 'GURU', 'ADMIN'), async (req, res) => {
     try {
         const parsed = siswaUpdateSchema.parse(req.body);
         const data = db_1.db.get();
