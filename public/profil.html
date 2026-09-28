@@ -20,8 +20,7 @@ html{overflow-x:hidden; width:100vw} body{overflow-x:hidden; width:100vw; touch-
 <span class="font-black text-sm uppercase">Profil Saya</span>
 </div>
 <div class="flex gap-2">
-<a href="/settings.html" class="border-[2px] border-black px-3 py-1.5 rounded-full text-[10px] font-black bg-[#67FFB7]">Settings</a>
-<a href="/" class="border-[2px] border-black px-3 py-1.5 rounded-full text-[10px] font-black bg-white">Home</a>
+<a href="/welcome.html" class="border-[2px] border-black px-3 py-1.5 rounded-full text-[10px] font-black bg-[#67FFB7]">Welcome</a>
 </div>
 </header>
 
@@ -70,24 +69,7 @@ html{overflow-x:hidden; width:100vw} body{overflow-x:hidden; width:100vw; touch-
 <div id="editResult" class="hidden mt-3 bg-black text-[#00FF88] p-3 text-[11px] rounded-xl font-mono max-h-32 overflow-auto border-2 border-black"></div>
 </div>
 
-<div class="grid grid-cols-2 gap-3">
-<a href="/dashboard-siswa.html" class="bg-[#67FFB7] border-[2.5px] border-black rounded-xl p-4 text-center [box-shadow:3px_3px_0px_#000]">
-<span class="material-symbols-outlined text-[22px]">dashboard</span>
-<p class="font-black text-[11px] uppercase mt-1">Dashboard Siswa</p>
-</a>
-<a href="/dashboard-guru.html" class="bg-[#8A4CFC] border-[2.5px] border-black rounded-xl p-4 text-center text-white [box-shadow:3px_3px_0px_#000]">
-<span class="material-symbols-outlined text-[22px] text-[#FFE600]">supervisor_account</span>
-<p class="font-black text-[11px] uppercase mt-1 text-[#FFE600]">Dashboard Guru</p>
-</a>
-<a href="/settings.html" class="bg-white border-[2.5px] border-black rounded-xl p-4 text-center [box-shadow:3px_3px_0px_#000]">
-<span class="material-symbols-outlined text-[22px]">settings</span>
-<p class="font-black text-[11px] uppercase mt-1">Settings</p>
-</a>
-<a href="/kelas.html" class="bg-[#FFE600] border-[2.5px] border-black rounded-xl p-4 text-center [box-shadow:3px_3px_0px_#000]">
-<span class="material-symbols-outlined text-[22px]">groups</span>
-<p class="font-black text-[11px] uppercase mt-1">Kelas</p>
-</a>
-</div>
+
 
 </main>
 
@@ -126,7 +108,7 @@ async function loadProfil(){
       <p class="text-[11px] mt-2 opacity-70 leading-[14px]">Yuk, login dulu untuk melihat profil kamu.<br/>Jika baru pertama kali, buat kelas baru di Setup ya!</p>
       <div class="mt-4 grid grid-cols-2 gap-2">
         <a href="/setup.html" class="bg-[#FFE600] border-[2px] border-black px-4 py-2.5 rounded-full text-[11px] font-black uppercase">Buat Kelas Baru</a>
-        <a href="/" class="bg-black text-white px-4 py-2.5 rounded-full text-[11px] font-black uppercase">Login Sekarang</a>
+        <a href="/welcome.html" class="bg-black text-white px-4 py-2.5 rounded-full text-[11px] font-black uppercase">Login Sekarang</a>
       </div>
       <p class="text-[9px] mt-3 opacity-40">Digital Apsen - Mudah & Cepat</p>
     </div>`;
@@ -172,7 +154,7 @@ async function loadProfil(){
       <p class="font-black">Oops, Gagal Memuat Profil</p>
       <p class="text-[11px] mt-1 opacity-70">${e.message}</p>
       <p class="text-[10px] mt-2 opacity-60">Mungkin sesi login kamu sudah berakhir. Yuk login ulang!</p>
-      <a href="/" class="inline-block mt-3 bg-black text-white px-4 py-2 rounded-full text-[11px] font-black">Login Ulang</a>
+      <a href="/welcome.html" class="inline-block mt-3 bg-black text-white px-4 py-2 rounded-full text-[11px] font-black">Login Ulang</a>
     </div>`;
  }
 }
@@ -196,7 +178,7 @@ document.getElementById('editProfilForm').addEventListener('submit', async e=>{
 
 loadProfil();
 </script>
-<script src="/js/auth-guard.js?v=1.0.32"></script>
-<script src="/js/nav.js?v=1.0.32"></script>
+<script src="/js/auth-guard.js?v=1.0.34"></script>
+<script src="/js/nav.js?v=1.0.34"></script>
 </body>
 </html>
