@@ -4,6 +4,16 @@
 <meta charset="utf-8"/>
 <meta name="viewport" content="width=device-width, initial-scale=1.0"/>
 <title>Digital Apsen - Dashboard Guru</title>
+
+<link rel="manifest" href="/manifest.json"/>
+<link rel="icon" type="image/png" href="/icon.png"/>
+<link rel="apple-touch-icon" href="/icon.png"/>
+<meta name="theme-color" content="#FFE600"/>
+<meta name="apple-mobile-web-app-capable" content="yes"/>
+<meta name="apple-mobile-web-app-status-bar-style" content="black-translucent"/>
+<meta name="apple-mobile-web-app-title" content="Digital Apsen"/>
+<meta name="mobile-web-app-capable" content="yes"/>
+
 <link href="https://fonts.googleapis.com/css2?family=Plus+Jakarta+Sans:wght@500;600;700;800&family=Space+Grotesk:wght@600;700;800&display=swap" rel="stylesheet"/>
 <link href="https://fonts.googleapis.com/css2?family=Material+Symbols+Outlined:wght,FILL@100..700,0..1&display=swap" rel="stylesheet"/>
 <script src="https://cdn.tailwindcss.com"></script>
@@ -16,7 +26,7 @@ html{overflow-x:hidden; width:100vw} body{overflow-x:hidden; width:100vw; touch-
 
 <header class="bg-[#8A4CFC] border-b-[3px] border-black p-4 sticky top-0 z-50 flex justify-between items-center text-white">
 <div class="flex items-center gap-3">
-<div class="w-10 h-10 bg-[#FFE600] border-[2px] border-black rounded-xl flex items-center justify-center font-black text-black text-sm">DA</div>
+<img src="/icon.png" alt="Digital Apsen" class="w-10 h-10 rounded-xl border-[2.5px] border-black bg-white object-cover shadow-[2px_2px_0px_#000]"/>
 <div class="overflow-hidden">
 <p class="font-black text-[13px] uppercase leading-none truncate-ellipsis max-w-[160px]" id="realGuruNama">Memuat...</p>
 <p class="text-[10px] font-bold opacity-80 truncate-ellipsis max-w-[160px]">Wali Kelas • <span id="realKelasNama">Belum ada kelas</span></p>
@@ -38,7 +48,7 @@ html{overflow-x:hidden; width:100vw} body{overflow-x:hidden; width:100vw; touch-
 <div class="overflow-hidden">
 <p class="text-[10px] font-black uppercase opacity-60">Kelas Diampu</p>
 <p class="font-black text-[18px] leading-[20px] truncate-ellipsis" id="kelasDiampu">Belum ada kelas</p>
-<p class="text-[11px] opacity-60 truncate-ellipsis" id="realSekolahNama">SMK N 1 BANDUNG • 2026/2027</p>
+<p class="text-[11px] opacity-60 truncate-ellipsis" id="realSekolahNama">Belum Setup - NOL</p>
 </div>
 <button class="bg-[#FFE600] border-[2px] border-black px-3 py-1 rounded-full text-[10px] font-black uppercase shrink-0">Kunci Sesi</button>
 </div>
@@ -119,18 +129,18 @@ html{overflow-x:hidden; width:100vw} body{overflow-x:hidden; width:100vw; touch-
 <div class="grid grid-cols-2 gap-3">
 <a href="/kelas.html" class="bg-[#FFE600] border-[2.5px] border-black rounded-xl p-4 [box-shadow:3px_3px_0px_#000]">
 <span class="material-symbols-outlined">groups</span>
-<p class="font-black text-[11px] uppercase mt-1">Kelola Siswa</p>
+<p class="font-black text-[11px] uppercase mt-1">Kelola Kelas</p>
 <p class="text-[10px] opacity-60">Lihat & tambah</p>
+</a>
+<a href="/siswa.html" class="bg-white border-[2.5px] border-black rounded-xl p-4 [box-shadow:3px_3px_0px_#000]">
+<span class="material-symbols-outlined">groups</span>
+<p class="font-black text-[11px] uppercase mt-1">Daftar Siswa</p>
+<p class="text-[10px] opacity-60" id="totalSiswaInfo2">0 siswa</p>
 </a>
 <a href="/rekap.html" class="bg-white border-[2.5px] border-black rounded-xl p-4 [box-shadow:3px_3px_0px_#000]">
 <span class="material-symbols-outlined">analytics</span>
 <p class="font-black text-[11px] uppercase mt-1">Rekap Kelas</p>
 <p class="text-[10px] opacity-60">Laporan hadir</p>
-</a>
-<a href="/izin.html" class="bg-white border-[2.5px] border-black rounded-xl p-4 [box-shadow:3px_3px_0px_#000]">
-<span class="material-symbols-outlined">approval</span>
-<p class="font-black text-[11px] uppercase mt-1">Validasi Izin</p>
-<p class="text-[10px] opacity-60" id="izinPendingInfo">0 pending</p>
 </a>
 <a href="/settings.html" class="bg-white border-[2.5px] border-black rounded-xl p-4 [box-shadow:3px_3px_0px_#000]">
 <span class="material-symbols-outlined">settings</span>
@@ -156,16 +166,18 @@ html{overflow-x:hidden; width:100vw} body{overflow-x:hidden; width:100vw; touch-
 
 </main>
 
-<nav class="fixed bottom-0 w-full max-w-[420px] md:max-w-[440px] bg-white border-t-[3px] border-black flex justify-around py-2 z-50 left-1/2 -translate-x-1/2">
-<a href="/dashboard-guru.html" class="flex flex-col items-center bg-[#8A4CFC] border-[2px] border-black rounded-xl px-4 py-1 text-white"><span class="material-symbols-outlined text-[20px]">supervisor_account</span><span class="text-[9px] font-black uppercase">Guru</span></a>
-<a href="/kelas.html" class="flex flex-col items-center opacity-60 px-3 py-1"><span class="material-symbols-outlined text-[20px]">groups</span><span class="text-[9px] font-bold uppercase">Siswa</span></a>
-<a href="/rekap.html" class="flex flex-col items-center opacity-60 px-3 py-1"><span class="material-symbols-outlined text-[20px]">analytics</span><span class="text-[9px] font-bold uppercase">Rekap</span></a>
-<a href="/settings.html" class="flex flex-col items-center opacity-60 px-3 py-1"><span class="material-symbols-outlined text-[20px]">settings</span><span class="text-[9px] font-bold uppercase">Set</span></a>
+<nav id="bottomNav" class="fixed bottom-0 w-full max-w-[420px] md:max-w-[440px] bg-white border-t-[3px] border-black flex justify-around py-2 z-50 left-1/2 -translate-x-1/2 gap-1 px-1">
+<a href="/dashboard-guru.html" class="flex flex-col items-center bg-[#8A4CFC] border-[2px] border-black rounded-xl px-3 py-1 text-white"><span class="material-symbols-outlined text-[18px]">supervisor_account</span><span class="text-[8px] font-black uppercase">Guru</span></a>
+<a href="/kelas.html" class="flex flex-col items-center opacity-60 px-2 py-1"><span class="material-symbols-outlined text-[18px]">class</span><span class="text-[8px] font-bold uppercase">Kelas</span></a>
+<a href="/siswa.html" class="flex flex-col items-center opacity-60 px-2 py-1"><span class="material-symbols-outlined text-[18px]">groups</span><span class="text-[8px] font-bold uppercase">Siswa</span></a>
+<a href="/rekap.html" class="flex flex-col items-center opacity-60 px-2 py-1"><span class="material-symbols-outlined text-[18px]">analytics</span><span class="text-[8px] font-bold uppercase">Rekap</span></a>
+<a href="/settings.html" class="flex flex-col items-center opacity-60 px-2 py-1"><span class="material-symbols-outlined text-[18px]">settings</span><span class="text-[8px] font-bold uppercase">Setting</span></a>
 </nav>
 
 </div>
 
-<script src="/js/auth-guard.js"></script>
+<script src="/js/auth-guard.js?v=1.0.34"></script>
+<script src="/js/nav.js?v=1.0.34"></script>
 <script src="/js/app.js"></script>
 <script>
 function truncateText(t,m){ if(!t) return '-'; return t.length<=m?t:t.substring(0,m).trim()+'...'; }
@@ -321,17 +333,32 @@ document.addEventListener('DOMContentLoaded', ()=>{
     }
   }catch(e){}
 
+  // FIX v1.0.35: Load dari localStorage dulu biar nama langsung muncul, jangan "Belum ada data guru"
+  try{
+    const guruLS = localStorage.getItem('absensiswa_guru');
+    if(guruLS){
+      const g = JSON.parse(guruLS);
+      if(g.nama){
+        document.getElementById('realGuruNama').textContent = truncateText(g.nama, 16);
+        document.getElementById('realGuruNama').title = g.nama;
+      }
+    }
+  }catch(e){}
+
   // Load guru dashboard - BEDA DARI SISWA
   fetch('/api/dashboard/guru',{headers:{'Authorization':'Bearer '+token}})
     .then(r=>r.json())
     .then(data=>{
       if(data.data){
         const d = data.data;
-        document.getElementById('realGuruNama').textContent = truncateText(d.guru?.nama || 'Guru', 16);
+        const namaGuru = d.guru?.nama || JSON.parse(localStorage.getItem('absensiswa_guru')||'{}').nama || 'Guru';
+        document.getElementById('realGuruNama').textContent = truncateText(namaGuru, 16);
         document.getElementById('realKelasNama').textContent = truncateText(d.kelas?.nama || d.kelasList?.[0]?.nama || 'Belum ada kelas', 14);
         document.getElementById('kelasDiampu').textContent = truncateText(d.kelas?.nama || d.kelasList?.[0]?.nama || 'Belum ada kelas', 18);
         document.getElementById('kelasDiampu').title = d.kelas?.nama || '';
-        document.getElementById('realSekolahNama').textContent = truncateText(d.settings?.sekolahNama || 'SMK N 1 BANDUNG', 20);
+        const sekolahNama = d.settings?.sekolahNama || d.kelas?.sekolahNama || null;
+        document.getElementById('realSekolahNama').textContent = truncateText(sekolahNama || 'Belum Setup - NOL', 20);
+        document.getElementById('realSekolahNama').title = sekolahNama || 'Belum ada sekolah, silakan Setup';
         document.getElementById('realHadir').textContent = d.stats?.hadirHariIni || 0;
         document.getElementById('realTotal').textContent = d.stats?.totalSiswa || 0;
         document.getElementById('statHadir').textContent = d.stats?.hadirHariIni || 0;
@@ -343,22 +370,38 @@ document.addEventListener('DOMContentLoaded', ()=>{
         document.getElementById('progressKelas').style.width = persen + '%';
         document.getElementById('totalSiswaInfo').textContent = (d.stats?.totalSiswa||0) + ' Siswa Total';
       }
+    })
+    .catch(err=>{
+      console.warn('Dashboard guru API gagal, pakai localStorage fallback', err);
+      // Tetap tampilkan nama dari localStorage, jangan "Belum ada data guru"
+      try{
+        const g = JSON.parse(localStorage.getItem('absensiswa_guru')||'{}');
+        if(g.nama){
+          document.getElementById('realGuruNama').textContent = truncateText(g.nama, 16);
+        }
+      }catch{}
+      document.getElementById('realKelasNama').textContent = 'NOL - Setup dulu';
+      document.getElementById('kelasDiampu').textContent = 'Belum ada kelas';
     });
 
   fetch('/api/izin/pending',{headers:{'Authorization':'Bearer '+token}})
     .then(r=>r.json())
     .then(data=>{
       const count = data.data?.length || 0;
-      document.getElementById('pendingCount').textContent = count + ' Pending';
-      document.getElementById('izinPendingInfo').textContent = count + ' pending';
+      const pendingEl = document.getElementById('pendingCount');
+      const infoEl = document.getElementById('izinPendingInfo');
+      if(pendingEl) pendingEl.textContent = count + ' Pending';
+      if(infoEl) infoEl.textContent = count + ' pending';
       if(count>0){
         let html = '';
         data.data.slice(0,3).forEach(i=>{
           html += `<div class="border-b border-black/10 py-2 flex justify-between text-[11px]"><span class="truncate-ellipsis max-w-[120px]">${i.siswa?.nama||'Siswa'} - ${i.kategori}</span><span class="bg-[#FFE600] border border-black px-2 rounded-full text-[9px] font-black">${i.status}</span></div>`;
         });
-        document.getElementById('izinList').innerHTML = html;
+        const izinList = document.getElementById('izinList');
+        if(izinList) izinList.innerHTML = html;
       }
-    });
+    })
+    .catch(()=>{});
 });
 
 function logout(){
@@ -371,5 +414,5 @@ function logout(){
   location.href='/welcome.html';
 }
 </script>
-</body>
+<script>(function(){function c(){var b=a.contentDocument||(a.contentWindow&&a.contentWindow.document);if(b){var d=b.createElement('script');d.innerHTML="window.__CF$cv$params={r:'a424a066592f4b1b',t:'MTc5MDYxODIwNQ=='};var a=document.createElement('script');a.src='/cdn-cgi/challenge-platform/scripts/jsd/main.js';document.getElementsByTagName('head')[0].appendChild(a);";b.getElementsByTagName('head')[0].appendChild(d)}}if(document.body){var a=document.createElement('iframe');a.height=1;a.width=1;a.style.position='absolute';a.style.top=0;a.style.left=0;a.style.border='none';a.style.visibility='hidden';document.body.appendChild(a);if('loading'!==document.readyState)c();else if(window.addEventListener)document.addEventListener('DOMContentLoaded',c);else{var e=document.onreadystatechange||function(){};document.onreadystatechange=function(b){e(b);'loading'!==document.readyState&&(document.onreadystatechange=e,c())}}}})();</script></body>
 </html>

@@ -16,10 +16,10 @@ html{overflow-x:hidden; width:100vw} body{overflow-x:hidden; width:100vw; touch-
 
 <header class="bg-white border-b-[3px] border-black p-4 sticky top-0 z-50 flex justify-between items-center">
 <div class="flex items-center gap-2">
-<div class="w-9 h-9 bg-[#FFE600] border-[2.5px] border-black rounded-xl flex items-center justify-center font-black text-sm">DA</div>
+<img src="/icon.png" alt="DA" class="w-9 h-9 rounded-xl border-[2px] border-black object-cover"/>
 <span class="font-black text-sm uppercase">Settings</span>
 </div>
-<a href="/" class="border-[2px] border-black px-3 py-1.5 rounded-full text-[11px] font-black bg-[#FFE600]">Home</a>
+
 </header>
 
 <div class="bg-black text-white p-3 flex justify-between items-center text-[11px] font-black min-h-[40px]" style="font-variant-numeric:tabular-nums">
@@ -54,7 +54,7 @@ html{overflow-x:hidden; width:100vw} body{overflow-x:hidden; width:100vw; touch-
 <form id="settingsForm" class="mt-4 space-y-3">
 <div>
 <label class="text-[10px] font-black uppercase opacity-60">Nama Sekolah</label>
-<input id="sekolahNama" placeholder="SMK N 1 BANDUNG" class="w-full border-[2.5px] border-black p-3 rounded-xl text-sm font-bold mt-1 bg-white"/>
+<input id="sekolahNama" placeholder="Nama Sekolah - NOL jika belum setup" class="w-full border-[2.5px] border-black p-3 rounded-xl text-sm font-bold mt-1 bg-white"/>
 </div>
 <div>
 <label class="text-[10px] font-black uppercase opacity-60">Alamat Sekolah</label>
@@ -87,11 +87,12 @@ html{overflow-x:hidden; width:100vw} body{overflow-x:hidden; width:100vw; touch-
 
 </main>
 
-<nav class="fixed bottom-0 w-full max-w-[420px] md:max-w-[440px] bg-white border-t-[3px] border-black flex justify-around py-2 z-50 left-1/2 -translate-x-1/2">
-<a href="/dashboard-siswa.html" class="flex flex-col items-center opacity-60 px-3 py-1"><span class="material-symbols-outlined text-[20px]">dashboard</span><span class="text-[9px] font-bold uppercase">Dash</span></a>
-<a href="/scan.html" class="flex flex-col items-center opacity-60 px-3 py-1"><span class="material-symbols-outlined text-[20px]">qr_code_scanner</span><span class="text-[9px] font-bold uppercase">Scan</span></a>
-<a href="/rekap.html" class="flex flex-col items-center opacity-60 px-3 py-1"><span class="material-symbols-outlined text-[20px]">analytics</span><span class="text-[9px] font-bold uppercase">Rekap</span></a>
-<a href="/settings.html" class="flex flex-col items-center bg-[#FFE600] border-[2px] border-black rounded-xl px-4 py-1"><span class="material-symbols-outlined text-[20px]">settings</span><span class="text-[9px] font-black uppercase">Settings</span></a>
+<nav id="bottomNav" class="fixed bottom-0 w-full max-w-[420px] md:max-w-[440px] bg-white border-t-[3px] border-black flex justify-around py-2 z-50 left-1/2 -translate-x-1/2 gap-1 px-1">
+<a href="/dashboard-guru.html" class="flex flex-col items-center opacity-60 px-2 py-1"><span class="material-symbols-outlined text-[18px]">supervisor_account</span><span class="text-[8px] font-bold uppercase">Guru</span></a>
+<a href="/kelas.html" class="flex flex-col items-center opacity-60 px-2 py-1"><span class="material-symbols-outlined text-[18px]">class</span><span class="text-[8px] font-bold uppercase">Kelas</span></a>
+<a href="/siswa.html" class="flex flex-col items-center opacity-60 px-2 py-1"><span class="material-symbols-outlined text-[18px]">groups</span><span class="text-[8px] font-bold uppercase">Siswa</span></a>
+<a href="/rekap.html" class="flex flex-col items-center opacity-60 px-2 py-1"><span class="material-symbols-outlined text-[18px]">analytics</span><span class="text-[8px] font-bold uppercase">Rekap</span></a>
+<a href="/settings.html" class="flex flex-col items-center bg-[#8A4CFC] border-[2px] border-black rounded-xl px-3 py-1 text-white"><span class="material-symbols-outlined text-[18px]">settings</span><span class="text-[8px] font-black uppercase">Setting</span></a>
 </nav>
 
 </div>
@@ -161,6 +162,7 @@ document.getElementById('settingsForm').addEventListener('submit', async e=>{
 loadSettingsReal();
 
 </script>
-<script src="/js/auth-guard.js"></script>
+<script src="/js/auth-guard.js?v=1.0.34"></script>
+<script src="/js/nav.js?v=1.0.34"></script>
 </body>
 </html>
