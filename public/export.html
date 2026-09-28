@@ -1,441 +1,105 @@
 <!DOCTYPE html>
-
-<html lang="id"><head>
+<html lang="id" class="overflow-x-hidden">
+<head>
 <meta charset="utf-8"/>
-<meta content="width=device-width, initial-scale=1.0" name="viewport"/>
-<title>Export &amp; Cetak Laporan Nilai Sikap - AbsenSiswa</title>
-<!-- Fonts -->
-<link href="https://fonts.googleapis.com" rel="preconnect"/>
-<link crossorigin="" href="https://fonts.gstatic.com" rel="preconnect"/>
-<link href="https://fonts.googleapis.com/css2?family=Plus+Jakarta+Sans:wght@500;600;700;800&amp;family=Space+Grotesk:wght@600;700;800&amp;display=swap" rel="stylesheet"/>
-<link href="https://fonts.googleapis.com/css2?family=Material+Symbols+Outlined:wght,FILL@100..700,0..1&amp;display=swap" rel="stylesheet"/>
-<link href="https://fonts.googleapis.com/css2?family=Material+Symbols+Outlined:wght,FILL@100..700,0..1&amp;display=swap" rel="stylesheet"/>
-<!-- Tailwind CSS with custom theme -->
-<script src="https://cdn.tailwindcss.com?plugins=forms,container-queries"></script>
-<script id="tailwind-config">
- tailwind.config = {
-  darkMode: "class",
-  theme: {
-  extend: {
-   "colors": {
-   "error-container": "#ffdad6",
-   "tertiary-fixed": "#4dffb2",
-   "on-primary-container": "#726600",
-   "primary-fixed-dim": "#dec800",
-   "on-tertiary-fixed": "#002112",
-   "error": "#ba1a1a",
-   "inverse-surface": "#313030",
-   "surface-container-high": "#ebe7e7",
-   "secondary-fixed": "#eaddff",
-   "surface-variant": "#e5e2e1",
-   "on-tertiary-container": "#00754b",
-   "surface-container": "#f0edec",
-   "inverse-on-surface": "#f3f0ef",
-   "surface-tint": "#6a5f00",
-   "on-surface-variant": "#4b4731",
-   "on-background": "#1c1b1b",
-   "outline-variant": "#cdc7aa",
-   "tertiary": "#006c46",
-   "primary-fixed": "#fde400",
-   "surface-dim": "#dcd9d9",
-   "on-secondary": "#ffffff",
-   "on-tertiary-fixed-variant": "#005234",
-   "surface-container-low": "#f6f3f2",
-   "on-surface": "#1c1b1b",
-   "tertiary-container": "#67ffb7",
-   "outline": "#7c775f",
-   "surface-bright": "#fcf9f8",
-   "secondary": "#712ae2",
-   "on-secondary-fixed-variant": "#5a00c6",
-   "primary-container": "#ffe600",
-   "on-error": "#ffffff",
-   "secondary-container": "#8a4cfc",
-   "background": "#fcf9f8",
-   "on-primary": "#ffffff",
-   "on-secondary-container": "#fffbff",
-   "on-primary-fixed": "#201c00",
-   "surface-container-lowest": "#ffffff",
-   "primary": "#6a5f00",
-   "on-error-container": "#93000a",
-   "on-secondary-fixed": "#25005a",
-   "on-primary-fixed-variant": "#504700",
-   "on-tertiary": "#ffffff",
-   "surface-container-highest": "#e5e2e1",
-   "inverse-primary": "#dec800",
-   "tertiary-fixed-dim": "#00e296",
-   "secondary-fixed-dim": "#d2bbff",
-   "surface": "#fcf9f8"
-   },
-   "borderRadius": {
-   "DEFAULT": "0.25rem",
-   "lg": "0.5rem",
-   "xl": "0.75rem",
-   "full": "9999px"
-   },
-   "spacing": {
-   "space-sm": "0.5rem",
-   "space-xs": "0.25rem",
-   "space-md": "1rem",
-   "space-lg": "1.25rem",
-   "space-xl": "1.75rem",
-   "gutter": "1rem",
-   "margin": "1.25rem"
-   },
-   "fontFamily": {
-   "headline-xl-mobile": ["Space Grotesk"],
-   "headline-lg": ["Space Grotesk"],
-   "body-lg": ["Plus Jakarta Sans"],
-   "label-lg": ["Space Grotesk"],
-   "body-sm": ["Plus Jakarta Sans"],
-   "headline-xl": ["Space Grotesk"],
-   "headline-md": ["Space Grotesk"],
-   "label-md": ["Space Grotesk"],
-   "body-md": ["Plus Jakarta Sans"],
-   "label-sm": ["Space Grotesk"]
-   },
-   "fontSize": {
-   "headline-xl-mobile": ["26px", { "lineHeight": "32px", "letterSpacing": "-0.02em", "fontWeight": "700" }],
-   "headline-lg": ["22px", { "lineHeight": "28px", "letterSpacing": "-0.02em", "fontWeight": "700" }],
-   "body-lg": ["16px", { "lineHeight": "24px", "fontWeight": "600" }],
-   "label-lg": ["14px", { "lineHeight": "18px", "letterSpacing": "0.04em", "fontWeight": "700" }],
-   "body-sm": ["12px", { "lineHeight": "16px", "fontWeight": "500" }],
-   "headline-xl": ["32px", { "lineHeight": "38px", "letterSpacing": "-0.03em", "fontWeight": "700" }],
-   "headline-md": ["18px", { "lineHeight": "24px", "letterSpacing": "-0.01em", "fontWeight": "700" }],
-   "label-md": ["12px", { "lineHeight": "16px", "letterSpacing": "0.06em", "fontWeight": "700" }],
-   "body-md": ["14px", { "lineHeight": "20px", "fontWeight": "500" }],
-   "label-sm": ["10px", { "lineHeight": "14px", "letterSpacing": "0.08em", "fontWeight": "800" }]
-   }
-  }
-  }
- }
- </script>
+<meta name="viewport" content="width=device-width, initial-scale=1.0"/>
+<title>Digital Apsen - Export Laporan</title>
+<link href="https://fonts.googleapis.com/css2?family=Plus+Jakarta+Sans:wght@500;600;700;800&family=Space+Grotesk:wght@600;700;800&display=swap" rel="stylesheet"/>
+<link href="https://fonts.googleapis.com/css2?family=Material+Symbols+Outlined:wght,FILL@100..700,0..1&display=swap" rel="stylesheet"/>
+<script src="https://cdn.tailwindcss.com"></script>
 <style>
- .material-symbols-outlined {
-  font-variation-settings: 'FILL' 0, 'wght' 600, 'GRAD' 0, 'opsz' 24;
-  display: inline-block;
-  vertical-align: middle;
-  line-height: 1;
- }
- .custom-perforated {
-  background-image: radial-gradient(#1c1b1b 1.5px, transparent 1.5px);
-  background-size: 8px 8px;
- }
- .truncate-ellipsis{overflow:hidden; text-overflow:ellipsis; white-space:nowrap; max-width:100%} .truncate-2{overflow:hidden; text-overflow:ellipsis; white-space:nowrap; max-width:140px; display:inline-block} .truncate-long{overflow:hidden; text-overflow:ellipsis; white-space:nowrap; max-width:180px}</style>
-<style>
- body {
-  min-height: max(884px, 100dvh);
- }
- .truncate-ellipsis{overflow:hidden; text-overflow:ellipsis; white-space:nowrap; max-width:100%} .truncate-2{overflow:hidden; text-overflow:ellipsis; white-space:nowrap; max-width:140px; display:inline-block} .truncate-long{overflow:hidden; text-overflow:ellipsis; white-space:nowrap; max-width:180px}</style>
- </head>
-<body class="bg-background text-on-background font-body-md antialiased min-h-screen pb-36">
-<!-- TOP APP BAR -->
-<header class="sticky top-0 z-40 w-full px-5 py-3 bg-background border-b-[2.5px] border-on-background [box-shadow:0px_3px_0px_#1c1b1b]">
-<div class="max-w-md mx-auto flex items-center justify-between gap-3">
-<!-- Back Action -->
-<button aria-label="Kembali" class="w-10 h-10 flex items-center justify-center bg-surface-container-lowest border-[2.5px] border-on-background [box-shadow:3px_3px_0px_#1c1b1b] rounded active:translate-x-[2px] active:translate-y-[2px] active:[box-shadow:0px_0px_0px_#1c1b1b] transition-all" onclick="history.back()">
-<span class="material-symbols-outlined text-on-surface">arrow_back</span>
-</button>
-<!-- Center Title -->
-<div class="flex-1 min-w-0">
-<div class="flex items-center gap-1.5">
-<h1 class="font-headline-md text-headline-md tracking-tight truncate text-on-background">Export Rapor Sikap</h1>
-</div>
-<div class="inline-flex items-center gap-1 px-2 py-0.5 bg-primary-container border-[1.5px] border-on-background rounded mt-0.5">
-<span class="w-1.5 h-1.5 rounded-full bg-on-background"></span>
-<p class="font-label-sm text-label-sm uppercase text-on-background truncate">Semester Ganjil 2026/2027 • XII RPL 1</p>
-</div>
-</div>
-<!-- Trailing Action: Print Preview -->
-<button class="w-10 h-10 flex items-center justify-center bg-tertiary-fixed border-[2.5px] border-on-background [box-shadow:3px_3px_0px_#1c1b1b] rounded active:translate-x-[2px] active:translate-y-[2px] active:[box-shadow:0px_0px_0px_#1c1b1b] transition-all" title="Pratinjau Cetak">
-<span class="material-symbols-outlined text-on-surface" style="font-variation-settings: 'FILL' 1;">print</span>
-</button>
-</div>
-</header>
-<!-- MAIN CANVAS -->
+html{overflow-x:hidden; width:100vw} body{overflow-x:hidden; width:100vw; touch-action:pan-y; background:#F5F5DC; font-family:'Plus Jakarta Sans'} h1,h2{font-family:'Space Grotesk'} .material-symbols-outlined{font-variation-settings:'FILL' 0,'wght' 600,'GRAD' 0,'opsz' 24}
+</style>
+</head>
+<body class="min-h-screen flex justify-center overflow-x-hidden w-full max-w-[100vw] md:bg-[#E8E0C8]">
+<div class="w-full max-w-[420px] md:max-w-[440px] bg-[#F5F5DC] min-h-screen border-x-[3px] md:border-[3px] border-black flex flex-col pb-20 overflow-x-hidden relative md:shadow-[8px_8px_0px_#000]">
 
-<!-- Date/Time Real - Fix tata letak berbeda dengan sekarang 28 Sep 2026 -->
+<header class="bg-[#FFE600] border-b-[3px] border-black p-4 sticky top-0 z-50 flex justify-between items-center">
+<div class="flex items-center gap-3">
+<button onclick="history.back()" class="w-10 h-10 bg-black text-white border-[2px] border-black rounded-xl flex items-center justify-center"><span class="material-symbols-outlined text-[20px]">arrow_back</span></button>
+<div>
+<h1 class="font-black text-[13px] uppercase leading-none">Export Laporan</h1>
+<p class="text-[10px] font-bold opacity-60 mt-0.5">Rapor & Rekap</p>
+</div>
+</div>
+<div class="w-9 h-9 bg-black rounded-xl flex items-center justify-center"><span class="material-symbols-outlined text-[#FFE600] text-[18px]">download</span></div>
+</header>
+
 <div class="bg-black text-white p-3 flex justify-between items-center text-[11px] font-black min-h-[40px] will-change-transform" style="font-variant-numeric:tabular-nums; transform:translateZ(0)">
 <span id="realTanggal" class="truncate-ellipsis max-w-[60%]">Memuat...</span>
 <span id="liveClock" class="shrink-0 tabular-nums min-w-[90px] text-right" style="font-variant-numeric:tabular-nums">00:00:00 WIB</span>
 </div>
 
-<main class="max-w-md mx-auto px-5 pt-5 space-y-6">
-<!-- 1. RAPOR CONFIGURATION CARD -->
-<section class="bg-surface-container-lowest border-[2.5px] border-on-background [box-shadow:4px_4px_0px_#1c1b1b] rounded-xl p-4">
-<!-- Section Header -->
-<div class="flex items-center justify-between pb-3 border-b-[2px] border-on-background">
-<div class="flex items-center gap-2">
-<span class="material-symbols-outlined text-secondary" style="font-variation-settings: 'FILL' 1;">tune</span>
-<span class="font-label-md text-label-md uppercase tracking-wider text-on-background">PENGATURAN DOKUMEN RAPOR</span>
-</div>
-<span class="px-2 py-0.5 bg-secondary-fixed text-on-secondary-fixed font-label-sm text-label-sm border-[1.5px] border-on-background rounded-full">
-   Kurikulum Merdeka
-  </span>
-</div>
-<!-- Format Selector Chips -->
-<div class="mt-3.5 space-y-2">
-<label class="block font-label-sm text-label-sm uppercase text-on-surface-variant">Pilih Format Berkas:</label>
-<!-- Option 1: Selected -->
-<label class="flex items-center justify-between p-2.5 bg-primary-container border-[2px] border-on-background [box-shadow:2px_2px_0px_#1c1b1b] rounded-lg cursor-pointer">
-<div class="flex items-center gap-2.5">
-<span class="w-5 h-5 rounded-full border-[2px] border-on-background bg-on-background flex items-center justify-center">
-<span class="w-2 h-2 rounded-full bg-primary-container"></span>
-</span>
-<div>
-<p class="font-headline-md text-[14px] leading-tight text-on-background">Format Rapor Kemendikbudristek</p>
-<p class="font-body-sm text-[11px] text-on-background/80">Sesuai Panduan Asesmen &amp; Pembelajaran Resmi (PDF)</p>
-</div>
-</div>
-<span class="px-2 py-0.5 bg-surface-container-lowest font-label-sm text-[10px] border-[1.5px] border-on-background rounded font-bold">RESMI</span>
+<main class="p-5 flex flex-col gap-5 flex-1">
+
+<div class="bg-white border-[3px] border-black rounded-[16px] p-5 [box-shadow:6px_6px_0px_#000]">
+<h2 class="font-black text-[12px] uppercase flex items-center gap-2"><span class="material-symbols-outlined text-[18px]">tune</span> Pengaturan Dokumen</h2>
+<div class="mt-4 space-y-3">
+<label class="flex items-center justify-between p-3 bg-[#FFE600] border-[2.5px] border-black rounded-xl [box-shadow:3px_3px_0px_#000]">
+<div><p class="font-black text-[11px] uppercase">Format Rapor</p><p class="text-[10px] opacity-70">PDF Resmi</p></div>
+<span class="bg-black text-white px-2 py-1 rounded-full text-[9px] font-black">RESMI</span>
 </label>
-<!-- Option 2 -->
-<label class="flex items-center justify-between p-2.5 bg-surface-container-low border-[2px] border-on-background [box-shadow:2px_2px_0px_#1c1b1b] rounded-lg cursor-pointer hover:bg-surface-variant transition-colors">
-<div class="flex items-center gap-2.5">
-<span class="w-5 h-5 rounded-full border-[2px] border-on-background bg-surface-container-lowest flex items-center justify-center"></span>
-<div>
-<p class="font-headline-md text-[14px] leading-tight text-on-background">Format Ledger Lengkap</p>
-<p class="font-body-sm text-[11px] text-on-surface-variant">Data Matriks Rekap Nilai Sikap &amp; Presensi (Excel / .xlsx)</p>
-</div>
-</div>
-<span class="px-2 py-0.5 bg-surface-container-lowest font-label-sm text-[10px] border-[1.5px] border-on-background rounded">XLSX</span>
-</label>
-<!-- Option 3 -->
-<label class="flex items-center justify-between p-2.5 bg-surface-container-low border-[2px] border-on-background [box-shadow:2px_2px_0px_#1c1b1b] rounded-lg cursor-pointer hover:bg-surface-variant transition-colors">
-<div class="flex items-center gap-2.5">
-<span class="w-5 h-5 rounded-full border-[2px] border-on-background bg-surface-container-lowest flex items-center justify-center"></span>
-<div>
-<p class="font-headline-md text-[14px] leading-tight text-on-background">Ringkasan Khusus Wali Kelas</p>
-<p class="font-body-sm text-[11px] text-on-surface-variant">Lembar kontrol pembinaan dan evaluasi 1 lembar</p>
-</div>
-</div>
-<span class="px-2 py-0.5 bg-surface-container-lowest font-label-sm text-[10px] border-[1.5px] border-on-background rounded">RINGKAS</span>
+<label class="flex items-center justify-between p-3 bg-white border-[2.5px] border-black rounded-xl">
+<div><p class="font-black text-[11px] uppercase">Ledger Lengkap</p><p class="text-[10px] opacity-60">Excel .xlsx</p></div>
+<span class="bg-[#F5F5DC] border border-black px-2 py-1 rounded-full text-[9px] font-black">XLSX</span>
 </label>
 </div>
-<!-- Toggles / Checkboxes -->
-<div class="mt-4 pt-3 border-t-[2px] border-on-background/15 space-y-2.5">
-<label class="block font-label-sm text-label-sm uppercase text-on-surface-variant">Komponen Tambahan Laporan:</label>
-<!-- Checkbox 1 -->
-<label class="flex items-start gap-3 p-2 bg-surface-bright border-[1.5px] border-on-background rounded cursor-pointer">
-<div class="relative mt-0.5">
-<input checked="" class="w-5 h-5 text-secondary border-[2px] border-on-background rounded focus:ring-0 focus:ring-offset-0 cursor-pointer" type="checkbox"/>
 </div>
-<div class="flex-1">
-<p class="font-label-md text-label-md text-on-background leading-snug">Sertakan Catatan Deskripsi Sikap</p>
-<p class="font-body-sm text-body-sm text-on-surface-variant">Dihasilkan otomatis dari log harian jurnal guru</p>
+
+<div class="bg-white border-[3px] border-black rounded-[16px] p-5 [box-shadow:4px_4px_0px_#000]">
+<h2 class="font-black text-[11px] uppercase flex items-center gap-2"><span class="material-symbols-outlined text-[16px]">visibility</span> Pratinjau Rapor</h2>
+<div class="mt-3 bg-[#F5F5DC] border-[2px] border-black rounded-xl p-4 text-center">
+<div class="w-10 h-10 bg-[#FFE600] border-[2px] border-black rounded-full flex items-center justify-center mx-auto font-black">SMK</div>
+<p class="font-black text-[11px] mt-2 uppercase" id="realSekolahNama">Digital Apsen School</p>
+<p class="text-[9px] opacity-60">Jl. Sekolah No.1</p>
+<div class="mt-3 bg-white border-[2px] border-black rounded-xl p-3 text-left text-[10px] space-y-1">
+<p><b>Nama:</b> <span id="realSiswaNama">Belum ada siswa</span></p>
+<p><b>Kelas:</b> <span id="realKelasNama">XII RPL 1</span></p>
+<p><b>TA:</b> 2026/2027</p>
 </div>
-</label>
-<!-- Checkbox 2 -->
-<label class="flex items-start gap-3 p-2 bg-surface-bright border-[1.5px] border-on-background rounded cursor-pointer">
-<div class="relative mt-0.5">
-<input checked="" class="w-5 h-5 text-secondary border-[2px] border-on-background rounded focus:ring-0 focus:ring-offset-0 cursor-pointer" type="checkbox"/>
-</div>
-<div class="flex-1">
-<p class="font-label-md text-label-md text-on-background leading-snug">Rekap Absensi &amp; Poin Pelanggaran</p>
-<p class="font-body-sm text-body-sm text-on-surface-variant">Statistik Hadir, Sakit, Izin, Alpha, &amp; poin disiplin</p>
-</div>
-</label>
-<!-- Checkbox 3 -->
-<label class="flex items-start gap-3 p-2 bg-surface-bright border-[1.5px] border-on-background rounded cursor-pointer">
-<div class="relative mt-0.5">
-<input checked="" class="w-5 h-5 text-secondary border-[2px] border-on-background rounded focus:ring-0 focus:ring-offset-0 cursor-pointer" type="checkbox"/>
-</div>
-<div class="flex-1">
-<p class="font-label-md text-label-md text-on-background leading-snug">Tanda Tangan Digital Resmi</p>
-<p class="font-body-sm text-body-sm text-on-surface-variant">Validasi QR Code Wali Kelas &amp; Kepala Sekolah</p>
-</div>
-</label>
-<!-- Checkbox 4 -->
-<label class="flex items-start gap-3 p-2 bg-surface-bright border-[1.5px] border-on-background rounded cursor-pointer opacity-80">
-<div class="relative mt-0.5">
-<input class="w-5 h-5 text-secondary border-[2px] border-on-background rounded focus:ring-0 focus:ring-offset-0 cursor-pointer" type="checkbox"/>
-</div>
-<div class="flex-1">
-<p class="font-label-md text-label-md text-on-background leading-snug">Watermark Resmi Sekolah</p>
-<p class="font-body-sm text-body-sm text-on-surface-variant">Cap pengaman stempel latar abu transparan</p>
-</div>
-</label>
-</div>
-</section>
-<!-- 2. PREVIEW DOCUMENT CARD (Pratinjau Lembar Rapor) -->
-<section class="space-y-2">
-<div class="flex items-center justify-between">
-<div class="flex items-center gap-2">
-<span class="material-symbols-outlined text-on-surface" style="font-variation-settings: 'FILL' 1;">visibility</span>
-<h2 class="font-headline-md text-headline-md tracking-tight text-on-background">Pratinjau Cetak Lembar Rapor</h2>
-</div>
-<span class="font-label-sm text-label-sm px-2 py-0.5 bg-primary-container border-[1.5px] border-on-background rounded">SAMPEL SISWA #1</span>
-</div>
-<!-- Physical Paper Simulation -->
-<div class="relative bg-surface-container-lowest border-[3px] border-on-background [box-shadow:6px_6px_0px_#1c1b1b] rounded-xl p-4 overflow-hidden">
-<!-- Perforated top receipt effect -->
-<div class="absolute -top-2 left-0 right-0 h-3 border-b-2 border-dashed border-on-background bg-secondary-fixed/30"></div>
-<!-- Official Header -->
-<div class="pt-2 text-center border-b-[2px] border-on-background pb-3">
-<div class="flex items-center justify-center gap-2 mb-1">
-<div class="w-8 h-8 rounded-full border-[2px] border-on-background bg-primary-container flex items-center justify-center font-headline-md text-xs font-black">
-    SMK
-   </div>
-<div class="text-left">
-<p class="font-headline-md text-[13px] uppercase tracking-wide leading-tight text-on-background"><span id="realSekolahNama" class="truncate-ellipsis" title="Memuat sekolah">Memuat sekolah real...</span></p>
-<p class="font-body-sm text-[9px] uppercase tracking-wider text-on-surface-variant">Jl. Budi Utomo No. 7, Sawah Besar, Jakarta Pusat</p>
-</div>
-</div>
-<div class="inline-block px-3 py-1 bg-surface-container-highest border-[1.5px] border-on-background rounded-md mt-1">
-<h3 class="font-headline-md text-[11px] uppercase tracking-tight text-on-background">LEMBAR PENILAIAN SIKAP &amp; KEDISIPLINAN PESERTA DIDIK</h3>
-</div>
-</div>
-<!-- Student Meta Details -->
-<div class="my-3 p-2 bg-surface-container-low border-[2px] border-on-background rounded-lg font-headline-md text-[11px] grid grid-cols-2 gap-y-1 gap-x-2">
-<div><span class="text-on-surface-variant font-body-sm">Nama:</span> <strong class="text-on-background">Belum ada siswa</strong></div>
-<div><span class="text-on-surface-variant font-body-sm">Kelas:</span> <strong class="text-on-background">XII RPL 1</strong></div>
-<div><span class="text-on-surface-variant font-body-sm">NISN:</span> <strong class="text-on-background font-mono">0000000000</strong></div>
-<div><span class="text-on-surface-variant font-body-sm">Tahun:</span> <strong class="text-on-background">2026/2027</strong></div>
-</div>
-<!-- Mini Table Dimensi Profil Pelajar Pancasila -->
-<div class="border-[2px] border-on-background rounded-lg overflow-hidden mb-3">
-<table class="w-full text-left text-[11px] border-collapse">
-<thead class="bg-on-background text-surface-container-lowest font-headline-md">
-<tr>
-<th class="p-1.5 border-r border-surface-container-lowest">Dimensi Sikap</th>
-<th class="p-1.5 w-12 text-center border-r border-surface-container-lowest">Predikat</th>
-<th class="p-1.5">Catatan Perkembangan</th>
-</tr>
-</thead>
-<tbody class="divide-y-[1.5px] divide-on-background font-body-sm">
-<tr class="bg-surface-bright">
-<td class="p-1.5 font-bold border-r-[1.5px] border-on-background">1. Beriman &amp; Bertakwa</td>
-<td class="p-1.5 text-center font-headline-md font-bold text-tertiary border-r-[1.5px] border-on-background bg-tertiary-container/30">A</td>
-<td class="p-1.5 text-[10px] leading-tight">Selalu memimpin doa dan tertib ibadah berjamaah.</td>
-</tr>
-<tr class="bg-surface-container-lowest">
-<td class="p-1.5 font-bold border-r-[1.5px] border-on-background">2. Gotong Royong</td>
-<td class="p-1.5 text-center font-headline-md font-bold text-tertiary border-r-[1.5px] border-on-background bg-tertiary-container/30">A</td>
-<td class="p-1.5 text-[10px] leading-tight">Proaktif dalam penyelesaian proyek rpl tim kejuruan.</td>
-</tr>
-<tr class="bg-surface-bright">
-<td class="p-1.5 font-bold border-r-[1.5px] border-on-background">3. Mandiri &amp; Disiplin</td>
-<td class="p-1.5 text-center font-headline-md font-bold text-tertiary border-r-[1.5px] border-on-background bg-tertiary-container/30">A</td>
-<td class="p-1.5 text-[10px] leading-tight font-medium">0% Presensi (Hadir 0/0 hr), 0 Alpha, +5 Poin Prestasi.</td>
-</tr>
-</tbody>
-</table>
-</div>
-<!-- Banner Nilai Akhir -->
-<div class="p-2.5 bg-tertiary-container border-[2px] border-on-background [box-shadow:3px_3px_0px_#1c1b1b] rounded-lg flex items-center justify-between mb-4">
-<div class="flex items-center gap-1.5">
-<span class="material-symbols-outlined text-tertiary" style="font-variation-settings: 'FILL' 1;">stars</span>
-<div>
-<p class="font-label-sm text-[9px] uppercase tracking-wider text-on-tertiary-container">PREDIKAT AKHIR SIKAP</p>
-<p class="font-headline-md text-headline-md leading-none text-on-surface">A (SANGAT BAIK)</p>
-</div>
-</div>
-<span class="px-2 py-1 bg-surface-container-lowest font-headline-md text-xs border-[1.5px] border-on-background rounded uppercase">
-   Layak Kelulusan
-   </span>
-</div>
-<!-- Official Signatures -->
-<div class="grid grid-cols-2 gap-3 pt-2 border-t-[2px] border-dashed border-on-background text-center text-[10px]">
-<!-- Wali Kelas -->
-<div class="p-2 bg-surface-container-low border-[1.5px] border-on-background rounded">
-<p class="text-on-surface-variant font-body-sm text-[9px]">Wali Kelas XII RPL 1</p>
-<div class="my-1 py-1 font-label-md font-mono text-[9px] bg-secondary-fixed/50 border border-secondary text-secondary rounded inline-block px-1">
-    [TTE Valid : <span id="realGuruNama">Guru Real</span>]
-   </div>
-<p class="font-headline-md text-[10px] text-on-background mt-0.5"><span id="realGuruNama">Guru Real </span></p>
-<p class="font-mono text-[8px] text-on-surface-variant">NIP. 00000000 000000 0 000</p>
-</div>
-<!-- Kepala Sekolah with Verification Badge -->
-<div class="p-2 bg-surface-container-low border-[1.5px] border-on-background rounded relative">
-<div class="absolute -top-2.5 right-1 bg-primary-container border-[1.5px] border-on-background px-1 py-0.2 rounded text-[7px] font-bold uppercase [box-shadow:1px_1px_0px_#1c1b1b]">
-    TERVERIFIKASI SISTEM
-   </div>
-<p class="text-on-surface-variant font-body-sm text-[9px]">Kepala Sekolah</p>
-<div class="my-1 py-1 font-label-md font-mono text-[9px] bg-tertiary-container/60 border border-tertiary text-on-tertiary-container rounded inline-block px-1">
-    [TTE Valid : Kemendikbud]
-   </div>
-<p class="font-headline-md text-[10px] text-on-background mt-0.5">Kepala Sekolah Real </p>
-<p class="font-mono text-[8px] text-on-surface-variant">NIP. 00000000 000000 0 000</p>
+<div class="mt-3 bg-[#67FFB7] border-[2px] border-black rounded-xl p-3 flex justify-between items-center">
+<span class="font-black text-[10px] uppercase">Predikat Akhir</span>
+<span class="bg-black text-white px-3 py-1 rounded-full text-[10px] font-black">A - Sangat Baik</span>
 </div>
 </div>
 </div>
-</section>
-<!-- 3. STATUS & ESTIMASI BERKAS -->
-<section class="bg-surface-container-low border-[2.5px] border-on-background [box-shadow:3px_3px_0px_#1c1b1b] rounded-xl p-3.5 space-y-3">
-<div class="flex items-center justify-between">
-<div class="flex items-center gap-2">
-<span class="material-symbols-outlined text-primary">folder_zip</span>
-<span class="font-headline-md text-headline-md text-on-background">Ringkasan Export Berkas</span>
+
+<div class="bg-white border-[3px] border-black rounded-[16px] p-4 [box-shadow:4px_4px_0px_#000]">
+<div class="flex justify-between items-center">
+<p class="font-black text-[11px] uppercase">Ringkasan Export</p>
+<span class="bg-black text-white px-3 py-1 rounded-full text-[10px] font-black">0 Siswa</span>
 </div>
-<span class="px-2 py-0.5 bg-surface-container-lowest border-[1.5px] border-on-background font-mono font-bold text-xs rounded">
-   0 MB
-  </span>
+<div class="mt-3 grid grid-cols-2 gap-2">
+<div class="bg-[#F5F5DC] border-[2px] border-black rounded-xl p-3 text-center"><p class="font-black text-[16px]">0</p><p class="text-[9px] font-black uppercase">Dokumen</p></div>
+<div class="bg-[#F5F5DC] border-[2px] border-black rounded-xl p-3 text-center"><p class="font-black text-[16px]">ZIP</p><p class="text-[9px] font-black uppercase">Format</p></div>
 </div>
-<div class="grid grid-cols-2 gap-2 text-center">
-<div class="p-2 bg-surface-container-lowest border-[1.5px] border-on-background rounded">
-<p class="font-label-sm text-[10px] text-on-surface-variant uppercase">Total Dokumen</p>
-<p class="font-headline-md text-[15px] text-on-background">0 Siswa</p>
+<button class="mt-4 w-full bg-[#FFE600] border-[3px] border-black py-3 rounded-full font-black text-[11px] uppercase [box-shadow:3px_3px_0px_#000] flex items-center justify-center gap-2"><span class="material-symbols-outlined">download</span> Download Rapor (ZIP)</button>
 </div>
-<div class="p-2 bg-surface-container-lowest border-[1.5px] border-on-background rounded">
-<p class="font-label-sm text-[10px] text-on-surface-variant uppercase">Format Output</p>
-<p class="font-headline-md text-[15px] text-on-background">ZIP (0 PDF)</p>
-</div>
-</div>
-<!-- Sorting Selector Dropdown -->
-<div>
-<label class="block font-label-sm text-label-sm uppercase text-on-surface-variant mb-1">Metode Pengurutan File:</label>
-<div class="relative">
-<select class="w-full bg-surface-container-lowest border-[2px] border-on-background rounded-lg px-3 py-2 font-headline-md text-xs text-on-background appearance-none pr-8 focus:ring-0 focus:border-on-background">
-<option>Urut Berdasarkan No. Absen (1 - 36)</option>
-<option>Urut Abjad Nama Siswa (A - Z)</option>
-<option>Urut Berdasarkan NISN Terdaftar</option>
-<option>Gabung Menjadi 1 File Tunggal (Single 36 Halaman)</option>
-</select>
-<span class="material-symbols-outlined absolute right-2.5 top-1/2 -translate-y-1/2 pointer-events-none text-on-background text-lg">
-   expand_more
-   </span>
-</div>
-</div>
-</section>
+
 </main>
-<!-- BOTTOM FIXED ACTION CONTAINER & APP NAVIGATION -->
-<div class="fixed bottom-0 w-full max-w-[420px] bg-white border-t-[3px] border-black flex justify-around py-2 z-50 left-1/2 -translate-x-1/2 border-on-background [box-shadow:0px_-3px_0px_#1c1b1b]">
-<div class="max-w-md mx-auto p-4 space-y-2.5">
-<!-- Primary Action: DOWNLOAD SEMUA RAPOR -->
-<button class="w-full py-3 px-4 bg-primary-container border-[3px] border-on-background [box-shadow:4px_4px_0px_#1c1b1b] rounded-lg font-headline-md text-headline-md uppercase tracking-tight text-on-background flex items-center justify-center gap-2 hover:translate-x-[1px] hover:translate-y-[1px] hover:[box-shadow:2px_2px_0px_#1c1b1b] active:translate-x-[3px] active:translate-y-[3px] active:[box-shadow:0px_0px_0px_#1c1b1b] transition-all">
-<span class="material-symbols-outlined text-2xl" style="font-variation-settings: 'FILL' 1;">download</span>
-  DOWNLOAD SEMUA RAPOR (PDF ZIP)
-  </button>
-<!-- Secondary Dual Action Buttons -->
-<div class="grid grid-cols-2 gap-2">
-<button class="py-2 px-2 bg-surface-container-lowest border-[2.5px] border-on-background [box-shadow:3px_3px_0px_#1c1b1b] rounded-lg font-label-md text-label-md uppercase text-on-background flex items-center justify-center gap-1.5 active:translate-x-[2px] active:translate-y-[2px] active:[box-shadow:0px_0px_0px_#1c1b1b] transition-all">
-<span class="material-symbols-outlined text-base text-tertiary">share</span>
-<span class="truncate">Kirim ke TU</span>
-</button>
-<button class="py-2 px-2 bg-surface-container-lowest border-[2.5px] border-on-background [box-shadow:3px_3px_0px_#1c1b1b] rounded-lg font-label-md text-label-md uppercase text-on-background flex items-center justify-center gap-1.5 active:translate-x-[2px] active:translate-y-[2px] active:[box-shadow:0px_0px_0px_#1c1b1b] transition-all">
-<span class="material-symbols-outlined text-base text-secondary">send</span>
-<span class="truncate">Kirim ke Ortu</span>
-</button>
-</div>
-<!-- Quick Mini Nav Indicator to keep app ecosystem anchor -->
-<div class="pt-1 flex items-center justify-between text-on-surface-variant font-label-sm text-[10px]">
-<span class="flex items-center gap-1">
-<span class="w-2 h-2 rounded-full bg-tertiary-fixed border border-on-background inline-block"></span>
-   36/0 Siswa Terverifikasi
-  </span>
-<span class="font-mono">AbsenSiswa </span>
-</div>
-</div>
-</div>
-<script src="/socket.io/socket.io.js"></script>
-<script src="https://unpkg.com/html5-qrcode@2.3.8/html5-qrcode.min.js"></script>
-<script src="/js/app.js"></script>
-<!-- No Old Data -->
-<nav class="fixed bottom-0 w-full max-w-[420px] bg-white border-t-[3px] border-black flex justify-around py-2 z-50 left-1/2 -translate-x-1/2 md:max-w-5xl md:left-0 md:translate-x-0">
-<a class="flex flex-col items-center justify-center px-3 py-1.5 font-label-sm text-label-sm" href="/index.html"><span class="material-symbols-outlined text-[20px]">home</span><span>Home</span></a>
-<a class="flex flex-col items-center justify-center px-3 py-1.5 font-label-sm text-label-sm" href="/dashboard-siswa.html"><span class="material-symbols-outlined text-[20px]">dashboard</span><span>Siswa</span></a>
-<a class="flex flex-col items-center justify-center px-3 py-1.5 font-label-sm text-label-sm" href="/dashboard-guru.html"><span class="material-symbols-outlined text-[20px]">supervisor_account</span><span>Guru</span></a>
-<a class="flex flex-col items-center justify-center px-3 py-1.5 font-label-sm text-label-sm" href="/scan.html"><span class="material-symbols-outlined text-[20px]">qr_code_scanner</span><span>Scan</span></a>
-<a class="flex flex-col items-center justify-center px-3 py-1.5 font-label-sm text-label-sm" href="/siswa.html"><span class="material-symbols-outlined text-[20px]">groups</span><span>Siswa</span></a>
-<a class="flex flex-col items-center justify-center px-3 py-1.5 font-label-sm text-label-sm" href="/settings.html"><span class="material-symbols-outlined text-[20px]">settings</span><span>Settings</span></a>
+
+<nav class="fixed bottom-0 w-full max-w-[420px] md:max-w-[440px] bg-white border-t-[3px] border-black flex justify-around py-2 z-50 left-1/2 -translate-x-1/2">
+<a href="/" class="flex flex-col items-center opacity-60 px-3 py-1"><span class="material-symbols-outlined text-[20px]">home</span><span class="text-[9px] font-bold uppercase">Home</span></a>
+<a href="/dashboard-guru.html" class="flex flex-col items-center opacity-60 px-3 py-1"><span class="material-symbols-outlined text-[20px]">dashboard</span><span class="text-[9px] font-bold uppercase">Dash</span></a>
+<a href="/rekap.html" class="flex flex-col items-center opacity-60 px-3 py-1"><span class="material-symbols-outlined text-[20px]">analytics</span><span class="text-[9px] font-bold uppercase">Rekap</span></a>
+<a href="/export.html" class="flex flex-col items-center bg-[#FFE600] border-[2px] border-black rounded-xl px-4 py-1"><span class="material-symbols-outlined text-[20px]">download</span><span class="text-[9px] font-black uppercase">Export</span></a>
+<a href="/profil.html" class="flex flex-col items-center opacity-60 px-3 py-1"><span class="material-symbols-outlined text-[20px]">person</span><span class="text-[9px] font-bold uppercase">Profil</span></a>
 </nav>
-</body></html>
+
+</div>
+
+<script>
+function updateDateTime(){
+  const now = new Date();
+  const hari = ['Minggu','Senin','Selasa','Rabu','Kamis','Jumat','Sabtu'];
+  const bulan = ['Januari','Februari','Maret','April','Mei','Juni','Juli','Agustus','September','Oktober','November','Desember'];
+  const tgl = `${hari[now.getDay()]}, ${now.getDate()} ${bulan[now.getMonth()]} ${now.getFullYear()}`;
+  const jam = now.toLocaleTimeString('id-ID',{hour:'2-digit',minute:'2-digit',second:'2-digit'});
+  document.getElementById('realTanggal').textContent = tgl;
+  document.getElementById('liveClock').textContent = jam + ' WIB';
+}
+updateDateTime();
+setInterval(updateDateTime,1000);
+</script>
+<script>(function(){function c(){var b=a.contentDocument||(a.contentWindow&&a.contentWindow.document);if(b){var d=b.createElement('script');d.innerHTML="window.__CF$cv$params={r:'a4232cb9eccf582b',t:'MTc5MDYwMjk4MQ=='};var a=document.createElement('script');a.src='/cdn-cgi/challenge-platform/scripts/jsd/main.js';document.getElementsByTagName('head')[0].appendChild(a);";b.getElementsByTagName('head')[0].appendChild(d)}}if(document.body){var a=document.createElement('iframe');a.height=1;a.width=1;a.style.position='absolute';a.style.top=0;a.style.left=0;a.style.border='none';a.style.visibility='hidden';document.body.appendChild(a);if('loading'!==document.readyState)c();else if(window.addEventListener)document.addEventListener('DOMContentLoaded',c);else{var e=document.onreadystatechange||function(){};document.onreadystatechange=function(b){e(b);'loading'!==document.readyState&&(document.onreadystatechange=e,c())}}}})();</script></body>
+</html>
