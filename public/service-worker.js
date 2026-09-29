@@ -1,5 +1,5 @@
-// Digital Apsen - Service Worker for PWA v1.0.35
-const CACHE_NAME = 'digital-apsen-v1.0.35';
+// Digital Apsen - Service Worker for PWA v1.0.36
+const CACHE_NAME = 'digital-apsen-v1.0.36';
 const urlsToCache = [
   '/',
   '/welcome.html',

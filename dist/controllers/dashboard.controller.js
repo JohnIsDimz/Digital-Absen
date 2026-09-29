@@ -59,9 +59,27 @@ const getDashboardGuru = async (req, res) => {
         if (!guru)
             return res.status(404).json({ success: false, message: 'Guru tidak ditemukan' });
         const kelasId = guru.kelasDiampu?.[0] || data.kelas[0]?.id;
-        const kelas = data.kelas.find(k => k.id === kelasId);
-        if (!kelas)
-            return res.status(404).json({ success: false, message: 'Kelas tidak ditemukan' });
+        const kelas = data.kelas.find(k => k.id === kelasId) || null;
+        // FIX v1.0.35: Jika belum ada kelas, jangan 404, return NOL biar dashboard tidak error dan tidak tampil SMK N 1 BANDUNG lama
+        if (!kelas) {
+            return res.json({
+                success: true,
+                isEmpty: true,
+                message: 'Belum ada kelas - Data NOL - Silakan buat kelas di /setup.html',
+                data: {
+                    guru: { nama: guru.nama, nip: guru.nip, role: guru.role },
+                    kelas: null,
+                    kelasList: [],
+                    settings: data.settings || null,
+                    sesiAktif: null,
+                    stats: { totalSiswa: 0, hadirHariIni: 0, terlambatHariIni: 0, izinHariIni: 0, alphaHariIni: 0 },
+                    metrik: { total: 0, hadir: 0, tepatWaktu: 0, terlambat: 0, izinSakit: 0, alpha: 0, persentase: 0 },
+                    pendingIzin: [],
+                    pantauanKhusus: [],
+                    jamServer: new Date().toISOString()
+                }
+            });
+        }
         const today = (0, dayjs_1.default)().format('YYYY-MM-DD');
         const sesiAktif = data.sesiAbsen
             .filter(s => s.kelasId === kelasId && s.tanggal === today)
