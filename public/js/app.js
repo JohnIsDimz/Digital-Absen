@@ -94,9 +94,8 @@ async function getRealGPS() {
         );
       },
       err=>{
-        // Fallback to default Bandung if GPS fails
-        console.log('GPS error, fallback', err.message);
-        resolve({lat:-6.914744, lng:107.60981, accuracy:100});
+        console.log('GPS tidak tersedia', err.message);
+        reject(new Error('Lokasi GPS belum tersedia. Aktifkan izin lokasi lalu coba lagi.'));
       },
       {enableHighAccuracy:false, timeout:3000, maximumAge:60000} // Fast! 3s timeout, allow 60s cache
     );

@@ -196,8 +196,7 @@ async function getFastGPS(){
       err=>{
         document.getElementById('lokasiStatus').textContent = 'GPS: Aktifkan lokasi di HP';
         document.getElementById('gpsAccuracy').textContent = 'Error: ' + err.message;
-        // Fallback to IP or default
-        resolve({lat:-6.914744, lng:107.60981, accuracy:100});
+        reject(new Error('Lokasi GPS belum tersedia. Aktifkan izin lokasi lalu coba lagi.'));
       },
       {enableHighAccuracy:false, timeout:3000, maximumAge:60000} // Fast, low accuracy first
     );
@@ -217,7 +216,7 @@ updateDateTime();
 setInterval(updateDateTime,1000);
 
 document.addEventListener('DOMContentLoaded', ()=>{
-  getFastGPS();
+  getFastGPS().catch(()=>{});
   // FIX: Cek role sebelum load, jika GURU jangan load data siswa
   const tokenCheck = localStorage.getItem('absensiswa_token');
   if(!tokenCheck || tokenCheck.trim() === ''){
