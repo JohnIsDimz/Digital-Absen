@@ -20,7 +20,19 @@ const scanSchema = zod_1.z.object({
 });
 const scanAbsen = async (req, res) => {
     try {
-        const { qrToken, lat, lng, faceVerified, deviceId } = scanSchema.parse(req.body);
+        const parsedInput = scanSchema.parse(req.body);
+        const { qrToken: rawQrToken, lat, lng, faceVerified, deviceId } = parsedInput;
+        // Generated QR codes contain the full JSON payload, while older clients
+        // may still send only the token. Accept both formats.
+        let qrToken = rawQrToken;
+        try {
+            const payload = JSON.parse(rawQrToken);
+            if (payload && typeof payload.token === 'string')
+                qrToken = payload.token;
+        }
+        catch {
+            // Raw token format: keep the original value.
+        }
         const siswaId = req.user.id;
         const data = db_1.db.get();
         const siswa = data.siswa.find(s => s.id === siswaId);

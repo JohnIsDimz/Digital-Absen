@@ -342,15 +342,20 @@ async function startCameraNative(){
 }
 
 function onScanSuccess(decodedText, decodedResult){
-  if(qrTokenValue === decodedText) return; // avoid duplicate
-  qrTokenValue = decodedText;
-  document.getElementById('qrToken').value = decodedText;
+  let normalizedToken = decodedText;
+  try {
+    const payload = JSON.parse(decodedText);
+    if(payload && typeof payload.token === 'string') normalizedToken = payload.token;
+  }catch(e){ /* QR may contain a raw token from an older release */ }
+  if(qrTokenValue === normalizedToken) return; // avoid duplicate
+  qrTokenValue = normalizedToken;
+  document.getElementById('qrToken').value = normalizedToken;
 
   // Success UI
   const success = document.getElementById('scanSuccess');
   success.classList.remove('hidden');
   success.classList.add('flex');
-  document.getElementById('qrResultText').textContent = decodedText.substring(0,30) + (decodedText.length>30?'...':'');
+  document.getElementById('qrResultText').textContent = 'Token QR terdeteksi';
   document.getElementById('realStatus').textContent = 'QR Terdeteksi!';
   document.getElementById('realStatus').className = 'text-[10px] font-black uppercase mt-1 text-black bg-[#67FFB7] px-2 py-0.5 rounded-full inline-block';
 
@@ -463,7 +468,14 @@ document.addEventListener('DOMContentLoaded', ()=>{
       qrTokenValue = manual;
       document.getElementById('qrToken').value = manual;
     }
-    const pos = cachedPos || {lat:-6.914744, lng:107.60981, accuracy:50};
+    if(!cachedPos){
+      alert('Lokasi belum tersedia. Aktifkan GPS dan izinkan lokasi, lalu coba scan lagi.');
+      document.getElementById('btnKonfirmasiText').textContent = 'Konfirmasi Hadir';
+      document.getElementById('btnKonfirmasi').disabled = false;
+      startGPS();
+      return;
+    }
+    const pos = cachedPos;
     try{
       document.getElementById('btnKonfirmasiText').textContent = 'Memproses...';
       document.getElementById('btnKonfirmasi').disabled = true;

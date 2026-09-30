@@ -196,6 +196,7 @@ setInterval(updateDateTime,1000);
 
 let qrInterval = null;
 let qrExpiryTime = null;
+let qrRefreshTimer = null;
 
 async function generateQR(){
   const container = document.getElementById('qrContainer');
@@ -233,6 +234,7 @@ async function generateQR(){
     const tokenQR = qrData?.token || qrData?.qrCode || data.data?.token || '-';
     const expiresAt = qrData?.expiresAt || qrData?.exp || data.data?.expiresAt || data.data?.qr?.exp;
     const kelas = data.data?.kelas;
+    window.lastSesiId = data.data?.sesi?.id || null;
 
     if(dataURL){
       qrImage.innerHTML = `<img src="${dataURL}" class="w-full h-full object-contain p-2" alt="QR Code"/>`;
@@ -258,11 +260,15 @@ async function generateQR(){
         const diff = Math.max(0, Math.floor((qrExpiryTime - now)/1000));
         const cd = document.getElementById('qrCountdown');
         if(cd) cd.textContent = diff + 's';
-        if(diff<=0){
+      if(diff<=0){
           clearInterval(qrInterval);
           if(cd){ cd.textContent = 'Expired'; cd.className = 'bg-[#FF90E8] border-[2px] border-black px-2 py-1 rounded-full text-[9px] font-black text-black'; }
         }
       }, 1000);
+      if(qrRefreshTimer) clearTimeout(qrRefreshTimer);
+      qrRefreshTimer = setTimeout(()=>{
+        if(document.visibilityState !== 'hidden') generateQR();
+      }, Math.max(1000, qrExpiryTime - Date.now() - 2000));
     }
 
     if(btn) { btn.innerHTML = '<span class="material-symbols-outlined text-[16px]">check_circle</span> QR Aktif - Refresh?'; btn.disabled = false; }
