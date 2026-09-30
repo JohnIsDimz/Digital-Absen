@@ -4,6 +4,8 @@
 <meta charset="utf-8"/>
 <meta name="viewport" content="width=device-width, initial-scale=1.0"/>
 <title>Digital Apsen - Setup Awal 2026</title>
+<link rel="icon" type="image/png" href="/icon.png?v=1.0.37"/>
+<link rel="apple-touch-icon" href="/icon.png?v=1.0.37"/>
 <link href="https://fonts.googleapis.com/css2?family=Plus+Jakarta+Sans:wght@500;600;700;800&family=Space+Grotesk:wght@600;700;800&display=swap" rel="stylesheet"/>
 <link href="https://fonts.googleapis.com/css2?family=Material+Symbols+Outlined:wght,FILL@100..700,0..1&display=swap" rel="stylesheet"/>
 <script src="https://cdn.tailwindcss.com"></script>
@@ -16,9 +18,9 @@ html{overflow-x:hidden; width:100vw} body{overflow-x:hidden; width:100vw; touch-
 
 <header class="bg-[#FFE600] border-b-[3px] border-black p-4 sticky top-0 z-50 flex justify-between items-center">
 <div class="flex items-center gap-2">
-<img src="/icon.png" alt="Digital Apsen" class="w-9 h-9 rounded-xl border-[2px] border-black object-cover"/>
+<img src="/icon.png?v=1.0.37" alt="Digital Apsen" class="w-9 h-9 rounded-xl border-[2px] border-black object-cover"/>
 <span class="font-black text-sm uppercase">Setup Awal</span>
-<span class="bg-black text-white px-2 py-0.5 rounded-full text-[8px] font-black uppercase">2026/2027</span>
+<span class="bg-black text-white px-2 py-0.5 rounded-full text-[8px] font-black uppercase">Tahun Ajaran Aktif</span>
 </div>
 <a href="/settings.html" class="border-[2.5px] border-black p-2 rounded-xl bg-white font-black text-[10px] flex items-center gap-1"><span class="material-symbols-outlined text-[16px]">settings</span> Settings</a>
 </header>
@@ -46,8 +48,8 @@ html{overflow-x:hidden; width:100vw} body{overflow-x:hidden; width:100vw; touch-
 <div>
 <label class="font-black text-[10px] uppercase opacity-70">Tahun Ajaran</label>
 <select id="tahunAjaran" class="w-full mt-1 px-3 py-2.5 bg-white border-[2.5px] border-black rounded-xl font-bold text-[12px]">
-<option value="2026/2027" selected>2026/2027</option>
-<option value="2025/2026">2025/2026</option>
+<option value="" selected>Tahun Ajaran Aktif</option>
+<option value="2025/2026">Tahun sebelumnya</option>
 </select>
 </div>
 </div>
@@ -154,7 +156,7 @@ document.getElementById('setupForm').addEventListener('submit', async e=>{
  btn.disabled = true;
  const body={
  kelasNama: document.getElementById('kelasNama').value,
- tahunAjaran: document.getElementById('tahunAjaran').value,
+ tahunAjaran: document.getElementById('tahunAjaran').value || `${new Date().getFullYear()}/${new Date().getFullYear()+1}`,
  semester: document.getElementById('semester').value,
  guruNama: document.getElementById('guruNama').value,
  guruNip: document.getElementById('guruNip').value,

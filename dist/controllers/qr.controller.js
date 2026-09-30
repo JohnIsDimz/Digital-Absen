@@ -95,7 +95,8 @@ const generateQRSession = async (req, res) => {
         }
         res.json({
             success: true,
-            message: 'QR Sesi berhasil dibuat - Real-time via Socket.IO - Refresh per 30 detik',
+            version: '0.6.0',
+            message: 'QR sesi berhasil dibuat - payload JSON kompatibel dan refresh berkala',
             data: {
                 sesi,
                 qr: {
@@ -131,6 +132,7 @@ const getActiveQR = async (req, res) => {
         const qrDataURL = await (0, qr_1.generateQRCodeDataURL)(payload);
         res.json({
             success: true,
+            version: '0.6.0',
             data: {
                 sesi,
                 qr: {

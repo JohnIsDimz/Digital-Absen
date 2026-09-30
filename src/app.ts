@@ -31,15 +31,15 @@ app.use(express.urlencoded({ extended: true }));
 app.use(express.static(path.join(__dirname, '../public')));
 app.use('/uploads', express.static(path.join(__dirname, '../uploads')));
 
-// Health v0.5 - Fix semua fungsi
+// Health v0.6 - QR, camera, GPS, and UI reliability
 app.get('/api/health', (req, res) => {
   res.json({
     success: true,
-    message: 'AbsenSiswa Neo-Brutalist API v0.5 - Fix Semua Fungsi: Profil Murid Real, Rekap Real, Semua Data Nyata',
+    message: 'Digital Apsen API v0.6 - QR, kamera, GPS, profil, dan rekap siap diuji',
     timestamp: new Date().toISOString(),
     tahunSekarang: env.CURRENT_YEAR,
     tahunAjaran: env.TAHUN_AJARAN,
-    version: '0.5.0',
+    version: '0.6.0',
     dataStatus: 'REAL DATA - No Dummy - Semua Fungsi Real',
     htmlFiles: {
       useful: true,
@@ -75,6 +75,11 @@ app.get('/api/health', (req, res) => {
       'HTML nama panjang → nama pendek + settings.html baru'
     ],
     features: {
+      qrPayloadParsing: true,
+      qrAutoRefresh: true,
+      cameraLibraryFallback: true,
+      gpsRequiredForCheckIn: true,
+      iconCacheBusted: true,
       profilReal: true,
       rekapReal: true,
       kelasBisaDiganti: true,

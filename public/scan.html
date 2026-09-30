@@ -4,6 +4,8 @@
 <meta charset="utf-8"/>
 <meta name="viewport" content="width=device-width, initial-scale=1.0"/>
 <title>Digital Apsen - Scan QR</title>
+<link rel="icon" type="image/png" href="/icon.png?v=1.0.37"/>
+<link rel="apple-touch-icon" href="/icon.png?v=1.0.37"/>
 <link href="https://fonts.googleapis.com/css2?family=Plus+Jakarta+Sans:wght@500;600;700;800&family=Space+Grotesk:wght@600;700;800&display=swap" rel="stylesheet"/>
 <link href="https://fonts.googleapis.com/css2?family=Material+Symbols+Outlined:wght,FILL@100..700,0..1&display=swap" rel="stylesheet"/>
 <script src="https://cdn.tailwindcss.com"></script>
@@ -99,7 +101,7 @@ video{object-fit:cover; width:100%; height:100%}
 <button id="btnGallery" class="w-10 h-10 bg-white border-[2px] border-black rounded-xl flex items-center justify-center [box-shadow:2px_2px_0px_#000]"><span class="material-symbols-outlined text-[18px]">photo_library</span></button>
 </div>
 <div class="bg-white border-[2px] border-black rounded-xl px-2.5 py-1.5 flex items-center gap-2 [box-shadow:2px_2px_0px_#000] pointer-events-auto">
-<div class="w-8 h-8 bg-[#FFE600] border-[2px] border-black rounded-full flex items-center justify-center overflow-hidden" id="realAvatar"><img src="/icon.png" alt="Digital Apsen" class="w-full h-full object-cover"/></div>
+<div class="w-8 h-8 bg-[#FFE600] border-[2px] border-black rounded-full flex items-center justify-center overflow-hidden" id="realAvatar"><img src="/icon.png?v=1.0.37" alt="Digital Apsen" class="w-full h-full object-cover"/></div>
 <div class="max-w-[90px]"><p class="text-[9px] font-black uppercase text-[#006c46]">Digital Apsen</p><p class="text-[11px] font-bold leading-none truncate-ellipsis" id="realSiswaNama">Siswa</p></div>
 </div>
 </div>
@@ -230,6 +232,10 @@ function showScanning(){
 // Start Camera with Html5Qrcode (best)
 async function startCameraHtml5(){
   if(isScanning) return;
+  if(typeof Html5Qrcode === 'undefined'){
+    showError('Scanner QR Tidak Tersedia', 'Library scanner gagal dimuat. Gunakan Upload QR atau coba muat ulang halaman.');
+    return;
+  }
   const qrReader = document.getElementById('qr-reader');
   qrReader.classList.remove('hidden');
   document.getElementById('realCamera').classList.add('hidden');
@@ -311,11 +317,11 @@ async function startCameraNative(){
     document.getElementById('gpsStatus').textContent = 'Kamera OK - Mencari GPS...';
     startGPS();
 
-    // For native, we can't auto detect QR, need manual or use html5-qrcode file scan
-    // But we show success that camera works
-    document.getElementById('realStatus').textContent = 'Kamera aktif - Tap Konfirmasi jika QR terlihat';
-    document.getElementById('btnKonfirmasi').disabled = false;
-    document.getElementById('btnKonfirmasiText').textContent = 'Kamera Aktif - Siap';
+    // Native preview alone cannot decode a QR. Keep confirmation disabled until
+    // a token is obtained from the QR scanner, gallery, or manual prompt.
+    document.getElementById('realStatus').textContent = 'Kamera aktif - gunakan Upload QR untuk membaca';
+    document.getElementById('btnKonfirmasi').disabled = true;
+    document.getElementById('btnKonfirmasiText').textContent = 'Scan QR Dulu';
 
   }catch(e){
     console.error('Native camera error', e);
@@ -479,7 +485,7 @@ document.addEventListener('DOMContentLoaded', ()=>{
     try{
       document.getElementById('btnKonfirmasiText').textContent = 'Memproses...';
       document.getElementById('btnKonfirmasi').disabled = true;
-      const r = await fetch('/api/absensi/check-in', {
+      const r = await fetch('/api/absensi/scan', {
         method:'POST',
         headers:{'Content-Type':'application/json','Authorization':'Bearer '+token},
         body: JSON.stringify({qrToken: qrTokenValue, lat: pos.lat, lng: pos.lng, accuracy: pos.accuracy})
@@ -518,7 +524,7 @@ document.addEventListener('DOMContentLoaded', ()=>{
           document.getElementById('realSiswaNama2').textContent = truncateText(namaSiswa, 12);
           document.getElementById('realSiswaNama2').title = namaSiswa;
           const avatar = document.getElementById('realAvatar');
-          if (avatar && !avatar.querySelector('img')) avatar.innerHTML = '<img src="/icon.png" alt="Digital Apsen" class="w-full h-full object-cover"/>';
+          if (avatar && !avatar.querySelector('img')) avatar.innerHTML = '<img src="/icon.png?v=1.0.37" alt="Digital Apsen" class="w-full h-full object-cover"/>';
           document.querySelectorAll('.realNISN').forEach(el=> el.textContent = p.nisn||'-');
         }
       }).catch(()=>{});

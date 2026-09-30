@@ -4,6 +4,8 @@
 <meta charset="utf-8"/>
 <meta name="viewport" content="width=device-width, initial-scale=1.0"/>
 <title>Digital Apsen - Kelola Kelas</title>
+<link rel="icon" type="image/png" href="/icon.png?v=1.0.37"/>
+<link rel="apple-touch-icon" href="/icon.png?v=1.0.37"/>
 <link href="https://fonts.googleapis.com/css2?family=Plus+Jakarta+Sans:wght@500;600;700;800&family=Space+Grotesk:wght@600;700;800&display=swap" rel="stylesheet"/>
 <link href="https://fonts.googleapis.com/css2?family=Material+Symbols+Outlined:wght,FILL@100..700,0..1&display=swap" rel="stylesheet"/>
 <script src="https://cdn.tailwindcss.com"></script>
@@ -16,7 +18,7 @@ html{overflow-x:hidden; width:100vw} body{overflow-x:hidden; width:100vw; touch-
 
 <header class="bg-[#8A4CFC] border-b-[3px] border-black p-4 sticky top-0 z-50 flex justify-between items-center text-white">
 <div class="flex items-center gap-3">
-<img src="/icon.png" alt="K" class="w-10 h-10 rounded-xl border-[2px] border-black object-cover"/>
+<img src="/icon.png?v=1.0.37" alt="K" class="w-10 h-10 rounded-xl border-[2px] border-black object-cover"/>
 <div>
 <p class="font-black text-[13px] uppercase leading-none">Kelola Kelas</p>
 <p class="text-[10px] font-bold opacity-80 mt-0.5">Khusus Wali Kelas</p>
@@ -40,7 +42,7 @@ html{overflow-x:hidden; width:100vw} body{overflow-x:hidden; width:100vw; touch-
 <p class="mt-2 text-[11px] leading-[14px] text-white/80">Halaman khusus guru wali kelas untuk mengatur nama kelas, tahun ajaran, kode undangan, dan pindah siswa.</p>
 <div class="mt-3 flex gap-2">
 <span class="bg-black text-white px-3 py-1 rounded-full text-[9px] font-black uppercase">Guru Only</span>
-<span class="bg-white text-black border-2 border-black px-3 py-1 rounded-full text-[9px] font-black uppercase">2026/2027</span>
+<span class="bg-white text-black border-2 border-black px-3 py-1 rounded-full text-[9px] font-black uppercase">Tahun Ajaran Aktif</span>
 </div>
 </div>
 
@@ -63,7 +65,7 @@ html{overflow-x:hidden; width:100vw} body{overflow-x:hidden; width:100vw; touch-
 <form id="editForm" class="mt-4 space-y-3">
 <input id="editId" placeholder="Kelas ID - pilih dari list" class="w-full border-[2.5px] border-black p-3 rounded-xl text-[12px] font-bold bg-[#F5F5DC]" required/>
 <input id="editNama" placeholder="Nama Baru - ex: XII RPL 2" class="w-full border-[2.5px] border-black p-3 rounded-xl text-[12px] font-bold bg-white"/>
-<input id="editTahun" placeholder="Tahun - 2026/2027" class="w-full border-[2.5px] border-black p-3 rounded-xl text-[12px] font-bold bg-white"/>
+<input id="editTahun" placeholder="Tahun - Tahun Ajaran Aktif" class="w-full border-[2.5px] border-black p-3 rounded-xl text-[12px] font-bold bg-white"/>
 <input id="editKode" placeholder="Kode - RPL-XXXX" class="w-full border-[2.5px] border-black p-3 rounded-xl text-[12px] font-bold bg-white"/>
 <button class="w-full bg-[#FFE600] border-[3px] border-black py-3 font-black rounded-full text-[11px] uppercase [box-shadow:3px_3px_0px_#000]">Simpan Perubahan</button>
 </form>

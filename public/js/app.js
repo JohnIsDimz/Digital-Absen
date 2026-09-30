@@ -140,7 +140,6 @@ async function loadProfilRealTotal() {
     document.querySelectorAll('#realNISN').forEach(el=>el.textContent=p.nisn||p.nip||'—');
     document.querySelectorAll('.realNoAbsen').forEach(el=>el.textContent=p.noAbsen||'—');
     const kelasNama = p.kelas?.nama || 'Belum ada kelas';
-    const tahunAjaran = p.kelas?.tahunAjaran || '2026/2027';
     document.querySelectorAll('.realKelasNama').forEach(el=>el.textContent=kelasNama);
     document.querySelectorAll('#realKelasNama').forEach(el=>el.textContent=kelasNama);
     const sekolahNama = p.sekolah?.nama || 'Belum ada sekolah';
@@ -159,7 +158,7 @@ async function loadProfilRealTotal() {
       if(alphaEl) alphaEl.textContent=p.rekap.alpha;
     }
     document.querySelectorAll('#realAvatar').forEach(el=>{
-      if(!el.querySelector('img')) el.innerHTML='<img src="/icon.png" alt="Digital Apsen" class="w-full h-full object-cover"/>';
+      if(!el.querySelector('img')) el.innerHTML='<img src="/icon.png?v=1.0.37" alt="Digital Apsen" class="w-full h-full object-cover"/>';
     });
     loadSettingsRealTotal();
   } catch(e){
@@ -363,7 +362,7 @@ document.addEventListener('DOMContentLoaded', ()=>{
     const tanggalFull = formatTanggalReal(now);
     const tanggalPendek = formatTanggalPendek(now);
     const jam = now.toLocaleTimeString('id-ID', {hour:'2-digit', minute:'2-digit', second:'2-digit'});
-    if(tanggalEl) tanggalEl.textContent = `${tanggalFull} • TA 2026/2027`;
+    if(tanggalEl) tanggalEl.textContent = tanggalFull;
     if(clockEl) clockEl.innerHTML = `${jam} <span class="font-label-md text-label-md uppercase">WIB • ${tanggalPendek}</span>`;
     document.querySelectorAll('.realTanggalFull').forEach(el=>el.textContent=tanggalFull);
     document.querySelectorAll('.realTanggalPendek').forEach(el=>el.textContent=tanggalPendek);
